@@ -1,0 +1,13 @@
+Requisitos do professor, como todos os conceitos de POO
+
+[sim] = sobreposição, na classe GestaoInformacao
+
+[nao] = interface
+[nao] = sobrecarga
+[] =
+[] =
+[] =
+[] =
+[] =
+[] =
+[] =
