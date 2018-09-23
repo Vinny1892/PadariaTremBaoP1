@@ -128,13 +128,17 @@ public class TelaFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_JtextFieldFuncionarioActionPerformed
 
     private void JtextFieldFuncionarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JtextFieldFuncionarioKeyPressed
-       JtextFieldFuncionario.setText("");
-       JtextFieldFuncionario.setForeground(Color.BLACK);
+       if(JtextFieldFuncionario.getText().equals("Digite o Nome do Funcionario")){
+        JtextFieldFuncionario.setText("");
+       
+       JtextFieldFuncionario.setForeground(Color.BLACK);   
+       }
+        
     }//GEN-LAST:event_JtextFieldFuncionarioKeyPressed
 
     private void JtextFieldFuncionarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JtextFieldFuncionarioFocusLost
         if(JtextFieldFuncionario.getText().equals("")){
-            JtextFieldFuncionario.setText("Digite o nome do Funcionario");
+            JtextFieldFuncionario.setText("Digite o Nome do Funcionario");
             JtextFieldFuncionario.setForeground(Color.GRAY);
         }
         
