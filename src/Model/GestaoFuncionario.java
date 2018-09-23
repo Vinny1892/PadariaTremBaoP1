@@ -1,4 +1,5 @@
-package model;
+package Model;
+
 public abstract class GestaoFuncionario {
     String nome;
     String endereco;
