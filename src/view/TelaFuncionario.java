@@ -18,6 +18,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
      */
     public TelaFuncionario() {
         initComponents();
+       
     }
 
     /**
@@ -149,7 +150,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_JtextFieldFuncionarioFocusLost
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:    
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void JtextFieldFuncionarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JtextFieldFuncionarioFocusGained
