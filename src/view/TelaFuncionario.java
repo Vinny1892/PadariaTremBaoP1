@@ -45,6 +45,9 @@ public class TelaFuncionario extends javax.swing.JFrame {
         JtextFieldFuncionario.setForeground(new java.awt.Color(102, 102, 102));
         JtextFieldFuncionario.setText("Digite o Nome do Funcionario");
         JtextFieldFuncionario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                JtextFieldFuncionarioFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 JtextFieldFuncionarioFocusLost(evt);
             }
@@ -148,6 +151,16 @@ public class TelaFuncionario extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void JtextFieldFuncionarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JtextFieldFuncionarioFocusGained
+  if(JtextFieldFuncionario.getText().equals("Digite o Nome do Funcionario")){
+        JtextFieldFuncionario.setText("");
+       
+       JtextFieldFuncionario.setForeground(Color.BLACK);   
+       }        
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_JtextFieldFuncionarioFocusGained
 
     /**
      * @param args the command line arguments
