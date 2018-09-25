@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
  *
  * @author Kaio
  */
-public class ConexaoBD {
+public class ConexaoBDPostGreSql {
 
     public Statement stm; //responsavel por preparar e realizar pesquisas no BD
     public ResultSet rs;  //armazenar o resultado da pesquisa

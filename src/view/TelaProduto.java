@@ -142,8 +142,8 @@ public class TelaProduto extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
         placeholder = jComboBox1.getSelectedItem();
-         jTextFieldProduto.setText("Digite o "+ placeholder + " do Produto");
-         jTextFieldProduto.setForeground(Color.GRAY);
+        jTextFieldProduto.setText("Digite o "+ placeholder + " do Produto");
+        jTextFieldProduto.setForeground(Color.GRAY);
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jTextFieldProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldProdutoActionPerformed
