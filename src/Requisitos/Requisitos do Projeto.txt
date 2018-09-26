@@ -1,6 +1,6 @@
 Requisitos do professor, como todos os conceitos de POO
 
-[sim] = sobreposi��o, na classe GestaoInformacao
+[sim] = sobreposição, na classe GestaoInformacao
 
 [nao] = interface
 [nao] = sobrecarga
@@ -11,3 +11,7 @@ Requisitos do professor, como todos os conceitos de POO
 [] =
 [] =
 [] =
+
+
+
+Perguntar para o professor como sera a relação entre venda e produto, chave estrangeira por "id" ou "codigo, pois um tipo de produto possui um código que identifica aquele tipo de produto, ja o id identifica especificamente um produto, independente do tipo.
