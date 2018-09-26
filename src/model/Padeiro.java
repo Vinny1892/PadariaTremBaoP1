@@ -7,7 +7,7 @@ Padeiros devem receber uma gratiﬁcacao de 25% sobre o salario base,
 como adicional noturno, para cada hora trabalhada em horario alternativo.
 */
 public class Padeiro extends model.GestaoFuncionario{
-    private float horasTrabalhadaNoturno;
+    private float horasEmHorarioAlternativo;
     
     
     
@@ -26,11 +26,11 @@ public class Padeiro extends model.GestaoFuncionario{
     
     
     public float getHorasTrabalhadaNoturno() {
-        return horasTrabalhadaNoturno;
+        return horasEmHorarioAlternativo;
     }
     //deve acumular horas trabalhadas durante o mes
-    public void setHorasTrabalhadaNoturno(float horasTrabalhadaNoturno) {
-        this.horasTrabalhadaNoturno = horasTrabalhadaNoturno;
+    public void sethorarioAlternativo(float horasEmHorarioAlternativo) {
+        this.horasEmHorarioAlternativo = horasEmHorarioAlternativo;
     }
     
 }
