@@ -15,3 +15,6 @@ Requisitos do professor, como todos os conceitos de POO
 
 
 Perguntar para o professor como sera a relação entre venda e produto, chave estrangeira por "id" ou "codigo, pois um tipo de produto possui um código que identifica aquele tipo de produto, ja o id identifica especificamente um produto, independente do tipo.
+
+
+Perguntar para o professor como sera a passagem de mes, como a consulta do valor da gratificação em um mes, e o valor do mes anterior
