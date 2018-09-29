@@ -558,23 +558,6 @@
 									"subViews": [
 										{
 											"_type": "UMLOperationView",
-											"_id": "AAAAAAFl8sL9iexbrmM=",
-											"_parent": {
-												"$ref": "AAAAAAFl8rmLJOv6LPA="
-											},
-											"model": {
-												"$ref": "AAAAAAFl8sL9T+xY/CU="
-											},
-											"font": "Arial;13;0",
-											"left": 1389,
-											"top": 422,
-											"width": 939.56103515625,
-											"height": 13,
-											"text": "+truePerecivel(): int",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLOperationView",
 											"_id": "AAAAAAFmJG8GyDYntFA=",
 											"_parent": {
 												"$ref": "AAAAAAFl8rmLJOv6LPA="
@@ -584,7 +567,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1389,
-											"top": 437,
+											"top": 422,
 											"width": 939.56103515625,
 											"height": 13,
 											"text": "«construtor»+Produto(nome: String, codigo: int, fornecedor: Fornecedor, precoCusto: float, precoFinal: float, perecivel: boolean, apelido: String, dataValidade: date)",
@@ -595,7 +578,7 @@
 									"left": 1384,
 									"top": 417,
 									"width": 949.56103515625,
-									"height": 38
+									"height": 23
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -2053,6 +2036,23 @@
 									"subViews": [
 										{
 											"_type": "UMLOperationView",
+											"_id": "AAAAAAFmJEDfpzfn5+I=",
+											"_parent": {
+												"$ref": "AAAAAAFl81Wa5giRcQE="
+											},
+											"model": {
+												"$ref": "AAAAAAFmJEDfNzfkKeo="
+											},
+											"font": "Arial;13;0",
+											"left": 965,
+											"top": 356,
+											"width": 267.97265625,
+											"height": 13,
+											"text": "«construtor»+CartaoFidelidade(cliete: Cliente)",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
 											"_id": "AAAAAAFl81hT4wuyt5k=",
 											"_parent": {
 												"$ref": "AAAAAAFl81Wa5giRcQE="
@@ -2062,7 +2062,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 965,
-											"top": 356,
+											"top": 371,
 											"width": 267.97265625,
 											"height": 13,
 											"text": "+setTipoCliente(double valor acumulado): void",
@@ -2079,27 +2079,10 @@
 											},
 											"font": "Arial;13;0",
 											"left": 965,
-											"top": 371,
-											"width": 267.97265625,
-											"height": 13,
-											"text": "+desconto(float valorDaCompra): float",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLOperationView",
-											"_id": "AAAAAAFmJEDfpzfn5+I=",
-											"_parent": {
-												"$ref": "AAAAAAFl81Wa5giRcQE="
-											},
-											"model": {
-												"$ref": "AAAAAAFmJEDfNzfkKeo="
-											},
-											"font": "Arial;13;0",
-											"left": 965,
 											"top": 386,
 											"width": 267.97265625,
 											"height": 13,
-											"text": "«construtor»+CartaoFidelidade(cliete: Cliente)",
+											"text": "+getDesconto(float valorDaCompra): float",
 											"horizontalAlignment": 0
 										}
 									],
@@ -3157,7 +3140,7 @@
 											"top": 702,
 											"width": 389.8349609375,
 											"height": 13,
-											"text": "+relatorioProdutos(GestaoDeProduto produtos): void",
+											"text": "+relatorioProdutos(Produto produtos): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3174,7 +3157,7 @@
 											"top": 717,
 											"width": 389.8349609375,
 											"height": 13,
-											"text": "+relatorioFornecedores(GestaoDeFornecedor fornecedores): void",
+											"text": "+relatorioFornecedores(Fornecedor[] fornecedores): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3191,7 +3174,7 @@
 											"top": 732,
 											"width": 389.8349609375,
 											"height": 13,
-											"text": "+relatorioClientes(GestaoDeCliente [] cliente): void",
+											"text": "+relatorioClientes(Cliente [] cliente): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3208,7 +3191,7 @@
 											"top": 747,
 											"width": 389.8349609375,
 											"height": 13,
-											"text": "+relatorioFuncionarios(GestaoDeFuncionario [] funcionarios): void",
+											"text": "+relatorioFuncionarios(Funcionario [] funcionarios): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3225,7 +3208,7 @@
 											"top": 762,
 											"width": 389.8349609375,
 											"height": 13,
-											"text": "+relatorioProdutos(GestaoDeProduto [] produtos): void",
+											"text": "+relatorioProdutos(Produto [] produtos): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3242,7 +3225,7 @@
 											"top": 777,
 											"width": 389.8349609375,
 											"height": 13,
-											"text": "+relatorioFornecedores(GestaoDeFornecedor [] fornecedores): void",
+											"text": "+relatorioFornecedores(Fornecedor [] fornecedores): void",
 											"horizontalAlignment": 0
 										}
 									],
@@ -6807,25 +6790,6 @@
 					"operations": [
 						{
 							"_type": "UMLOperation",
-							"_id": "AAAAAAFl8sL9T+xY/CU=",
-							"_parent": {
-								"$ref": "AAAAAAFl8rmLI+vxPMc="
-							},
-							"name": "truePerecivel",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFl8sNm8exfdng=",
-									"_parent": {
-										"$ref": "AAAAAAFl8sL9T+xY/CU="
-									},
-									"type": "int",
-									"direction": "return"
-								}
-							]
-						},
-						{
-							"_type": "UMLOperation",
 							"_id": "AAAAAAFmJG8GezYkQ40=",
 							"_parent": {
 								"$ref": "AAAAAAFl8rmLI+vxPMc="
@@ -8080,6 +8044,28 @@
 					"operations": [
 						{
 							"_type": "UMLOperation",
+							"_id": "AAAAAAFmJEDfNzfkKeo=",
+							"_parent": {
+								"$ref": "AAAAAAFl81Wa5QiIT8w="
+							},
+							"name": "CartaoFidelidade",
+							"stereotype": "construtor",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAFmJEFbUDhFSk8=",
+									"_parent": {
+										"$ref": "AAAAAAFmJEDfNzfkKeo="
+									},
+									"name": "cliete",
+									"type": {
+										"$ref": "AAAAAAFl8zAIb+32B7M="
+									}
+								}
+							]
+						},
+						{
+							"_type": "UMLOperation",
 							"_id": "AAAAAAFl81hTnQusJ5A=",
 							"_parent": {
 								"$ref": "AAAAAAFl81Wa5QiIT8w="
@@ -8112,7 +8098,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFl81Wa5QiIT8w="
 							},
-							"name": "desconto",
+							"name": "getDesconto",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -8120,8 +8106,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFl81vApAx0a3E="
 									},
-									"name": "float valorDaCompra",
-									"type": ""
+									"name": "float valorDaCompra"
 								},
 								{
 									"_type": "UMLParameter",
@@ -8131,28 +8116,6 @@
 									},
 									"type": "float",
 									"direction": "return"
-								}
-							]
-						},
-						{
-							"_type": "UMLOperation",
-							"_id": "AAAAAAFmJEDfNzfkKeo=",
-							"_parent": {
-								"$ref": "AAAAAAFl81Wa5QiIT8w="
-							},
-							"name": "CartaoFidelidade",
-							"stereotype": "construtor",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFmJEFbUDhFSk8=",
-									"_parent": {
-										"$ref": "AAAAAAFmJEDfNzfkKeo="
-									},
-									"name": "cliete",
-									"type": {
-										"$ref": "AAAAAAFl8zAIb+32B7M="
-									}
 								}
 							]
 						}
@@ -8597,7 +8560,8 @@
 									"_parent": {
 										"$ref": "AAAAAAFl88jeKvP+Jhk="
 									},
-									"name": "Cliente cliente"
+									"name": "Cliente cliente",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -8652,8 +8616,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFl88puwfTiF0o="
 									},
-									"name": "GestaoDeProduto produtos",
-									"type": ""
+									"name": "Produto produtos"
 								},
 								{
 									"_type": "UMLParameter",
@@ -8680,8 +8643,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFl88sJWvVW1BI="
 									},
-									"name": "GestaoDeFornecedor fornecedores",
-									"type": ""
+									"name": "Fornecedor[] fornecedores"
 								},
 								{
 									"_type": "UMLParameter",
@@ -8708,8 +8670,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFl88ypCvXHkcQ="
 									},
-									"name": "GestaoDeCliente [] cliente",
-									"type": ""
+									"name": "Cliente [] cliente"
 								},
 								{
 									"_type": "UMLParameter",
@@ -8736,8 +8697,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFl8841EvZ1RQs="
 									},
-									"name": "GestaoDeFuncionario [] funcionarios",
-									"type": ""
+									"name": "Funcionario [] funcionarios"
 								},
 								{
 									"_type": "UMLParameter",
@@ -8764,8 +8724,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFl885ZQvaqFPY="
 									},
-									"name": "GestaoDeProduto [] produtos",
-									"type": ""
+									"name": "Produto [] produtos"
 								},
 								{
 									"_type": "UMLParameter",
@@ -8792,8 +8751,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFl886FQfbfqlI="
 									},
-									"name": "GestaoDeFornecedor [] fornecedores",
-									"type": ""
+									"name": "Fornecedor [] fornecedores"
 								},
 								{
 									"_type": "UMLParameter",
