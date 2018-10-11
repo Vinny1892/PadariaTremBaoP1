@@ -78,6 +78,7 @@ CREATE TABLE estoque (
   produto_codigo INTEGER(6) UNSIGNED NOT NULL,
   produto_idproduto INTEGER UNSIGNED NOT NULL,
   data_validade INTEGER UNSIGNED NULL,
+  quantidade INTEGER(30) UNSIGNED NULL,
   PRIMARY KEY(idestoque),
   INDEX estoque_FKIndex1(produto_idproduto, produto_codigo),
   FOREIGN KEY(produto_idproduto, produto_codigo)
