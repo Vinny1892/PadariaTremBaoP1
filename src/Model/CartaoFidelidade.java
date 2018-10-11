@@ -9,11 +9,6 @@ package Model;
  *
  * @author Enoque
  */
-public class Cliente extends  PessoaFisica {
-
-    public Cliente(String cpf, String telefone, String nome, String endereco) {
-        super(cpf, telefone, nome, endereco);
-    }
-
- 
+public class CartaoFidelidade {
+    
 }
