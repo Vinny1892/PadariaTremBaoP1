@@ -13,15 +13,38 @@ aplicavel no preco de custo de todos os produtos por eles fornecidos.
 
 */
 public class GestaoFornecedor {
+    private long id;
     private String nome;
     private String cnpj;
     private String endereco;
     private boolean recorrente;
+    private int taxaDesconto;
+
+    public GestaoFornecedor(String nome, String cnpj, String endereco, boolean recorrente,int taxaDesconto) {
+        this.nome = nome;
+        if(cnpj.length() == 14){
+        this.cnpj = cnpj;
+        }
+        this.endereco = endereco;
+        this.recorrente = recorrente;
+        this.taxaDesconto = taxaDesconto;
+    }
     
+    
+       public GestaoFornecedor(long id ,String nome, String cnpj, String endereco, boolean recorrente,int taxaDesconto) {
+        this.id = id;
+        this.nome = nome;
+        if(cnpj.length() == 14){
+        this.cnpj = cnpj;
+        }
+        this.endereco = endereco;
+        this.recorrente = recorrente;
+        this.taxaDesconto = taxaDesconto;
+    }
     
     //aplicavel no preco de custo de todos os produtos por eles fornecidos.
     public float recorrenteNegociarDesconto(float precoCusto, float valorNegociado){
-        float valorDesconto = precoCusto * valorNegociado;
+        float valorDesconto = precoCusto * (valorNegociado/100);
         return valorDesconto;
     }
 
@@ -58,4 +81,21 @@ public class GestaoFornecedor {
     public void setRecorrente(boolean recorrente) {
         this.recorrente = recorrente;
     }
+
+    public float getTaxaDesconto() {
+        return taxaDesconto;
+    }
+
+    public void setTaxaDesconto(int taxaDesconto) {
+        this.taxaDesconto = taxaDesconto;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+    
 }

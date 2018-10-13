@@ -14,7 +14,7 @@ Gerentes, por sua vez, tˆem um aumento no sala´rio base em 20%, como gratiﬁc
 Padeiros, por ﬁm, tˆem uma jornada de trabalho em hora´rio alternativo, cumprindo algumas horas em hora´rios noturnos (madrugada). Padeiros devem receber uma gratiﬁca¸ca˜o de 25% sobre o sal´ario base, como adicional noturno, para cada hora trabalhada em hora´rio alternativo.
 
 */
-public abstract class GestaoFuncionario {
+public abstract class GestaoFuncionario extends Pessoa {
     String nome;
     String endereco;
     String cpf;
