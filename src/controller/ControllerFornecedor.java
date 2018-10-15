@@ -24,11 +24,11 @@ public class ControllerFornecedor {
   }
   
   
-  public void deletar(String cnpj){
-     new DaoFornecedor().deletar(cnpj);
+  public void deletar(int id) throws SQLException{
+     new DaoFornecedor().deletar(id);
   }
   
-  public void editar(String nome ,String endereco ,String cnpj,int taxaDesconto,boolean recorrente){
+  public void editar(String nome ,String endereco ,String cnpj,int taxaDesconto,boolean recorrente) throws SQLException{
       GestaoFornecedor fornecedor = new GestaoFornecedor(nome, cnpj, endereco, recorrente, taxaDesconto);
       new DaoFornecedor().atualizar(fornecedor);    
   }

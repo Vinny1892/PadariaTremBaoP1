@@ -35,9 +35,19 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
     }
 
     @Override
-    public Object getById(int id) {
-        Object object = null;
-      return object;
+    public Object getById(int id) throws SQLException {
+        GestaoFornecedor fornecedor = null;
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT  * FROM fornecedor WHERE id = ?");
+        stmt.setInt(1, id);
+        ResultSet rs = stmt.executeQuery();
+        while(rs.next()){
+            fornecedor = new GestaoFornecedor(rs.getLong("id"), rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"), 
+                    rs.getBoolean("recorrente"), rs.getInt("taxa"));       
+        }
+       rs.close();
+       stmt.close();
+       return fornecedor;
+        
     }
 
     @Override
@@ -55,6 +65,10 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
        
        return fornecedores;
  
+    }
+
+    public void deletar(String cnpj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 
