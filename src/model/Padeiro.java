@@ -8,6 +8,8 @@ como adicional noturno, para cada hora trabalhada em horario alternativo.
 */
 public class Padeiro extends GestaoFuncionario{
     private float horasEmHorarioAlternativo;
+
+    
     
     
     
