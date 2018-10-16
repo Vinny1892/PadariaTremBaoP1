@@ -12,7 +12,7 @@ Fornecedores recorrentes tem associados a eles uma taxa negociada de descontos,
 aplicavel no preco de custo de todos os produtos por eles fornecidos.
 */
 public class GestaoFornecedor extends Pessoa {
-      private long id;
+    private long id;
   
     private String cnpj;
   
@@ -35,6 +35,8 @@ public class GestaoFornecedor extends Pessoa {
 
            if (cnpj.length() == 14) {
                this.cnpj = cnpj;
+           }else{
+               System.out.println("CNPJ diferente de 14 digitos");
            }
 
            this.recorrente = recorrente;

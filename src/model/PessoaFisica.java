@@ -1,28 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
-
-/**
- *
- * 
- */
 public abstract class PessoaFisica extends Pessoa{
     private String cpf;
     private String telefone;
 
     public PessoaFisica(String cpf, String telefone, String nome, String endereco) {
         super(nome, endereco);
-        if(cpf.length() == 11 ){
-             this.cpf = cpf;
-        }else{System.out.println("CPF invalido");}
-       
+        setCpf(cpf);
         this.telefone = telefone;
     }
-
-  
 
     public String getCpf() {
         return cpf;
@@ -30,8 +15,10 @@ public abstract class PessoaFisica extends Pessoa{
 
     public void setCpf(String cpf) {
         if(cpf.length() == 11){
-        this.cpf = cpf;
-            }
+            this.cpf = cpf;
+        }else{
+            System.out.println("");
+        }
     }
 
     public String getTelefone() {

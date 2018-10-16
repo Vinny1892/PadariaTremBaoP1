@@ -13,8 +13,8 @@ import dao.DaoFornecedor;
 import java.sql.SQLException;
 import java.util.List;
 import model.GestaoFornecedor;
-
-public class ControllerFornecedor {
+import dao.CRUDBasico;
+public class ControllerFornecedor{
     
 
   public void salvar(String nome ,int taxaDesconto, String endereco, boolean recorrente, String cnpj) throws SQLException{
@@ -37,8 +37,9 @@ public class ControllerFornecedor {
         ControllerFornecedor cf = new ControllerFornecedor();
         cf.salvar("nome1",10,"endereco1",false,"11111111111111");
     }
+
   
-  
+ 
     
     
     

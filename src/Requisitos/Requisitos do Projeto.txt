@@ -12,6 +12,9 @@ Requisitos do professor, como todos os conceitos de POO
 [] =
 [] =
 
+ fornecedor n tem telefone pq?
+ outra coisa, nosso SQL, esta permitindo cadastras cnpj e cpf repetido
+
 
 
 Perguntar para o professor como sera a relação entre venda e produto, chave estrangeira por "id" ou "codigo, pois um tipo de produto possui um código que identifica aquele tipo de produto, ja o id identifica especificamente um produto, independente do tipo.

@@ -22,17 +22,16 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
     @Override
     public void atualizar(Object object) throws SQLException {
         GestaoFornecedor fornecedorUpdate = (GestaoFornecedor)object;
-       String update = "UPDATE fornecedor SET nome = ? , endereco = ? ,cnpj = ? , recorrente = ? , taxaDesconto = ? WHERE id =  ? " ;
+        String update = "UPDATE fornecedor SET nome = ? , endereco = ? ,cnpj = ? , recorrente = ? , taxaDesconto = ? WHERE id =  ? " ;
         update(update, fornecedorUpdate.getId(), fornecedorUpdate.getNome(),fornecedorUpdate.getEndereco(),fornecedorUpdate.getCnpj(),
-                fornecedorUpdate.isRecorrente(),fornecedorUpdate.getTaxaDesconto());
-       
+        fornecedorUpdate.isRecorrente(),fornecedorUpdate.getTaxaDesconto());
     }
 
     @Override
     public void deletar(int id) throws SQLException {
         delete("DELETE FROM fornecedor WHERE id = ? ", id);
     }
-
+    
     @Override
     public Object getById(int id) throws SQLException {
         GestaoFornecedor fornecedor = null;
@@ -56,7 +55,7 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
         ResultSet rs = stmt.executeQuery();
         while(rs.next()){
             GestaoFornecedor fornecedor = new GestaoFornecedor(rs.getLong("id"), rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"), 
-                    rs.getBoolean("recorrente"), rs.getInt("taxa"));
+            rs.getBoolean("recorrente"), rs.getInt("taxa"));
             fornecedores.add(fornecedor);
         }
        rs.close();
@@ -64,11 +63,4 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
        
        return fornecedores;
     }
-
-    public void deletar(String cnpj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-
-   
 }

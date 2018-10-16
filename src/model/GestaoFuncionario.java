@@ -5,8 +5,11 @@ public abstract class GestaoFuncionario extends PessoaFisica{
 
     public GestaoFuncionario(float salarioBaseMensal, String cpf, String telefone, String nome, String endereco) {
         super(cpf, telefone, nome, endereco);
+        
         this.salarioBaseMensal = salarioBaseMensal;
     }
+
+    
     
     
     
