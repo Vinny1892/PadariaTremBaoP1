@@ -10,36 +10,36 @@ e um CNPJ.
 Os fornecedores podem ser recorrentes ou ocasionais.
 Fornecedores recorrentes tem associados a eles uma taxa negociada de descontos,
 aplicavel no preco de custo de todos os produtos por eles fornecidos.
-
 */
-public class GestaoFornecedor {
-    private long id;
-    private String nome;
+public class GestaoFornecedor extends Pessoa {
+      private long id;
+  
     private String cnpj;
-    private String endereco;
+  
     private boolean recorrente;
     private int taxaDesconto;
 
     public GestaoFornecedor(String nome, String cnpj, String endereco, boolean recorrente,int taxaDesconto) {
-        this.nome = nome;
+        super(nome,endereco);
         if(cnpj.length() == 14){
         this.cnpj = cnpj;
-        }
-        this.endereco = endereco;
+        }else{System.out.println("CNPJ menor que 14 digitos");}
+     
         this.recorrente = recorrente;
         this.taxaDesconto = taxaDesconto;
     }
     
     
-       public GestaoFornecedor(long id ,String nome, String cnpj, String endereco, boolean recorrente,int taxaDesconto) {
-        this.id = id;
-        this.nome = nome;
-        if(cnpj.length() == 14){
-        this.cnpj = cnpj;
-        }
-        this.endereco = endereco;
-        this.recorrente = recorrente;
-        this.taxaDesconto = taxaDesconto;
+       public GestaoFornecedor(long id ,String nome, String cnpj, String endereco, boolean recorrente,int taxaDesconto) {    
+           super(nome, endereco);
+           this.id = id;
+
+           if (cnpj.length() == 14) {
+               this.cnpj = cnpj;
+           }
+
+           this.recorrente = recorrente;
+           this.taxaDesconto = taxaDesconto;
     }
     
     //aplicavel no preco de custo de todos os produtos por eles fornecidos.
@@ -50,13 +50,8 @@ public class GestaoFornecedor {
 
     
     //Getters e Setters
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+   
+   
 
     public String getCnpj() {
         return cnpj;
@@ -66,13 +61,7 @@ public class GestaoFornecedor {
         this.cnpj = cnpj;
     }
 
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
+    
 
     public boolean isRecorrente() {
         return recorrente;
@@ -96,6 +85,6 @@ public class GestaoFornecedor {
 
     public void setId(long id) {
         this.id = id;
-    }
-    
+}
+
 }
