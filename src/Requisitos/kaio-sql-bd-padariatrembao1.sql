@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 16/10/2018 às 15:38
+-- Tempo de geração: 16/10/2018 às 18:57
 -- Versão do servidor: 10.1.36-MariaDB
 -- Versão do PHP: 7.2.10
 
@@ -83,9 +83,8 @@ CREATE TABLE `fornecedor` (
 --
 
 INSERT INTO `fornecedor` (`idfornecedor`, `nome`, `cnpj`, `endereco`, `recorrente`, `taxa_desconto`) VALUES
-(1, 'nome1', '11111111111111', 'endereco1', 1, 10),
-(2, 'nome1', '11111111111111', 'endereco1', 1, 10),
-(3, 'nome1', '11111111111111', 'endereco1', 1, 10);
+(1, 'nome11', '21111111111111', 'end11', 10, 1),
+(2, 'nome1', '11111111111111', 'endereco1', 1, 10);
 
 -- --------------------------------------------------------
 
@@ -115,7 +114,7 @@ CREATE TABLE `padeiro` (
   `endereco` varchar(50) DEFAULT NULL,
   `cpf` varchar(11) DEFAULT NULL,
   `telefone` varchar(12) DEFAULT NULL,
-  `salaio_base_mensal` float DEFAULT NULL,
+  `salario_base_mensal` float DEFAULT NULL,
   `horarioalternativo` float DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -281,13 +280,13 @@ ALTER TABLE `fornecedor`
 -- AUTO_INCREMENT de tabela `gerente`
 --
 ALTER TABLE `gerente`
-  MODIFY `idgerente` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idgerente` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `padeiro`
 --
 ALTER TABLE `padeiro`
-  MODIFY `idpadeiro` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idpadeiro` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `produto`

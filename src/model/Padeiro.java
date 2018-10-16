@@ -8,16 +8,28 @@ como adicional noturno, para cada hora trabalhada em horario alternativo.
 */
 public class Padeiro extends GestaoFuncionario{
     private float horasEmHorarioAlternativo;
+    private long id;
+
+    public Padeiro(long id, String nome, String endereco, String cpf,String telefone,float salarioBaseMensal,float horasEmHorarioAlternativo) {
+        super(salarioBaseMensal, cpf, telefone, nome, endereco);
+        this.horasEmHorarioAlternativo = horasEmHorarioAlternativo;
+        this.id = id;
+        
+    }
 
     public Padeiro(float horasEmHorarioAlternativo, float salarioBaseMensal, String cpf, String telefone, String nome, String endereco) {
         super(salarioBaseMensal, cpf, telefone, nome, endereco);
         this.horasEmHorarioAlternativo = horasEmHorarioAlternativo;
+        
     }
-
     
     
+    @Override
+    public int gratificacao() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
-    
+    //metodos getters e setters 
     public float getHorasTrabalhadaNoturno() {
         return horasEmHorarioAlternativo;
     }
@@ -26,9 +38,13 @@ public class Padeiro extends GestaoFuncionario{
         this.horasEmHorarioAlternativo = horasEmHorarioAlternativo;
     }
 
-    @Override
-    public int gratificacao() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public long getId() {
+        return id;
     }
-    
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+  
 }
