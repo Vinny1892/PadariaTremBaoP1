@@ -2,11 +2,13 @@
 package dao;
 
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import model.GestaoFornecedor;
 
 
@@ -14,9 +16,18 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
 
     @Override
     public void salvar(Object object) throws SQLException {
+        
+        try{
        GestaoFornecedor fornecedor = (GestaoFornecedor) object;
         String insert = "INSERT INTO fornecedor (nome,cnpj,endereco,recorrente,taxa_desconto) VALUES(?,?,?,?,?) ";
         save(insert, fornecedor.getNome(),fornecedor.getCnpj(),fornecedor.getEndereco(),fornecedor.isRecorrente(),fornecedor.getTaxaDesconto());
+        }catch(MySQLIntegrityConstraintViolationException e){
+            System.out.println("CNPJ Ja existe");
+            JOptionPane.showMessageDialog(null, "CNPJ ja existe no Banco de Dados");
+            
+        } 
+        
+        
     }
 
     @Override
@@ -63,4 +74,7 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
         System.out.println("Metodo getAll() realizado");
        return fornecedores;
     }
+    
+      
+    
 }
