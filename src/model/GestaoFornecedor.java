@@ -24,7 +24,6 @@ public class GestaoFornecedor extends Pessoa {
         if(cnpj.length() == 14){
         this.cnpj = cnpj;
         }else{System.out.println("CNPJ menor que 14 digitos");}
-     
         this.recorrente = recorrente;
         this.taxaDesconto = taxaDesconto;
     }

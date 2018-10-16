@@ -14,11 +14,10 @@ import java.sql.SQLException;
 import java.util.List;
 import model.GestaoFornecedor;
 
-
 public class ControllerFornecedor {
     
 
-  public void salvar(String nome ,String endereco ,String cnpj,int taxaDesconto,boolean  recorrente) throws SQLException{
+  public void salvar(String nome ,int taxaDesconto, String endereco, boolean recorrente, String cnpj) throws SQLException{
       GestaoFornecedor fornecedor = new GestaoFornecedor(nome, cnpj, endereco, true,taxaDesconto);
       new DaoFornecedor().salvar(fornecedor);
   }
@@ -33,6 +32,11 @@ public class ControllerFornecedor {
       new DaoFornecedor().atualizar(fornecedor);    
   }
 
+            //testes
+    public static void main(String[] args) throws SQLException {
+        ControllerFornecedor cf = new ControllerFornecedor();
+        cf.salvar("nome1",10,"endereco1",false,"11111111111111");
+    }
   
   
     

@@ -15,9 +15,8 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
     @Override
     public void salvar(Object object) throws SQLException {
        GestaoFornecedor fornecedor = (GestaoFornecedor) object;
-        String insert = "INSERT INTO fornecedor (nome,endereco,cnpj,recorrente,taxaDesconto) VALUES(?,?,?,?,?) ";
-        save(insert, fornecedor.getNome(),fornecedor.getEndereco(),fornecedor.getCnpj(),fornecedor.isRecorrente(),fornecedor.getTaxaDesconto());
-      
+        String insert = "INSERT INTO fornecedor (nome,cnpj,endereco,recorrente,taxa_desconto) VALUES(?,?,?,?,?) ";
+        save(insert, fornecedor.getNome(),fornecedor.getCnpj(),fornecedor.getEndereco(),fornecedor.isRecorrente(),fornecedor.getTaxaDesconto());
     }
 
     @Override
@@ -64,7 +63,6 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
        stmt.close();
        
        return fornecedores;
- 
     }
 
     public void deletar(String cnpj) {
