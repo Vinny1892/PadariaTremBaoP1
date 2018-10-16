@@ -24,7 +24,7 @@ public class GestaoFornecedor {
         this.nome = nome;
         if(cnpj.length() == 14){
         this.cnpj = cnpj;
-        }
+        }else{System.out.println("CNPJ menor que 14 digitos");}
         this.endereco = endereco;
         this.recorrente = recorrente;
         this.taxaDesconto = taxaDesconto;

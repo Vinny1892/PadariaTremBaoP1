@@ -5,17 +5,18 @@ CREATE TABLE padeiro (
   cpf VARCHAR(11) NULL,
   telefone VARCHAR(12) NULL,
   salaio_base_mensal FLOAT(8) NULL,
-  horarioalternativo FLOAT(3) NULL,
+  horarioalternativo FLOAT(3) NULL DEFAULT '0',
   PRIMARY KEY(idpadeiro)
 );
 
 CREATE TABLE gerente (
   idgerente INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  nome VARCHAR NOT NULL,
-  endereco VARCHAR NOT NULL,
-  telefone_2 VARCHAR(11) NOT NULL,
-  telefone VARCHAR(12) NOT NULL,
+  nome VARCHAR(12) NOT NULL,
+  cpf VARCHAR(11) NULL,
+  endereco VARCHAR(50) NULL,
+  telefone VARCHAR(12) NULL,
   salario_base_mensal FLOAT(8) NOT NULL,
+  porcentagem_gratificacao INTEGER(3) NULL DEFAULT '0',
   PRIMARY KEY(idgerente)
 );
 
@@ -26,7 +27,7 @@ CREATE TABLE vendedor (
   cpf INTEGER(11) UNSIGNED NULL,
   telefone VARCHAR(12) NULL,
   salario_base FLOAT(8) NULL,
-  montante_venda FLOAT(8) NOT NULL,
+  montante_venda FLOAT(8) NOT NULL DEFAULT '0',
   PRIMARY KEY(idvendedor)
 );
 
@@ -56,6 +57,7 @@ CREATE TABLE fornecedor (
   nome VARCHAR(50) NOT NULL,
   cnpj VARCHAR(14) NOT NULL,
   endereco VARCHAR(50) NOT NULL,
+  taxa_desconto INTEGER(8) NOT NULL DEFAULT '0',
   recorrente BOOL NOT NULL,
   PRIMARY KEY(idfornecedor)
 );
@@ -78,7 +80,7 @@ CREATE TABLE estoque (
   produto_codigo INTEGER(6) UNSIGNED NOT NULL,
   produto_idproduto INTEGER UNSIGNED NOT NULL,
   data_validade INTEGER UNSIGNED NULL,
-  quantidade INTEGER(30) UNSIGNED NULL,
+  quantidade INTEGER(8) UNSIGNED NULL,
   PRIMARY KEY(idestoque),
   INDEX estoque_FKIndex1(produto_idproduto, produto_codigo),
   FOREIGN KEY(produto_idproduto, produto_codigo)
