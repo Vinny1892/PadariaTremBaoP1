@@ -20,7 +20,7 @@ public class DaoVendedor {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Cadastro findByName(String nome) {
+    public void findByName(String nome) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     public void alterar(Cadastro cadastro) {
