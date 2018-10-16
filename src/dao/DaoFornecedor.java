@@ -22,14 +22,14 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
     @Override
     public void atualizar(Object object) throws SQLException {
         GestaoFornecedor fornecedorUpdate = (GestaoFornecedor)object;
-        String update = "UPDATE fornecedor SET nome = ? , endereco = ? ,cnpj = ? , recorrente = ? , taxaDesconto = ? WHERE id =  ? " ;
-        update(update, fornecedorUpdate.getId(), fornecedorUpdate.getNome(),fornecedorUpdate.getEndereco(),fornecedorUpdate.getCnpj(),
-        fornecedorUpdate.isRecorrente(),fornecedorUpdate.getTaxaDesconto());
+        String update = "UPDATE fornecedor SET nome = ? , endereco = ? ,cnpj = ? , taxa_desconto = ? , recorrente = ? WHERE idfornecedor =  ? " ;
+        update(update, fornecedorUpdate.getId(), fornecedorUpdate.getNome(),fornecedorUpdate.getEndereco(),fornecedorUpdate.getCnpj(),fornecedorUpdate.isRecorrente(),fornecedorUpdate.getTaxaDesconto());
+        System.out.println("Metodo atualizar DaoFornecedor realizado");
     }
 
     @Override
     public void deletar(int id) throws SQLException {
-        delete("DELETE FROM fornecedor WHERE id = ? ", id);
+        delete("DELETE FROM fornecedor WHERE idfornecedor = ? ", id);
     }
     
     @Override
@@ -44,8 +44,8 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
         }
        rs.close();
        stmt.close();
-       return fornecedor;
-        
+        System.out.println("Metodo getById() realizado");
+       return fornecedor; 
     }
 
     @Override
@@ -55,12 +55,12 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
         ResultSet rs = stmt.executeQuery();
         while(rs.next()){
             GestaoFornecedor fornecedor = new GestaoFornecedor(rs.getLong("id"), rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"), 
-            rs.getBoolean("recorrente"), rs.getInt("taxa"));
+                    rs.getBoolean("recorrente"), rs.getInt("taxa"));
             fornecedores.add(fornecedor);
         }
        rs.close();
        stmt.close();
-       
+        System.out.println("Metodo getAll() realizado");
        return fornecedores;
     }
 }

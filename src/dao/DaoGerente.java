@@ -19,19 +19,19 @@ public class DaoGerente extends GenericDao implements CRUDBasico{
     @Override
     public void atualizar(Object object) throws SQLException {
         GestaoGerente gerenteUpdate = (GestaoGerente)object;
-        String update = "UPDATE gerente SET nome = ? , endereco = ? , telefone = ? , cpf = ? , salario_base_mensal = ? , porcentagem_gratificacao = ? WHERE id =  ? " ;
-        update(update, gerenteUpdate.getNome(),gerenteUpdate.getEndereco(),gerenteUpdate.getTelefone(),gerenteUpdate.getCpf(),gerenteUpdate.getSalarioBaseMensal(), gerenteUpdate.getPorcentagemGratificacao());
+        String update = "UPDATE gerente SET nome = ? , cpf = ?, endereco = ? , telefone = ? ,  salario_base_mensal = ? , porcentagem_gratificacao = ? WHERE idgerente =  ? " ;
+        update(update, gerenteUpdate.getId(),gerenteUpdate.getNome(),gerenteUpdate.getCpf(),gerenteUpdate.getEndereco(),gerenteUpdate.getTelefone(),gerenteUpdate.getSalarioBaseMensal(), gerenteUpdate.getPorcentagemGratificacao());
     }
 
     @Override
     public void deletar(int id) throws SQLException {
-        delete("DELETE FROM gerente WHERE id = ? ", id);
+        delete("DELETE FROM gerente WHERE idgerente = ? ", id);
     }
 
     @Override
     public Object getById(int id) throws SQLException {
         GestaoGerente gerente = null;
-        PreparedStatement stmt = getConnection().prepareStatement("SELECT  * FROM gerente WHERE id = ?");
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT  * FROM gerente WHERE idgerente = ?");
         stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
         while(rs.next()){

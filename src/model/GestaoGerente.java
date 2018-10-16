@@ -5,12 +5,17 @@ como gratiﬁcaco por funcao de conﬁanca.
 */
 public class GestaoGerente extends GestaoFuncionario{
     private long id;
-    private int PorcentagemGratificacao;
-
+    private int porcentagemGratificacao;
+    
     public GestaoGerente(long id, String nome, String cpf, String endereco,  String telefone, float salarioBaseMensal,int PorcentagemGratificacao) {
         super(salarioBaseMensal, cpf, telefone, nome, endereco);
         this.id = id;
-        this.PorcentagemGratificacao = PorcentagemGratificacao;
+        this.porcentagemGratificacao = PorcentagemGratificacao;
+    }
+    
+    public GestaoGerente(String nome, String cpf, String endereco,  String telefone, float salarioBaseMensal,int PorcentagemGratificacao) {
+        super(salarioBaseMensal, cpf, telefone, nome, endereco);
+        this.porcentagemGratificacao = PorcentagemGratificacao;
     }
 
     @Override
@@ -27,11 +32,11 @@ public class GestaoGerente extends GestaoFuncionario{
     }
 
     public int getPorcentagemGratificacao() {
-        return PorcentagemGratificacao;
+        return porcentagemGratificacao;
     }
 
-    public void setPorcentagemGratificacao(int PorcentagemGratificacao) {
-        this.PorcentagemGratificacao = PorcentagemGratificacao;
+    public void setPorcentagemGratificacao(int porcentagemGratificacao) {
+        this.porcentagemGratificacao = porcentagemGratificacao;
     }
 
     

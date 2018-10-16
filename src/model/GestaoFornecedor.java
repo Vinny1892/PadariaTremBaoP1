@@ -13,32 +13,29 @@ aplicavel no preco de custo de todos os produtos por eles fornecidos.
 */
 public class GestaoFornecedor extends Pessoa {
     private long id;
-  
     private String cnpj;
-  
     private boolean recorrente;
     private int taxaDesconto;
 
     public GestaoFornecedor(String nome, String cnpj, String endereco, boolean recorrente,int taxaDesconto) {
         super(nome,endereco);
         if(cnpj.length() == 14){
-        this.cnpj = cnpj;
-        }else{System.out.println("CNPJ menor que 14 digitos");}
+            this.cnpj = cnpj;
+        }else{
+            System.out.println("CNPJ menor que 14 digitos");
+        }
         this.recorrente = recorrente;
         this.taxaDesconto = taxaDesconto;
     }
-    
-    
+
        public GestaoFornecedor(long id ,String nome, String cnpj, String endereco, boolean recorrente,int taxaDesconto) {    
            super(nome, endereco);
            this.id = id;
-
            if (cnpj.length() == 14) {
                this.cnpj = cnpj;
            }else{
                System.out.println("CNPJ diferente de 14 digitos");
            }
-
            this.recorrente = recorrente;
            this.taxaDesconto = taxaDesconto;
     }
@@ -72,7 +69,7 @@ public class GestaoFornecedor extends Pessoa {
         this.recorrente = recorrente;
     }
 
-    public float getTaxaDesconto() {
+    public int getTaxaDesconto() {
         return taxaDesconto;
     }
 
