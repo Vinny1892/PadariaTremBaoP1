@@ -14,7 +14,6 @@ import java.sql.SQLException;
 import java.util.List;
 import model.GestaoFornecedor;
 
-
 public class ControllerFornecedor {
     
 
