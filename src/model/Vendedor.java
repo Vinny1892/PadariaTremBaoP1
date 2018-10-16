@@ -8,6 +8,12 @@ recebem uma boniﬁcacao de 10% sobre o salario base
 public class Vendedor extends GestaoFuncionario{
     private double montanteVenda;
     private double metaVenda; // GERENTE DEFINE META DE VENDA
+
+    public Vendedor(double montanteVenda, double metaVenda, float salarioBaseMensal, String cpf, String telefone, String nome, String endereco) {
+        super(salarioBaseMensal, cpf, telefone, nome, endereco);
+        this.montanteVenda = montanteVenda;
+        this.metaVenda = metaVenda;
+    }
     
     
     

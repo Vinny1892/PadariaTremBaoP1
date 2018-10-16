@@ -15,7 +15,10 @@ public abstract class PessoaFisica extends Pessoa{
 
     public PessoaFisica(String cpf, String telefone, String nome, String endereco) {
         super(nome, endereco);
-        this.cpf = cpf;
+        if(cpf.length() == 11 ){
+             this.cpf = cpf;
+        }else{System.out.println("CPF invalido");}
+       
         this.telefone = telefone;
     }
 
