@@ -1,6 +1,4 @@
-
 package dao;
-
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import java.sql.PreparedStatement;
@@ -12,7 +10,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.GestaoFornecedor;
-
 
 public class DaoFornecedor extends GenericDao implements CRUDBasico {
 

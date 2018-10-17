@@ -16,22 +16,27 @@ package model;
 
 import java.util.Date;
 
-
-
 public class GestaoProduto {
     private String nome;
     private int codigo;
     private GestaoFornecedor fornecedor;
     private float precoCusto;
-    private float precoFinal;
+    //private float precoFinal;
     private boolean perecivel;
     private Date dataValidade;
     private String apelido;
 
-    
-    
-    
-    
+    public GestaoProduto(String nome, GestaoFornecedor fornecedor, float precoCusto, boolean perecivel, Date dataValidade, String apelido) {
+        this.nome = nome;
+        //this.codigo = codigo;
+        this.fornecedor = fornecedor;
+        this.precoCusto = precoCusto;
+        //this.precoFinal = precoFinal;
+        this.perecivel = perecivel;
+        this.dataValidade = dataValidade;
+        this.apelido = apelido;
+    }
+
     //Getters e Setters
     public String getNome() {
         return nome;
@@ -65,13 +70,13 @@ public class GestaoProduto {
         this.precoCusto = precoCusto;
     }
 
-    public float getPrecoFinal() {
-        return precoFinal;
-    }
-
-    public void setPrecoFinal(float precoFinal) {
-        this.precoFinal = precoFinal;
-    }
+//    public float getPrecoFinal() {
+//        return precoFinal;
+//    }
+//
+//    public void setPrecoFinal(float precoFinal) {
+//        this.precoFinal = precoFinal;
+//    }
 
     public boolean isPerecivel() {
         return perecivel;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 16/10/2018 às 18:57
+-- Tempo de geração: 18/10/2018 às 00:14
 -- Versão do servidor: 10.1.36-MariaDB
 -- Versão do PHP: 7.2.10
 
@@ -84,7 +84,9 @@ CREATE TABLE `fornecedor` (
 
 INSERT INTO `fornecedor` (`idfornecedor`, `nome`, `cnpj`, `endereco`, `recorrente`, `taxa_desconto`) VALUES
 (1, 'nome11', '21111111111111', 'end11', 10, 1),
-(2, 'nome1', '11111111111111', 'endereco1', 1, 10);
+(2, 'nome1', '11111111111111', 'endereco1', 1, 10),
+(11, 'Tesla', '32134223423322', 'Minha Casa Minha Vida', 1, 10),
+(12, 'tesla', '12312421232111', 'MinhaCAsa', 1, 10);
 
 -- --------------------------------------------------------
 
@@ -173,11 +175,19 @@ CREATE TABLE `vendedor` (
   `idvendedor` int(10) UNSIGNED NOT NULL,
   `nome` varchar(50) DEFAULT NULL,
   `endereco` varchar(50) DEFAULT NULL,
-  `cpf` int(11) UNSIGNED DEFAULT NULL,
   `telefone` varchar(12) DEFAULT NULL,
   `salario_base` float DEFAULT NULL,
-  `montante_venda` float NOT NULL DEFAULT '0'
+  `montante_venda` float NOT NULL DEFAULT '0',
+  `cpf` varchar(11) CHARACTER SET utf8 COLLATE utf8_icelandic_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Fazendo dump de dados para tabela `vendedor`
+--
+
+INSERT INTO `vendedor` (`idvendedor`, `nome`, `endereco`, `telefone`, `salario_base`, `montante_venda`, `cpf`) VALUES
+(4, 'josé feitosa', 'Rua jose feitosa', '11112222', 1500, 9000, '85555555555'),
+(8, 'augusto vendedor', 'rua do augusto', '12123434', 1000, 5000, '33445566778');
 
 --
 -- Índices de tabelas apagadas
@@ -207,7 +217,8 @@ ALTER TABLE `estoque`
 -- Índices de tabela `fornecedor`
 --
 ALTER TABLE `fornecedor`
-  ADD PRIMARY KEY (`idfornecedor`);
+  ADD PRIMARY KEY (`idfornecedor`),
+  ADD UNIQUE KEY `cnpj` (`cnpj`);
 
 --
 -- Índices de tabela `gerente`
@@ -225,7 +236,8 @@ ALTER TABLE `padeiro`
 -- Índices de tabela `produto`
 --
 ALTER TABLE `produto`
-  ADD PRIMARY KEY (`idproduto`,`codigo`);
+  ADD PRIMARY KEY (`idproduto`,`codigo`),
+  ADD UNIQUE KEY `codigo` (`codigo`);
 
 --
 -- Índices de tabela `produto_has_fornecedor`
@@ -246,7 +258,8 @@ ALTER TABLE `venda`
 -- Índices de tabela `vendedor`
 --
 ALTER TABLE `vendedor`
-  ADD PRIMARY KEY (`idvendedor`);
+  ADD PRIMARY KEY (`idvendedor`),
+  ADD UNIQUE KEY `cpf` (`cpf`);
 
 --
 -- AUTO_INCREMENT de tabelas apagadas
@@ -274,19 +287,19 @@ ALTER TABLE `estoque`
 -- AUTO_INCREMENT de tabela `fornecedor`
 --
 ALTER TABLE `fornecedor`
-  MODIFY `idfornecedor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idfornecedor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `gerente`
 --
 ALTER TABLE `gerente`
-  MODIFY `idgerente` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idgerente` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `padeiro`
 --
 ALTER TABLE `padeiro`
-  MODIFY `idpadeiro` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idpadeiro` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `produto`
@@ -304,7 +317,7 @@ ALTER TABLE `venda`
 -- AUTO_INCREMENT de tabela `vendedor`
 --
 ALTER TABLE `vendedor`
-  MODIFY `idvendedor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idvendedor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restrições para dumps de tabelas
