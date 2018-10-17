@@ -12,8 +12,8 @@ public class ControllerGerente {
         System.out.println("Metodo salvar ControllerGerente realizado");
     }
     
-    public void deletar(int id) throws SQLException{
-     new DaoGerente().deletar(id);
+    public void deletar(String nome) throws SQLException{
+     new DaoGerente().deletar(nome);
         System.out.println("Metodo deletar ControllerGerente realizado");
     }
     

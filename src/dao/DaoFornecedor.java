@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.GestaoFornecedor;
 
@@ -15,7 +17,7 @@ import model.GestaoFornecedor;
 public class DaoFornecedor extends GenericDao implements CRUDBasico {
 
     @Override
-    public void salvar(Object object) throws SQLException {
+    public void salvar(Object object) {
         
         try{
        GestaoFornecedor fornecedor = (GestaoFornecedor) object;
@@ -25,6 +27,8 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
             System.out.println("CNPJ Ja existe");
             JOptionPane.showMessageDialog(null, "CNPJ ja existe no Banco de Dados");
             
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao inserir fornecedor");
         } 
         
         
@@ -39,8 +43,8 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
     }
 
     @Override
-    public void deletar(int id) throws SQLException {
-        delete("DELETE FROM fornecedor WHERE idfornecedor = ? ", id);
+    public void deletar(String nome) throws SQLException {
+        delete("DELETE FROM fornecedor WHERE nome = ? ", nome);
     }
     
     @Override
@@ -65,13 +69,15 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM fornecedor");
         ResultSet rs = stmt.executeQuery();
         while(rs.next()){
-            GestaoFornecedor fornecedor = new GestaoFornecedor(rs.getLong("id"), rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"), 
-                    rs.getBoolean("recorrente"), rs.getInt("taxa"));
+            GestaoFornecedor fornecedor = new GestaoFornecedor(rs.getLong("idfornecedor"), rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"), 
+                    rs.getBoolean("recorrente"), rs.getInt("taxa_desconto"));
             fornecedores.add(fornecedor);
         }
        rs.close();
        stmt.close();
         System.out.println("Metodo getAll() realizado");
+        
+   
        return fornecedores;
     }
     

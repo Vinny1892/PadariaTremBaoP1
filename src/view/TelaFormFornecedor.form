@@ -38,21 +38,28 @@
                   <Component id="jCheckBoxRecorrente" min="-2" max="-2" attributes="0"/>
                   <Component id="jFormattedTextFieldCNPJ" max="32767" attributes="0"/>
                   <Component id="jTextFieldEndereco" max="32767" attributes="0"/>
-                  <Component id="jTextFieldTAXA7" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jTextFieldNome" min="-2" pref="135" max="-2" attributes="0"/>
+                  <Component id="jTextFieldNome" pref="135" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Component id="jSalvarFornecedor" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="jFormattedTextFieldTaxaDesconto" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="123" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel5" min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextFieldNome" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -72,7 +79,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextFieldTAXA7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jFormattedTextFieldTaxaDesconto" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jSalvarFornecedor" min="-2" max="-2" attributes="0"/>
@@ -88,9 +95,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldNome">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldNomeActionPerformed"/>
       </Events>
@@ -101,9 +105,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldEndereco">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField2"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldCNPJ">
       <Properties>
@@ -121,19 +122,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Recorrente"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxRecorrenteActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="text" type="java.lang.String" value="Taxa Desconto"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldTAXA7">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField3"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldTAXA7ActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jSalvarFornecedor">
       <Properties>
@@ -142,6 +138,22 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jSalvarFornecedorActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldTaxaDesconto">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+          <Format format="##" subtype="-1" type="5"/>
+        </Property>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel5">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Formulario Fornecedor"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

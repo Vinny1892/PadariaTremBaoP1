@@ -24,8 +24,8 @@ public class DaoGerente extends GenericDao implements CRUDBasico{
     }
 
     @Override
-    public void deletar(int id) throws SQLException {
-        delete("DELETE FROM gerente WHERE idgerente = ? ", id);
+    public void deletar(String nome) throws SQLException {
+        delete("DELETE FROM gerente WHERE nome = ? ", nome);
     }
 
     @Override

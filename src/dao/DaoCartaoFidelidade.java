@@ -17,7 +17,7 @@ public class DaoCartaoFidelidade extends GenericDao implements CRUDBasico{
     }
 
     @Override
-    public void deletar(int id) throws SQLException {
+    public void deletar(String nome) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -30,5 +30,6 @@ public class DaoCartaoFidelidade extends GenericDao implements CRUDBasico{
     public List<Object> getAll() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     
 }

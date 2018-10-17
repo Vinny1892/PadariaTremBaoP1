@@ -20,8 +20,8 @@ public class ControllerPadeiro {
       System.out.println("Metodo editar ControllerPadeiro realizado");
     }
     
-    public void deletar(int id) throws SQLException{
-     new DaoPadeiro().deletar(id);
+    public void deletar(String nome) throws SQLException{
+     new DaoPadeiro().deletar(nome);
         System.out.println("Metodo deletar ControllerPadeiro realizado");
     }
     

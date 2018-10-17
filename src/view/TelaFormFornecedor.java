@@ -41,14 +41,14 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jCheckBoxRecorrente = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
-        jTextFieldTAXA7 = new javax.swing.JTextField();
         jSalvarFornecedor = new javax.swing.JButton();
+        jFormattedTextFieldTaxaDesconto = new javax.swing.JFormattedTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Nome");
 
-        jTextFieldNome.setText("jTextField1");
         jTextFieldNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldNomeActionPerformed(evt);
@@ -56,8 +56,6 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
         });
 
         jLabel2.setText("Endereco");
-
-        jTextFieldEndereco.setText("jTextField2");
 
         try {
             jFormattedTextFieldCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####.##")));
@@ -68,15 +66,13 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
         jLabel3.setText("CNPJ");
 
         jCheckBoxRecorrente.setText("Recorrente");
-
-        jLabel4.setText("Taxa Desconto");
-
-        jTextFieldTAXA7.setText("jTextField3");
-        jTextFieldTAXA7.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBoxRecorrente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldTAXA7ActionPerformed(evt);
+                jCheckBoxRecorrenteActionPerformed(evt);
             }
         });
+
+        jLabel4.setText("Taxa Desconto");
 
         jSalvarFornecedor.setText("Salvar");
         jSalvarFornecedor.addActionListener(new java.awt.event.ActionListener() {
@@ -84,6 +80,16 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
                 jSalvarFornecedorActionPerformed(evt);
             }
         });
+
+        try {
+            jFormattedTextFieldTaxaDesconto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextFieldTaxaDesconto.setEnabled(false);
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel5.setText("Formulario Fornecedor");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,17 +108,23 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
                     .addComponent(jCheckBoxRecorrente)
                     .addComponent(jFormattedTextFieldCNPJ)
                     .addComponent(jTextFieldEndereco)
-                    .addComponent(jTextFieldTAXA7)
-                    .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldNome, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(jSalvarFornecedor)))
-                .addContainerGap())
+                        .addComponent(jSalvarFornecedor))
+                    .addComponent(jFormattedTextFieldTaxaDesconto))
+                .addContainerGap(123, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(64, 64, 64)
+                .addContainerGap()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -129,7 +141,7 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextFieldTAXA7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jFormattedTextFieldTaxaDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSalvarFornecedor)
                 .addContainerGap(45, Short.MAX_VALUE))
@@ -144,23 +156,36 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
 
     private void jSalvarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalvarFornecedorActionPerformed
       
+       
         try {
             new ControllerFornecedor().salvar(
                     jTextFieldNome.getText(),
-                    jTextFieldTAXA7.getText(),
+                    jFormattedTextFieldTaxaDesconto.getText(),
                     jTextFieldEndereco.getText(),
                     jCheckBoxRecorrente.isSelected(),
                     jFormattedTextFieldCNPJ.getText().replace(".", "").replace("/" , "")
             );
+             
+        new TelaFornecedor().setVisible(true);
+        this.dispose(); 
+            
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao inserir novo fornecedor");
+            Logger.getLogger(TelaFormFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
+      
+        
       
     }//GEN-LAST:event_jSalvarFornecedorActionPerformed
 
-    private void jTextFieldTAXA7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTAXA7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldTAXA7ActionPerformed
+    private void jCheckBoxRecorrenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxRecorrenteActionPerformed
+  if(jCheckBoxRecorrente.isSelected()){
+  jFormattedTextFieldTaxaDesconto.setEnabled(true);
+  
+  }else{jFormattedTextFieldTaxaDesconto.setEnabled(false);}
+      
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxRecorrenteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,13 +225,14 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox jCheckBoxRecorrente;
     private javax.swing.JFormattedTextField jFormattedTextFieldCNPJ;
+    private javax.swing.JFormattedTextField jFormattedTextFieldTaxaDesconto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JButton jSalvarFornecedor;
     private javax.swing.JTextField jTextFieldEndereco;
     private javax.swing.JTextField jTextFieldNome;
-    private javax.swing.JTextField jTextFieldTAXA7;
     // End of variables declaration//GEN-END:variables
 }
