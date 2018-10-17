@@ -1,14 +1,42 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
-/**
- *
- * @author Kaio
- */
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import model.GestaoProduto;
+import dao.DaoProduto;
+import model.GestaoFornecedor;
+import java.util.Date;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 public class ControllerProduto {
+
+    public void salvar(String nome, GestaoFornecedor fornecedor, float precoCusto, boolean perecivel, Date dataValidade, String apelido) throws SQLException {
+        GestaoProduto produto = new GestaoProduto(nome, fornecedor, precoCusto, perecivel, dataValidade, apelido);
+        new DaoProduto().salvar(produto);
+        System.out.println("Metodo salvar ControllerProduto realizado");
+    }
+
+    public void deletar(String codigo) throws SQLException {
+        new DaoProduto().deletar(codigo);
+    }
+
+    public void editar(String nome, int codigo, GestaoFornecedor fornecedor, float precoCusto, boolean perecivel, Date dataValidade, String apelido) throws SQLException {
+        GestaoProduto produto = new GestaoProduto(nome, codigo, fornecedor, precoCusto, perecivel, dataValidade, apelido);
+        new DaoProduto().atualizar(produto);
+        System.out.println("Metodo editar ControllerProduto realizado");
+    }
+
+    public ArrayList<GestaoProduto> getAll() throws SQLException {
+        ArrayList< GestaoProduto> produtos = (ArrayList<GestaoProduto>) (ArrayList<?>) new DaoProduto().getAll();
+        System.out.println("Metodo getAll realizado");
+        return produtos;
+    }
     
+    public static void main(String[] args) {
+        ControllerProduto cp = new ControllerProduto();
+        cp.salvar("Carlos", , fornecedor, 0, true, dataValidade, apelido);
+    }
 }
