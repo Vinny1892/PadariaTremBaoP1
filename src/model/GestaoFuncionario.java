@@ -9,11 +9,6 @@ public abstract class GestaoFuncionario extends PessoaFisica{
         this.salarioBaseMensal = salarioBaseMensal;
     }
 
-    
-    
-    
-    
-    
     // sera usado nas clases vendedor, gerente e padeiro
     public abstract int gratificacao();
 
@@ -25,6 +20,10 @@ public abstract class GestaoFuncionario extends PessoaFisica{
         this.salarioBaseMensal = salarioBaseMensal;
     }
     
+    public float mostraSalarioFinal(){
+        float salarioFinal = gratificacao() + getSalarioBaseMensal();
+        return salarioFinal;
+    }
     
 }
 

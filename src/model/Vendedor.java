@@ -13,10 +13,7 @@ public class Vendedor extends GestaoFuncionario{
         this.montanteVenda = montanteVenda;
     }
   
-    
-    
-    
-    //Getters e Setters
+    //Get Set
     public double getMontanteVenda() {
         return montanteVenda;
     }
@@ -24,26 +21,10 @@ public class Vendedor extends GestaoFuncionario{
     public void setMontanteVenda(double montanteVenda) {
         this.montanteVenda = montanteVenda;
     }
-
-    public double getMetaVenda() {
-        return metaVenda;
-    }
-
-    public void setMetaVenda(double metaVenda) {
-        this.metaVenda = metaVenda;
-    }
-
+    
     @Override
     public int gratificacao() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
     
 }
