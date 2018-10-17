@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package view.fornecedor;
 
 import controller.ControllerFornecedor;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
-import model.GestaoFornecedor;
+import model.ModeloTabela;
 
 /**
  *
@@ -19,7 +18,7 @@ import model.GestaoFornecedor;
  */
 public class TelaFornecedor extends javax.swing.JFrame {
     ControllerFornecedor cf;
-    DefaultListModel list;
+    ModeloTabela mot ;
 
     /**
      * Creates new form TelaFornecedor
@@ -27,14 +26,19 @@ public class TelaFornecedor extends javax.swing.JFrame {
     public TelaFornecedor() throws SQLException {
         initComponents();
         cf = new ControllerFornecedor();
-        ArrayList<GestaoFornecedor> lista= cf.getAll();
-         list = new DefaultListModel();
-        jList1.setModel(list);
-        for(int i =0 ; i<lista.size();i++){
-        list.addElement(lista.get(i).getNome());
-        }
+      ArrayList fornecedores =  cf.getAll();
+        String [] colunas = new String [] {"ID","CNPJ","Nome"};
+        
+        
+        
+         mot = new ModeloTabela(fornecedores, colunas);
+         jTableFornecedor.setModel(mot);
+        
        
     }
+    
+   
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,8 +49,6 @@ public class TelaFornecedor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         jTextFieldBuscaFornecedor = new javax.swing.JTextField();
         jButtonBuscar = new javax.swing.JButton();
         jButtonRemover = new javax.swing.JButton();
@@ -54,15 +56,10 @@ public class TelaFornecedor extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButtonAdicionar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableFornecedor = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jList1ValueChanged(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jList1);
 
         jButtonBuscar.setText("buscar");
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -92,6 +89,16 @@ public class TelaFornecedor extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel2.setText("FORNECEDOR");
 
+        jTableFornecedor.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(jTableFornecedor);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,11 +107,12 @@ public class TelaFornecedor extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jTextFieldBuscaFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldBuscaFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -115,54 +123,49 @@ public class TelaFornecedor extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(162, 162, 162)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldBuscaFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
+                        .addGap(23, 23, 23)
                         .addComponent(jButtonAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(51, 51, 51))
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(68, 68, 68))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-         jList1.setSelectedValue(jTextFieldBuscaFornecedor.getText(), true);
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
-    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
-        // TODO add your handling code here:
-     
-        
-    }//GEN-LAST:event_jList1ValueChanged
-
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
-    String nome = jList1.getSelectedValue();
-        try {
-            new ControllerFornecedor().deletar(nome);
-            list.removeElement(nome);
-        } catch (SQLException ex) {
-            System.out.println("Erro");
-        }
-        
+//    String nome = jList1.getSelectedValue();
+//        try {
+//            new ControllerFornecedor().deletar(nome);
+//            list.removeElement(nome);
+//        } catch (SQLException ex) {
+//            System.out.println("Erro");
+//        }
+//        
         
 // TODO add your handling code here:
     }//GEN-LAST:event_jButtonRemoverActionPerformed
@@ -220,8 +223,8 @@ public class TelaFornecedor extends javax.swing.JFrame {
     private javax.swing.JButton jButtonRemover;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTableFornecedor;
     private javax.swing.JTextField jTextFieldBuscaFornecedor;
     // End of variables declaration//GEN-END:variables
 }

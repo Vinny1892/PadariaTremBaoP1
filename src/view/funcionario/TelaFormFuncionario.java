@@ -1,4 +1,4 @@
-package view;
+package view.funcionario;
 public class TelaFormFuncionario extends javax.swing.JFrame {
 
     /**

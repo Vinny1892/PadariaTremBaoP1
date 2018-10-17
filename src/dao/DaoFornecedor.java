@@ -60,18 +60,19 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
     }
 
     @Override
-    public List<Object> getAll() throws SQLException {
-        ArrayList<Object> fornecedores = new ArrayList<Object>();
+    public ArrayList<Object> getAll() throws SQLException {
+        ArrayList<Object> fornecedores = new ArrayList<>();
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM fornecedor");
         ResultSet rs = stmt.executeQuery();
         while(rs.next()){
             GestaoFornecedor fornecedor = new GestaoFornecedor(rs.getLong("idfornecedor"), rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"), 
                     rs.getBoolean("recorrente"), rs.getInt("taxa_desconto"));
-            fornecedores.add(fornecedor);
+            Object objeto = (Object) fornecedor;
+            fornecedores.add(objeto);
         }
        rs.close();
        stmt.close();
-        System.out.println("Metodo getAll() realizado");
+     
         
    
        return fornecedores;
