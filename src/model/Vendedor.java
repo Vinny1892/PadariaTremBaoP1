@@ -7,17 +7,14 @@ recebem uma boniﬁcacao de 10% sobre o salario base
 */
 public class Vendedor extends GestaoFuncionario{
     private double montanteVenda;
-    private double metaVenda; // GERENTE DEFINE META DE VENDA
 
-    public Vendedor(double montanteVenda, double metaVenda, float salarioBaseMensal, String cpf, String telefone, String nome, String endereco) {
+    public Vendedor(double montanteVenda, float salarioBaseMensal, String cpf, String telefone, String nome, String endereco) {
         super(salarioBaseMensal, cpf, telefone, nome, endereco);
         this.montanteVenda = montanteVenda;
-        this.metaVenda = metaVenda;
     }
+  
     
     
-    
-   
     
     //Getters e Setters
     public double getMontanteVenda() {
@@ -39,6 +36,14 @@ public class Vendedor extends GestaoFuncionario{
     @Override
     public int gratificacao() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
     
 }

@@ -18,20 +18,16 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
 
     @Override
     public void salvar(Object object) {
-        
         try{
-       GestaoFornecedor fornecedor = (GestaoFornecedor) object;
-        String insert = "INSERT INTO fornecedor (nome,cnpj,endereco,recorrente,taxa_desconto) VALUES(?,?,?,?,?) ";
-        save(insert, fornecedor.getNome(),fornecedor.getCnpj(),fornecedor.getEndereco(),fornecedor.isRecorrente(),fornecedor.getTaxaDesconto());
+            GestaoFornecedor fornecedor = (GestaoFornecedor) object;
+            String insert = "INSERT INTO fornecedor (nome,cnpj,endereco,recorrente,taxa_desconto) VALUES(?,?,?,?,?) ";
+            save(insert, fornecedor.getNome(),fornecedor.getCnpj(),fornecedor.getEndereco(),fornecedor.isRecorrente(),fornecedor.getTaxaDesconto());
         }catch(MySQLIntegrityConstraintViolationException e){
             System.out.println("CNPJ Ja existe");
-            JOptionPane.showMessageDialog(null, "CNPJ ja existe no Banco de Dados");
-            
+            JOptionPane.showMessageDialog(null, "CNPJ ja existe no Banco de Dados");  
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao inserir fornecedor");
         } 
-        
-        
     }
 
     @Override

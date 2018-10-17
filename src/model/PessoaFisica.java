@@ -17,7 +17,7 @@ public abstract class PessoaFisica extends Pessoa{
         if(cpf.length() == 11){
             this.cpf = cpf;
         }else{
-            System.out.println("");
+            System.out.println("CPF deve possuir 11 digitos");
         }
     }
 
