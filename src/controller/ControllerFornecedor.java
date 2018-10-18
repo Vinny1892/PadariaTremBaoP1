@@ -18,8 +18,8 @@ public class ControllerFornecedor {
         System.out.println("Metodo salvar ControllerFonecedor realizado");
     }
 
-    public void deletar(String cnpj) throws SQLException {
-        new DaoFornecedor().deletar(cnpj);
+    public void deletar(int id) throws SQLException {
+        new DaoFornecedor().deletar(id);
     }
 
     public void editar(String nome, String endereco, String cnpj, int taxaDesconto, boolean recorrente) throws SQLException {

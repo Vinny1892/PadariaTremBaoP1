@@ -274,6 +274,29 @@ public class TelaFornecedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
+           boolean encontrou = false;
+       
+        for(int i = 0 ; i<fornecedores.size() && !encontrou;i++){
+            if(jListCNPJ.getSelectedValue().equals(fornecedores.get(i).getCnpj())){
+                try {
+                     cf.deletar(fornecedores.get(i).getIdfornecedor());
+                            encontrou=true;
+                    new TelaFornecedor().setVisible(true);
+                    this.dispose();
+                    
+                   
+
+                    
+                } catch (SQLException ex) {
+                  JOptionPane.showMessageDialog(null, "Erro ao Remover");
+                }
+            }
+        }
+        
+    
+        
+        
+
 //    String nome = jList1.getSelectedValue();
 //        try {
 //            new ControllerFornecedor().deletar(nome);
