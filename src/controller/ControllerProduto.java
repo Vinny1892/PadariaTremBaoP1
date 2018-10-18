@@ -40,12 +40,12 @@ public class ControllerProduto {
         System.out.println("Metodo getAll realizado");
         return produtos;
     }
-
+/*
     public static void main(String[] args) throws SQLException {
         ControllerProduto cp = new ControllerProduto();
-        //GestaoFornecedor fornecedor = new GestaoFornecedor("São Gabriel", "333344445555", "Rua antonio", false, 0);
+        GestaoFornecedor fornecedor = new GestaoFornecedor("São Gabriel", "333344445555", "Rua antonio", false, 0);
 
-        //cp.salvar("Leite", fornecedor, 1.00f, "Leite de saquinho");
+        cp.salvar("Leite", fornecedor, 1.00f, "Leite de saquinho");
 
-    }
+    }*/
 }

@@ -13,8 +13,8 @@ public class DaoCliente extends GenericDao implements CRUDBasico {
     public void salvar(Object object) throws SQLException {
         try {
             GestaoCliente cliente = (GestaoCliente) object;
-            String insert = "INSERT INTO cliente (nome,endereco,cpf,telefone) VALUES(?,?,?,?) ";
-            save(insert, cliente.getNome(), cliente.getEndereco(), cliente.getCpf(), cliente.getTelefone());
+            String insert = "INSERT INTO cliente (nome,endereco,cpf,telefone,idcartao_fidelidade) VALUES(?,?,?,?) ";
+            save(insert, cliente.getNome(), cliente.getEndereco(), cliente.getCpf(), cliente.getTelefone(),cliente.getCartaoFidelidade().getIdcartaoFidelidade());
             System.out.println("Metodo salvar DaoCliente realizado");
         } catch (MySQLIntegrityConstraintViolationException e) {
             System.out.println("CPF Ja existe");

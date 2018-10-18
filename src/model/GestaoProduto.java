@@ -27,20 +27,23 @@ public class GestaoProduto {
     //private boolean perecivel;
     //private Format dataValidade;
     private String apelido;
+    private int idfornecedor;
 
-    public GestaoProduto(String nome, int codigo, GestaoFornecedor fornecedor, float precoCusto, String apelido) {
+    public GestaoProduto(String nome, int codigo, GestaoFornecedor fornecedor, float precoCusto, String apelido, int idfornecedor) {
         this.nome = nome;
         this.codigo = codigo;
         this.fornecedor = fornecedor;
         this.precoCusto = precoCusto;
         this.apelido = apelido;
+        this.idfornecedor = idfornecedor;
     }
 
-    public GestaoProduto(String nome, GestaoFornecedor fornecedor, float precoCusto, String apelido) {
+    public GestaoProduto(String nome, GestaoFornecedor fornecedor, float precoCusto, String apelido, int idfornecedor) {
         this.nome = nome;
         this.fornecedor = fornecedor;
         this.precoCusto = precoCusto;
         this.apelido = apelido;
+        this.idfornecedor = idfornecedor;
     }
     
 
@@ -83,6 +86,14 @@ public class GestaoProduto {
 
     public void setApelido(String apelido) {
         this.apelido = apelido;
+    }
+
+    public int getIdfornecedor() {
+        return idfornecedor;
+    }
+
+    public void setIdfornecedor(int idfornecedor) {
+        this.idfornecedor = idfornecedor;
     }
 
 }

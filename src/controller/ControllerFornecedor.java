@@ -11,7 +11,7 @@ public class ControllerFornecedor {
 
     public void salvar(String nome, String taxaDesconto, String endereco, boolean recorrente, String cnpj) throws SQLException {
         int taxaDesc = Integer.parseInt(taxaDesconto);
-        GestaoFornecedor fornecedor = new GestaoFornecedor(nome, cnpj, endereco, true, taxaDesc);
+        GestaoFornecedor fornecedor = new GestaoFornecedor(nome, taxaDesc, endereco, true, cnpj);
         Object objeto = (Object) fornecedor;
         new DaoFornecedor().salvar(objeto);
         System.out.println("Metodo salvar ControllerFonecedor realizado");
@@ -22,7 +22,7 @@ public class ControllerFornecedor {
     }
 
     public void editar(String nome, String endereco, String cnpj, int taxaDesconto, boolean recorrente) throws SQLException {
-        GestaoFornecedor fornecedor = new GestaoFornecedor(nome, cnpj, endereco, recorrente, taxaDesconto);
+        GestaoFornecedor fornecedor = new GestaoFornecedor(nome, taxaDesconto, endereco, true, cnpj);
         new DaoFornecedor().atualizar(fornecedor);
         System.out.println("Metodo editar ControllerFornecedor realizado");
     }

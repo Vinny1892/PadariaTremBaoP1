@@ -1,5 +1,6 @@
 package controller;
 
+import Model.CartaoFidelidade;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import model.GestaoCliente;
 import dao.DaoCliente;
@@ -8,15 +9,14 @@ import javax.swing.JOptionPane;
 
 public class ControllerCliente {
 
-    public void salvar(String nome, String endereco, String cpf, String telefone) throws SQLException {
-        GestaoCliente cliente = new GestaoCliente(nome, endereco, cpf, telefone);
+    public void salvar(String nome, String endereco, String cpf, String telefone, CartaoFidelidade cartaoFidelidade) throws SQLException {
+        GestaoCliente cliente = new GestaoCliente(nome, endereco, cpf, telefone, cartaoFidelidade);
         new DaoCliente().salvar(cliente);
         System.out.println("Metodo salvar ControllerCliente realizado");
-
     }
 
-    public void editar(String nome, String endereco, String cpf, String telefone) throws SQLException {
-        GestaoCliente cliente = new GestaoCliente(nome, endereco, cpf, telefone);
+    public void editar(String nome, String endereco, String cpf, String telefone, CartaoFidelidade cartaoFidelidade) throws SQLException {
+        GestaoCliente cliente = new GestaoCliente(nome, endereco, cpf, telefone, cartaoFidelidade);
         new DaoCliente().atualizar(cliente);
         System.out.println("Metodo editar ControllerCliente realizado");
     }

@@ -10,10 +10,17 @@ package Model;
  * @author Enoque
  */
 public class CartaoFidelidade {
+    private int idcartaoFidelidade;
     private  boolean gold;
     private boolean platinum;
 
     public CartaoFidelidade(boolean gold, boolean platinum) {
+        this.gold = gold;
+        this.platinum = platinum;
+    }
+
+    public CartaoFidelidade(int idcartaoFidelidade, boolean gold, boolean platinum) {
+        this.idcartaoFidelidade = idcartaoFidelidade;
         this.gold = gold;
         this.platinum = platinum;
     }
@@ -32,6 +39,14 @@ public class CartaoFidelidade {
 
     public void setPlatinum(boolean platinum) {
         this.platinum = platinum;
+    }
+
+    public int getIdcartaoFidelidade() {
+        return idcartaoFidelidade;
+    }
+
+    public void setIdcartaoFidelidade(int idcartaoFidelidade) {
+        this.idcartaoFidelidade = idcartaoFidelidade;
     }
     
     
