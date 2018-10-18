@@ -47,7 +47,7 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
         stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
         while(rs.next()){
-            fornecedor = new GestaoFornecedor(rs.getLong("id"), rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"), 
+            fornecedor = new GestaoFornecedor(rs.getInt("idfornecedor"), rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"), 
                     rs.getBoolean("recorrente"), rs.getInt("taxa"));       
         }
        rs.close();
@@ -62,7 +62,7 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM fornecedor");
         ResultSet rs = stmt.executeQuery();
         while(rs.next()){
-            GestaoFornecedor fornecedor = new GestaoFornecedor(rs.getLong("idfornecedor"), rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"), 
+            GestaoFornecedor fornecedor = new GestaoFornecedor(rs.getInt("idfornecedor"), rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"), 
                     rs.getBoolean("recorrente"), rs.getInt("taxa_desconto"));
             Object objeto = (Object) fornecedor;
             fornecedores.add(objeto);
