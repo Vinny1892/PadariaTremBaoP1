@@ -1,4 +1,5 @@
 package model;
+
 /*
 1. 
 Gestao de fornecedores: 
@@ -10,47 +11,44 @@ e um CNPJ.
 Os fornecedores podem ser recorrentes ou ocasionais.
 Fornecedores recorrentes tem associados a eles uma taxa negociada de descontos,
 aplicavel no preco de custo de todos os produtos por eles fornecidos.
-*/
+ */
 public class GestaoFornecedor extends Pessoa {
-    private long id;
+
     private String cnpj;
     private boolean recorrente;
     private int taxaDesconto;
 
-    public GestaoFornecedor(String nome, String cnpj, String endereco, boolean recorrente,int taxaDesconto) {
-        super(nome,endereco);
-        if(cnpj.length() == 14){
+    public GestaoFornecedor(String nome, int taxaDesconto, String endereco, boolean recorrente, String cnpj) {
+        super(nome, endereco);
+        if (cnpj.length() == 14) {
             this.cnpj = cnpj;
-        }else{
+        } else {
             System.out.println("CNPJ menor que 14 digitos");
         }
         this.recorrente = recorrente;
         this.taxaDesconto = taxaDesconto;
     }
 
-       public GestaoFornecedor(long id ,String nome, String cnpj, String endereco, boolean recorrente,int taxaDesconto) {    
-           super(nome, endereco);
-           this.id = id;
-           if (cnpj.length() == 14) {
-               this.cnpj = cnpj;
-           }else{
-               System.out.println("CNPJ diferente de 14 digitos");
-           }
-           this.recorrente = recorrente;
-           this.taxaDesconto = taxaDesconto;
+    public GestaoFornecedor(long id, String nome, String cnpj, String endereco, boolean recorrente, int taxaDesconto) {
+        super(nome, endereco);
+        if (cnpj.length() == 14) {
+            this.cnpj = cnpj;
+        } else {
+            System.out.println("CNPJ diferente de 14 digitos");
+        }
+        this.recorrente = recorrente;
+        this.taxaDesconto = taxaDesconto;
     }
-    
+
+  
+
     //aplicavel no preco de custo de todos os produtos por eles fornecidos.
-    public float recorrenteNegociarDesconto(float precoCusto, float valorNegociado){
-        float valorDesconto = precoCusto * (valorNegociado/100);
+    public float recorrenteNegociarDesconto(float precoCusto, float valorNegociado) {
+        float valorDesconto = precoCusto * (valorNegociado / 100);
         return valorDesconto;
     }
 
-    
     //Getters e Setters
-   
-   
-
     public String getCnpj() {
         return cnpj;
     }
@@ -58,8 +56,6 @@ public class GestaoFornecedor extends Pessoa {
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
-
-    
 
     public boolean isRecorrente() {
         return recorrente;
@@ -76,13 +72,5 @@ public class GestaoFornecedor extends Pessoa {
     public void setTaxaDesconto(int taxaDesconto) {
         this.taxaDesconto = taxaDesconto;
     }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-}
 
 }

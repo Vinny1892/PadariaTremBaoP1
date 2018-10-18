@@ -40,7 +40,7 @@ CREATE TABLE produto (
   preco_final FLOAT(6) NOT NULL,
   perecivel BOOL NOT NULL,
   id_fornecedor INTEGER UNSIGNED NOT NULL,
-  PRIMARY KEY(idproduto, codigo)
+  PRIMARY KEY(idproduto)
 );
 
 CREATE TABLE cliente (
@@ -92,12 +92,11 @@ CREATE TABLE estoque (
 CREATE TABLE produto_has_fornecedor (
   produto_idproduto INTEGER UNSIGNED NOT NULL,
   fornecedor_idfornecedor INTEGER UNSIGNED NOT NULL,
-  produto_codigo INTEGER(6) UNSIGNED NOT NULL,
-  PRIMARY KEY(produto_idproduto, fornecedor_idfornecedor, produto_codigo),
-  INDEX produto_has_fornecedor_FKIndex1(produto_idproduto, produto_codigo),
+  PRIMARY KEY(produto_idproduto, fornecedor_idfornecedor),
+  INDEX produto_has_fornecedor_FKIndex1(produto_idproduto),
   INDEX produto_has_fornecedor_FKIndex2(fornecedor_idfornecedor),
-  FOREIGN KEY(produto_idproduto, produto_codigo)
-    REFERENCES produto(idproduto, codigo)
+  FOREIGN KEY(produto_idproduto)
+    REFERENCES produto(idproduto)
       ON DELETE NO ACTION
       ON UPDATE NO ACTION,
   FOREIGN KEY(fornecedor_idfornecedor)
@@ -116,8 +115,12 @@ CREATE TABLE venda (
   id_vendedor INTEGER UNSIGNED NOT NULL,
   PRIMARY KEY(idvenda),
   INDEX venda_FKIndex1(estoque_idestoque),
-  FOREIGN KEY(estoque_idestoque)
+  FOREIGN KEY(estoque_idestoque),
+FOREIGN KEY(id_produto),
+FOREIGN KEY(id_vendedor),
     REFERENCES estoque(idestoque)
+REFERENCES produto(id_produto)
+REFERENCES vendedor(id_vendedor)
       ON DELETE NO ACTION
       ON UPDATE NO ACTION
 );

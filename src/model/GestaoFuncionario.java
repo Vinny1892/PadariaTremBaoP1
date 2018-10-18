@@ -1,11 +1,11 @@
 package model;
 
-public abstract class GestaoFuncionario extends PessoaFisica{
+public abstract class GestaoFuncionario extends PessoaFisica {
+
     private float salarioBaseMensal;
 
     public GestaoFuncionario(float salarioBaseMensal, String cpf, String telefone, String nome, String endereco) {
         super(cpf, telefone, nome, endereco);
-        
         this.salarioBaseMensal = salarioBaseMensal;
     }
 
@@ -19,11 +19,10 @@ public abstract class GestaoFuncionario extends PessoaFisica{
     public void setSalarioBaseMensal(float salarioBaseMensal) {
         this.salarioBaseMensal = salarioBaseMensal;
     }
-    
-    public float mostraSalarioFinal(){
+
+    public float mostraSalarioFinal() {
         float salarioFinal = gratificacao() + getSalarioBaseMensal();
         return salarioFinal;
     }
-    
-}
 
+}

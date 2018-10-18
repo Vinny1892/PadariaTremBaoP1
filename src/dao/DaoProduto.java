@@ -19,29 +19,22 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
 
     @Override
     public void salvar(Object object) throws SQLException {
-        try {
             GestaoProduto produto = (GestaoProduto) object;
-            String insert = "INSERT INTO produto (nome,preco_custo,perecivel,data_validade,apelido) VALUES(?,?,?,?,?) ";
-            save(insert, produto.getNome(), produto.getPrecoCusto(), produto.isPerecivel(), produto.getDataValidade(), produto.getApelido());
-        } catch (MySQLIntegrityConstraintViolationException e) {
-            System.out.println("Código já existe");
-            JOptionPane.showMessageDialog(null, "Código ja existe no Banco de Dados");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao inserir produto");
-        }
+            String insert = "INSERT INTO produto (nome, preco_custo, apelido, id_fornecedor) VALUES(?,?,?,?) ";
+            save(insert, produto.getNome(), produto.getPrecoCusto(), produto.getApelido(), produto.getFornecedor().get());
     }
 
     @Override
     public void atualizar(Object object) throws SQLException {
         GestaoProduto produto = (GestaoProduto) object;
-        String update = "UPDATE produto SET nome = ?,preco_custo = ?,perecivel = ?,data_validade = ? WHERE codigo =  ? ";
-        update(update, produto.getCodigo(), produto.getNome(), produto.getPrecoCusto(), produto.isPerecivel(), produto.getDataValidade());
+        String update = "UPDATE produto SET nome = ?,preco_custo = ?, apelido = ?,id_fornecedo = ? WHERE id_produto =  ? ";
+        update(update, produto.getCodigo(), produto.getNome(), produto.getPrecoCusto(), produto.getApelido(), produto.getFornecedor());
         System.out.println("Metodo atualizar DaoProduto realizado");
     }
 
     public void deletar(String codigoS) throws SQLException {
         int codigo = Integer.parseInt(codigoS);
-        delete("DELETE FROM produto WHERE codigo = ? ", codigo);
+        delete("DELETE FROM produto WHERE id_produto = ? ", codigo);
     }
 
     @Override
