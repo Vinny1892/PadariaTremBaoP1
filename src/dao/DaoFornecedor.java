@@ -36,24 +36,14 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
     }
 
     @Override
-    public void deletar(String cnpj) throws SQLException {
-        delete("DELETE FROM fornecedor WHERE cnpj = ? ", cnpj);
+    public void deletar(int id) throws SQLException {
+        delete("DELETE FROM fornecedor WHERE id = ? ", id);
     }
     
     @Override
     public Object getById(int id) throws SQLException {
-        GestaoFornecedor fornecedor = null;
-        PreparedStatement stmt = getConnection().prepareStatement("SELECT  * FROM fornecedor WHERE id = ?");
-        stmt.setInt(1, id);
-        ResultSet rs = stmt.executeQuery();
-        while(rs.next()){
-            fornecedor = new GestaoFornecedor(rs.getLong("id"), rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"), 
-                    rs.getBoolean("recorrente"), rs.getInt("taxa"));       
-        }
-       rs.close();
-       stmt.close();
-        System.out.println("Metodo getById() realizado");
-       return fornecedor; 
+        return null;
+       
     }
 
     @Override
