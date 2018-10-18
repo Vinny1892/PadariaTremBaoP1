@@ -23,8 +23,8 @@ public class ControllerProduto {
         new DaoProduto().deletar(codigo);
     }
 
-    public void editar(String nome, int codigo, GestaoFornecedor fornecedor, float precoCusto, boolean perecivel, Date dataValidade, String apelido) throws SQLException {
-        GestaoProduto produto = new GestaoProduto(nome, codigo, fornecedor, precoCusto, perecivel, dataValidade, apelido);
+    public void editar(String nome, GestaoFornecedor fornecedor, float precoCusto, boolean perecivel, Date dataValidade, String apelido) throws SQLException {
+        GestaoProduto produto = new GestaoProduto(nome, fornecedor, precoCusto, perecivel, dataValidade, apelido);
         new DaoProduto().atualizar(produto);
         System.out.println("Metodo editar ControllerProduto realizado");
     }
