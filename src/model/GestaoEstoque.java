@@ -19,23 +19,22 @@ public class GestaoEstoque {
     final int maximoPorProduto = 30;
     final int minimoPorProduto = 1;
     private int qtdProduto;
-    private Date dataValidade;
+    private String dataValidade;
     private GestaoProduto produto;
     private long idEstoque;
 
-    public GestaoEstoque(int qtdProduto, Date dataValidade, GestaoProduto produto) {
+    public GestaoEstoque(int qtdProduto, String dataValidade, GestaoProduto produto) {
         this.qtdProduto = qtdProduto;
         this.dataValidade = dataValidade;
         this.produto = produto;
     }
 
-    public GestaoEstoque(long idEstoque, int qtdProduto, Date dataValidade, GestaoProduto produto) {
+    public GestaoEstoque(long idEstoque, int qtdProduto, String dataValidade, GestaoProduto produto) {
         this.qtdProduto = qtdProduto;
         this.dataValidade = dataValidade;
         this.produto = produto;
         this.idEstoque = idEstoque;
     }
-    
 
     public void capacidadeMinima() {
 
@@ -66,14 +65,6 @@ public class GestaoEstoque {
         this.qtdProduto = qtdProduto;
     }
 
-    public Date getDataValidade() {
-        return dataValidade;
-    }
-
-    public void setDataValidade(Date dataValidade) {
-        this.dataValidade = dataValidade;
-    }
-
     public GestaoProduto getProduto() {
         return produto;
     }
@@ -88,5 +79,13 @@ public class GestaoEstoque {
 
     public void setIdEstoque(long idEstoque) {
         this.idEstoque = idEstoque;
+    }
+
+    public String getDataValidade() {
+        return dataValidade;
+    }
+
+    public void setDataValidade(String dataValidade) {
+        this.dataValidade = dataValidade;
     }
 }
