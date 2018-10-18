@@ -10,7 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.ModeloTabela;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import model.GestaoFornecedor;
 
 /**
  *
@@ -18,7 +20,9 @@ import model.ModeloTabela;
  */
 public class TelaFornecedor extends javax.swing.JFrame {
     ControllerFornecedor cf;
-    ModeloTabela mot ;
+    DefaultListModel dfNome;
+    DefaultListModel dfCNPJ;
+    ArrayList<GestaoFornecedor> fornecedores;    
 
     /**
      * Creates new form TelaFornecedor
@@ -26,15 +30,29 @@ public class TelaFornecedor extends javax.swing.JFrame {
     public TelaFornecedor() throws SQLException {
         initComponents();
         cf = new ControllerFornecedor();
-      ArrayList fornecedores =  cf.getAll();
-        String [] colunas = new String [] {"ID","CNPJ","Nome"};
-        
-        
-        
-         mot = new ModeloTabela(fornecedores, colunas);
-         jTableFornecedor.setModel(mot);
+      fornecedores =  cf.getAll();
+      dfNome= new DefaultListModel();
+      dfCNPJ = new DefaultListModel();
+      for(int i = 0 ; i < fornecedores.size();i++){
+       dfNome.addElement(fornecedores.get(i).getNome());
+       dfCNPJ.addElement(fornecedores.get(i).getCnpj());
+      
+      }
+      jListNome.setModel(dfNome);
+      jListCNPJ.setModel(dfCNPJ);
+  
         
        
+    }
+    public void habilitaBotaoRemover(){
+     if(jListCNPJ.isSelectionEmpty()){
+     jButtonRemover.setEnabled(true);
+         System.out.println("aqui2");
+     }
+     if(jListNome.isSelectionEmpty()){
+     jButtonRemover.enable(true);
+     }
+        
     }
     
    
@@ -56,8 +74,13 @@ public class TelaFornecedor extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButtonAdicionar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTableFornecedor = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListNome = new javax.swing.JList<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jListCNPJ = new javax.swing.JList<>();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jComboBoxSelecionarBusca = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,6 +92,7 @@ public class TelaFornecedor extends javax.swing.JFrame {
         });
 
         jButtonRemover.setText("remover");
+        jButtonRemover.setEnabled(false);
         jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRemoverActionPerformed(evt);
@@ -76,6 +100,7 @@ public class TelaFornecedor extends javax.swing.JFrame {
         });
 
         jButton3.setText("editar");
+        jButton3.setEnabled(false);
 
         jLabel1.setText("Fornecedor");
 
@@ -89,15 +114,30 @@ public class TelaFornecedor extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel2.setText("FORNECEDOR");
 
-        jTableFornecedor.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
+        jListNome.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jListNomeValueChanged(evt);
             }
-        ));
-        jScrollPane2.setViewportView(jTableFornecedor);
+        });
+        jScrollPane1.setViewportView(jListNome);
+
+        jListCNPJ.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jListCNPJValueChanged(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jListCNPJ);
+
+        jLabel3.setText("NOME");
+
+        jLabel4.setText("CNPJ");
+
+        jComboBoxSelecionarBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "CNPJ" }));
+        jComboBoxSelecionarBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxSelecionarBuscaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,55 +146,131 @@ public class TelaFornecedor extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addGap(29, 29, 29)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel1))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldBuscaFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldBuscaFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(56, 56, 56))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBoxSelecionarBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButtonBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonRemover, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButtonAdicionar)))
+                            .addComponent(jButtonAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonRemover, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(162, 162, 162)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(106, 106, 106))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldBuscaFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxSelecionarBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jButtonAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(68, 68, 68))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane3)))))
+                .addGap(50, 50, 50))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+          boolean encontrou = false;
+        if(jTextFieldBuscaFornecedor.getText().length() == 14){
+            if(jComboBoxSelecionarBusca.getSelectedItem().equals("CNPJ")) {
+            if(jTextFieldBuscaFornecedor.getText().length() == 14){
+            
+            } 
+            
+              for (int i = 0; i < fornecedores.size() && !encontrou; i++) {
+                if (jTextFieldBuscaFornecedor.getText().equals(fornecedores.get(i).getCnpj())) {
+                 
+                    jListNome.setSelectedValue(fornecedores.get(i).getNome(), true);
+                    encontrou = true;
+                }
+            }
+            try{  
+             Long.parseLong(jTextFieldBuscaFornecedor.getText());
+            jListCNPJ.setSelectedValue(jTextFieldBuscaFornecedor.getText(), true);
+                         if(!encontrou){
+                 JOptionPane.showMessageDialog(null, "Fornecedor não encontrado");
+                    jListCNPJ.setSelectedIndex(0);
+                    jListNome.setSelectedIndex(0);
+ 
+            }
+            }
+           catch(Exception e){
+             JOptionPane.showMessageDialog(null, "CNPJ Inválido");
+                }
 
-        // TODO add your handling code here:
+        }
+      
+        if (jComboBoxSelecionarBusca.getSelectedItem().equals("Nome")) {
+            jListNome.setSelectedValue(jTextFieldBuscaFornecedor.getText(), true);
+         
+            for (int i = 0; i < fornecedores.size() && !encontrou; i++){
+               
+             
+                if(jTextFieldBuscaFornecedor.getText().equals(fornecedores.get(i).getNome())) {
+                    jListCNPJ.setSelectedValue(fornecedores.get(i).getCnpj(), true);
+                    encontrou=true;
+                }
+            }
+            
+            if(!encontrou){
+                jListCNPJ.setSelectedIndex(0);
+                jListNome.setSelectedIndex(0);
+                                  
+                 JOptionPane.showMessageDialog(null, "Fornecedor não encontrado");
+
+            }
+            
+
+
+            
+        } 
+
+        }
+
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
@@ -176,6 +292,38 @@ public class TelaFornecedor extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonAdicionarActionPerformed
+
+    private void jComboBoxSelecionarBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSelecionarBuscaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxSelecionarBuscaActionPerformed
+
+    private void jListCNPJValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListCNPJValueChanged
+        // TODO add your handling code here:
+        boolean encontrou = false;
+        jButtonRemover.setEnabled(true);
+        for(int i = 0 ; i<fornecedores.size() && !encontrou;i++){
+            if(jListCNPJ.getSelectedValue().equals(fornecedores.get(i).getCnpj())){
+              jListNome.setSelectedValue(fornecedores.get(i).getNome(), true);
+              encontrou=true;
+            }
+        }
+   
+        
+    }//GEN-LAST:event_jListCNPJValueChanged
+
+    private void jListNomeValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListNomeValueChanged
+        // TODO add your handling code here:
+          boolean encontrou = false;
+        jButtonRemover.setEnabled(true);
+        for(int i = 0 ; i<fornecedores.size() && !encontrou;i++){
+            if(jListNome.getSelectedValue().equals(fornecedores.get(i).getNome())){
+              jListCNPJ.setSelectedValue(fornecedores.get(i).getCnpj(), true);
+              encontrou=true;
+            }
+        }
+   
+        
+    }//GEN-LAST:event_jListNomeValueChanged
 
     /**
      * @param args the command line arguments
@@ -221,10 +369,15 @@ public class TelaFornecedor extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAdicionar;
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonRemover;
+    private javax.swing.JComboBox<String> jComboBoxSelecionarBusca;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTableFornecedor;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JList<String> jListCNPJ;
+    private javax.swing.JList<String> jListNome;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextFieldBuscaFornecedor;
     // End of variables declaration//GEN-END:variables
 }

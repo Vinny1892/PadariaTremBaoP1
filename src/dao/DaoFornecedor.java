@@ -64,8 +64,8 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
         while(rs.next()){
             GestaoFornecedor fornecedor = new GestaoFornecedor(rs.getLong("idfornecedor"), rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"), 
                     rs.getBoolean("recorrente"), rs.getInt("taxa_desconto"));
-            Object objeto = (Object) fornecedor;
-            fornecedores.add(objeto);
+           ;
+            fornecedores.add(fornecedor);
         }
        rs.close();
        stmt.close();
