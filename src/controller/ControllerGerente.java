@@ -7,8 +7,8 @@ import java.sql.SQLException;
 public class ControllerGerente {
     
     public void salvar(String nome, String cpf, String endereco, String telefone,float salarioBaseMensal, int porcentagemGratificacao) throws SQLException{
-      GestaoGerente gerente = new GestaoGerente(nome, cpf, endereco, telefone, salarioBaseMensal, porcentagemGratificacao);
-      new DaoGerente().salvar(gerente);
+        GestaoGerente gerente = new GestaoGerente(nome, cpf, endereco, telefone, salarioBaseMensal, porcentagemGratificacao);
+        new DaoGerente().salvar(gerente);
         System.out.println("Metodo salvar ControllerGerente realizado");
     }
     
@@ -18,8 +18,8 @@ public class ControllerGerente {
     }
     
     public void editar(String nome, String cpf, String endereco, String telefone,float salarioBaseMensal, int porcentagemGratificacao) throws SQLException{
-      GestaoGerente fornecedor = new GestaoGerente(nome, cpf, endereco, telefone, salarioBaseMensal, porcentagemGratificacao);
-      new DaoGerente().atualizar(fornecedor);
+      GestaoGerente gerente = new GestaoGerente(nome, cpf, endereco, telefone, salarioBaseMensal, porcentagemGratificacao);
+      new DaoGerente().atualizar(gerente);
       System.out.println("Metodo editar ControllerGerente realizado");
     }
     
