@@ -21,7 +21,7 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
     public void salvar(Object object) throws SQLException {
             GestaoProduto produto = (GestaoProduto) object;
             String insert = "INSERT INTO produto (nome, preco_custo, apelido, id_fornecedor) VALUES(?,?,?,?) ";
-            save(insert, produto.getNome(), produto.getPrecoCusto(), produto.getApelido(), produto.getFornecedor().get());
+            save(insert, produto.getNome(), produto.getPrecoCusto(), produto.getApelido(), produto.getFornecedor().getIdfornecedor());
     }
 
     @Override

@@ -17,6 +17,7 @@ public class GestaoFornecedor extends Pessoa {
     private String cnpj;
     private boolean recorrente;
     private int taxaDesconto;
+    private int idfornecedor;
 
     public GestaoFornecedor(String nome, int taxaDesconto, String endereco, boolean recorrente, String cnpj) {
         super(nome, endereco);
@@ -29,7 +30,7 @@ public class GestaoFornecedor extends Pessoa {
         this.taxaDesconto = taxaDesconto;
     }
 
-    public GestaoFornecedor(long id, String nome, String cnpj, String endereco, boolean recorrente, int taxaDesconto) {
+    public GestaoFornecedor(int idfornecedor, String nome, String cnpj, String endereco, boolean recorrente, int taxaDesconto) {
         super(nome, endereco);
         if (cnpj.length() == 14) {
             this.cnpj = cnpj;
@@ -38,6 +39,7 @@ public class GestaoFornecedor extends Pessoa {
         }
         this.recorrente = recorrente;
         this.taxaDesconto = taxaDesconto;
+        this.idfornecedor = idfornecedor;
     }
 
   
@@ -71,6 +73,14 @@ public class GestaoFornecedor extends Pessoa {
 
     public void setTaxaDesconto(int taxaDesconto) {
         this.taxaDesconto = taxaDesconto;
+    }
+
+    public int getIdfornecedor() {
+        return idfornecedor;
+    }
+
+    public void setIdfornecedor(int idfornecedor) {
+        this.idfornecedor = idfornecedor;
     }
 
 }
