@@ -10,11 +10,25 @@ como adicional noturno, para cada hora trabalhada em horario alternativo.
 public class Padeiro extends GestaoFuncionario {
 
     private float horasEmHorarioAlternativo;
-
+    int idPadeiro;
     public Padeiro(String nome, String endereco, String cpf, String telefone, float salarioBaseMensal, float horasEmHorarioAlternativo) {
         super(salarioBaseMensal, cpf, telefone, nome, endereco);
         this.horasEmHorarioAlternativo = horasEmHorarioAlternativo;
+    }
 
+    public Padeiro(float horasEmHorarioAlternativo, int idPadeiro, float salarioBaseMensal, String cpf, String telefone, String nome, String endereco) {
+        super(salarioBaseMensal, cpf, telefone, nome, endereco);
+        this.horasEmHorarioAlternativo = horasEmHorarioAlternativo;
+        this.idPadeiro = idPadeiro;
+    }
+
+
+    public int getIdPadeiro() {
+        return idPadeiro;
+    }
+
+    public void setIdPadeiro(int idPadeiro) {
+        this.idPadeiro = idPadeiro;
     }
 
 

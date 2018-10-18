@@ -14,14 +14,31 @@ bem como um acrescimo de 2% no valor ﬁnal da compra.
 import java.util.Date;
 
 public class GestaoVenda {
-    Date dataVenda;
-    Vendedor vendedor;
+    private Date dataVenda;
+    private Vendedor vendedor;
     /*
     1 = dinheiro
     2 = debito
     3 = credito
     */
-    int formaPagamento;
+    private int formaPagamento;
+    private int idVendas;
+
+    public GestaoVenda(Date dataVenda, Vendedor vendedor, int formaPagamento, int idVendas) {
+        this.dataVenda = dataVenda;
+        this.vendedor = vendedor;
+        this.formaPagamento = formaPagamento;
+        this.idVendas = idVendas;
+    }
+
+    public GestaoVenda(Date dataVenda, Vendedor vendedor, int formaPagamento) {
+        this.dataVenda = dataVenda;
+        this.vendedor = vendedor;
+        this.formaPagamento = formaPagamento;
+    }
+    
+    
+    
     //pagamento sem parcelas
     public void cadastrarBDConjuntoProdutosVendido(GestaoProduto carrinho[], Vendedor vendedor,Date dataVenda,int formaPagamento){
         
@@ -31,6 +48,38 @@ public class GestaoVenda {
     public void cadastrarBDConjuntoProdutosVendido(GestaoProduto carrinho[], Vendedor vendedor,Date dataVenda,int formaPagamento, int nParcelas){
         
 
+    }
+
+    public Date getDataVenda() {
+        return dataVenda;
+    }
+
+    public void setDataVenda(Date dataVenda) {
+        this.dataVenda = dataVenda;
+    }
+
+    public Vendedor getVendedor() {
+        return vendedor;
+    }
+
+    public void setVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
+    }
+
+    public int getFormaPagamento() {
+        return formaPagamento;
+    }
+
+    public void setFormaPagamento(int formaPagamento) {
+        this.formaPagamento = formaPagamento;
+    }
+
+    public int getIdVendas() {
+        return idVendas;
+    }
+
+    public void setIdVendas(int idVendas) {
+        this.idVendas = idVendas;
     }
     
 }

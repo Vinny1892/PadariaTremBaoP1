@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 18/10/2018 às 00:14
+-- Tempo de geração: 19/10/2018 às 00:31
 -- Versão do servidor: 10.1.36-MariaDB
 -- Versão do PHP: 7.2.10
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `padariatrembao1`
+-- Banco de dados: `padariatrembao2`
 --
 
 -- --------------------------------------------------------
@@ -46,8 +46,16 @@ CREATE TABLE `cliente` (
   `nome` varchar(50) DEFAULT NULL,
   `endereco` varchar(50) DEFAULT NULL,
   `cpf` varchar(11) NOT NULL,
-  `telefone` varchar(12) DEFAULT NULL
+  `telefone` varchar(12) DEFAULT NULL,
+  `idcartao_fidelidade` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Fazendo dump de dados para tabela `cliente`
+--
+
+INSERT INTO `cliente` (`idcliente`, `nome`, `endereco`, `cpf`, `telefone`, `idcartao_fidelidade`) VALUES
+(1, 'Roberto riba', 'Rua Pitanga', '56666666666', '88998899', 0);
 
 -- --------------------------------------------------------
 
@@ -57,7 +65,6 @@ CREATE TABLE `cliente` (
 
 CREATE TABLE `estoque` (
   `idestoque` int(10) UNSIGNED NOT NULL,
-  `produto_codigo` int(6) UNSIGNED NOT NULL,
   `produto_idproduto` int(10) UNSIGNED NOT NULL,
   `data_validade` int(10) UNSIGNED DEFAULT NULL,
   `quantidade` int(8) UNSIGNED DEFAULT NULL
@@ -74,19 +81,9 @@ CREATE TABLE `fornecedor` (
   `nome` varchar(50) NOT NULL,
   `cnpj` varchar(14) NOT NULL,
   `endereco` varchar(50) NOT NULL,
-  `recorrente` tinyint(1) NOT NULL,
-  `taxa_desconto` int(3) NOT NULL DEFAULT '0'
+  `taxa_desconto` int(8) NOT NULL DEFAULT '0',
+  `recorrente` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Fazendo dump de dados para tabela `fornecedor`
---
-
-INSERT INTO `fornecedor` (`idfornecedor`, `nome`, `cnpj`, `endereco`, `recorrente`, `taxa_desconto`) VALUES
-(1, 'nome11', '21111111111111', 'end11', 10, 1),
-(2, 'nome1', '11111111111111', 'endereco1', 1, 10),
-(11, 'Tesla', '32134223423322', 'Minha Casa Minha Vida', 1, 10),
-(12, 'tesla', '12312421232111', 'MinhaCAsa', 1, 10);
 
 -- --------------------------------------------------------
 
@@ -104,6 +101,13 @@ CREATE TABLE `gerente` (
   `porcentagem_gratificacao` int(3) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Fazendo dump de dados para tabela `gerente`
+--
+
+INSERT INTO `gerente` (`idgerente`, `nome`, `cpf`, `endereco`, `telefone`, `salario_base_mensal`, `porcentagem_gratificacao`) VALUES
+(3, 'eduardogomes', '22222233333', 'rua gerente1', '556700323232', 3000, 5);
+
 -- --------------------------------------------------------
 
 --
@@ -116,9 +120,17 @@ CREATE TABLE `padeiro` (
   `endereco` varchar(50) DEFAULT NULL,
   `cpf` varchar(11) DEFAULT NULL,
   `telefone` varchar(12) DEFAULT NULL,
-  `salario_base_mensal` float DEFAULT NULL,
-  `horarioalternativo` float DEFAULT '0'
+  `horario_alternativo` float DEFAULT '0',
+  `salario_base_mensal` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Fazendo dump de dados para tabela `padeiro`
+--
+
+INSERT INTO `padeiro` (`idpadeiro`, `nome`, `endereco`, `cpf`, `telefone`, `horario_alternativo`, `salario_base_mensal`) VALUES
+(1, 'luiz', 'rua do luiz', '22222255555', '675555555555', 2, 4000),
+(6, 'luiz', 'Rua luizinho', '12345678912', '345678', 0, 4000);
 
 -- --------------------------------------------------------
 
@@ -128,41 +140,26 @@ CREATE TABLE `padeiro` (
 
 CREATE TABLE `produto` (
   `idproduto` int(10) UNSIGNED NOT NULL,
-  `codigo` int(6) UNSIGNED NOT NULL,
   `nome` varchar(50) NOT NULL,
   `apelido` varchar(50) NOT NULL,
   `preco_custo` float NOT NULL,
-  `preco_final` float NOT NULL,
-  `perecivel` tinyint(1) NOT NULL,
   `id_fornecedor` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `produto_has_fornecedor`
+-- Estrutura para tabela `vendas`
 --
 
-CREATE TABLE `produto_has_fornecedor` (
-  `produto_idproduto` int(10) UNSIGNED NOT NULL,
-  `fornecedor_idfornecedor` int(10) UNSIGNED NOT NULL,
-  `produto_codigo` int(6) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `venda`
---
-
-CREATE TABLE `venda` (
-  `idvenda` int(10) UNSIGNED NOT NULL,
-  `estoque_idestoque` int(10) UNSIGNED NOT NULL,
-  `data_venda` date NOT NULL,
-  `forma_pagamento` int(10) UNSIGNED NOT NULL,
+CREATE TABLE `vendas` (
+  `id_venda` int(11) NOT NULL,
+  `data_venda` datetime NOT NULL,
+  `forma_pagamento` int(2) NOT NULL,
   `montante_venda` float NOT NULL,
-  `id_produto` int(10) UNSIGNED NOT NULL,
-  `id_vendedor` int(10) UNSIGNED NOT NULL
+  `id_produto` int(12) NOT NULL,
+  `id_vendedor` int(11) NOT NULL,
+  `id_cliente` binary(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -175,19 +172,11 @@ CREATE TABLE `vendedor` (
   `idvendedor` int(10) UNSIGNED NOT NULL,
   `nome` varchar(50) DEFAULT NULL,
   `endereco` varchar(50) DEFAULT NULL,
+  `cpf` int(11) UNSIGNED DEFAULT NULL,
   `telefone` varchar(12) DEFAULT NULL,
   `salario_base` float DEFAULT NULL,
-  `montante_venda` float NOT NULL DEFAULT '0',
-  `cpf` varchar(11) CHARACTER SET utf8 COLLATE utf8_icelandic_ci DEFAULT NULL
+  `montante_venda` float NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Fazendo dump de dados para tabela `vendedor`
---
-
-INSERT INTO `vendedor` (`idvendedor`, `nome`, `endereco`, `telefone`, `salario_base`, `montante_venda`, `cpf`) VALUES
-(4, 'josé feitosa', 'Rua jose feitosa', '11112222', 1500, 9000, '85555555555'),
-(8, 'augusto vendedor', 'rua do augusto', '12123434', 1000, 5000, '33445566778');
 
 --
 -- Índices de tabelas apagadas
@@ -204,14 +193,16 @@ ALTER TABLE `cartao_fidelidade`
 -- Índices de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  ADD PRIMARY KEY (`idcliente`);
+  ADD PRIMARY KEY (`idcliente`),
+  ADD UNIQUE KEY `cpf` (`cpf`),
+  ADD KEY `idcartao_fidelidade` (`idcartao_fidelidade`);
 
 --
 -- Índices de tabela `estoque`
 --
 ALTER TABLE `estoque`
   ADD PRIMARY KEY (`idestoque`),
-  ADD KEY `estoque_FKIndex1` (`produto_idproduto`,`produto_codigo`);
+  ADD KEY `estoque_FKIndex1` (`produto_idproduto`);
 
 --
 -- Índices de tabela `fornecedor`
@@ -224,42 +215,37 @@ ALTER TABLE `fornecedor`
 -- Índices de tabela `gerente`
 --
 ALTER TABLE `gerente`
-  ADD PRIMARY KEY (`idgerente`);
+  ADD PRIMARY KEY (`idgerente`),
+  ADD UNIQUE KEY `cpf` (`cpf`);
 
 --
 -- Índices de tabela `padeiro`
 --
 ALTER TABLE `padeiro`
-  ADD PRIMARY KEY (`idpadeiro`);
+  ADD PRIMARY KEY (`idpadeiro`),
+  ADD UNIQUE KEY `cpf` (`cpf`);
 
 --
 -- Índices de tabela `produto`
 --
 ALTER TABLE `produto`
-  ADD PRIMARY KEY (`idproduto`,`codigo`),
-  ADD UNIQUE KEY `codigo` (`codigo`);
+  ADD PRIMARY KEY (`idproduto`),
+  ADD KEY `idfornecedor` (`id_fornecedor`) USING BTREE;
 
 --
--- Índices de tabela `produto_has_fornecedor`
+-- Índices de tabela `vendas`
 --
-ALTER TABLE `produto_has_fornecedor`
-  ADD PRIMARY KEY (`produto_idproduto`,`fornecedor_idfornecedor`,`produto_codigo`),
-  ADD KEY `produto_has_fornecedor_FKIndex1` (`produto_idproduto`,`produto_codigo`),
-  ADD KEY `produto_has_fornecedor_FKIndex2` (`fornecedor_idfornecedor`);
-
---
--- Índices de tabela `venda`
---
-ALTER TABLE `venda`
-  ADD PRIMARY KEY (`idvenda`),
-  ADD KEY `venda_FKIndex1` (`estoque_idestoque`);
+ALTER TABLE `vendas`
+  ADD PRIMARY KEY (`id_venda`),
+  ADD KEY `idproduto` (`id_produto`) USING BTREE,
+  ADD KEY `idcliente` (`id_cliente`) USING BTREE,
+  ADD KEY `idvendedor` (`id_vendedor`) USING BTREE;
 
 --
 -- Índices de tabela `vendedor`
 --
 ALTER TABLE `vendedor`
-  ADD PRIMARY KEY (`idvendedor`),
-  ADD UNIQUE KEY `cpf` (`cpf`);
+  ADD PRIMARY KEY (`idvendedor`);
 
 --
 -- AUTO_INCREMENT de tabelas apagadas
@@ -275,7 +261,7 @@ ALTER TABLE `cartao_fidelidade`
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `idcliente` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idcliente` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `estoque`
@@ -287,19 +273,19 @@ ALTER TABLE `estoque`
 -- AUTO_INCREMENT de tabela `fornecedor`
 --
 ALTER TABLE `fornecedor`
-  MODIFY `idfornecedor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idfornecedor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `gerente`
 --
 ALTER TABLE `gerente`
-  MODIFY `idgerente` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idgerente` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `padeiro`
 --
 ALTER TABLE `padeiro`
-  MODIFY `idpadeiro` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `idpadeiro` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `produto`
@@ -308,16 +294,16 @@ ALTER TABLE `produto`
   MODIFY `idproduto` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `venda`
+-- AUTO_INCREMENT de tabela `vendas`
 --
-ALTER TABLE `venda`
-  MODIFY `idvenda` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `vendas`
+  MODIFY `id_venda` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `vendedor`
 --
 ALTER TABLE `vendedor`
-  MODIFY `idvendedor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idvendedor` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Restrições para dumps de tabelas
@@ -333,20 +319,7 @@ ALTER TABLE `cartao_fidelidade`
 -- Restrições para tabelas `estoque`
 --
 ALTER TABLE `estoque`
-  ADD CONSTRAINT `estoque_ibfk_1` FOREIGN KEY (`produto_idproduto`,`produto_codigo`) REFERENCES `produto` (`idproduto`, `codigo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Restrições para tabelas `produto_has_fornecedor`
---
-ALTER TABLE `produto_has_fornecedor`
-  ADD CONSTRAINT `produto_has_fornecedor_ibfk_1` FOREIGN KEY (`produto_idproduto`,`produto_codigo`) REFERENCES `produto` (`idproduto`, `codigo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `produto_has_fornecedor_ibfk_2` FOREIGN KEY (`fornecedor_idfornecedor`) REFERENCES `fornecedor` (`idfornecedor`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Restrições para tabelas `venda`
---
-ALTER TABLE `venda`
-  ADD CONSTRAINT `venda_ibfk_1` FOREIGN KEY (`estoque_idestoque`) REFERENCES `estoque` (`idestoque`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `estoque_ibfk_1` FOREIGN KEY (`produto_idproduto`) REFERENCES `produto` (`idproduto`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

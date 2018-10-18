@@ -1,6 +1,6 @@
 package controller;
 
-import Model.CartaoFidelidade;
+import model.CartaoFidelidade;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import model.GestaoCliente;
 import dao.DaoCliente;

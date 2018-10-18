@@ -4,12 +4,12 @@ Gerentes, por sua vez, tem um aumento no salario base em 20%,
 como gratiﬁcaco por funcao de conﬁanca.
 */
 public class GestaoGerente extends GestaoFuncionario{
-    private long id;
+    private int idGerente;
     private int porcentagemGratificacao;
     
-    public GestaoGerente(long id, String nome, String cpf, String endereco,  String telefone, float salarioBaseMensal,int PorcentagemGratificacao) {
+    public GestaoGerente(int idGerente, String nome, String cpf, String endereco,  String telefone, float salarioBaseMensal,int PorcentagemGratificacao) {
         super(salarioBaseMensal, cpf, telefone, nome, endereco);
-        this.id = id;
+        this.idGerente = idGerente;
         this.porcentagemGratificacao = PorcentagemGratificacao;
     }
     
@@ -24,11 +24,11 @@ public class GestaoGerente extends GestaoFuncionario{
     }
 
     public long getId() {
-        return id;
+        return idGerente;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId(int idGerente) {
+        this.idGerente = idGerente;
     }
 
     public int getPorcentagemGratificacao() {

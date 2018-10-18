@@ -21,7 +21,7 @@ public class GestaoEstoque {
     private int qtdProduto;
     private String dataValidade;
     private GestaoProduto produto;
-    private long idEstoque;
+    private int idEstoque;
 
     public GestaoEstoque(int qtdProduto, String dataValidade, GestaoProduto produto) {
         this.qtdProduto = qtdProduto;
@@ -29,7 +29,7 @@ public class GestaoEstoque {
         this.produto = produto;
     }
 
-    public GestaoEstoque(long idEstoque, int qtdProduto, String dataValidade, GestaoProduto produto) {
+    public GestaoEstoque(int idEstoque, int qtdProduto, String dataValidade, GestaoProduto produto) {
         this.qtdProduto = qtdProduto;
         this.dataValidade = dataValidade;
         this.produto = produto;
@@ -77,7 +77,7 @@ public class GestaoEstoque {
         return idEstoque;
     }
 
-    public void setIdEstoque(long idEstoque) {
+    public void setIdEstoque(int idEstoque) {
         this.idEstoque = idEstoque;
     }
 

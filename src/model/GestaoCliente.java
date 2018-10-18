@@ -1,6 +1,6 @@
 package model;
 
-import Model.CartaoFidelidade;
+import model.CartaoFidelidade;
 
 /*
 Gestao de clientes:
@@ -13,8 +13,8 @@ public class GestaoCliente {
     private String endereco;
     private String cpf;
     private String telefone;
-    private Model.CartaoFidelidade cartaoFidelidade;
-    int idCliente;
+    private CartaoFidelidade cartaoFidelidade;
+    private int idCliente;
 
     public GestaoCliente(String nome, String endereco, String cpf, String telefone, CartaoFidelidade cartaoFidelidade, int idCliente) {
         this.nome = nome;
@@ -72,12 +72,20 @@ public class GestaoCliente {
         this.telefone = telefone;
     }
 
-    public Model.CartaoFidelidade getCartaoFidelidade() {
+    public CartaoFidelidade getCartaoFidelidade() {
         return cartaoFidelidade;
     }
 
-    public void setCartaoFidelidade(Model.CartaoFidelidade cartaoFidelidade) {
+    public void setCartaoFidelidade(CartaoFidelidade cartaoFidelidade) {
         this.cartaoFidelidade = cartaoFidelidade;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
     
     

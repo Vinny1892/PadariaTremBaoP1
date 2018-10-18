@@ -44,7 +44,7 @@ public class DaoGerente extends GenericDao implements CRUDBasico {
         stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            gerente = new GestaoGerente(rs.getLong("idgerente"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"),
+            gerente = new GestaoGerente(rs.getInt("idgerente"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"),
                     rs.getString("telefone"), rs.getFloat("salario_base_mensal"), rs.getInt("porcentagem_gratificacao"));
         }
         rs.close();
@@ -58,7 +58,7 @@ public class DaoGerente extends GenericDao implements CRUDBasico {
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM gerente");
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            GestaoGerente gerente = new GestaoGerente(rs.getLong("idgerente"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"),
+            GestaoGerente gerente = new GestaoGerente(rs.getInt("idgerente"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"),
                     rs.getString("telefone"), rs.getFloat("salario_base_mensal"), rs.getInt("porcentagem_gratificacao"));
             gerentes.add(gerente);
         }
