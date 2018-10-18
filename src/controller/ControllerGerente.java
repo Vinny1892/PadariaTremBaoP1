@@ -25,9 +25,9 @@ public class ControllerGerente {
     
     public static void main(String[] args)throws SQLException {
         ControllerGerente cg = new ControllerGerente();
-        //cg.salvar("nomeGerente", "11111111111", "rua gerente", "556732323232", 3000.00f, 10);
-        //cg.editar("nome Gente Editado", "21111111111", "rua gerente1", "556700323232", 3000.00f, 5);
-        //cg.deletar(1);
+        //cg.salvar("nomeGerente", "22222233333", "rua gerente", "556732323232", 3000.00f, 10);
+        //cg.editar("eduardogomes", "22222233333", "rua gerente1", "556700323232", 3000.00f, 5);
+        //cg.deletar("11111111111");
     }
     
 }

@@ -19,13 +19,13 @@ public class DaoPadeiro extends GenericDao implements CRUDBasico {
     @Override
     public void atualizar(Object object) throws SQLException {
         Padeiro padeiro = (Padeiro) object;
-        String update = "UPDATE padeiro SET nome = ? , cpf = ?, endereco = ? , telefone = ? ,  salario_base_mensal = ? , horarioalternativo = ? WHERE idpadeiro =  ? ";
-        update(update, padeiro.getNome(), padeiro.getCpf(), padeiro.getEndereco(), padeiro.getTelefone(), padeiro.getSalarioBaseMensal(), padeiro.getHorasTrabalhadaNoturno());
+        String update = "UPDATE padeiro SET nome = ?, endereco = ? , telefone = ? ,  salario_base_mensal = ? , horario_alternativo = ? WHERE cpf =  ? ";
+        update(update, padeiro.getCpf(),padeiro.getNome(), padeiro.getEndereco(), padeiro.getTelefone(), padeiro.getSalarioBaseMensal(), padeiro.getHorasTrabalhadaNoturno());
     }
 
     @Override
-    public void deletar(String nome) throws SQLException {
-        delete("DELETE FROM padeiro WHERE nome = ? ", nome);
+    public void deletar(String cpf) throws SQLException {
+        delete("DELETE FROM padeiro WHERE cpf = ? ", cpf);
     }
 
     @Override
