@@ -44,7 +44,8 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
 
     @Override
     public List<Object> getAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        
     }
 
 }
