@@ -279,7 +279,7 @@ public class TelaFornecedor extends javax.swing.JFrame {
         for(int i = 0 ; i<fornecedores.size() && !encontrou;i++){
             if(jListCNPJ.getSelectedValue().equals(fornecedores.get(i).getCnpj())){
                 try {
-                     cf.deletar(fornecedores.get(i).getIdfornecedor());
+                     cf.deletar(fornecedores.get(i).getCnpj());
                             encontrou=true;
                     new TelaFornecedor().setVisible(true);
                     this.dispose();

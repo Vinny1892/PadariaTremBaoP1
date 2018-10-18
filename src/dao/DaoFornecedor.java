@@ -36,8 +36,8 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
     }
 
     @Override
-    public void deletar(int id) throws SQLException {
-        delete("DELETE FROM fornecedor WHERE idfornecedor = ? ", id);
+    public void deletar(String cnpj) throws SQLException {
+        delete("DELETE FROM fornecedor WHERE cnpj = ? ", cnpj);
     }
     
     @Override

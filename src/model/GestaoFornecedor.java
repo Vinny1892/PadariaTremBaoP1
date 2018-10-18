@@ -19,6 +19,15 @@ public class GestaoFornecedor extends Pessoa {
     private int taxaDesconto;
     private int idfornecedor;
 
+    public GestaoFornecedor(String cnpj, boolean recorrente, String nome, String endereco) {
+        super(nome, endereco);
+        this.cnpj = cnpj;
+        this.recorrente = recorrente;
+  
+    }
+    
+    
+
     public GestaoFornecedor(String nome, int taxaDesconto, String endereco, boolean recorrente, String cnpj) {
         super(nome, endereco);
         if (cnpj.length() == 14) {

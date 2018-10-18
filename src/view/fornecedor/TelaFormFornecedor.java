@@ -155,7 +155,7 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldNomeActionPerformed
 
     private void jSalvarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalvarFornecedorActionPerformed
-      
+    
        
         try {
             new ControllerFornecedor().salvar(
