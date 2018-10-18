@@ -6,10 +6,10 @@ import java.sql.SQLException;
 
 public class ConexaoBDMySql {
     
-    private static final String URL_MYSQL = "jdbc:mysql://localhost/padariatrembao1";
+    private static final String URL_MYSQL = "jdbc:mysql://localhost/padaria";
     private static final String DRIVER_CLASS = "com.mysql.jdbc.Driver";
     private static final String USER = "root";
-    private static final String PASS = "";
+    private static final String PASS = "12345";
 
     public static Connection getConnection() {
         System.out.println("Conectando ao Banco de Dados");
