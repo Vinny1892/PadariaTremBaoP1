@@ -15,7 +15,7 @@ public class ControllerPadeiro {
     
     
     public void editar(long id, String nome, String endereco, String cpf,String telefone,float salarioBaseMensal,   float horasEmHorarioAlternativo) throws SQLException{
-      Padeiro padeiro = new Padeiro(id, nome, endereco, cpf, telefone, salarioBaseMensal, horasEmHorarioAlternativo);
+      Padeiro padeiro = new Padeiro(nome, endereco, cpf, telefone, salarioBaseMensal, horasEmHorarioAlternativo);
       new DaoPadeiro().atualizar(padeiro);
       System.out.println("Metodo editar ControllerPadeiro realizado");
     }
@@ -27,7 +27,7 @@ public class ControllerPadeiro {
     
     public static void main(String[] args) throws SQLException{
         ControllerPadeiro cp = new ControllerPadeiro();
-        //cp.salvar(0f, "luiz", "22222222222", "rua do luiz", "675555555555", 4000.00f);
+        cp.salvar(2f, "luiz", "22222222222", "rua do luiz", "675555555555", 4000.00f);
         //cp.editar(1, "luiz alberto", "rua do luiz alberto", "22222222222", "556755556666", 4500.00f, 10);
         //cp.deletar(1);
     }

@@ -30,14 +30,14 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
     @Override
     public void atualizar(Object object) throws SQLException {
         GestaoFornecedor fornecedorUpdate = (GestaoFornecedor)object;
-        String update = "UPDATE fornecedor SET nome = ? , endereco = ? ,cnpj = ? , taxa_desconto = ? , recorrente = ? WHERE idfornecedor =  ? " ;
-        update(update, fornecedorUpdate.getId(), fornecedorUpdate.getNome(),fornecedorUpdate.getEndereco(),fornecedorUpdate.getCnpj(),fornecedorUpdate.isRecorrente(),fornecedorUpdate.getTaxaDesconto());
+        String update = "UPDATE fornecedor SET nome = ? , endereco = ? , recorrente = ?, taxa_desconto = ?  WHERE cnpj =  ? " ;
+        update(update, fornecedorUpdate.getCnpj(), fornecedorUpdate.getNome(),fornecedorUpdate.getEndereco(),fornecedorUpdate.isRecorrente(),fornecedorUpdate.getTaxaDesconto());
         System.out.println("Metodo atualizar DaoFornecedor realizado");
     }
 
     @Override
-    public void deletar(String nome) throws SQLException {
-        delete("DELETE FROM fornecedor WHERE nome = ? ", nome);
+    public void deletar(String cnpj) throws SQLException {
+        delete("DELETE FROM fornecedor WHERE cnpj = ? ", cnpj);
     }
     
     @Override

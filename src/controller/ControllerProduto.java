@@ -5,16 +5,22 @@ import model.GestaoProduto;
 import dao.DaoProduto;
 import model.GestaoFornecedor;
 import java.util.Date;
+import java.text.SimpleDateFormat;
+import model.GestaoFornecedor;
 
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.Format;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
 public class ControllerProduto {
 
-    public void salvar(String nome, GestaoFornecedor fornecedor, float precoCusto, boolean perecivel, Date dataValidade, String apelido) throws SQLException {
-        GestaoProduto produto = new GestaoProduto(nome, fornecedor, precoCusto, perecivel, dataValidade, apelido);
+    public void salvar(String nome, GestaoFornecedor fornecedor, float precoCusto, String apelido) throws SQLException {
+        GestaoProduto produto = new GestaoProduto(nome, fornecedor, precoCusto, apelido);
         new DaoProduto().salvar(produto);
         System.out.println("Metodo salvar ControllerProduto realizado");
     }
@@ -23,8 +29,8 @@ public class ControllerProduto {
         new DaoProduto().deletar(codigo);
     }
 
-    public void editar(String nome, GestaoFornecedor fornecedor, float precoCusto, boolean perecivel, Date dataValidade, String apelido) throws SQLException {
-        GestaoProduto produto = new GestaoProduto(nome, fornecedor, precoCusto, perecivel, dataValidade, apelido);
+    public void editar(String nome, int codigo, GestaoFornecedor fornecedor, float precoCusto, String apelido) throws SQLException {
+        GestaoProduto produto = new GestaoProduto(nome, codigo, fornecedor, precoCusto, apelido);
         new DaoProduto().atualizar(produto);
         System.out.println("Metodo editar ControllerProduto realizado");
     }
@@ -34,9 +40,12 @@ public class ControllerProduto {
         System.out.println("Metodo getAll realizado");
         return produtos;
     }
-    
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws SQLException {
         ControllerProduto cp = new ControllerProduto();
-        cp.salvar("Carlos", , fornecedor, 0, true, dataValidade, apelido);
+        GestaoFornecedor fornecedor = new GestaoFornecedor("São Gabriel", "333344445555", "Rua antonio", false, 0);
+
+        cp.salvar("Leite", fornecedor, 1.00f, "Leite de saquinho");
+
     }
 }
