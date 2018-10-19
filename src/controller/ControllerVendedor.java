@@ -33,6 +33,12 @@ public class ControllerVendedor {
         System.out.println("Metodo deletar ControllerVendedor realizado");
     }
     
+    public Vendedor buscaTudoVendedor(Vendedor vendedor){
+        DaoVendedor buscaVendedor;
+        vendedor = buscaVendedor.getAll();
+        return vendedor;
+    }
+    
     public static void main(String[] args) throws SQLException{
         ControllerVendedor cv = new ControllerVendedor();
         //cv.salvar(10000, 1000.00f, "33445566778", "12123434", "augusto vendedor", "rua do augusto");

@@ -19,13 +19,13 @@ public class ControllerVenda {
         System.out.println("Metodo salvar ControllerVenda realizado");
     }
 
-    public void deletar(String codigo) throws SQLException {
-        new DaoVenda().deletar(codigo);
+    public void deletar(String idVenda) throws SQLException {
+        new DaoVenda().deletar(idVenda);
         System.out.println("Metodo deletar ControllerVenda realizado");
     }
 
-    public void editar(String dataVenda, Vendedor vendedor, GestaoCliente cliente, int formaPagamento, int idVendas) throws SQLException {
-        GestaoVenda venda = new GestaoVenda(dataVenda, vendedor, cliente, formaPagamento, idVendas);
+    public void editar(String dataVenda, Vendedor vendedor, GestaoCliente cliente, int formaPagamento) throws SQLException {
+        GestaoVenda venda = new GestaoVenda(dataVenda, vendedor, cliente, formaPagamento);
         new DaoVenda().atualizar(venda);
         System.out.println("Metodo editar ControllerVenda realizado");
     }

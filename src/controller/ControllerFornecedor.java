@@ -41,6 +41,15 @@ public class ControllerFornecedor {
         System.out.println("Metodo getAll realizado");
         return fornecedores;
     }
+    
+    
+    public Object selecionaObjeto(int id) throws SQLException{
+        GestaoFornecedor fornecedor = null;
+        DaoFornecedor daoFornecedor = null;
+        fornecedor = (GestaoFornecedor) daoFornecedor.getById(id);
+        return fornecedor;
+    }
+    
 
 
     

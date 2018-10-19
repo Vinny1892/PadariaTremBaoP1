@@ -15,23 +15,23 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
 
     @Override
     public void salvar(Object object) {
-        try{
+        try {
             GestaoFornecedor fornecedor = (GestaoFornecedor) object;
             String insert = "INSERT INTO fornecedor (nome,cnpj,endereco,recorrente,taxa_desconto) VALUES(?,?,?,?,?) ";
-            save(insert, fornecedor.getNome(),fornecedor.getCnpj(),fornecedor.getEndereco(),fornecedor.isRecorrente(),fornecedor.getTaxaDesconto());
-        }catch(MySQLIntegrityConstraintViolationException e){
+            save(insert, fornecedor.getNome(), fornecedor.getCnpj(), fornecedor.getEndereco(), fornecedor.isRecorrente(), fornecedor.getTaxaDesconto());
+        } catch (MySQLIntegrityConstraintViolationException e) {
             System.out.println("CNPJ Ja existe");
-            JOptionPane.showMessageDialog(null, "CNPJ ja existe no Banco de Dados");  
+            JOptionPane.showMessageDialog(null, "CNPJ ja existe no Banco de Dados");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao inserir fornecedor");
-        } 
+        }
     }
 
     @Override
     public void atualizar(Object object) throws SQLException {
-        GestaoFornecedor fornecedorUpdate = (GestaoFornecedor)object;
-        String update = "UPDATE fornecedor SET nome = ? , endereco = ? , recorrente = ?, taxa_desconto = ?  WHERE cnpj =  ? " ;
-        update(update, fornecedorUpdate.getCnpj(), fornecedorUpdate.getNome(),fornecedorUpdate.getEndereco(),fornecedorUpdate.isRecorrente(),fornecedorUpdate.getTaxaDesconto());
+        GestaoFornecedor fornecedorUpdate = (GestaoFornecedor) object;
+        String update = "UPDATE fornecedor SET nome = ? , endereco = ? , recorrente = ?, taxa_desconto = ?  WHERE cnpj =  ? ";
+        update(update, fornecedorUpdate.getCnpj(), fornecedorUpdate.getNome(), fornecedorUpdate.getEndereco(), fornecedorUpdate.isRecorrente(), fornecedorUpdate.getTaxaDesconto());
         System.out.println("Metodo atualizar DaoFornecedor realizado");
     }
 
@@ -39,11 +39,18 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
     public void deletar(String cnpj) throws SQLException {
         delete("DELETE FROM fornecedor WHERE cnpj = ? ", cnpj);
     }
-    
+
     @Override
     public Object getById(int id) throws SQLException {
+        ArrayList< Object> vetorObjetos = getAll();
+        GestaoFornecedor fornecedor;
+        for (int i = 0; i < vetorObjetos.size(); i++) {
+            fornecedor = (GestaoFornecedor) vetorObjetos.get(i);
+            if (id == fornecedor.getIdfornecedor()) {
+                return fornecedor;
+            }
+        }
         return null;
-
     }
 
     @Override
@@ -51,20 +58,15 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
         ArrayList<Object> fornecedores = new ArrayList<>();
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM fornecedor");
         ResultSet rs = stmt.executeQuery();
-        while(rs.next()){
-            GestaoFornecedor fornecedor = new GestaoFornecedor(rs.getInt("idfornecedor"), rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"), 
+        while (rs.next()) {
+            GestaoFornecedor fornecedor = new GestaoFornecedor(rs.getInt("idfornecedor"), rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"),
                     rs.getBoolean("recorrente"), rs.getInt("taxa_desconto"));
-           ;
+            ;
             fornecedores.add(fornecedor);
         }
-       rs.close();
-       stmt.close();
-     
-        
-   
-       return fornecedores;
+        rs.close();
+        stmt.close();
+        return fornecedores;
     }
-    
-      
-    
+
 }

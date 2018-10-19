@@ -5,9 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexaoBDMySql {
-    
 
-    private static final String URL_MYSQL = "jdbc:mysql://localhost/padariatrembao2";
+    private static final String URL_MYSQL = "jdbc:mysql://localhost/padariatrembao3";
 
     private static final String DRIVER_CLASS = "com.mysql.jdbc.Driver";
     private static final String USER = "root";
@@ -15,17 +14,14 @@ public class ConexaoBDMySql {
 
     public static Connection getConnection() {
         System.out.println("Conectando ao Banco de Dados");
-
         try {
             Class.forName(DRIVER_CLASS);
-            return DriverManager.getConnection(URL_MYSQL,USER,PASS);
+            return DriverManager.getConnection(URL_MYSQL, USER, PASS);
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         } catch (SQLException ex) {
-            
-         throw new RuntimeException(ex);
-
+            throw new RuntimeException(ex);
         }
-        return null;       
+        return null;
     }
 }

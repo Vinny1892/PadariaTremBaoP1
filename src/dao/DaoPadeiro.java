@@ -1,26 +1,35 @@
 package dao;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import model.Padeiro;
 
 public class DaoPadeiro extends GenericDao implements CRUDBasico {
 
     @Override
     public void salvar(Object object) throws SQLException {
-        Padeiro padeiro = (Padeiro) object;
-        String insert = "INSERT INTO padeiro (horario_alternativo,salario_base_mensal,cpf,telefone,nome, endereco) VALUES(?,?,?,?,?,?) ";
-        save(insert, padeiro.getHorasTrabalhadaNoturno(), padeiro.getSalarioBaseMensal(), padeiro.getCpf(), padeiro.getTelefone(), padeiro.getNome(), padeiro.getEndereco());
+        try {
+            Padeiro padeiro = (Padeiro) object;
+            String insert = "INSERT INTO padeiro (horario_alternativo,salario_base_mensal,cpf,telefone,nome, endereco) VALUES(?,?,?,?,?,?) ";
+            save(insert, padeiro.getHorasTrabalhadaNoturno(), padeiro.getSalarioBaseMensal(), padeiro.getCpf(), padeiro.getTelefone(), padeiro.getNome(), padeiro.getEndereco());
+        } catch (MySQLIntegrityConstraintViolationException e) {
+            System.out.println("codigo do produto ja existe");
+            JOptionPane.showMessageDialog(null, "Código do produto já existe no Banco de Dados");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao inserir fornecedor");
+        }
     }
 
     @Override
     public void atualizar(Object object) throws SQLException {
         Padeiro padeiro = (Padeiro) object;
         String update = "UPDATE padeiro SET nome = ?, endereco = ? , telefone = ? ,  salario_base_mensal = ? , horario_alternativo = ? WHERE cpf =  ? ";
-        update(update, padeiro.getCpf(),padeiro.getNome(), padeiro.getEndereco(), padeiro.getTelefone(), padeiro.getSalarioBaseMensal(), padeiro.getHorasTrabalhadaNoturno());
+        update(update, padeiro.getCpf(), padeiro.getNome(), padeiro.getEndereco(), padeiro.getTelefone(), padeiro.getSalarioBaseMensal(), padeiro.getHorasTrabalhadaNoturno());
     }
 
     @Override

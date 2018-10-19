@@ -16,7 +16,8 @@ import java.util.Date;
 public class GestaoVenda {
     private String dataVenda;
     private Vendedor vendedor;
-    GestaoCliente cliente;
+    private GestaoCliente cliente;
+    
     
     /*
     1 = dinheiro
@@ -26,12 +27,12 @@ public class GestaoVenda {
     private int formaPagamento;
     private int idVendas;
 
-    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, int formaPagamento, int idVendas) {
+    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, int formaPagamento, int idVenda) {
         this.dataVenda = dataVenda;
         this.vendedor = vendedor;
         this.cliente = cliente;
         this.formaPagamento = formaPagamento;
-        this.idVendas = idVendas;
+        this.idVendas = idVenda;
     }
 
     public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, int formaPagamento) {
@@ -81,6 +82,14 @@ public class GestaoVenda {
 
     public void setIdVendas(int idVendas) {
         this.idVendas = idVendas;
+    }
+
+    public GestaoCliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(GestaoCliente cliente) {
+        this.cliente = cliente;
     }
     
 }
