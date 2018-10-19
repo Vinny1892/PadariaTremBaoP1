@@ -28,7 +28,7 @@ public class ControllerCliente {
     }
     public Object selecionaObjeto(int id) throws SQLException{
         GestaoCliente cliente = (GestaoCliente) new DaoCliente().getById(id);
-        System.out.println("Metodo selecionaObjeto ControllerCartao realizado");
+        System.out.println("Metodo selecionaObjeto ControllerCliente realizado");
         return cliente;
     }
 /*

@@ -36,10 +36,10 @@ public class ControllerEstoque {
         return todoEstoque;
     }
     
-    public ArrayList<GestaoEstoque> selecionaObjeto(int id) throws SQLException{
-        ArrayList< GestaoEstoque> todoEstoque = (ArrayList<GestaoEstoque>) (ArrayList<?>) new DaoEstoque().getById(id);
-        System.out.println("Metodo selecionaObejto() ControllerEstoque realizado");
-        return todoEstoque;
+    public Object selecionaObjeto(int id) throws SQLException{
+        GestaoEstoque estoque = (GestaoEstoque) new DaoEstoque().getById(id);
+        System.out.println("Metodo selecionaObjeto ControllerEstoque realizado");
+        return estoque;
     }
 /*
 

@@ -34,10 +34,10 @@ public class ControllerVendedor {
         System.out.println("Metodo deletar ControllerVendedor realizado");
     }
     
-    public ArrayList<Vendedor> selecionaObjeto(int id) throws SQLException{
-        ArrayList< Vendedor> vendedores = (ArrayList<Vendedor>) (ArrayList<?>) new DaoVendedor().getById(id);
-        System.out.println("Metodo selecionaObejto() ControllerVendedor realizado");
-        return vendedores;
+    public Object selecionaObjeto(int id) throws SQLException{
+        Vendedor vendedor = (Vendedor) new DaoVendedor().getById(id);
+        System.out.println("Metodo selecionaObjeto ControllerVendedor realizado");
+        return vendedor;
     }
     
     public ArrayList <Vendedor> getAll() throws SQLException {

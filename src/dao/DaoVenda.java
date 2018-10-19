@@ -1,6 +1,8 @@
 package dao;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import controller.ControllerCliente;
+import controller.ControllerEstoque;
 import controller.ControllerVendedor;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,7 +36,7 @@ public class DaoVenda extends GenericDao implements CRUDBasico{
     public void atualizar(Object object) throws SQLException {
         GestaoVenda venda = (GestaoVenda) object;
         String update = "UPDATE produto SET data_venda = ?,forma_pagamento = ?, id_cliente = ?,id_vendedor = ? WHERE id_venda =  ? ";
-        update(update, venda.getIdVendas(),venda.getDataVenda(), venda.getFormaPagamento(), venda.getCliente().getIdCliente(), venda.getVendedor().getIdVendedor());
+        update(update, venda.getDataVenda(), venda.getVendedor().getIdVendedor(), venda.getCliente().getIdCliente(), venda.getCliente().getIdCliente(), venda.getFormaPagamento(),venda.getIdVenda());
         System.out.println("Metodo atualizar DaoVenda realizado");
     }
 
@@ -46,26 +48,37 @@ public class DaoVenda extends GenericDao implements CRUDBasico{
 
     @Override
     public Object getById(int id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ArrayList<Object> getAll() throws SQLException {
         ArrayList<Object> vendas = new ArrayList<>();
-        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM venda");
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM venda WHERE id_venda = " + id);
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            GestaoVenda venda;
-            ControllerVendedor crl;
-            Vendedor vendedor;
-            vendedor = crl.buscaTudoVendedor(vendedor);
-            GestaoCliente cliente = null;
-            //venda = new GestaoVenda(rs.getString("data_venda"), rs.getInt("f"), rs.getInt("id_cliente"), rs.getInt("forma_pagamento"), rs.getInt("id_venda"));
-            venda = new GestaoVenda(rs.getString("data_venda"),   vendedor,     cliente, rs.getInt("forma_pagamento"), rs.getInt("id_venda"));
+            Vendedor vendedor = (Vendedor) new ControllerVendedor().selecionaObjeto(rs.getInt("id_vendedor"));
+            GestaoEstoque estoque = (GestaoEstoque) new ControllerEstoque().selecionaObjeto(rs.getInt("id_estoque"));
+            GestaoCliente cliente = (GestaoCliente) new ControllerCliente().selecionaObjeto(rs.getInt("id_cliente"));
+            GestaoVenda venda = new GestaoVenda(rs.getString("data_venda"), vendedor, cliente, estoque, rs.getInt("forma_pagamento"), id);
             vendas.add(venda);
         }
         rs.close();
         stmt.close();
+        System.out.println("Metodo getById() DaoEstoque realizado");
+        return vendas;
+    }
+
+    @Override
+    public List<Object> getAll() throws SQLException {
+        ArrayList<Object> vendas = new ArrayList<>();
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM venda");
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            Vendedor vendedor = (Vendedor) new ControllerVendedor().selecionaObjeto(rs.getInt("id_vendedor"));
+            GestaoEstoque estoque = (GestaoEstoque) new ControllerEstoque().selecionaObjeto(rs.getInt("id_estoque"));
+            GestaoCliente cliente = (GestaoCliente) new ControllerCliente().selecionaObjeto(rs.getInt("id_cliente"));
+            GestaoVenda venda = new GestaoVenda(rs.getString("data_venda"), vendedor, cliente, estoque, rs.getInt("forma_pagamento"), rs.getInt("id_venda"));
+            vendas.add(venda);
+        }
+        rs.close();
+        stmt.close();
+        System.out.println("Metodo getAll() GestaoVenda realizado");
         return vendas;
     }
 

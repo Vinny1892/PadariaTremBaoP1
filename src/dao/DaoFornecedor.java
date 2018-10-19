@@ -19,7 +19,7 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
         } catch (MySQLIntegrityConstraintViolationException e) {
             System.out.println("CNPJ Ja existe");
             JOptionPane.showMessageDialog(null, "CNPJ ja existe no Banco de Dados");
-     
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao inserir fornecedor");
         }
@@ -56,7 +56,7 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
     public Object getById(int id) throws SQLException {
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM fornecedor WHERE id_fornecedor = " + id);
         ResultSet rs = stmt.executeQuery();
-        GestaoFornecedor fornecedor = new GestaoFornecedor(id, rs.getString("nome"), rs.getInt("taxa_desconto"), rs.getString("endereco"), rs.getBoolean("recorrente"), rs.getString("cnpj"));
+        GestaoFornecedor fornecedor = new GestaoFornecedor(id, rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"), rs.getBoolean("recorrente"), rs.getInt("taxa_desconto"));
         rs.close();
         stmt.close();
         return fornecedor;
@@ -68,7 +68,7 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM fornecedor");
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            GestaoFornecedor fornecedor = new GestaoFornecedor(rs.getInt("id_fornecedor"), rs.getString("nome"), rs.getInt("taxa_desconto"), rs.getString("endereco"), rs.getBoolean("recorrente"), rs.getString("cnpj"));
+            GestaoFornecedor fornecedor = new GestaoFornecedor(rs.getInt("id_fornecedor"),rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"), rs.getBoolean("recorrente"), rs.getInt("taxa_desconto"));
             fornecedores.add(fornecedor);
         }
         rs.close();
