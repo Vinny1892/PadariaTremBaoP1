@@ -159,11 +159,12 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
        
         try {
             new ControllerFornecedor().salvar(
-                    jTextFieldNome.getText(),
-                    jFormattedTextFieldTaxaDesconto.getText(),
-                    jTextFieldEndereco.getText(),
+                    jFormattedTextFieldCNPJ.getText().replace(".", "").replace("/" , ""),
                     jCheckBoxRecorrente.isSelected(),
-                    jFormattedTextFieldCNPJ.getText().replace(".", "").replace("/" , "")
+                    jTextFieldNome.getText(),
+                    
+                    jTextFieldEndereco.getText(),
+                    jFormattedTextFieldTaxaDesconto.getText()
             );
              
         new TelaFornecedor().setVisible(true);

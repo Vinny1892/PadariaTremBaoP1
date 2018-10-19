@@ -10,10 +10,17 @@ import model.GestaoFornecedor;
 
 public class ControllerFornecedor {
 
-    public void salvar(String cnpj, boolean recorrente, String nome, String endereco) throws SQLException {
-        GestaoFornecedor fornecedor = new GestaoFornecedor(cnpj, recorrente, nome, endereco);
-        new DaoFornecedor().salvar(fornecedor);
-        System.out.println("Metodo salvar ControllerFonecedor realizado");
+    public void salvar(String cnpj, boolean recorrente, String nome, String endereco, String taxa) throws SQLException {
+        if(recorrente){
+          
+            GestaoFornecedor fornecedor = new GestaoFornecedor(nome, cnpj, endereco, recorrente, Integer.parseInt(taxa));
+            new DaoFornecedor().salvar(fornecedor);
+        }else{
+         GestaoFornecedor fornecedor = new GestaoFornecedor(cnpj, recorrente, nome, endereco);
+         new DaoFornecedor().salvar(fornecedor);
+
+        }
+//        System.out.println("Metodo salvar ControllerFonecedor realizado");
     }
 
     public void deletar(String cnpj) throws SQLException {

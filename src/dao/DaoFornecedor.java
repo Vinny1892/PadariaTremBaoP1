@@ -19,7 +19,7 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
         } catch (MySQLIntegrityConstraintViolationException e) {
             System.out.println("CNPJ Ja existe");
             JOptionPane.showMessageDialog(null, "CNPJ ja existe no Banco de Dados");
-            JOptionPane.showMessageDialog(null, "Fornecedor é recorrente");
+     
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao inserir fornecedor");
         }
