@@ -30,7 +30,7 @@ public class GestaoFornecedor extends Pessoa {
     
     
 
-    public GestaoFornecedor(int idFornecedor, String nome, int taxaDesconto, String endereco, boolean recorrente, String cnpj) {
+    public GestaoFornecedor(int idFornecedor, String nome , String cnpj , String endereco, boolean recorrente ,int taxaDesconto  ) {
         super(nome, endereco);
         if (cnpj.length() == 14) {
             this.cnpj = cnpj;

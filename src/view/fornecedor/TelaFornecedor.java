@@ -47,7 +47,6 @@ public class TelaFornecedor extends javax.swing.JFrame {
     public void habilitaBotaoRemover(){
      if(jListCNPJ.isSelectionEmpty()){
      jButtonRemover.setEnabled(true);
-         System.out.println("aqui2");
      }
      if(jListNome.isSelectionEmpty()){
      jButtonRemover.enable(true);

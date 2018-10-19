@@ -27,17 +27,16 @@ public class ControllerFornecedor {
         new DaoFornecedor().deletar(cnpj);
         System.out.println("Metodo deletar ControllerFonecedor realizado");
     }
-
-    public void editar(int idFornecedor, String nome, int taxaDesconto, String endereco, boolean recorrente, String cnpj) throws SQLException {
-        GestaoFornecedor fornecedor = new GestaoFornecedor(idFornecedor, nome, taxaDesconto, endereco, recorrente, cnpj);
-        new DaoFornecedor().atualizar(fornecedor);
-        System.out.println("Metodo editar ControllerFornecedor realizado");
-    }
+//
+//    public void editar(int idFornecedor, String nome, int taxaDesconto, String endereco, boolean recorrente, String cnpj) throws SQLException {
+//        GestaoFornecedor fornecedor = new GestaoFornecedor(idFornecedor, nome, taxaDesconto, endereco, recorrente, cnpj);
+//        new DaoFornecedor().atualizar(fornecedor);
+//        System.out.println("Metodo editar ControllerFornecedor realizado");
+//    }
 
 
     public ArrayList<GestaoFornecedor> getAll() throws SQLException {
         ArrayList< GestaoFornecedor> fornecedores = (ArrayList<GestaoFornecedor>) (ArrayList<?>) new DaoFornecedor().getAll();
-        System.out.println("Metodo getAll realizado");
         return fornecedores;
     }
     

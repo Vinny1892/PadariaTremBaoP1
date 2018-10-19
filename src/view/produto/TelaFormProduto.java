@@ -5,17 +5,47 @@
  */
 package view.produto;
 
+import controller.ControllerFornecedor;
+import controller.ControllerProduto;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import model.GestaoFornecedor;
+import model.GestaoProduto;
+
 /**
  *
  * @author Enoque
  */
 public class TelaFormProduto extends javax.swing.JFrame {
-
+    ControllerFornecedor cf;
+    ControllerProduto cp;
+    DefaultComboBoxModel cbF;
+    ArrayList<GestaoProduto> produtos;
+    ArrayList<GestaoFornecedor> fornecedores;
+    
+    
     /**
      * Creates new form TelaFormProduto
      */
-    public TelaFormProduto() {
+    public TelaFormProduto() throws SQLException {
+        cf = new ControllerFornecedor();
+        cp = new ControllerProduto();
         initComponents();
+         fornecedores = cf.getAll();
+         produtos = cp.getAll();
+        cbF = new DefaultComboBoxModel();
+        for (int i = 0 ; i < fornecedores.size(); i++){
+            cbF.addElement(fornecedores.get(i).getNome());
+        
+        }
+        jComboBoxFornecedor.setModel(cbF);
+        
+        
+        
+        
     }
 
     /**
@@ -33,7 +63,7 @@ public class TelaFormProduto extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxFornecedor = new javax.swing.JComboBox<>();
         jCheckBox1 = new javax.swing.JCheckBox();
         jFormattedTextFieldDataValidade = new javax.swing.JFormattedTextField();
         jTextField3 = new javax.swing.JTextField();
@@ -106,7 +136,7 @@ public class TelaFormProduto extends javax.swing.JFrame {
                                         .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jComboBox1, 0, 142, Short.MAX_VALUE)
+                                        .addComponent(jComboBoxFornecedor, 0, 142, Short.MAX_VALUE)
                                         .addGroup(layout.createSequentialGroup()
                                             .addGap(35, 35, 35)
                                             .addComponent(jCheckBox1))
@@ -140,7 +170,7 @@ public class TelaFormProduto extends javax.swing.JFrame {
                         .addComponent(jLabel2)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jCheckBox1)
@@ -196,7 +226,11 @@ jFormattedTextFieldDataValidade.setEnabled(false);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaFormProduto().setVisible(true);
+                try {
+                    new TelaFormProduto().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(TelaFormProduto.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -204,7 +238,7 @@ jFormattedTextFieldDataValidade.setEnabled(false);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBoxFornecedor;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextFieldDataValidade;
     private javax.swing.JLabel jLabel1;
