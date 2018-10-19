@@ -13,7 +13,6 @@ import javax.swing.JOptionPane;
 import model.GestaoProduto;
 import model.GestaoFornecedor;
 
-
 /**
  * na entidade PRODUTO, podemos declarar produtos mas nao sua data de validade e
  * a quantidade, a entidade produto funciona mais como um catalogo produtos
@@ -48,17 +47,19 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
     }
 
     @Override
-    public Object getById(int id) throws SQLException {
+    public List<Object> getById(int id) throws SQLException {
+        ArrayList<Object> produtos = new ArrayList<>();
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM produto WHERE id_produto = " + id);
         ResultSet rs = stmt.executeQuery();
-        ControllerFornecedor cf = null;
-        GestaoFornecedor fornecedor = (GestaoFornecedor) cf.selecionaObjeto(rs.getInt("id_fornecedor"));
-        GestaoProduto produto = new GestaoProduto(rs.getString("nome"), id,  fornecedor, rs.getFloat("preco_custo"),rs.getString("apelido"));
+        while (rs.next()) {
+            GestaoFornecedor fornecedor = (GestaoFornecedor) new ControllerFornecedor().selecionaObjeto(rs.getInt("id_fornecedor"));
+            GestaoProduto produto = new GestaoProduto(rs.getString("nome"), id, fornecedor, rs.getFloat("preco_custo"), rs.getString("apelido"));
+            produtos.add(produto);
+        }
         rs.close();
         stmt.close();
-        return produto;
+        return produtos;
     }
-    
 
     @Override
     public List<Object> getAll() throws SQLException {
@@ -66,8 +67,7 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM produto");
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            ControllerFornecedor cf = null;
-            GestaoFornecedor fornecedor = (GestaoFornecedor) cf.selecionaObjeto(rs.getInt("id_fornecedor"));
+            GestaoFornecedor fornecedor = (GestaoFornecedor) new controller.ControllerFornecedor().selecionaObjeto(rs.getInt("id_fornecedor"));
             GestaoProduto produto = new GestaoProduto(rs.getString("nome"), rs.getInt("id_produto"), fornecedor, rs.getFloat("preco_custo"), rs.getString("apelido"));
             produtos.add(produto);
         }

@@ -1,11 +1,15 @@
 package dao;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import controller.ControllerCartao;
 import java.sql.SQLException;
 import java.util.List;
 import model.GestaoCliente;
-import dao.DaoCliente;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import model.CartaoFidelidade;
 
 public class DaoCliente extends GenericDao implements CRUDBasico {
 
@@ -35,16 +39,38 @@ public class DaoCliente extends GenericDao implements CRUDBasico {
     @Override
     public void deletar(String cpf) throws SQLException {
         delete("DELETE FROM cliente WHERE cpf = ? ", cpf);
+        System.out.println("Metodo deletar() DaoCliente realizado");
     }
 
     @Override
-    public Object getById(int id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Object> getById(int id) throws SQLException {
+        ArrayList<Object> clientes = new ArrayList<>();
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM cliente WHERE id_cliente = " + id);
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            CartaoFidelidade cartao = (CartaoFidelidade) new ControllerCartao().selecionaObjeto(rs.getInt("id_cartao"));
+            GestaoCliente cliente = new GestaoCliente(rs.getString("nome"), rs.getString("endereco"), rs.getString("cpf"), rs.getString("telefone"), cartao, id);
+            clientes.add(cliente);
+        }
+        rs.close();
+        stmt.close();
+        return clientes;
     }
 
     @Override
     public List<Object> getAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Object> cartoes = new ArrayList<>();
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM cartao_fidelidade");
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            CartaoFidelidade cartao = (CartaoFidelidade) new ControllerCartao().selecionaObjeto(rs.getInt("id_cartao"));
+            GestaoCliente cliente = new GestaoCliente(rs.getString("nome"), rs.getString("endereco"), rs.getString("cpf"), rs.getString("telefone"), cartao, rs.getInt("id_cartao"));
+            cartoes.add(cartao);
+        }
+        rs.close();
+        stmt.close();
+        System.out.println("Metodo getAll() GestaoCliente realizado");
+        return cartoes;
     }
 
 }

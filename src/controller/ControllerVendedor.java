@@ -4,6 +4,7 @@ import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExceptio
 import model.Vendedor;
 import dao.DaoVendedor;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class ControllerVendedor {
@@ -33,12 +34,19 @@ public class ControllerVendedor {
         System.out.println("Metodo deletar ControllerVendedor realizado");
     }
     
-    public Vendedor buscaTudoVendedor(Vendedor vendedor){
-        DaoVendedor buscaVendedor;
-        vendedor = buscaVendedor.getAll();
-        return vendedor;
+    public ArrayList<Vendedor> selecionaObjeto(int id) throws SQLException{
+        ArrayList< Vendedor> vendedores = (ArrayList<Vendedor>) (ArrayList<?>) new DaoVendedor().getById(id);
+        System.out.println("Metodo selecionaObejto() ControllerVendedor realizado");
+        return vendedores;
     }
     
+    public ArrayList <Vendedor> getAll() throws SQLException {
+        ArrayList <Vendedor> vendedores = (ArrayList<Vendedor>) (ArrayList<?>) new DaoVendedor().getAll();
+        System.out.println("Metodo getAll ControllerVendedor realizado");
+        return vendedores;
+    }
+    
+    /*
     public static void main(String[] args) throws SQLException{
         ControllerVendedor cv = new ControllerVendedor();
         //cv.salvar(10000, 1000.00f, "33445566778", "12123434", "augusto vendedor", "rua do augusto");
@@ -46,5 +54,5 @@ public class ControllerVendedor {
         //cv.editar(9000, 1500.00f, "85555555555", "11112222", "josé feitosa", "Rua jose feitosa");
         
         //cv.deletar("55555555556");
-    }
+    }*/
 }

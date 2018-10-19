@@ -38,27 +38,37 @@ public class DaoVendedor extends GenericDao implements CRUDBasico {
     @Override
     public void deletar(String cpf) throws SQLException {
         delete("DELETE FROM vendedor WHERE cpf = ? ", cpf);
+        System.out.println("Metodo deletar DaoVendedor realizado");
     }
 
     @Override
     public Object getById(int id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Object> vendedores = new ArrayList<>();
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM vendedor WHERE id_vendedor = " + id);
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            Vendedor vendedor = new Vendedor(rs.getDouble("montante_vendas"), id, rs.getFloat("salario_base"), rs.getString("cpf"), rs.getString("telefone"), rs.getString("nome"), rs.getString("endereco"));
+            vendedores.add(vendedor);
+        }
+        rs.close();
+        stmt.close();
+        System.out.println("Metodo getById() DaoVendedor realizado");
+        return vendedores;
     }
 
     @Override
     public List<Object> getAll() throws SQLException {
-        ArrayList<Object> fornecedores = new ArrayList<>();
-        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM fornecedor");
+        ArrayList<Object> vendedores = new ArrayList<>();
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM vendedor");
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            Vendedor vendedor = new Vendedor(rs.getInt("idfornecedor"), rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"),
-                    rs.getBoolean("recorrente"), rs.getInt("taxa_desconto"));
-            ;
-            fornecedores.add(fornecedor);
+            Vendedor vendedor = new Vendedor(rs.getDouble("montante_vendas"), rs.getInt("id_vendedor"), rs.getFloat("salario_base"), rs.getString("cpf"), rs.getString("telefone"), rs.getString("nome"), rs.getString("endereco"));
+            vendedores.add(vendedor);
         }
         rs.close();
         stmt.close();
-        return fornecedores;
+        System.out.println("Metodo getAll() GestaoVendedor realizado");
+        return vendedores;
     }
 
 }

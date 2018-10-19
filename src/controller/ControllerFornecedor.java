@@ -43,8 +43,7 @@ public class ControllerFornecedor {
     
     
     public Object selecionaObjeto(int id) throws SQLException{
-        DaoFornecedor daoFornecedor = null;
-        GestaoFornecedor fornecedor = (GestaoFornecedor) daoFornecedor.getById(id);
+        GestaoFornecedor fornecedor = (GestaoFornecedor) new DaoFornecedor().getById(id);
         System.out.println("Metodo selecionaObjeto ControllerFornecedor realizado");
         return fornecedor;
     }
