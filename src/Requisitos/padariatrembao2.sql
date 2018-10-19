@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 19/10/2018 às 00:31
+-- Tempo de geração: 19/10/2018 às 14:46
 -- Versão do servidor: 10.1.36-MariaDB
 -- Versão do PHP: 7.2.10
 
@@ -157,9 +157,8 @@ CREATE TABLE `vendas` (
   `data_venda` datetime NOT NULL,
   `forma_pagamento` int(2) NOT NULL,
   `montante_venda` float NOT NULL,
-  `id_produto` int(12) NOT NULL,
-  `id_vendedor` int(11) NOT NULL,
-  `id_cliente` binary(1) NOT NULL
+  `id_cliente` int(11) NOT NULL,
+  `id_produto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -233,15 +232,6 @@ ALTER TABLE `produto`
   ADD KEY `idfornecedor` (`id_fornecedor`) USING BTREE;
 
 --
--- Índices de tabela `vendas`
---
-ALTER TABLE `vendas`
-  ADD PRIMARY KEY (`id_venda`),
-  ADD KEY `idproduto` (`id_produto`) USING BTREE,
-  ADD KEY `idcliente` (`id_cliente`) USING BTREE,
-  ADD KEY `idvendedor` (`id_vendedor`) USING BTREE;
-
---
 -- Índices de tabela `vendedor`
 --
 ALTER TABLE `vendedor`
@@ -292,12 +282,6 @@ ALTER TABLE `padeiro`
 --
 ALTER TABLE `produto`
   MODIFY `idproduto` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `vendas`
---
-ALTER TABLE `vendas`
-  MODIFY `id_venda` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `vendedor`

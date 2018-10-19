@@ -7,11 +7,11 @@ import java.sql.SQLException;
 public class ConexaoBDMySql {
     
 
-    private static final String URL_MYSQL = "jdbc:mysql://localhost/padaria";
+    private static final String URL_MYSQL = "jdbc:mysql://localhost/padariatrembao2";
 
     private static final String DRIVER_CLASS = "com.mysql.jdbc.Driver";
     private static final String USER = "root";
-    private static final String PASS = "12345";
+    private static final String PASS = "";
 
     public static Connection getConnection() {
         System.out.println("Conectando ao Banco de Dados");

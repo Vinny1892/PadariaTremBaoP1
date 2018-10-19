@@ -20,7 +20,7 @@ import java.util.Date;
 public class GestaoProduto {
 
     private String nome;
-    private int codigo;
+    private int idproduto;
     private GestaoFornecedor fornecedor;
     private float precoCusto;
     //private float precoFinal;
@@ -28,9 +28,9 @@ public class GestaoProduto {
     //private Format dataValidade;
     private String apelido;
 
-    public GestaoProduto(String nome, int codigo, GestaoFornecedor fornecedor, float precoCusto, String apelido) {
+    public GestaoProduto(String nome, int idproduto, GestaoFornecedor fornecedor, float precoCusto, String apelido) {
         this.nome = nome;
-        this.codigo = codigo;
+        this.idproduto = idproduto;
         this.fornecedor = fornecedor;
         this.precoCusto = precoCusto;
         this.apelido = apelido;
@@ -54,11 +54,11 @@ public class GestaoProduto {
     }
 
     public int getCodigo() {
-        return codigo;
+        return idproduto;
     }
 
     public void setCodigo(int codigo) {
-        this.codigo = codigo;
+        this.idproduto = codigo;
     }
 
     public GestaoFornecedor getFornecedor() {

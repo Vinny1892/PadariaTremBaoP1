@@ -14,8 +14,10 @@ bem como um acrescimo de 2% no valor ﬁnal da compra.
 import java.util.Date;
 
 public class GestaoVenda {
-    private Date dataVenda;
+    private String dataVenda;
     private Vendedor vendedor;
+    GestaoCliente cliente;
+    
     /*
     1 = dinheiro
     2 = debito
@@ -24,25 +26,24 @@ public class GestaoVenda {
     private int formaPagamento;
     private int idVendas;
 
-    public GestaoVenda(Date dataVenda, Vendedor vendedor, int formaPagamento, int idVendas) {
+    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, int formaPagamento, int idVendas) {
         this.dataVenda = dataVenda;
         this.vendedor = vendedor;
+        this.cliente = cliente;
         this.formaPagamento = formaPagamento;
         this.idVendas = idVendas;
     }
 
-    public GestaoVenda(Date dataVenda, Vendedor vendedor, int formaPagamento) {
+    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, int formaPagamento) {
         this.dataVenda = dataVenda;
         this.vendedor = vendedor;
+        this.cliente = cliente;
         this.formaPagamento = formaPagamento;
     }
-    
-    
-    
+
     //pagamento sem parcelas
     public void cadastrarBDConjuntoProdutosVendido(GestaoProduto carrinho[], Vendedor vendedor,Date dataVenda,int formaPagamento){
         
-
     }
     // pagamento com parcelas 
     public void cadastrarBDConjuntoProdutosVendido(GestaoProduto carrinho[], Vendedor vendedor,Date dataVenda,int formaPagamento, int nParcelas){
@@ -50,11 +51,11 @@ public class GestaoVenda {
 
     }
 
-    public Date getDataVenda() {
+    public String getDataVenda() {
         return dataVenda;
     }
 
-    public void setDataVenda(Date dataVenda) {
+    public void setDataVenda(String dataVenda) {
         this.dataVenda = dataVenda;
     }
 
