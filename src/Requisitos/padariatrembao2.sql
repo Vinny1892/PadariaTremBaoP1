@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 19/10/2018 às 14:46
+-- Tempo de geração: 19/10/2018 às 14:59
 -- Versão do servidor: 10.1.36-MariaDB
 -- Versão do PHP: 7.2.10
 
@@ -230,6 +230,12 @@ ALTER TABLE `padeiro`
 ALTER TABLE `produto`
   ADD PRIMARY KEY (`idproduto`),
   ADD KEY `idfornecedor` (`id_fornecedor`) USING BTREE;
+
+--
+-- Índices de tabela `vendas`
+--
+ALTER TABLE `vendas`
+  ADD UNIQUE KEY `id_vendas` (`id_venda`);
 
 --
 -- Índices de tabela `vendedor`
