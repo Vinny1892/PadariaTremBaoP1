@@ -49,7 +49,15 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
 
     @Override
     public Object getById(int id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList< Object> vetorObjetos = (ArrayList< Object>) getAll();
+        GestaoProduto produto;
+        for (int i = 0; i < vetorObjetos.size(); i++) {
+            produto = (GestaoProduto) vetorObjetos.get(i);
+            if (id == produto.getCodigo()) {
+                return produto;
+            }
+        }
+        return null;
     }
 
     @Override

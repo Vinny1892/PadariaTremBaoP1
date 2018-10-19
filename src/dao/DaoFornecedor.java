@@ -42,7 +42,7 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
 
     @Override
     public Object getById(int id) throws SQLException {
-        ArrayList< Object> vetorObjetos = getAll();
+        ArrayList< Object> vetorObjetos = (ArrayList< Object>) getAll();
         GestaoFornecedor fornecedor;
         for (int i = 0; i < vetorObjetos.size(); i++) {
             fornecedor = (GestaoFornecedor) vetorObjetos.get(i);
