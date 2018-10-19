@@ -17,18 +17,19 @@ public class GestaoFornecedor extends Pessoa {
     private String cnpj;
     private boolean recorrente;
     private int taxaDesconto;
-    private int idfornecedor;
+    private int idFornecedor;
 
     public GestaoFornecedor(String cnpj, boolean recorrente, String nome, String endereco) {
         super(nome, endereco);
         this.cnpj = cnpj;
         this.recorrente = recorrente;
-  
     }
+
+
     
     
 
-    public GestaoFornecedor(String nome, int taxaDesconto, String endereco, boolean recorrente, String cnpj) {
+    public GestaoFornecedor(int idFornecedor, String nome, int taxaDesconto, String endereco, boolean recorrente, String cnpj) {
         super(nome, endereco);
         if (cnpj.length() == 14) {
             this.cnpj = cnpj;
@@ -37,6 +38,7 @@ public class GestaoFornecedor extends Pessoa {
         }
         this.recorrente = recorrente;
         this.taxaDesconto = taxaDesconto;
+        this.idFornecedor = idFornecedor;
     }
 
     public GestaoFornecedor(int idfornecedor, String nome, String cnpj, String endereco, boolean recorrente, int taxaDesconto) {
@@ -48,7 +50,7 @@ public class GestaoFornecedor extends Pessoa {
         }
         this.recorrente = recorrente;
         this.taxaDesconto = taxaDesconto;
-        this.idfornecedor = idfornecedor;
+        this.idFornecedor = idfornecedor;
     }
 
   
@@ -85,11 +87,11 @@ public class GestaoFornecedor extends Pessoa {
     }
 
     public int getIdfornecedor() {
-        return idfornecedor;
+        return idFornecedor;
     }
 
     public void setIdfornecedor(int idfornecedor) {
-        this.idfornecedor = idfornecedor;
+        this.idFornecedor = idfornecedor;
     }
 
 }

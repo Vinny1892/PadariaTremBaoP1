@@ -49,16 +49,16 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
 
     @Override
     public Object getById(int id) throws SQLException {
-        ArrayList< Object> vetorObjetos = (ArrayList< Object>) getAll();
-        GestaoProduto produto;
-        for (int i = 0; i < vetorObjetos.size(); i++) {
-            produto = (GestaoProduto) vetorObjetos.get(i);
-            if (id == produto.getCodigo()) {
-                return produto;
-            }
-        }
-        return null;
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM produto WHERE id_produto = " + id);
+        ResultSet rs = stmt.executeQuery();
+        ControllerFornecedor cf = null;
+        GestaoFornecedor fornecedor = (GestaoFornecedor) cf.selecionaObjeto(rs.getInt("id_fornecedor"));
+        GestaoProduto produto = new GestaoProduto(rs.getString("nome"), id,  fornecedor, rs.getFloat("preco_custo"),rs.getString("apelido"));
+        rs.close();
+        stmt.close();
+        return produto;
     }
+    
 
     @Override
     public List<Object> getAll() throws SQLException {
@@ -73,6 +73,7 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
         }
         rs.close();
         stmt.close();
+        System.out.println("Metodo getAll() GestaoEstoque realizado");
         return produtos;
     }
 

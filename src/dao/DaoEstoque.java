@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import controller.ControllerProduto;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.GestaoEstoque;
+import model.GestaoProduto;
 
 public class DaoEstoque extends GenericDao implements CRUDBasico {
 
@@ -26,6 +28,7 @@ public class DaoEstoque extends GenericDao implements CRUDBasico {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao inserir fornecedor");
         }
+        System.out.println("Metodo salvar DaoEstoque realizado");
     }
 
     @Override
@@ -33,22 +36,48 @@ public class DaoEstoque extends GenericDao implements CRUDBasico {
         GestaoEstoque estoque = (GestaoEstoque) object;
         String update = "UPDATE estoque SET data_validade = ? , quantidade = ? WHERE idestoque =  ? ";
         update(update, estoque.getIdEstoque(), estoque.getDataValidade(), estoque.getQtdProduto());
+        System.out.println("Metodo atualizar DaoEstoque realizado");
     }
 
     @Override
     public void deletar(String idestoqueSt) throws SQLException {
         long idestoque = Long.parseLong(idestoqueSt);
         delete("DELETE FROM estoque WHERE idestoque = ? ", idestoque);
+        System.out.println("Metodo deletar DaoEstoque realizado");
     }
 
     @Override
-    public Object getById(int id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Object> getById(int id) throws SQLException {
+        ArrayList<Object> todoEstoque = new ArrayList<>();
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM estoque WHERE id_estoque = " + id);
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            ControllerProduto cp = null;
+            GestaoProduto produto = (GestaoProduto) cp.selecionaObjeto(id);
+            GestaoEstoque estoque = new GestaoEstoque(id, rs.getInt("quantidade"), rs.getString("data_validade"), produto);
+            todoEstoque.add(estoque);
+        }
+        rs.close();
+        stmt.close();
+        System.out.println("Metodo getById() DaoEstoque realizado");
+        return todoEstoque;
     }
 
     @Override
     public List<Object> getAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Object> todoEstoque = new ArrayList<>();
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM estoque");
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            ControllerProduto cf = null;
+            GestaoProduto produto = (GestaoProduto) cf.selecionaObjeto(rs.getInt("id_produto"));
+            GestaoEstoque estoque = new GestaoEstoque(rs.getInt("id_estoque"), rs.getInt("quantidade"), rs.getString("data_validade"), produto);
+            todoEstoque.add(estoque);
+        }
+        rs.close();
+        stmt.close();
+        System.out.println("Metodo getAll() GestaoEstoque realizado");
+        return todoEstoque;
     }
 
 }

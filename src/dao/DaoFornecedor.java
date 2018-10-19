@@ -5,9 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.GestaoFornecedor;
 
@@ -22,6 +19,7 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
         } catch (MySQLIntegrityConstraintViolationException e) {
             System.out.println("CNPJ Ja existe");
             JOptionPane.showMessageDialog(null, "CNPJ ja existe no Banco de Dados");
+            JOptionPane.showMessageDialog(null, "Fornecedor é recorrente");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao inserir fornecedor");
         }
@@ -40,6 +38,7 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
         delete("DELETE FROM fornecedor WHERE cnpj = ? ", cnpj);
     }
 
+    /*
     @Override
     public Object getById(int id) throws SQLException {
         ArrayList< Object> vetorObjetos = (ArrayList< Object>) getAll();
@@ -52,6 +51,16 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
         }
         return null;
     }
+     */
+    @Override
+    public Object getById(int id) throws SQLException {
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM fornecedor WHERE id_fornecedor = " + id);
+        ResultSet rs = stmt.executeQuery();
+        GestaoFornecedor fornecedor = new GestaoFornecedor(id, rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"), rs.getBoolean("recorrente"), rs.getInt("taxa_desconto"));
+        rs.close();
+        stmt.close();
+        return fornecedor;
+    }
 
     @Override
     public ArrayList<Object> getAll() throws SQLException {
@@ -59,9 +68,7 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM fornecedor");
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            GestaoFornecedor fornecedor = new GestaoFornecedor(rs.getInt("idfornecedor"), rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"),
-                    rs.getBoolean("recorrente"), rs.getInt("taxa_desconto"));
-            ;
+            GestaoFornecedor fornecedor = new GestaoFornecedor(rs.getInt("idfornecedor"), rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"), rs.getBoolean("recorrente"), rs.getInt("taxa_desconto"));
             fornecedores.add(fornecedor);
         }
         rs.close();

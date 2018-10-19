@@ -1,21 +1,11 @@
 package controller;
 
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import dao.DaoFornecedor;
 import model.GestaoProduto;
 import dao.DaoProduto;
 import model.GestaoFornecedor;
-import java.util.Date;
-import java.text.SimpleDateFormat;
-import model.GestaoFornecedor;
-
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.Format;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JOptionPane;
 
 public class ControllerProduto {
 
@@ -27,6 +17,7 @@ public class ControllerProduto {
 
     public void deletar(String codigo) throws SQLException {
         new DaoProduto().deletar(codigo);
+        System.out.println("Metodo deletar ControllerProduto realizado");
     }
 
     public void editar(String nome, int codigo, GestaoFornecedor fornecedor, float precoCusto, String apelido) throws SQLException {
@@ -37,8 +28,15 @@ public class ControllerProduto {
 
     public ArrayList<GestaoProduto> getAll() throws SQLException {
         ArrayList< GestaoProduto> produtos = (ArrayList<GestaoProduto>) (ArrayList<?>) new DaoProduto().getAll();
-        System.out.println("Metodo getAll realizado");
+        System.out.println("Metodo getAll ControllerProduto realizado");
         return produtos;
+    }
+    
+    public Object selecionaObjeto(int id) throws SQLException{
+        DaoFornecedor daoFornecedor = null;
+        GestaoFornecedor fornecedor = (GestaoFornecedor) daoFornecedor.getById(id);
+        System.out.println("Metodo selecionaObejto() ControllerProduto realizado");
+        return fornecedor;
     }
 /*
     public static void main(String[] args) throws SQLException {

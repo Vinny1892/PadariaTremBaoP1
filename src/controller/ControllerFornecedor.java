@@ -10,27 +10,19 @@ import model.GestaoFornecedor;
 
 public class ControllerFornecedor {
 
-    public void salvar(String nome, String taxaDesconto, String endereco, boolean recorrente, String cnpj) throws SQLException {
-        if(recorrente){
-           int taxaDesc = Integer.parseInt(taxaDesconto);
-        GestaoFornecedor fornecedor = new GestaoFornecedor(nome, taxaDesc, endereco, true, cnpj);
-        
+    public void salvar(String cnpj, boolean recorrente, String nome, String endereco) throws SQLException {
+        GestaoFornecedor fornecedor = new GestaoFornecedor(cnpj, recorrente, nome, endereco);
         new DaoFornecedor().salvar(fornecedor);
-        }else{
-        GestaoFornecedor fornecedor = new GestaoFornecedor(cnpj, recorrente,nome, endereco);
-        new DaoFornecedor().salvar(fornecedor);
-        
-        }
-     
         System.out.println("Metodo salvar ControllerFonecedor realizado");
     }
 
     public void deletar(String cnpj) throws SQLException {
         new DaoFornecedor().deletar(cnpj);
+        System.out.println("Metodo deletar ControllerFonecedor realizado");
     }
 
-    public void editar(String nome, String endereco, String cnpj, int taxaDesconto, boolean recorrente) throws SQLException {
-        GestaoFornecedor fornecedor = new GestaoFornecedor(nome, taxaDesconto, endereco, true, cnpj);
+    public void editar(int idFornecedor, String nome, int taxaDesconto, String endereco, boolean recorrente, String cnpj) throws SQLException {
+        GestaoFornecedor fornecedor = new GestaoFornecedor(idFornecedor, nome, taxaDesconto, endereco, recorrente, cnpj);
         new DaoFornecedor().atualizar(fornecedor);
         System.out.println("Metodo editar ControllerFornecedor realizado");
     }
@@ -44,9 +36,9 @@ public class ControllerFornecedor {
     
     
     public Object selecionaObjeto(int id) throws SQLException{
-        GestaoFornecedor fornecedor = null;
         DaoFornecedor daoFornecedor = null;
-        fornecedor = (GestaoFornecedor) daoFornecedor.getById(id);
+        GestaoFornecedor fornecedor = (GestaoFornecedor) daoFornecedor.getById(id);
+        System.out.println("Metodo selecionaObjeto ControllerFornecedor realizado");
         return fornecedor;
     }
     

@@ -8,6 +8,8 @@ import java.util.Date;
 import model.GestaoProduto;
 import model.GestaoFornecedor;
 import controller.ControllerFornecedor;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ControllerEstoque {
 
@@ -27,6 +29,19 @@ public class ControllerEstoque {
         new DaoEstoque().atualizar(estoque);
         System.out.println("Metodo editar ControllerEstoque realizado");
     }
+    
+    public ArrayList<GestaoEstoque> getAll() throws SQLException {
+        ArrayList< GestaoEstoque> todoEstoque = (ArrayList<GestaoEstoque>) (ArrayList<?>) new DaoEstoque().getAll();
+        System.out.println("Metodo getAll ControllerEstoque realizado");
+        return todoEstoque;
+    }
+    
+    public ArrayList<GestaoEstoque> selecionaObjeto(int id) throws SQLException{
+        ArrayList< GestaoEstoque> todoEstoque = (ArrayList<GestaoEstoque>) (ArrayList<?>) new DaoEstoque().getById(id);
+        System.out.println("Metodo selecionaObejto() ControllerEstoque realizado");
+        return todoEstoque;
+    }
+/*
 
 //    public static void main(String[] args) throws SQLException {
 //        ControllerFornecedor cf = new ControllerFornecedor();
@@ -40,4 +55,5 @@ public class ControllerEstoque {
 //        ControllerEstoque ce = new ControllerEstoque();
 //        ce.salvar(20, "01/11/2018" , produto);
 //    }
+*/
 }
