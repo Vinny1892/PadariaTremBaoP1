@@ -61,10 +61,10 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="114" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButtonRemover" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonEditar" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
-                          <Component id="jButtonAdicionar" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jButtonAdicionar" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jButtonRemover" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jButtonEditar" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
