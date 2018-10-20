@@ -18,18 +18,25 @@ public class GestaoFornecedor extends PessoaJuridica {
     private int taxaDesconto;
     private int idFornecedor;
 
-    public GestaoFornecedor(boolean recorrente, int taxaDesconto, int idFornecedor, String cnpj, String nome, String endereco) {
+    public GestaoFornecedor(int idFornecedor, String nome, String cnpj, String endereco, boolean recorrente, int taxaDesconto) {
         super(cnpj, nome, endereco);
         this.recorrente = recorrente;
         this.taxaDesconto = taxaDesconto;
         this.idFornecedor = idFornecedor;
     }
 
-    public GestaoFornecedor(boolean recorrente, int taxaDesconto, String cnpj, String nome, String endereco) {
+    public GestaoFornecedor(String nome, String cnpj, String endereco, boolean recorrente, int taxaDesconto) {
         super(cnpj, nome, endereco);
         this.recorrente = recorrente;
         this.taxaDesconto = taxaDesconto;
     }
+
+    public GestaoFornecedor(boolean recorrente, String cnpj, String nome, String endereco) {
+        super(cnpj, nome, endereco);
+        this.recorrente = recorrente;
+    }
+
+  
 
     //aplicavel no preco de custo de todos os produtos por eles fornecidos.
     public float recorrenteNegociarDesconto(float precoCusto, float valorNegociado) {

@@ -12,13 +12,11 @@ public class ControllerFornecedor {
 
     public void salvar(String cnpj, boolean recorrente, String nome, String endereco, String taxa) throws SQLException {
         if(recorrente){
-          
             GestaoFornecedor fornecedor = new GestaoFornecedor(nome, cnpj, endereco, recorrente, Integer.parseInt(taxa));
             new DaoFornecedor().salvar(fornecedor);
         }else{
-         GestaoFornecedor fornecedor = new GestaoFornecedor(cnpj, recorrente, nome, endereco);
+         GestaoFornecedor fornecedor = new GestaoFornecedor(recorrente, cnpj, nome, endereco);
          new DaoFornecedor().salvar(fornecedor);
-
         }
 //        System.out.println("Metodo salvar ControllerFonecedor realizado");
     }
