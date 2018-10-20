@@ -1,8 +1,5 @@
 package dao;
 
-import java.sql.SQLException;
-import java.util.List;
-
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import controller.ControllerProduto;
 import java.sql.PreparedStatement;
@@ -18,23 +15,24 @@ public class DaoEstoque extends GenericDao implements CRUDBasico {
 
     @Override
     public void salvar(Object object) throws SQLException {
-        try {
+    //    try {
             GestaoEstoque estoque = (GestaoEstoque) object;
-            String insert = "INSERT INTO estoque (produto_idproduto,data_validade,quantidade) VALUES(?,?,?) ";
+            String insert = "INSERT INTO estoque (id_produto,data_validade,quantidade) VALUES(?,?,?) ";
             save(insert, estoque.getProduto(), estoque.getQtdProduto(), estoque.getDataValidade());
-        } catch (MySQLIntegrityConstraintViolationException e) {
-            System.out.println("CPF Ja existe");
+    /*    } catch (MySQLIntegrityConstraintViolationException e) {
+            System.out.println("Ja existe");
             JOptionPane.showMessageDialog(null, "CPF ja existe no Banco de Dados");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao inserir fornecedor");
         }
+    */
         System.out.println("Metodo salvar DaoEstoque realizado");
     }
 
     @Override
     public void atualizar(Object object) throws SQLException {
         GestaoEstoque estoque = (GestaoEstoque) object;
-        String update = "UPDATE estoque SET data_validade = ? , quantidade = ? WHERE idestoque =  ? ";
+        String update = "UPDATE estoque SET data_validade = ? , quantidade = ? WHERE id_estoque =  ? ";
         update(update, estoque.getIdEstoque(), estoque.getDataValidade(), estoque.getQtdProduto());
         System.out.println("Metodo atualizar DaoEstoque realizado");
     }
@@ -42,7 +40,7 @@ public class DaoEstoque extends GenericDao implements CRUDBasico {
     @Override
     public void deletar(String idestoqueSt) throws SQLException {
         long idestoque = Long.parseLong(idestoqueSt);
-        delete("DELETE FROM estoque WHERE idestoque = ? ", idestoque);
+        delete("DELETE FROM estoque WHERE id_estoque = ? ", idestoque);
         System.out.println("Metodo deletar DaoEstoque realizado");
     }
 

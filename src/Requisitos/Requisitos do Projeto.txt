@@ -12,12 +12,14 @@ Requisitos do professor, como todos os conceitos de POO
 [] =
 [] =
 
+Venda no bd: id_venda devera se reptir para cada id_produto, ou seja, 5 produtos diferentes, id_venda repete 5 vezes.
+Venda no código: um objeto venda, vai possuir um vetor de objeto estoque.
+
+
  fornecedor n tem telefone pq?
- outra coisa, nosso SQL, esta permitindo cadastras cnpj e cpf repetido
 
 
 
-Perguntar para o professor como sera a relação entre venda e produto, chave estrangeira por "id" ou "codigo, pois um tipo de produto possui um código que identifica aquele tipo de produto, ja o id identifica especificamente um produto, independente do tipo.
 
 
 Perguntar para o professor como sera a passagem de mes, como a consulta do valor da gratificação em um mes, e o valor do mes anterior

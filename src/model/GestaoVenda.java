@@ -12,6 +12,7 @@ O pagamento das vendas pode ser realizado a vista ou a prazo.
 Vendas a prazo tem associado a elas o numero de parcelas, 
 bem como um acrescimo de 2% no valor ﬁnal da compra.
  */
+import java.util.ArrayList;
 import java.util.Date;
 
 public class GestaoVenda {
@@ -19,7 +20,7 @@ public class GestaoVenda {
     private String dataVenda;
     private Vendedor vendedor;
     private GestaoCliente cliente;
-    private GestaoEstoque estoque;
+    private ArrayList<GestaoEstoque> estoque;
     /*
     1 = dinheiro
     2 = debito
@@ -28,7 +29,7 @@ public class GestaoVenda {
     private int formaPagamento;
     private int idVenda;
 
-    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, GestaoEstoque estoque, int formaPagamento, int idVenda) {
+    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, ArrayList<GestaoEstoque> estoque, int formaPagamento, int idVenda) {
         this.dataVenda = dataVenda;
         this.vendedor = vendedor;
         this.cliente = cliente;
@@ -37,12 +38,12 @@ public class GestaoVenda {
         this.estoque = estoque;
     }
 
-    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, GestaoEstoque estoque, int formaPagamento) {
+    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, ArrayList<GestaoEstoque> estoque, int formaPagamento) {
         this.dataVenda = dataVenda;
         this.vendedor = vendedor;
         this.cliente = cliente;
-        this.formaPagamento = formaPagamento;
         this.estoque = estoque;
+        this.formaPagamento = formaPagamento;
     }
 
     //pagamento sem parcelas
@@ -87,20 +88,20 @@ public class GestaoVenda {
         this.cliente = cliente;
     }
 
-    public GestaoEstoque getEstoque() {
-        return estoque;
-    }
-
-    public void setEstoque(GestaoEstoque estoque) {
-        this.estoque = estoque;
-    }
-
     public int getIdVenda() {
         return idVenda;
     }
 
     public void setIdVenda(int idVenda) {
         this.idVenda = idVenda;
+    }
+
+    public ArrayList<GestaoEstoque> getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(ArrayList<GestaoEstoque> estoque) {
+        this.estoque = estoque;
     }
 
 }

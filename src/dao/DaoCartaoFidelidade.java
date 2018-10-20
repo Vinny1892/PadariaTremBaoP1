@@ -14,17 +14,17 @@ public class DaoCartaoFidelidade extends GenericDao implements CRUDBasico {
 
     @Override
     public void salvar(Object object) throws SQLException {
-        try {
+        //try {
             CartaoFidelidade cartaoFidelidade = (CartaoFidelidade) object;
             String insert = "INSERT INTO cartao_fidelidade (gold, platinum) VALUES(?,?,?,?) ";
             save(insert, cartaoFidelidade.isGold(), cartaoFidelidade.isPlatinum());
             System.out.println("Metodo salvar DaoCartaoFidelidade realizado");
-        } catch (MySQLIntegrityConstraintViolationException e) {
+        /*} catch (MySQLIntegrityConstraintViolationException e) {
             System.out.println("CPF Ja existe");
             JOptionPane.showMessageDialog(null, "CPF ja existe no Banco de Dados");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao inserir fornecedor");
-        }
+            JOptionPane.showMessageDialog(null, "Erro ao inserir Cartão de fidelidade");
+        }*/
     }
 
     @Override
@@ -46,33 +46,33 @@ public class DaoCartaoFidelidade extends GenericDao implements CRUDBasico {
  // TALVEZ N PRECISE DE WHILE
     @Override
     public Object getById(int id) throws SQLException {
-        ArrayList<Object> cartoesFidelidade = new ArrayList<>();
+        //ArrayList<Object> cartoesFidelidade = new ArrayList<>();
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM cartao_fidelidade WHERE id_cartao = " + id);
         ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            GestaoCliente cliente = (GestaoCliente) new controller.ControllerCliente().selecionaObjeto(rs.getInt("id_cliente"));
-            CartaoFidelidade cartao = new CartaoFidelidade(id, rs.getBoolean("gold"), rs.getBoolean("platinum"), cliente);
-            cartoesFidelidade.add(cartao);
-        }
+        //while (rs.next()) {
+            //GestaoCliente cliente = (GestaoCliente) new controller.ControllerCliente().selecionaObjeto(rs.getInt("id_cliente"));
+            CartaoFidelidade cartao = new CartaoFidelidade(id, rs.getBoolean("gold"), rs.getBoolean("platinum")/*, cliente*/);
+            //cartoesFidelidade.add(cartao);
+        //}
         rs.close();
         stmt.close();
         System.out.println("Metodo getById() DaoCartaoFidelidade realizado");
-        return cartoesFidelidade;
+        return cartao;
     }
 
     @Override
     public List<Object> getAll() throws SQLException {
         ArrayList<Object> Cartoes = new ArrayList<>();
-        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM vendedor");
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM cartao_fidelidade");
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            GestaoCliente cliente = (GestaoCliente) new controller.ControllerCliente().selecionaObjeto(rs.getInt("id_cliente"));
-            CartaoFidelidade cartao = new CartaoFidelidade(rs.getInt("id_cartao"), rs.getBoolean("gold"), rs.getBoolean("platinum"), cliente);
+            //GestaoCliente cliente = (GestaoCliente) new controller.ControllerCliente().selecionaObjeto(rs.getInt("id_cliente"));
+            CartaoFidelidade cartao = new CartaoFidelidade(rs.getInt("id_cartao"), rs.getBoolean("gold"), rs.getBoolean("platinum")/*, cliente*/);
             Cartoes.add(cartao);
         }
         rs.close();
         stmt.close();
-        System.out.println("Metodo getAll() GestaoVendedor realizado");
+        System.out.println("Metodo getAll() DaoCartaoFidelidade realizado");
         return Cartoes;
     }
 

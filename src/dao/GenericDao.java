@@ -11,17 +11,14 @@ public abstract class GenericDao {
 
     protected GenericDao() {
         this.connection = ConexaoBDMySql.getConnection();
-
     }
 
     protected Connection getConnection() {
         return connection;
-
     }
 
     protected void save(String insertSql, Object... parametros) throws SQLException {
         PreparedStatement pstmt = getConnection().prepareStatement(insertSql);
-
         for (int i = 0; i < parametros.length; i++) {
             pstmt.setObject(i + 1, parametros[i]);
         }
@@ -31,10 +28,8 @@ public abstract class GenericDao {
 
     protected void update(String updateSql, Object id, Object... parametros) throws SQLException {
         PreparedStatement pstmt = getConnection().prepareStatement(updateSql);
-
         for (int i = 0; i < parametros.length; i++) {
             pstmt.setObject(i + 1, parametros[i]);
-
         }
         System.out.println("id: " + id);
         pstmt.setObject(parametros.length + 1, id);
@@ -44,10 +39,8 @@ public abstract class GenericDao {
 
     protected void delete(String deleteSql, Object... parametros) throws SQLException {
         PreparedStatement pstmt = getConnection().prepareStatement(deleteSql);
-
         for (int i = 0; i < parametros.length; i++) {
             pstmt.setObject(i + 1, parametros[i]);
-
         }
         pstmt.execute();
         pstmt.close();

@@ -15,28 +15,32 @@ import model.GestaoEstoque;
 import model.Vendedor;
 import model.GestaoCliente;
 
-public class DaoVenda extends GenericDao implements CRUDBasico{
+public class DaoVenda extends GenericDao implements CRUDBasico {
 
+    //id_venda devera se reptir para cada id_produto, ou seja, 5 produtos diferentes, id_venda repete 5 vezes.
+    // a venda repete quando o produto muda
+    //ou seja, para cada item comprado do carrinho, a venda deve repetir seu id
+    //mundando o id_produto, e mantando o id_venda, até acabar o carrinho
     @Override
     public void salvar(Object object) throws SQLException {
-        try {
-            GestaoVenda venda = (GestaoVenda) object;
-            String insert = "INSERT INTO venda (data_venda, forma_pagamento, id_cliente, id_vendedor) VALUES(?,?,?,?) ";
-            save(insert, venda.getDataVenda(), venda.getFormaPagamento(), venda.getCliente().getIdCliente(), venda.getVendedor().getIdVendedor());
-        } catch (MySQLIntegrityConstraintViolationException e) {
+        //try {
+        GestaoVenda venda = (GestaoVenda) object;
+        String insert = "INSERT INTO venda (data_venda, forma_pagamento, id_cliente, id_vendedor) VALUES(?,?,?,?) ";
+        save(insert, venda.getDataVenda(), venda.getFormaPagamento(), venda.getCliente().getIdCliente(), venda.getVendedor().getIdVendedor());
+        /*} catch (MySQLIntegrityConstraintViolationException e) {
             System.out.println("codigo do produto ja existe");
             JOptionPane.showMessageDialog(null, "Código do produto já existe no Banco de Dados");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao inserir fornecedor");
-        }
-
+        }*/
+        JOptionPane.showMessageDialog(null, "Compra realizada");
     }
 
     @Override
     public void atualizar(Object object) throws SQLException {
         GestaoVenda venda = (GestaoVenda) object;
         String update = "UPDATE produto SET data_venda = ?,forma_pagamento = ?, id_cliente = ?,id_vendedor = ? WHERE id_venda =  ? ";
-        update(update, venda.getDataVenda(), venda.getVendedor().getIdVendedor(), venda.getCliente().getIdCliente(), venda.getCliente().getIdCliente(), venda.getFormaPagamento(),venda.getIdVenda());
+        update(update, venda.getDataVenda(), venda.getVendedor().getIdVendedor(), venda.getCliente().getIdCliente(), venda.getCliente().getIdCliente(), venda.getFormaPagamento(), venda.getIdVenda());
         System.out.println("Metodo atualizar DaoVenda realizado");
     }
 
@@ -71,8 +75,10 @@ public class DaoVenda extends GenericDao implements CRUDBasico{
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
             Vendedor vendedor = (Vendedor) new ControllerVendedor().selecionaObjeto(rs.getInt("id_vendedor"));
-            GestaoEstoque estoque = (GestaoEstoque) new ControllerEstoque().selecionaObjeto(rs.getInt("id_estoque"));
             GestaoCliente cliente = (GestaoCliente) new ControllerCliente().selecionaObjeto(rs.getInt("id_cliente"));
+
+            ArrayList<GestaoEstoque> estoque = (ArrayList<GestaoEstoque>) new ControllerEstoque().selecionaObjeto(rs.getInt("id_estoque"));
+
             GestaoVenda venda = new GestaoVenda(rs.getString("data_venda"), vendedor, cliente, estoque, rs.getInt("forma_pagamento"), rs.getInt("id_venda"));
             vendas.add(venda);
         }
@@ -82,6 +88,4 @@ public class DaoVenda extends GenericDao implements CRUDBasico{
         return vendas;
     }
 
-    
-    
 }

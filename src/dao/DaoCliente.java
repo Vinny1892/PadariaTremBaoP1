@@ -18,7 +18,8 @@ public class DaoCliente extends GenericDao implements CRUDBasico {
         try {
             GestaoCliente cliente = (GestaoCliente) object;
             String insert = "INSERT INTO cliente (nome,endereco,cpf,telefone,idcartao_fidelidade) VALUES(?,?,?,?) ";
-            save(insert, cliente.getNome(), cliente.getEndereco(), cliente.getCpf(), cliente.getTelefone(),cliente.getCartaoFidelidade().getIdcartaoFidelidade());
+            //CartaoFidelidade cartao = (CartaoFidelidade) new ControllerCartao().selecionaObjeto(rs.getInt("id_cartao"));
+            save(insert, cliente.getNome(), cliente.getEndereco(), cliente.getCpf(), cliente.getTelefone(), cliente.getCartaoFidelidade().getIdcartaoFidelidade());
             System.out.println("Metodo salvar DaoCliente realizado");
         } catch (MySQLIntegrityConstraintViolationException e) {
             System.out.println("CPF Ja existe");
@@ -59,18 +60,18 @@ public class DaoCliente extends GenericDao implements CRUDBasico {
 
     @Override
     public List<Object> getAll() throws SQLException {
-        ArrayList<Object> cartoes = new ArrayList<>();
-        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM cartao_fidelidade");
+        ArrayList<Object> clientes = new ArrayList<>();
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM cliente");
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
             CartaoFidelidade cartao = (CartaoFidelidade) new ControllerCartao().selecionaObjeto(rs.getInt("id_cartao"));
             GestaoCliente cliente = new GestaoCliente(rs.getString("nome"), rs.getString("endereco"), rs.getString("cpf"), rs.getString("telefone"), cartao, rs.getInt("id_cartao"));
-            cartoes.add(cartao);
+            clientes.add(cliente);
         }
         rs.close();
         stmt.close();
-        System.out.println("Metodo getAll() GestaoCliente realizado");
-        return cartoes;
+        System.out.println("Metodo getAll() DaoCliente realizado");
+        return clientes;
     }
 
 }
