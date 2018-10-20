@@ -44,6 +44,7 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
         jSalvarFornecedor = new javax.swing.JButton();
         jFormattedTextFieldTaxaDesconto = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
+        jButtonVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,6 +92,13 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel5.setText("Formulario Fornecedor");
 
+        jButtonVoltar.setText("Voltar");
+        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,15 +117,17 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
                     .addComponent(jFormattedTextFieldCNPJ)
                     .addComponent(jTextFieldEndereco)
                     .addComponent(jTextFieldNome, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                    .addComponent(jFormattedTextFieldTaxaDesconto)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jSalvarFornecedor))
-                    .addComponent(jFormattedTextFieldTaxaDesconto))
-                .addContainerGap(123, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5)
+                        .addGap(6, 6, 6)
+                        .addComponent(jSalvarFornecedor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(84, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,7 +153,9 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jFormattedTextFieldTaxaDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jSalvarFornecedor)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jSalvarFornecedor)
+                    .addComponent(jButtonVoltar))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
@@ -188,6 +200,16 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBoxRecorrenteActionPerformed
 
+    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
+        try {
+            new TelaFornecedor().setVisible(true);
+            
+            // TODO add your handling code here:
+        } catch (SQLException ex) {
+            System.out.println("Erro ao chamar listagem de Fornecedor");
+        }
+    }//GEN-LAST:event_jButtonVoltarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -224,6 +246,7 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonVoltar;
     private javax.swing.JCheckBox jCheckBoxRecorrente;
     private javax.swing.JFormattedTextField jFormattedTextFieldCNPJ;
     private javax.swing.JFormattedTextField jFormattedTextFieldTaxaDesconto;
