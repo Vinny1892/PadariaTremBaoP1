@@ -12,38 +12,21 @@ Os fornecedores podem ser recorrentes ou ocasionais.
 Fornecedores recorrentes tem associados a eles uma taxa negociada de descontos,
 aplicavel no preco de custo de todos os produtos por eles fornecidos.
  */
-public class GestaoFornecedor extends Pessoa {
+public class GestaoFornecedor extends PessoaJuridica {
 
-    private String cnpj;
     private boolean recorrente;
     private int taxaDesconto;
     private int idFornecedor;
 
-    public GestaoFornecedor(String cnpj, boolean recorrente, String nome, String endereco) {
-        super(nome, endereco);
-        this.cnpj = cnpj;
-        this.recorrente = recorrente;
-    }
-
-    public GestaoFornecedor(int idFornecedor, String nome, String cnpj, String endereco, boolean recorrente, int taxaDesconto) {
-        super(nome, endereco);
-        if (cnpj.length() == 14) {
-            this.cnpj = cnpj;
-        } else {
-            System.out.println("CNPJ menor que 14 digitos");
-        }
+    public GestaoFornecedor(boolean recorrente, int taxaDesconto, int idFornecedor, String cnpj, String nome, String endereco) {
+        super(cnpj, nome, endereco);
         this.recorrente = recorrente;
         this.taxaDesconto = taxaDesconto;
         this.idFornecedor = idFornecedor;
     }
 
-    public GestaoFornecedor(String nome, String cnpj, String endereco, boolean recorrente, int taxaDesconto) {
-        super(nome, endereco);
-        if (cnpj.length() == 14) {
-            this.cnpj = cnpj;
-        } else {
-            System.out.println("CNPJ diferente de 14 digitos");
-        }
+    public GestaoFornecedor(boolean recorrente, int taxaDesconto, String cnpj, String nome, String endereco) {
+        super(cnpj, nome, endereco);
         this.recorrente = recorrente;
         this.taxaDesconto = taxaDesconto;
     }
@@ -55,15 +38,7 @@ public class GestaoFornecedor extends Pessoa {
     }
 
     //Getters e Setters
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
-    public boolean isRecorrente() {
+     public boolean isRecorrente() {
         return recorrente;
     }
 

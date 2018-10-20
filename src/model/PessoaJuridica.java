@@ -1,14 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
+public abstract class PessoaJuridica  extends Pessoa{
+    private String cnpj;
 
-/**
- *
- * @author kaio
- */
-public abstract class PessoaJuridica  {
-    
+    public PessoaJuridica(String cnpj, String nome, String endereco) {
+        super(nome, endereco);
+        if (cnpj.length() == 14) {
+            this.cnpj = cnpj;
+        } else {
+            System.out.println("CNPJ menor que 14 digitos");
+        }
+    }
+
+
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
 }
