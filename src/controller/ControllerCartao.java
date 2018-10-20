@@ -7,7 +7,13 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.CartaoFidelidade;
 import model.GestaoCliente;
+/*
 
+ Gestão de um cartao fidelidade: de acordo com o valor acumulado em compras, os clientes
+podem tornar-se Clientes Gold ou Clientes Platinum. Clientes Gold tem 5% de desconto em
+suas compras. Clientes Platinum tem 10% de desconto em suas compras.
+
+*/
 public class ControllerCartao {
     public void salvar(boolean gold, boolean platinum, GestaoCliente cliente) throws SQLException{
         try{

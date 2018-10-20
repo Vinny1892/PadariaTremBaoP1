@@ -1,13 +1,11 @@
 package dao;
 
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import controller.ControllerProduto;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 import model.GestaoEstoque;
 import model.GestaoProduto;
 
@@ -15,17 +13,9 @@ public class DaoEstoque extends GenericDao implements CRUDBasico {
 
     @Override
     public void salvar(Object object) throws SQLException {
-    //    try {
-            GestaoEstoque estoque = (GestaoEstoque) object;
-            String insert = "INSERT INTO estoque (id_produto,data_validade,quantidade) VALUES(?,?,?) ";
-            save(insert, estoque.getProduto(), estoque.getQtdProduto(), estoque.getDataValidade());
-    /*    } catch (MySQLIntegrityConstraintViolationException e) {
-            System.out.println("Ja existe");
-            JOptionPane.showMessageDialog(null, "CPF ja existe no Banco de Dados");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao inserir fornecedor");
-        }
-    */
+        GestaoEstoque estoque = (GestaoEstoque) object;
+        String insert = "INSERT INTO estoque (id_produto,data_validade,quantidade) VALUES(?,?,?) ";
+        save(insert, estoque.getProduto(), estoque.getQtdProduto(), estoque.getDataValidade());
         System.out.println("Metodo salvar DaoEstoque realizado");
     }
 
@@ -44,22 +34,40 @@ public class DaoEstoque extends GenericDao implements CRUDBasico {
         System.out.println("Metodo deletar DaoEstoque realizado");
     }
 
+    //retorna o obejto do tipo estoque
+    // Objeto possui produto, data_validade e quantidade atual
     @Override
-    public List<Object> getById(int id) throws SQLException {
-        ArrayList<Object> todoEstoque = new ArrayList<>();
+    public /*ArrayList<Object>*/ Object getById(int id) throws SQLException {
+        //ArrayList<Object> todoEstoque = new ArrayList<>();
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM estoque WHERE id_estoque = " + id);
         ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
+        //while (rs.next()) {
             GestaoProduto produto = (GestaoProduto) new ControllerProduto().selecionaObjeto(rs.getInt("id_produto"));
             GestaoEstoque estoque = new GestaoEstoque(id, rs.getInt("quantidade"), rs.getString("data_validade"), produto);
-            todoEstoque.add(estoque);
-        }
+        //    todoEstoque.add(estoque);
+        //}
         rs.close();
         stmt.close();
         System.out.println("Metodo getById() DaoEstoque realizado");
-        return todoEstoque;
+        return estoque/*todoEstoque*/;
     }
 
+    // retorna um objeto do Estoque
+    //Por usar o parametro id_estoque e id_venda, sera encontrado somente um objeto de retorno, e nao um vetor
+    //Pois cada id_estoque esta relacionado com unico id_produto
+    //e se o cliente comprar mais de uma vez o mesmo produto, só muda a quantidade deste em estoque
+    public Object getById(int idEstoque, int idVenda) throws SQLException {
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM estoque WHERE id_estoque = " + idEstoque + " AND id_venda = " + idVenda);
+        ResultSet rs = stmt.executeQuery();
+        GestaoProduto produto = (GestaoProduto) new ControllerProduto().selecionaObjeto(rs.getInt("id_produto"));
+        GestaoEstoque estoque = new GestaoEstoque(idEstoque, rs.getInt("quantidade"), rs.getString("data_validade"), produto);
+        rs.close();
+        stmt.close();
+        System.out.println("Metodo getById() DaoEstoque realizado");
+        return estoque;
+    }
+
+    //retorna tudo da tabela estoque por meio de ArrayList de Objetos
     @Override
     public List<Object> getAll() throws SQLException {
         ArrayList<Object> todoEstoque = new ArrayList<>();

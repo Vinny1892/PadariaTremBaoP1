@@ -12,7 +12,7 @@ O pagamento das vendas pode ser realizado a vista ou a prazo.
 Vendas a prazo tem associado a elas o numero de parcelas, 
 bem como um acrescimo de 2% no valor ﬁnal da compra.
  */
-import java.util.ArrayList;
+
 import java.util.Date;
 
 public class GestaoVenda {
@@ -20,7 +20,7 @@ public class GestaoVenda {
     private String dataVenda;
     private Vendedor vendedor;
     private GestaoCliente cliente;
-    private ArrayList<GestaoEstoque> estoque;
+    private GestaoEstoque estoque;
     /*
     1 = dinheiro
     2 = debito
@@ -28,8 +28,20 @@ public class GestaoVenda {
      */
     private int formaPagamento;
     private int idVenda;
+    private int numeroParcelas;
 
-    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, ArrayList<GestaoEstoque> estoque, int formaPagamento, int idVenda) {
+    //com id_venda e numero de parcelas
+    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, GestaoEstoque estoque, int formaPagamento, int idVenda, int numeroParcelas) {
+        this.dataVenda = dataVenda;
+        this.vendedor = vendedor;
+        this.cliente = cliente;
+        this.estoque = estoque;
+        this.formaPagamento = formaPagamento;
+        this.idVenda = idVenda;
+        this.numeroParcelas = numeroParcelas;
+    }
+    // com id_vendas sem numero de parcelas
+    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, GestaoEstoque estoque, int formaPagamento, int idVenda) {
         this.dataVenda = dataVenda;
         this.vendedor = vendedor;
         this.cliente = cliente;
@@ -38,7 +50,8 @@ public class GestaoVenda {
         this.estoque = estoque;
     }
 
-    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, ArrayList<GestaoEstoque> estoque, int formaPagamento) {
+    //sem id e sem n parcelas
+    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, GestaoEstoque estoque, int formaPagamento) {
         this.dataVenda = dataVenda;
         this.vendedor = vendedor;
         this.cliente = cliente;
@@ -96,12 +109,20 @@ public class GestaoVenda {
         this.idVenda = idVenda;
     }
 
-    public ArrayList<GestaoEstoque> getEstoque() {
+    public GestaoEstoque getEstoque() {
         return estoque;
     }
 
-    public void setEstoque(ArrayList<GestaoEstoque> estoque) {
+    public void setEstoque(GestaoEstoque estoque) {
         this.estoque = estoque;
+    }
+
+    public int getNumeroParcelas() {
+        return numeroParcelas;
+    }
+
+    public void setNumeroParcelas(int numeroParcelas) {
+        this.numeroParcelas = numeroParcelas;
     }
 
 }

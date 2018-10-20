@@ -36,8 +36,8 @@ public class ControllerEstoque {
         return todoEstoque;
     }
     
-    public ArrayList<GestaoEstoque> selecionaObjeto(int id) throws SQLException{
-        ArrayList<GestaoEstoque> todoEstoque = (ArrayList<GestaoEstoque>) new DaoEstoque().getById(id);
+    public GestaoEstoque selecionaObjeto(int id) throws SQLException{
+        GestaoEstoque todoEstoque = (GestaoEstoque) new DaoEstoque().getById(id);
         System.out.println("Metodo selecionaObjeto ControllerEstoque realizado");
         return todoEstoque;
     }
