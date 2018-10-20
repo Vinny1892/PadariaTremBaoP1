@@ -13,9 +13,14 @@ import controller.ControllerFornecedor;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import javax.swing.InputVerifier;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import jdk.nashorn.internal.runtime.regexp.joni.Regex;
 
 public class TelaFormFornecedor extends javax.swing.JFrame {
+    boolean integridadeFormulario = false;
 
     /**
      * Creates new form TelaFormFornecedor
@@ -23,7 +28,6 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
     public TelaFormFornecedor() {
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,7 +45,7 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jCheckBoxRecorrente = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
-        jSalvarFornecedor = new javax.swing.JButton();
+        jButtonSalvarFornecedor = new javax.swing.JButton();
         jFormattedTextFieldTaxaDesconto = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
         jButtonVoltar = new javax.swing.JButton();
@@ -50,6 +54,11 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
 
         jLabel1.setText("Nome");
 
+        jTextFieldNome.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldNomeFocusLost(evt);
+            }
+        });
         jTextFieldNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldNomeActionPerformed(evt);
@@ -75,10 +84,16 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
 
         jLabel4.setText("Taxa Desconto");
 
-        jSalvarFornecedor.setText("Salvar");
-        jSalvarFornecedor.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSalvarFornecedor.setText("Salvar");
+        jButtonSalvarFornecedor.setEnabled(false);
+        jButtonSalvarFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jSalvarFornecedorActionPerformed(evt);
+                jButtonSalvarFornecedorActionPerformed(evt);
+            }
+        });
+        jButtonSalvarFornecedor.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jButtonSalvarFornecedorPropertyChange(evt);
             }
         });
 
@@ -120,7 +135,7 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
                     .addComponent(jFormattedTextFieldTaxaDesconto)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jSalvarFornecedor)
+                        .addComponent(jButtonSalvarFornecedor)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -154,7 +169,7 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
                     .addComponent(jFormattedTextFieldTaxaDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSalvarFornecedor)
+                    .addComponent(jButtonSalvarFornecedor)
                     .addComponent(jButtonVoltar))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
@@ -166,9 +181,10 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNomeActionPerformed
 
-    private void jSalvarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalvarFornecedorActionPerformed
-
-        try {
+    private void jButtonSalvarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarFornecedorActionPerformed
+              if( jTextFieldNome.getText().equals("")  && jTextFieldEndereco.getText().equals("") &&  jFormattedTextFieldCNPJ.getText().replace(".", "").replace("/", "").equals("")){
+            
+               try {
             new ControllerFornecedor().salvar(
                 jFormattedTextFieldCNPJ.getText().replace(".", "").replace("/", ""),
                 jCheckBoxRecorrente.isSelected(),
@@ -180,10 +196,17 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
             this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(TelaFormFornecedor.class.getName()).log(Level.SEVERE, null, ex);
-        }
+          }  
+        }else{
+                JOptionPane.showMessageDialog(null, "Não deixe os campos de Nome,Endereço e CNPJ vazios");
+                
+                }
+              
+              
+       
 
 
-    }//GEN-LAST:event_jSalvarFornecedorActionPerformed
+    }//GEN-LAST:event_jButtonSalvarFornecedorActionPerformed
 
     private void jCheckBoxRecorrenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxRecorrenteActionPerformed
         if (jCheckBoxRecorrente.isSelected()) {
@@ -205,6 +228,16 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
             System.out.println("Erro ao chamar listagem de Fornecedor");
         }
     }//GEN-LAST:event_jButtonVoltarActionPerformed
+
+    private void jButtonSalvarFornecedorPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jButtonSalvarFornecedorPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonSalvarFornecedorPropertyChange
+
+    private void jTextFieldNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldNomeFocusLost
+     
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNomeFocusLost
 
     /**
      * @param args the command line arguments
@@ -237,11 +270,13 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TelaFormFornecedor().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonSalvarFornecedor;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JCheckBox jCheckBoxRecorrente;
     private javax.swing.JFormattedTextField jFormattedTextFieldCNPJ;
@@ -251,7 +286,6 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JButton jSalvarFornecedor;
     private javax.swing.JTextField jTextFieldEndereco;
     private javax.swing.JTextField jTextFieldNome;
     // End of variables declaration//GEN-END:variables

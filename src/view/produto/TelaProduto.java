@@ -17,14 +17,16 @@ import view.main.TelaPrincipal;
 
 /**
  *
- * @author Vinny
+ * @author Enoque
  */
 public class TelaProduto extends javax.swing.JFrame {
     ControllerProduto cp;
     DefaultListModel dfProdutoNome;
     DefaultListModel dfProdutoCodigo;
-    ArrayList<GestaoProduto> produtos; 
-
+    ArrayList<GestaoProduto> produtos;
+    Object placeholder;
+    
+    
     /**
      * Creates new form TelaProduto
      */
@@ -33,7 +35,7 @@ public class TelaProduto extends javax.swing.JFrame {
          dfProdutoCodigo = new DefaultListModel();
         dfProdutoNome = new DefaultListModel();
         cp = new ControllerProduto();
-        placeholder = jComboBox1.getSelectedItem();
+        placeholder =  jComboBoxSelecionarBusca.getSelectedItem();
         produtos =  cp.getAll();
        
         if(produtos.size() > 0 ){
@@ -47,7 +49,6 @@ public class TelaProduto extends javax.swing.JFrame {
             jLabelInfoProduto.setText("Sem Produtos Cadastrados");
         }
         
-        
     }
 
     /**
@@ -60,82 +61,63 @@ public class TelaProduto extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextFieldProduto = new javax.swing.JTextField();
+        jTextFieldBuscarProduto = new javax.swing.JTextField();
+        jComboBoxSelecionarBusca = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jButtonBuscarProduto = new javax.swing.JButton();
-        jButtonRemove = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jListProdutoNome = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        jListProdutoCodigo = new javax.swing.JList<>();
+        jButtonBuscar = new javax.swing.JButton();
+        jButtonAdicionar = new javax.swing.JButton();
+        jButtonRemover = new javax.swing.JButton();
+        jButtonEditar = new javax.swing.JButton();
+        jButtonVoltar = new javax.swing.JButton();
+        jLabelInfoProduto = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jLabelInfoProduto = new javax.swing.JLabel();
-        jButtonVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Produto");
+        jLabel1.setText("Buscar :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "Codigo" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-
-        jTextFieldProduto.setForeground(new java.awt.Color(102, 102, 102));
-        jTextFieldProduto.setText("Digite o Nome do Produto");
-        jTextFieldProduto.setToolTipText("");
-        jTextFieldProduto.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextFieldProdutoFocusGained(evt);
-            }
+        jTextFieldBuscarProduto.setForeground(new java.awt.Color(153, 153, 153));
+        jTextFieldBuscarProduto.setText("Digite o Nome do Produto");
+        jTextFieldBuscarProduto.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldProdutoFocusLost(evt);
+                jTextFieldBuscarProdutoFocusLost(evt);
             }
         });
-        jTextFieldProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldProdutoActionPerformed(evt);
-            }
-        });
-        jTextFieldProduto.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTextFieldBuscarProduto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextFieldProdutoKeyPressed(evt);
+                jTextFieldBuscarProdutoKeyPressed(evt);
             }
         });
 
-        jScrollPane1.setViewportView(jList1);
-
-        jButtonBuscarProduto.setText("Buscar");
-        jButtonBuscarProduto.setEnabled(false);
-
-        jButtonRemove.setText("Remover");
-        jButtonRemove.setEnabled(false);
-        jButtonRemove.addActionListener(new java.awt.event.ActionListener() {
+        jComboBoxSelecionarBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "Codigo" }));
+        jComboBoxSelecionarBusca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRemoveActionPerformed(evt);
+                jComboBoxSelecionarBuscaActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Editar");
-        jButton3.setEnabled(false);
+        jScrollPane1.setViewportView(jListProdutoNome);
 
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(jListProdutoCodigo);
 
-        jLabel2.setText("Produto ");
+        jButtonBuscar.setText("Buscar");
 
-        jLabel3.setText("Codigo");
-
-        jButton2.setText("Adicionar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAdicionar.setText("Adicionar");
+        jButtonAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonAdicionarActionPerformed(evt);
             }
         });
+
+        jButtonRemover.setText("Remover");
+        jButtonRemover.setEnabled(false);
+
+        jButtonEditar.setText("Editar");
+        jButtonEditar.setEnabled(false);
 
         jButtonVoltar.setText("Voltar");
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -144,155 +126,124 @@ public class TelaProduto extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Nome");
+
+        jLabel3.setText("Codigo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addComponent(jLabel2)
-                                .addGap(88, 88, 88)
-                                .addComponent(jLabel3))
+                                .addGap(58, 58, 58)
+                                .addComponent(jLabelInfoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel2)
+                                        .addGap(88, 88, 88)
+                                        .addComponent(jLabel3))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(8, 8, 8)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextFieldBuscarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jButtonRemove, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jButtonVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jButtonBuscarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)))))))
+                                        .addComponent(jComboBoxSelecionarBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(jLabelInfoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                        .addGap(14, 14, 14)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonRemover)
+                            .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonAdicionar))))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-<<<<<<< HEAD
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonBuscarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldBuscarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxSelecionarBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelInfoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                        .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22))))
-=======
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)
-                        .addComponent(jButtonRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane1))
-                .addContainerGap(67, Short.MAX_VALUE))
->>>>>>> 73dc6df452067562ff5de41d26a2325ff5d48b6d
+                        .addComponent(jButtonRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelInfoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldProdutoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldProdutoKeyPressed
-        // TODO add your handling code here:
-        if(jTextFieldProduto.getText().equals("Digite o "+ placeholder + " do Produto")){
-          jTextFieldProduto.setText("");
-        jTextFieldProduto.setForeground(Color.BLACK);       
-        }
-      
-        
-    }//GEN-LAST:event_jTextFieldProdutoKeyPressed
-
-    private void jTextFieldProdutoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldProdutoFocusLost
-        if(jTextFieldProduto.getText().equals("")){
-            jTextFieldProduto.setText("Digite o "+ placeholder + " do Produto");
-            jTextFieldProduto.setForeground(Color.GRAY);
-            jButtonBuscarProduto.setEnabled(false);
-        }
-    }//GEN-LAST:event_jTextFieldProdutoFocusLost
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-        placeholder = jComboBox1.getSelectedItem();
-        jTextFieldProduto.setText("Digite o "+ placeholder + " do Produto");
-        jTextFieldProduto.setForeground(Color.GRAY);
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void jTextFieldProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldProdutoActionPerformed
-
-    private void jButtonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonRemoveActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
         try {
             new TelaFormProduto().setVisible(true);
         } catch (SQLException ex) {
-            System.out.println("Erro Ao Abrir tela Cadastro Produto");
+            System.out.println("Erro ao instanciar Formulario");      
         }
         this.dispose();
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jTextFieldProdutoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldProdutoFocusGained
-       
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldProdutoFocusGained
+        
+            // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAdicionarActionPerformed
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
+        // TODO add your handling code here:
         new TelaPrincipal().setVisible(true);
         this.dispose();
+    }//GEN-LAST:event_jButtonVoltarActionPerformed
+
+    private void jComboBoxSelecionarBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSelecionarBuscaActionPerformed
+    placeholder =  jComboBoxSelecionarBusca.getSelectedItem();
+        jTextFieldBuscarProduto.setText("Digite o "+ placeholder + " do Produto");
+        jTextFieldBuscarProduto.setForeground(Color.GRAY);
+// TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxSelecionarBuscaActionPerformed
+
+    private void jTextFieldBuscarProdutoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldBuscarProdutoFocusLost
+           if(jTextFieldBuscarProduto.getText().equals("")){
+            jTextFieldBuscarProduto.setText("Digite o "+ placeholder + " do Produto");
+            jTextFieldBuscarProduto.setForeground(Color.GRAY);
+            jButtonBuscar.setEnabled(false);
+        }
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonVoltarActionPerformed
+    }//GEN-LAST:event_jTextFieldBuscarProdutoFocusLost
+
+    private void jTextFieldBuscarProdutoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldBuscarProdutoKeyPressed
+         if(jTextFieldBuscarProduto.getText().equals("Digite o "+ placeholder + " do Produto")){
+          jTextFieldBuscarProduto.setText("");
+        jTextFieldBuscarProduto.setForeground(Color.BLACK);       
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldBuscarProdutoKeyPressed
 
     /**
      * @param args the command line arguments
@@ -327,29 +278,27 @@ public class TelaProduto extends javax.swing.JFrame {
                 try {
                     new TelaProduto().setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(TelaProduto.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("Erro ao instanciar Listagem Produto");
                 }
             }
         });
     }
-    //objetos a mais
-    private Object placeholder;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButtonBuscarProduto;
-    private javax.swing.JButton jButtonRemove;
+    private javax.swing.JButton jButtonAdicionar;
+    private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButtonEditar;
+    private javax.swing.JButton jButtonRemover;
     private javax.swing.JButton jButtonVoltar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBoxSelecionarBusca;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelInfoProduto;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
+    private javax.swing.JList<String> jListProdutoCodigo;
+    private javax.swing.JList<String> jListProdutoNome;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextFieldProduto;
+    private javax.swing.JTextField jTextFieldBuscarProduto;
     // End of variables declaration//GEN-END:variables
 }

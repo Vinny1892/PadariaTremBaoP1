@@ -42,7 +42,7 @@
                   <Component id="jFormattedTextFieldTaxaDesconto" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Component id="jSalvarFornecedor" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonSalvarFornecedor" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButtonVoltar" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -85,7 +85,7 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jSalvarFornecedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonSalvarFornecedor" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonVoltar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="45" max="32767" attributes="0"/>
@@ -101,6 +101,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldNome">
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldNomeFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldNomeActionPerformed"/>
       </Events>
     </Component>
@@ -136,12 +137,14 @@
         <Property name="text" type="java.lang.String" value="Taxa Desconto"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jSalvarFornecedor">
+    <Component class="javax.swing.JButton" name="jButtonSalvarFornecedor">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salvar"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jSalvarFornecedorActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSalvarFornecedorActionPerformed"/>
+        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jButtonSalvarFornecedorPropertyChange"/>
       </Events>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldTaxaDesconto">
