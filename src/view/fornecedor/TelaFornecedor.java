@@ -17,20 +17,19 @@ import view.main.TelaPrincipal;
 
 /**
  *
- * @author vinny
+ * @author Enoque
  */
 public class TelaFornecedor extends javax.swing.JFrame {
     ControllerFornecedor cf;
     DefaultListModel dfNome;
     DefaultListModel dfCNPJ;
-    ArrayList<GestaoFornecedor> fornecedores;    
-
+    ArrayList<GestaoFornecedor> fornecedores;  
     /**
      * Creates new form TelaFornecedor
      */
     public TelaFornecedor() throws SQLException {
         initComponents();
-        cf = new ControllerFornecedor();
+            cf = new ControllerFornecedor();
       fornecedores =  cf.getAll();
       dfNome= new DefaultListModel();
       dfCNPJ = new DefaultListModel();
@@ -41,20 +40,15 @@ public class TelaFornecedor extends javax.swing.JFrame {
        dfCNPJ.addElement(fornecedores.get(i).getCnpj());
       
       }
-           jLabelInfoListagem.setText(fornecedores.size() + " Cadastrados");
+           jLabelInfoFornecedor.setText(fornecedores.size() + " Cadastrados");
       }else{
-          jLabelInfoListagem.setText("Sem Fornecedores Cadastrados");
+          jLabelInfoFornecedor.setText("Sem Fornecedores Cadastrados");
       }
      
-        jListNome.setModel(dfNome);
-        jListCNPJ.setModel(dfCNPJ);
+        jListFornecedorNome.setModel(dfNome);
+        jListFornecedorCNPJ.setModel(dfCNPJ);
         
-       
     }
- 
-    
-   
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,79 +59,41 @@ public class TelaFornecedor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextFieldBuscaFornecedor = new javax.swing.JTextField();
-        jButtonBuscar = new javax.swing.JButton();
-        jButtonRemover = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButtonAdicionar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jTextFieldBuscarFornecedor = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jButtonBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jListNome = new javax.swing.JList<>();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jListCNPJ = new javax.swing.JList<>();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jComboBoxSelecionarBusca = new javax.swing.JComboBox<>();
-        jLabelInfoListagem = new javax.swing.JLabel();
+        jListFornecedorNome = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jListFornecedorCNPJ = new javax.swing.JList<>();
         jButtonVoltar = new javax.swing.JButton();
+        jLabelInfoFornecedor = new javax.swing.JLabel();
+        jButtonAdicionar = new javax.swing.JButton();
+        jButtonRemover = new javax.swing.JButton();
+        jButtonEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButtonBuscar.setText("buscar");
-        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBuscarActionPerformed(evt);
-            }
-        });
+        jLabel1.setText("Buscar:");
 
-        jButtonRemover.setText("remover");
-        jButtonRemover.setEnabled(false);
-        jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRemoverActionPerformed(evt);
-            }
-        });
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "CNPJ" }));
 
-        jButton3.setText("editar");
-        jButton3.setEnabled(false);
+        jButtonBuscar.setText("Buscar");
 
-        jLabel1.setText("Fornecedor");
-
-        jButtonAdicionar.setText("adicionar");
-        jButtonAdicionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAdicionarActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel2.setText("FORNECEDOR");
-
-        jListNome.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        jListFornecedorNome.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jListNomeValueChanged(evt);
+                jListFornecedorNomeValueChanged(evt);
             }
         });
-        jScrollPane1.setViewportView(jListNome);
+        jScrollPane1.setViewportView(jListFornecedorNome);
 
-        jListCNPJ.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        jListFornecedorCNPJ.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jListCNPJValueChanged(evt);
+                jListFornecedorCNPJValueChanged(evt);
             }
         });
-        jScrollPane3.setViewportView(jListCNPJ);
-
-        jLabel3.setText("NOME");
-
-        jLabel4.setText("CNPJ");
-
-        jComboBoxSelecionarBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "CNPJ" }));
-        jComboBoxSelecionarBusca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxSelecionarBuscaActionPerformed(evt);
-            }
-        });
+        jScrollPane2.setViewportView(jListFornecedorCNPJ);
 
         jButtonVoltar.setText("Voltar");
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -146,166 +102,86 @@ public class TelaFornecedor extends javax.swing.JFrame {
             }
         });
 
+        jButtonAdicionar.setText("Adicionar");
+        jButtonAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdicionarActionPerformed(evt);
+            }
+        });
+
+        jButtonRemover.setText("Remover");
+        jButtonRemover.setEnabled(false);
+        jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverActionPerformed(evt);
+            }
+        });
+
+        jButtonEditar.setText("Editar");
+        jButtonEditar.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextFieldBuscaFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(jLabel4)
-                                                .addGap(56, 56, 56)))
-                                        .addComponent(jComboBoxSelecionarBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldBuscarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonBuscar)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(jLabelInfoListagem, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
-                    .addComponent(jButtonRemover, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(23, 23, 23))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonRemover, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(37, 37, 37))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jLabelInfoFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldBuscaFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxSelecionarBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldBuscarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jButtonAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1)
-<<<<<<< HEAD
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addComponent(jLabelInfoListagem, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                .addGap(24, 24, 24))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelInfoFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
-=======
-                            .addComponent(jScrollPane3))))
-                .addGap(50, 50, 50))
->>>>>>> 73dc6df452067562ff5de41d26a2325ff5d48b6d
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-          boolean encontrou = false;
-        if(jTextFieldBuscaFornecedor.getText().length() == 14){
-            if(jComboBoxSelecionarBusca.getSelectedItem().equals("CNPJ")) {
-            if(jTextFieldBuscaFornecedor.getText().length() == 14){
-            
-            } 
-            
-              for (int i = 0; i < fornecedores.size() && !encontrou; i++) {
-                if (jTextFieldBuscaFornecedor.getText().equals(fornecedores.get(i).getCnpj())) {
-                 
-                    jListNome.setSelectedValue(fornecedores.get(i).getNome(), true);
-                    encontrou = true;
-                }
-            }
-            try{  
-             Long.parseLong(jTextFieldBuscaFornecedor.getText());
-            jListCNPJ.setSelectedValue(jTextFieldBuscaFornecedor.getText(), true);
-                         if(!encontrou){
-                 JOptionPane.showMessageDialog(null, "Fornecedor não encontrado");
-                    jListCNPJ.setSelectedIndex(0);
-                    jListNome.setSelectedIndex(0);
- 
-            }
-            }
-           catch(Exception e){
-             JOptionPane.showMessageDialog(null, "CNPJ Inválido");
-                }
-
-        }
-      
-        if (jComboBoxSelecionarBusca.getSelectedItem().equals("Nome")) {
-            jListNome.setSelectedValue(jTextFieldBuscaFornecedor.getText(), true);
-         
-            for (int i = 0; i < fornecedores.size() && !encontrou; i++){            
-             
-                if(jTextFieldBuscaFornecedor.getText().equals(fornecedores.get(i).getNome())) {
-                    jListCNPJ.setSelectedValue(fornecedores.get(i).getCnpj(), true);
-                    encontrou=true;
-                }
-            }
-            
-            if(!encontrou){
-                jListCNPJ.setSelectedIndex(0);
-                jListNome.setSelectedIndex(0);
-                                  
-                 JOptionPane.showMessageDialog(null, "Fornecedor não encontrado");
-
-            }          
-        } 
-
-        }
-
-    }//GEN-LAST:event_jButtonBuscarActionPerformed
-
-    private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
-           boolean encontrou = false;
-       
-        for(int i = 0 ; i<fornecedores.size() && !encontrou;i++){
-            if(jListCNPJ.getSelectedValue().equals(fornecedores.get(i).getCnpj())){
-                try {
-                     cf.deletar(fornecedores.get(i).getCnpj());
-                            encontrou=true;
-                    new TelaFornecedor().setVisible(true);
-                    this.dispose();
-                    
-                } catch (SQLException ex) {
-                  JOptionPane.showMessageDialog(null, "Erro ao Remover");
-                }
-            }
-        }
-  
-        
-// TODO add your handling code here:
-    }//GEN-LAST:event_jButtonRemoverActionPerformed
 
     private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
         new TelaFormFornecedor().setVisible(true);
@@ -314,43 +190,55 @@ public class TelaFornecedor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonAdicionarActionPerformed
 
-    private void jComboBoxSelecionarBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSelecionarBuscaActionPerformed
+    private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxSelecionarBuscaActionPerformed
+          boolean encontrou = false;
+       
+        for(int i = 0 ; i<fornecedores.size() && !encontrou;i++){
+            if(jListFornecedorCNPJ.getSelectedValue().equals(fornecedores.get(i).getCnpj())){
+                try {
+                     cf.deletar(fornecedores.get(i).getCnpj());
+                            encontrou=true;
+                    new TelaFornecedor().setVisible(true);
+                    this.dispose();
+                    
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro ao Remover");
+                }
+            }   
+        }
+    }//GEN-LAST:event_jButtonRemoverActionPerformed
 
-    private void jListCNPJValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListCNPJValueChanged
+    private void jListFornecedorNomeValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListFornecedorNomeValueChanged
+           boolean encontrou = false;
+        jButtonRemover.setEnabled(true);
+        for(int i = 0 ; i<fornecedores.size() && !encontrou;i++){
+            if(jListFornecedorNome.getSelectedValue().equals(fornecedores.get(i).getNome())){
+              jListFornecedorCNPJ.setSelectedValue(fornecedores.get(i).getCnpj(), true);
+              encontrou=true;
+            }
+        }
+        
         // TODO add your handling code here:
+    }//GEN-LAST:event_jListFornecedorNomeValueChanged
+
+    private void jListFornecedorCNPJValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListFornecedorCNPJValueChanged
         boolean encontrou = false;
         jButtonRemover.setEnabled(true);
         for(int i = 0 ; i<fornecedores.size() && !encontrou;i++){
-            if(jListCNPJ.getSelectedValue().equals(fornecedores.get(i).getCnpj())){
-              jListNome.setSelectedValue(fornecedores.get(i).getNome(), true);
+            if(jListFornecedorCNPJ.getSelectedValue().equals(fornecedores.get(i).getCnpj())){
+              jListFornecedorNome.setSelectedValue(fornecedores.get(i).getNome(), true);
               encontrou=true;
             }
         }
-   
-        
-    }//GEN-LAST:event_jListCNPJValueChanged
 
-    private void jListNomeValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListNomeValueChanged
-        // TODO add your handling code here:
-          boolean encontrou = false;
-        jButtonRemover.setEnabled(true);
-        for(int i = 0 ; i<fornecedores.size() && !encontrou;i++){
-            if(jListNome.getSelectedValue().equals(fornecedores.get(i).getNome())){
-              jListCNPJ.setSelectedValue(fornecedores.get(i).getCnpj(), true);
-              encontrou=true;
-            }
-        }
-   
-        
-    }//GEN-LAST:event_jListNomeValueChanged
+// TODO add your handling code here:
+    }//GEN-LAST:event_jListFornecedorCNPJValueChanged
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
-        // TODO add your handling code here:
         new TelaPrincipal().setVisible(true);
         this.dispose();
-        
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     /**
@@ -385,30 +273,26 @@ public class TelaFornecedor extends javax.swing.JFrame {
             public void run() {
                 try {
                     new TelaFornecedor().setVisible(true);
-                    
                 } catch (SQLException ex) {
-                    Logger.getLogger(TelaFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("Erro ao instanciar Tela Fornecedor");
                 }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonAdicionar;
     private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonRemover;
     private javax.swing.JButton jButtonVoltar;
-    private javax.swing.JComboBox<String> jComboBoxSelecionarBusca;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabelInfoListagem;
-    private javax.swing.JList<String> jListCNPJ;
-    private javax.swing.JList<String> jListNome;
+    private javax.swing.JLabel jLabelInfoFornecedor;
+    private javax.swing.JList<String> jListFornecedorCNPJ;
+    private javax.swing.JList<String> jListFornecedorNome;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextFieldBuscaFornecedor;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextFieldBuscarFornecedor;
     // End of variables declaration//GEN-END:variables
 }
