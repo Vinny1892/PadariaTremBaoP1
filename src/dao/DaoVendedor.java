@@ -3,7 +3,6 @@ package dao;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import java.sql.SQLException;
 import java.util.List;
-import controller.ControllerVendedor;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -20,10 +19,10 @@ public class DaoVendedor extends GenericDao implements CRUDBasico {
             save(insert, vendedor.getMontanteVenda(), vendedor.getSalarioBaseMensal(), vendedor.getCpf(), vendedor.getTelefone(), vendedor.getNome(), vendedor.getEndereco());
             System.out.println("Metodo salvar DaoVendedor realizado");
         } catch (MySQLIntegrityConstraintViolationException e) {
-            System.out.println("codigo do produto ja existe");
-            JOptionPane.showMessageDialog(null, "Código do produto já existe no Banco de Dados");
+            System.out.println("CPF vendedor ja existe");
+            JOptionPane.showMessageDialog(null, "CPF do vendedor já existe no Banco de Dados");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao inserir fornecedor");
+            JOptionPane.showMessageDialog(null, "Erro ao inserir vendedor");
         }
     }
 

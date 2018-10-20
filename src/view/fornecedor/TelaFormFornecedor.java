@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
- 
+
 public class TelaFormFornecedor extends javax.swing.JFrame {
 
     /**
@@ -155,35 +155,31 @@ public class TelaFormFornecedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldNomeActionPerformed
 
     private void jSalvarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalvarFornecedorActionPerformed
-    
-       
+
         try {
             new ControllerFornecedor().salvar(
-                    jFormattedTextFieldCNPJ.getText().replace(".", "").replace("/" , ""),
-                    jCheckBoxRecorrente.isSelected(),
-                    jTextFieldNome.getText(),
-                    
-                    jTextFieldEndereco.getText(),
-                    jFormattedTextFieldTaxaDesconto.getText()
+                jFormattedTextFieldCNPJ.getText().replace(".", "").replace("/", ""),
+                jCheckBoxRecorrente.isSelected(),
+                jTextFieldNome.getText(),
+                jTextFieldEndereco.getText(),
+                jFormattedTextFieldTaxaDesconto.getText()
             );
-             
-        new TelaFornecedor().setVisible(true);
-        this.dispose(); 
-            
+            new TelaFornecedor().setVisible(true);
+            this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(TelaFormFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
-      
-        
-      
+
+
     }//GEN-LAST:event_jSalvarFornecedorActionPerformed
 
     private void jCheckBoxRecorrenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxRecorrenteActionPerformed
-  if(jCheckBoxRecorrente.isSelected()){
-  jFormattedTextFieldTaxaDesconto.setEnabled(true);
-  
-  }else{jFormattedTextFieldTaxaDesconto.setEnabled(false);}
-      
+        if (jCheckBoxRecorrente.isSelected()) {
+            jFormattedTextFieldTaxaDesconto.setEnabled(true);
+
+        } else {
+            jFormattedTextFieldTaxaDesconto.setEnabled(false);
+        }
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBoxRecorrenteActionPerformed

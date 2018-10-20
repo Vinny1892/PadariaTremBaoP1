@@ -15,12 +15,12 @@ public class CartaoFidelidade {
     private boolean platinum;
     private GestaoCliente cliente;
 
-    public CartaoFidelidade(boolean gold, boolean platinum, GestaoCliente cliente) {
+    public CartaoFidelidade(boolean gold, boolean platinum/*, GestaoCliente cliente*/) {
         this.gold = gold;
         this.platinum = platinum;
     }
 
-    public CartaoFidelidade(int idcartaoFidelidade, boolean gold, boolean platinum, GestaoCliente cliente) {
+    public CartaoFidelidade(int idcartaoFidelidade, boolean gold, boolean platinum/*, GestaoCliente cliente*/) {
         this.idcartaoFidelidade = idcartaoFidelidade;
         this.gold = gold;
         this.platinum = platinum;

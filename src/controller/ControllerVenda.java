@@ -14,7 +14,7 @@ import model.GestaoEstoque;
 
 
 public class ControllerVenda {
-    public void salvar(String dataVenda, Vendedor vendedor, GestaoCliente cliente, GestaoEstoque estoque, int formaPagamento) throws SQLException {
+    public void salvar(String dataVenda, Vendedor vendedor, GestaoCliente cliente, ArrayList<GestaoEstoque> estoque, int formaPagamento) throws SQLException {
         GestaoVenda venda = new GestaoVenda(dataVenda, vendedor, cliente, estoque, formaPagamento);
         new DaoVenda().salvar(venda);
         System.out.println("Metodo salvar ControllerVenda realizado");
@@ -25,7 +25,7 @@ public class ControllerVenda {
         System.out.println("Metodo deletar ControllerVenda realizado");
     }
 
-    public void editar(String dataVenda, Vendedor vendedor, GestaoCliente cliente, GestaoEstoque estoque, int formaPagamento) throws SQLException {
+    public void editar(String dataVenda, Vendedor vendedor, GestaoCliente cliente, ArrayList<GestaoEstoque> estoque, int formaPagamento) throws SQLException {
         GestaoVenda venda = new GestaoVenda(dataVenda, vendedor, cliente, estoque, formaPagamento);
         new DaoVenda().atualizar(venda);
         System.out.println("Metodo editar ControllerVenda realizado");
