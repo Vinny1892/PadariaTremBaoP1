@@ -55,18 +55,13 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
     @Override
     public Object getById(int id) throws SQLException {
         GestaoFornecedor fornecedor = null;
-        System.out.println("Entrou metodo getById() DaoFornecedor");
+        //PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM fornecedor WHERE id_fornecedor = "+id);
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM fornecedor WHERE id_fornecedor = ?");
         stmt.setInt(1, id);
-        //PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM fornecedor WHERE id_fornecedor = "+id);
         ResultSet rs = stmt.executeQuery();
-   
-       while(rs.next()){
-      fornecedor = new GestaoFornecedor(rs.getInt("id_fornecedor"),rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"), rs.getBoolean("recorrente"), rs.getInt("taxa_desconto"));
-
-       }
-        
-        
+        while (rs.next()) {
+            fornecedor = new GestaoFornecedor(rs.getInt("id_fornecedor"), rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"), rs.getBoolean("recorrente"), rs.getInt("taxa_desconto"));
+        }
         rs.close();
         stmt.close();
         return fornecedor;
@@ -78,7 +73,7 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM fornecedor");
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            GestaoFornecedor fornecedor = new GestaoFornecedor(rs.getInt("id_fornecedor"),rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"), rs.getBoolean("recorrente"), rs.getInt("taxa_desconto"));
+            GestaoFornecedor fornecedor = new GestaoFornecedor(rs.getInt("id_fornecedor"), rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"), rs.getBoolean("recorrente"), rs.getInt("taxa_desconto"));
             fornecedores.add(fornecedor);
         }
         rs.close();

@@ -7,8 +7,9 @@ Gestao de clientes:
 todos os clientes devem estar cadastrados na loja, para ﬁns de publicidade direcionada.
 Assim, todos os clientes sao caracterizados por seu nome, endereco, telefone e CPF.
 
-*/
+ */
 public class GestaoCliente {
+
     private String nome;
     private String endereco;
     private String cpf;
@@ -16,6 +17,7 @@ public class GestaoCliente {
     private CartaoFidelidade cartaoFidelidade;
     private int idCliente;
 
+    //Construtor com ID
     public GestaoCliente(String nome, String endereco, String cpf, String telefone, CartaoFidelidade cartaoFidelidade, int idCliente) {
         this.nome = nome;
         this.endereco = endereco;
@@ -24,7 +26,8 @@ public class GestaoCliente {
         this.cartaoFidelidade = cartaoFidelidade;
         this.idCliente = idCliente;
     }
-    
+
+    //Construtor sem ID
     public GestaoCliente(String nome, String endereco, String cpf, String telefone, CartaoFidelidade cartaoFidelidade) {
         this.nome = nome;
         this.endereco = endereco;
@@ -33,12 +36,6 @@ public class GestaoCliente {
         this.cartaoFidelidade = cartaoFidelidade;
     }
 
-
-    
-    
-    
-    
-    
     // Getters e Setters
     public String getNome() {
         return nome;
@@ -59,11 +56,12 @@ public class GestaoCliente {
     public String getCpf() {
         return cpf;
     }
+
     /*
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    */
+     */
     public String getTelefone() {
         return telefone;
     }
@@ -87,7 +85,5 @@ public class GestaoCliente {
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
-    
-    
-    
+
 }

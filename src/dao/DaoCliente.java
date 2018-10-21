@@ -44,18 +44,17 @@ public class DaoCliente extends GenericDao implements CRUDBasico {
     }
 
     @Override
-    public List<Object> getById(int id) throws SQLException {
-        ArrayList<Object> clientes = new ArrayList<>();
-        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM cliente WHERE id_cliente = " + id);
+    public Object getById(int id) throws SQLException {
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT  * FROM cliente WHERE id_cliente = ?");
+        stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            CartaoFidelidade cartao = (CartaoFidelidade) new ControllerCartao().selecionaObjeto(rs.getInt("id_cartao"));
-            GestaoCliente cliente = new GestaoCliente(rs.getString("nome"), rs.getString("endereco"), rs.getString("cpf"), rs.getString("telefone"), cartao, id);
-            clientes.add(cliente);
-        }
+        //while (rs.next()) {
+        CartaoFidelidade cartao = (CartaoFidelidade) new ControllerCartao().selecionaObjeto(rs.getInt("id_cartao_fidelidade"));
+        GestaoCliente cliente = new GestaoCliente(rs.getString("nome"), rs.getString("endereco"),rs.getString("cpf"),  rs.getString("telefone"), cartao, rs.getInt("id_cliente"));
+        //}
         rs.close();
         stmt.close();
-        return clientes;
+        return cliente;
     }
 
     @Override

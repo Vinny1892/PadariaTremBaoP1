@@ -42,17 +42,17 @@ public class DaoVendedor extends GenericDao implements CRUDBasico {
 
     @Override
     public Object getById(int id) throws SQLException {
-        ArrayList<Object> vendedores = new ArrayList<>();
-        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM vendedor WHERE id_vendedor = " + id);
+        Vendedor vendedor = null;
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM vendedor WHERE id_vendedor = ?");
+        stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            Vendedor vendedor = new Vendedor(rs.getDouble("montante_vendas"), id, rs.getFloat("salario_base"), rs.getString("cpf"), rs.getString("telefone"), rs.getString("nome"), rs.getString("endereco"));
-            vendedores.add(vendedor);
+            vendedor = new Vendedor(rs.getDouble("montante_vendas"), id, rs.getFloat("salario_base"), rs.getString("cpf"), rs.getString("telefone"), rs.getString("nome"), rs.getString("endereco"));
         }
         rs.close();
         stmt.close();
         System.out.println("Metodo getById() DaoVendedor realizado");
-        return vendedores;
+        return vendedor;
     }
 
     @Override

@@ -46,14 +46,12 @@ public class DaoCartaoFidelidade extends GenericDao implements CRUDBasico {
  // TALVEZ N PRECISE DE WHILE
     @Override
     public Object getById(int id) throws SQLException {
-        //ArrayList<Object> cartoesFidelidade = new ArrayList<>();
+        CartaoFidelidade cartao = null;
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM cartao_fidelidade WHERE id_cartao = " + id);
         ResultSet rs = stmt.executeQuery();
-        //while (rs.next()) {
-            //GestaoCliente cliente = (GestaoCliente) new controller.ControllerCliente().selecionaObjeto(rs.getInt("id_cliente"));
-            CartaoFidelidade cartao = new CartaoFidelidade(id, rs.getBoolean("gold"), rs.getBoolean("platinum")/*, cliente*/);
-            //cartoesFidelidade.add(cartao);
-        //}
+        while (rs.next()) {
+            cartao = new CartaoFidelidade(id, rs.getBoolean("gold"), rs.getBoolean("platinum")/*, cliente*/);
+        }
         rs.close();
         stmt.close();
         System.out.println("Metodo getById() DaoCartaoFidelidade realizado");
@@ -66,8 +64,7 @@ public class DaoCartaoFidelidade extends GenericDao implements CRUDBasico {
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM cartao_fidelidade");
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            //GestaoCliente cliente = (GestaoCliente) new controller.ControllerCliente().selecionaObjeto(rs.getInt("id_cliente"));
-            CartaoFidelidade cartao = new CartaoFidelidade(rs.getInt("id_cartao"), rs.getBoolean("gold"), rs.getBoolean("platinum")/*, cliente*/);
+            CartaoFidelidade cartao = new CartaoFidelidade(rs.getInt("id_cartao"), rs.getBoolean("gold"), rs.getBoolean("platinum"));
             Cartoes.add(cartao);
         }
         rs.close();
