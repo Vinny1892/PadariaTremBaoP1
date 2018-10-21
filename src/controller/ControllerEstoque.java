@@ -41,6 +41,8 @@ public class ControllerEstoque {
         System.out.println("Metodo selecionaObjeto ControllerEstoque realizado");
         return todoEstoque;
     }
+    
+    
 /*
 
 //    public static void main(String[] args) throws SQLException {

@@ -1,21 +1,17 @@
 package controller;
 
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JOptionPane;
 import model.GestaoVenda;
 import model.GestaoCliente;
 import model.Vendedor;
 import dao.DaoVenda;
 import model.GestaoEstoque;
 
-
 public class ControllerVenda {
-    public void salvar(String dataVenda, Vendedor vendedor, GestaoCliente cliente, ArrayList<GestaoEstoque> estoque, int formaPagamento) throws SQLException {
-        GestaoVenda venda = new GestaoVenda(dataVenda, vendedor, cliente, estoque, formaPagamento);
+
+    public void salvar(String dataVenda, Vendedor vendedor, GestaoCliente cliente, ArrayList<GestaoEstoque> estoques, int formaPagamento) throws SQLException {
+        GestaoVenda venda = new GestaoVenda(dataVenda, vendedor, cliente, estoques, formaPagamento);
         new DaoVenda().salvar(venda);
         System.out.println("Metodo salvar ControllerVenda realizado");
     }

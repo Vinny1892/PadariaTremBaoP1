@@ -17,7 +17,7 @@ suas compras. Clientes Platinum tem 10% de desconto em suas compras.
 public class ControllerCartao {
     public void salvar(boolean gold, boolean platinum, GestaoCliente cliente) throws SQLException{
         try{
-            CartaoFidelidade cartao = new CartaoFidelidade(gold, platinum, cliente);
+            CartaoFidelidade cartao = new CartaoFidelidade(gold, platinum/*, cliente*/);
             new DaoCartaoFidelidade().salvar(cartao);
             System.out.println("Metodo salvar ControllerCartao realizado");
         }catch(MySQLIntegrityConstraintViolationException e){
@@ -29,7 +29,7 @@ public class ControllerCartao {
     }
     
     public void editar(int idcartaoFidelidade, boolean gold, boolean platinum, GestaoCliente cliente) throws SQLException{
-        CartaoFidelidade cartao = new CartaoFidelidade(idcartaoFidelidade,gold, platinum, cliente);
+        CartaoFidelidade cartao = new CartaoFidelidade(idcartaoFidelidade,gold, platinum/*, cliente*/);
         new DaoCartaoFidelidade().atualizar(cartao);
         System.out.println("Metodo editar ControllerCartao realizado");
     }

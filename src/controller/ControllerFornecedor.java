@@ -34,7 +34,7 @@ public class ControllerFornecedor {
 
 
     public ArrayList<GestaoFornecedor> getAll() throws SQLException {
-        ArrayList< GestaoFornecedor> fornecedores = (ArrayList<GestaoFornecedor>) (ArrayList<?>) new DaoFornecedor().getAll();
+        ArrayList<GestaoFornecedor> fornecedores = (ArrayList<GestaoFornecedor>) (ArrayList<?>) new DaoFornecedor().getAll();
         return fornecedores;
     }
     
