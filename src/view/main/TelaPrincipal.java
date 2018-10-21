@@ -5,11 +5,30 @@
  */
 package view.main;
 
+import com.qoppa.pdfWriter.PDFDocument;
+import com.qoppa.pdfWriter.PDFGraphics;
+import com.qoppa.pdfWriter.PDFPage;
+import java.awt.Graphics2D;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.print.PageFormat;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ButtonGroup;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import view.estoque.TelaEstoque;
 import view.fornecedor.TelaFornecedor;
 import view.produto.TelaProduto;
+import view.relatorio.TelaRelatorio;
+import view.venda.TelaVenda;
 
 /**
  *
@@ -34,154 +53,177 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
-        jButtonEstoque = new javax.swing.JButton();
-        jButtonProduto = new javax.swing.JButton();
-        jButtonVenda = new javax.swing.JButton();
-        jButtonFornecedor = new javax.swing.JButton();
+        chamaEstoque = new javax.swing.JButton();
+        chamaProduto = new javax.swing.JButton();
+        chamaVenda = new javax.swing.JButton();
+        chamaFornecedor = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        chamaFuncionarios = new javax.swing.JButton();
+        chamaRelatorio = new javax.swing.JButton();
+        chamaClientes = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButtonEstoque.setText("Estoque");
-
-        jButtonProduto.setText("Produtos");
-        jButtonProduto.addActionListener(new java.awt.event.ActionListener() {
+        chamaEstoque.setText("Estoque");
+        chamaEstoque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonProdutoActionPerformed(evt);
+                chamaEstoqueActionPerformed(evt);
             }
         });
 
-        jButtonVenda.setText("Venda");
-
-        jButtonFornecedor.setText("Fornecedores");
-        jButtonFornecedor.addActionListener(new java.awt.event.ActionListener() {
+        chamaProduto.setText("Produtos");
+        chamaProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFornecedorActionPerformed(evt);
+                chamaProdutoActionPerformed(evt);
+            }
+        });
+
+        chamaVenda.setText("Venda");
+        chamaVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chamaVendaActionPerformed(evt);
+            }
+        });
+
+        chamaFornecedor.setText("Fornecedores");
+        chamaFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chamaFornecedorActionPerformed(evt);
             }
         });
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Sistema Padaria Trem Bão");
+        jLabel6.setToolTipText("");
 
-        jMenu1.setText("System");
+        chamaFuncionarios.setText("Funcionários");
 
-        jMenuItem2.setText("Cliente");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        chamaRelatorio.setText("Relatórios");
+        chamaRelatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                chamaRelatorioActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
 
-        jMenuItem4.setText("Produto");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem4);
-
-        jMenuItem5.setText("Funcionario");
-        jMenu1.add(jMenuItem5);
-
-        jMenuItem3.setText("Fornecedor");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem3);
-
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Generate");
-        jMenuBar1.add(jMenu3);
-
-        setJMenuBar(jMenuBar1);
+        chamaClientes.setText("Clientes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButtonVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                            .addComponent(jButtonFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(8, 8, 8)))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 70, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(chamaFuncionarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(chamaFornecedor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(chamaVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(27, 27, 27)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(chamaProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                                        .addComponent(chamaEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(chamaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(chamaRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(70, 70, 70))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addComponent(jLabel6)
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chamaFornecedor)
+                    .addComponent(chamaProduto))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48))
+                    .addComponent(chamaClientes)
+                    .addComponent(chamaFuncionarios))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chamaVenda)
+                    .addComponent(chamaEstoque))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(chamaRelatorio)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jButtonFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFornecedorActionPerformed
+    private void chamaFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chamaFornecedorActionPerformed
         try {
             // TODO add your handling code here:
             new TelaFornecedor().setVisible(true);
         } catch (SQLException ex) {
             System.out.println("Erro ao Abrir Tela Fornecedor");
         }
-        this.dispose();
+        this.setVisible(false);
         
-    }//GEN-LAST:event_jButtonFornecedorActionPerformed
+    }//GEN-LAST:event_chamaFornecedorActionPerformed
 
-    private void jButtonProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProdutoActionPerformed
+    private void chamaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chamaProdutoActionPerformed
         try {
             // TODO add your handling code here:
             new TelaProduto().setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.dispose();
-    }//GEN-LAST:event_jButtonProdutoActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_chamaProdutoActionPerformed
+
+    private void chamaEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chamaEstoqueActionPerformed
+        new TelaEstoque().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_chamaEstoqueActionPerformed
+
+    private void chamaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chamaVendaActionPerformed
+        new TelaVenda().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_chamaVendaActionPerformed
+
+    private void chamaRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chamaRelatorioActionPerformed
+        new TelaRelatorio().setVisible(true);
+        this.setVisible(false);
+        
+        String path;
+        if (OS.contains("win")) {
+            path = "C:/Users/Public/Desktop/"; //testar
+        } else if (OS.contains("mac")) {
+            path = "/Users/Bruno/Desktop/"; //verificar depois
+        } else {
+            path = "/home/mateus/Desktop/"; //trocar para o de vocês!
+        }
+        
+//        PDFDocument pdfDoc = new PDFDocument();
+//        PDFPage newPage = pdfDoc.createPage(new PageFormat());
+//
+//        // Draw to the page
+//        Graphics2D g2d = newPage.createGraphics();
+//        g2d.setFont (PDFGraphics.HELVETICA.deriveFont(24f));
+//        g2d.drawString("Hello World", 100, 100);
+//
+//        // Add the page to the document and save it
+//        pdfDoc.addPage(newPage);
+//        try {
+//            pdfDoc.saveDocument(path + "output.pdf");
+//            System.out.println("PDF gerado!");
+//        } catch (IOException ex) {
+//            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+    }//GEN-LAST:event_chamaRelatorioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,21 +259,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
     }
-
+    private static String OS = System.getProperty("os.name").toLowerCase();
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonEstoque;
-    private javax.swing.JButton jButtonFornecedor;
-    private javax.swing.JButton jButtonProduto;
-    private javax.swing.JButton jButtonVenda;
+    private javax.swing.JButton chamaClientes;
+    private javax.swing.JButton chamaEstoque;
+    private javax.swing.JButton chamaFornecedor;
+    private javax.swing.JButton chamaFuncionarios;
+    private javax.swing.JButton chamaProduto;
+    private javax.swing.JButton chamaRelatorio;
+    private javax.swing.JButton chamaVenda;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     // End of variables declaration//GEN-END:variables
 }
