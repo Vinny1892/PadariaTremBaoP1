@@ -66,13 +66,13 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM produto");
         ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
+                System.out.println("idFornecedor: "+rs.getInt("id_fornecedor"));
+                System.out.println("idProduto: "+rs.getInt("id_produto"));
                 GestaoFornecedor fornecedor = (GestaoFornecedor) new controller.ControllerFornecedor().selecionaObjeto(rs.getInt("id_fornecedor"));
                 GestaoProduto produto = new GestaoProduto(rs.getString("nome"), rs.getInt("id_produto"), fornecedor, rs.getFloat("preco_custo"), rs.getString("apelido"));
                 produtos.add(produto);
             }
-            for (int i = 0; i < produtos.size(); i++) {
-                System.out.println(produtos.get(i));
-            }
+            
         rs.close();
         stmt.close();
         System.out.println("Metodo getAll() GestaoEstoque realizado");
