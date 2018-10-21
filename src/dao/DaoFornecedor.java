@@ -54,14 +54,19 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
      */
     @Override
     public Object getById(int id) throws SQLException {
-        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM fornecedor WHERE id_fornecedor = " + id);
+        GestaoFornecedor fornecedor = null;
+        System.out.println("Entrou metodo getById() DaoFornecedor");
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM fornecedor WHERE id_fornecedor = ?");
+        stmt.setInt(1, id);
+        //PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM fornecedor WHERE id_fornecedor = "+id);
         ResultSet rs = stmt.executeQuery();
-        String nome = rs.getString("nome"); //tá dando erro aqui :/
-        String cnpj = rs.getString("cnpj");
-        String endereco = rs.getString("endereco");
-        boolean recorrente = rs.getBoolean("recorrente");
-        int desc = rs.getInt("taxa_desconto");
-        GestaoFornecedor fornecedor = new GestaoFornecedor(id, nome, cnpj, endereco, recorrente, desc);
+   
+       while(rs.next()){
+      fornecedor = new GestaoFornecedor(rs.getInt("id_fornecedor"),rs.getString("nome"), rs.getString("cnpj"), rs.getString("endereco"), rs.getBoolean("recorrente"), rs.getInt("taxa_desconto"));
+
+       }
+        
+        
         rs.close();
         stmt.close();
         return fornecedor;

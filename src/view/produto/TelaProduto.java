@@ -37,7 +37,7 @@ public class TelaProduto extends javax.swing.JFrame {
         cp = new ControllerProduto();
         placeholder =  jComboBoxSelecionarBusca.getSelectedItem();
         produtos =  cp.getAll();
-       
+        //produtos = new ControllerProduto().getAll();
         if(produtos.size() > 0 ){
           for (int i =0 ; i< produtos.size() ; i++){
             //  dfProdutoCodigo.addElement(produtos.get(i).getCodigo());

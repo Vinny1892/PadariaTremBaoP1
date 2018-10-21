@@ -45,18 +45,18 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
     }
 
     @Override
-    public List<Object> getById(int id) throws SQLException {
-        ArrayList<Object> produtos = new ArrayList<>();
+    public /*List<Object>*/ GestaoProduto getById(int id) throws SQLException {
+        //ArrayList<Object> produtos = new ArrayList<>();
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM produto WHERE id_produto = " + id);
         ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            GestaoFornecedor fornecedor = (GestaoFornecedor) new ControllerFornecedor().selecionaObjeto(rs.getInt("id_fornecedor"));
-            GestaoProduto produto = new GestaoProduto(rs.getString("nome"), id, fornecedor, rs.getFloat("preco_custo"), rs.getString("apelido"));
-            produtos.add(produto);
-        }
+        //while (rs.next()) {
+        GestaoFornecedor fornecedor = (GestaoFornecedor) new ControllerFornecedor().selecionaObjeto(rs.getInt("id_fornecedor"));
+        GestaoProduto produto = new GestaoProduto(rs.getString("nome"), id, fornecedor, rs.getFloat("preco_custo"), rs.getString("apelido"));
+        //produtos.add(produto);
+        //}
         rs.close();
         stmt.close();
-        return produtos;
+        return produto;
     }
 
     @Override
@@ -64,11 +64,14 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
         ArrayList<Object> produtos = new ArrayList<>();
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM produto");
         ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            GestaoFornecedor fornecedor = (GestaoFornecedor) new controller.ControllerFornecedor().selecionaObjeto(rs.getInt("id_fornecedor"));
-            GestaoProduto produto = new GestaoProduto(rs.getString("nome"), rs.getInt("id_produto"), fornecedor, rs.getFloat("preco_custo"), rs.getString("apelido"));
-            produtos.add(produto);
-        }
+            while (rs.next()) {
+         //       System.out.println("idFornecedor: "+rs.getInt("id_fornecedor"));
+          //      System.out.println("idProduto: "+rs.getInt("id_produto"));
+                GestaoFornecedor fornecedor = (GestaoFornecedor) new controller.ControllerFornecedor().selecionaObjeto(rs.getInt("id_fornecedor"));
+                GestaoProduto produto = new GestaoProduto(rs.getString("nome"), rs.getInt("id_produto"), fornecedor, rs.getFloat("preco_custo"), rs.getString("apelido"));
+                produtos.add(produto);
+            }
+            
         rs.close();
         stmt.close();
         System.out.println("Metodo getAll() GestaoEstoque realizado");
