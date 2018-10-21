@@ -61,13 +61,12 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
 
     @Override
     public List<Object> getAll() throws SQLException {
-        System.out.println("Entrou no metodo getAll() DaoProduto");
         ArrayList<Object> produtos = new ArrayList<>();
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM produto");
         ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                System.out.println("idFornecedor: "+rs.getInt("id_fornecedor"));
-                System.out.println("idProduto: "+rs.getInt("id_produto"));
+         //       System.out.println("idFornecedor: "+rs.getInt("id_fornecedor"));
+          //      System.out.println("idProduto: "+rs.getInt("id_produto"));
                 GestaoFornecedor fornecedor = (GestaoFornecedor) new controller.ControllerFornecedor().selecionaObjeto(rs.getInt("id_fornecedor"));
                 GestaoProduto produto = new GestaoProduto(rs.getString("nome"), rs.getInt("id_produto"), fornecedor, rs.getFloat("preco_custo"), rs.getString("apelido"));
                 produtos.add(produto);
