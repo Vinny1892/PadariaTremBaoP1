@@ -15,20 +15,20 @@ public class DaoPadeiro extends GenericDao implements CRUDBasico {
     public void salvar(Object object) throws SQLException {
         try {
             Padeiro padeiro = (Padeiro) object;
-            String insert = "INSERT INTO padeiro (horario_alternativo,salario_base_mensal,cpf,telefone,nome, endereco) VALUES(?,?,?,?,?,?) ";
+            String insert = "INSERT INTO padeiro (horario_alternativo,salario_base,cpf,telefone,nome, endereco) VALUES(?,?,?,?,?,?) ";
             save(insert, padeiro.getHorasTrabalhadaNoturno(), padeiro.getSalarioBaseMensal(), padeiro.getCpf(), padeiro.getTelefone(), padeiro.getNome(), padeiro.getEndereco());
         } catch (MySQLIntegrityConstraintViolationException e) {
             System.out.println("codigo do produto ja existe");
             JOptionPane.showMessageDialog(null, "Código do produto já existe no Banco de Dados");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao inserir fornecedor");
+            JOptionPane.showMessageDialog(null, "Erro ao inserir padeiro");
         }
     }
 
     @Override
     public void atualizar(Object object) throws SQLException {
         Padeiro padeiro = (Padeiro) object;
-        String update = "UPDATE padeiro SET nome = ?, endereco = ? , telefone = ? ,  salario_base_mensal = ? , horario_alternativo = ? WHERE cpf =  ? ";
+        String update = "UPDATE padeiro SET nome = ?, endereco = ? , telefone = ? ,  salario_base = ? , horario_alternativo = ? WHERE cpf =  ? ";
         update(update, padeiro.getCpf(), padeiro.getNome(), padeiro.getEndereco(), padeiro.getTelefone(), padeiro.getSalarioBaseMensal(), padeiro.getHorasTrabalhadaNoturno());
     }
 
@@ -40,7 +40,7 @@ public class DaoPadeiro extends GenericDao implements CRUDBasico {
     @Override
     public Object getById(int id) throws SQLException {
         Padeiro padeiro = null;
-        PreparedStatement stmt = getConnection().prepareStatement("SELECT  * FROM gerente WHERE idgerente = ?");
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT  * FROM padeiro WHERE id_padeiro = ?");
         stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
