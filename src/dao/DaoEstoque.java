@@ -37,26 +37,26 @@ public class DaoEstoque extends GenericDao implements CRUDBasico {
     //retorna o obejto do tipo estoque
     // Objeto possui produto, data_validade e quantidade atual
     @Override
-    public /*ArrayList<Object>*/ Object getById(int id) throws SQLException {
-        //ArrayList<Object> todoEstoque = new ArrayList<>();
+    public ArrayList<Object>/* Object */getById(int id) throws SQLException {
+        ArrayList<Object> todoEstoque = new ArrayList<>();
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM estoque WHERE id_estoque = " + id);
         ResultSet rs = stmt.executeQuery();
-        //while (rs.next()) {
+        while (rs.next()) {
             GestaoProduto produto = (GestaoProduto) new ControllerProduto().selecionaObjeto(rs.getInt("id_produto"));
             GestaoEstoque estoque = new GestaoEstoque(id, rs.getInt("quantidade"), rs.getString("data_validade"), produto);
-        //    todoEstoque.add(estoque);
-        //}
+            todoEstoque.add(estoque);
+        }
         rs.close();
         stmt.close();
         System.out.println("Metodo getById() DaoEstoque realizado");
-        return estoque/*todoEstoque*/;
+        return /*estoque*/todoEstoque;
     }
 
     // retorna um objeto do Estoque
     //Por usar o parametro id_estoque e id_venda, sera encontrado somente um objeto de retorno, e nao um vetor
     //Pois cada id_estoque esta relacionado com unico id_produto
     //e se o cliente comprar mais de uma vez o mesmo produto, só muda a quantidade deste em estoque
-    public Object getById(int idEstoque, int idVenda) throws SQLException {
+    public Object getByIddddd(int idEstoque, int idVenda) throws SQLException {
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM estoque WHERE id_estoque = " + idEstoque + " AND id_venda = " + idVenda);
         ResultSet rs = stmt.executeQuery();
         GestaoProduto produto = (GestaoProduto) new ControllerProduto().selecionaObjeto(rs.getInt("id_produto"));

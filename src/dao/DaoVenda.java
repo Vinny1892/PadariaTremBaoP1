@@ -2,6 +2,7 @@ package dao;
 
 import controller.ControllerCliente;
 import controller.ControllerEstoque;
+import controller.ControllerProduto;
 import controller.ControllerVendedor;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +14,7 @@ import model.GestaoVenda;
 import model.GestaoEstoque;
 import model.Vendedor;
 import model.GestaoCliente;
+import model.GestaoProduto;
 
 public class DaoVenda extends GenericDao implements CRUDBasico {
 
@@ -53,15 +55,15 @@ public class DaoVenda extends GenericDao implements CRUDBasico {
     //Array preenchido por objetos do tipo GestaoVenda
     //Aonde possui idVenda recebido como parametro igual ao id_venda do banco
     @Override
-    public Object getById(int id) throws SQLException {
+    public ArrayList<Object> getById(int id) throws SQLException {
         ArrayList<Object> objetosVenda = new ArrayList<>();
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM venda WHERE id_venda = " + id);
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
             Vendedor vendedor = (Vendedor) new ControllerVendedor().selecionaObjeto(rs.getInt("id_vendedor"));
-            GestaoEstoque estoque = (GestaoEstoque) new ControllerEstoque().selecionaObjeto(rs.getInt("id_estoque"));
+            GestaoEstoque estoqueId = (GestaoEstoque) new DaoEstoque().getById(rs.getInt("id_estoque"));//nao pode retornar array
             GestaoCliente cliente = (GestaoCliente) new ControllerCliente().selecionaObjeto(rs.getInt("id_cliente"));
-            GestaoVenda venda = new GestaoVenda(rs.getString("data_venda"), vendedor, cliente, estoque, rs.getInt("forma_pagamento"), id);
+            GestaoVenda venda = new GestaoVenda(rs.getString("data_venda"), vendedor, cliente, estoqueId, rs.getInt("forma_pagamento"), id);
             objetosVenda.add(venda);
         }
         rs.close();
@@ -69,12 +71,7 @@ public class DaoVenda extends GenericDao implements CRUDBasico {
         System.out.println("Metodo getById() DaoEstoque realizado");
         return objetosVenda;
     }
-    public ArrayList<Object> selecionaObjeto(int idEstoque, int idVenda) throws SQLException{
-        ArrayList<Object> estoquesDestaVenda = new ArrayList<>();
-        PreparedStatement stmst = getConnection().prepareStatement("SELECT * FROM venda WHERE id_venda = " +idVenda+" AND id_estoque "+idEstoque);
-        
-        return ;
-    }
+
     /*
     criar metodos de consulta para GestaoInformação
      */
@@ -87,10 +84,8 @@ public class DaoVenda extends GenericDao implements CRUDBasico {
         while (rs.next()) {
             Vendedor vendedor = (Vendedor) new ControllerVendedor().selecionaObjeto(rs.getInt("id_vendedor"));
             GestaoCliente cliente = (GestaoCliente) new ControllerCliente().selecionaObjeto(rs.getInt("id_cliente"));
-            
-            ArrayList<Object> estoques = (ArrayList<Object>) new ControllerEstoque().selecionaObjeto(rs.getInt("id_estoque"));
-            
-            GestaoVenda venda = new GestaoVenda(rs.getString("data_venda"), vendedor, cliente, estoques, rs.getInt("forma_pagamento"), rs.getInt("id_venda"));
+            ArrayList<GestaoEstoque> idEstoqueVendidos = (ArrayList<GestaoEstoque>) (ArrayList<?>) new DaoVenda().getById(rs.getInt("id_venda"));
+            GestaoVenda venda = new GestaoVenda(rs.getString("data_venda"), vendedor, cliente, idEstoqueVendidos, rs.getInt("forma_pagamento"), rs.getInt("id_venda"));
             vendas.add(venda);
         }
         rs.close();
