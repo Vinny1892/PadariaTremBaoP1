@@ -32,7 +32,7 @@ public class TelaProduto extends javax.swing.JFrame {
      */
     public TelaProduto() throws SQLException {
         initComponents();
-         dfProdutoCodigo = new DefaultListModel();
+        dfProdutoCodigo = new DefaultListModel();
         dfProdutoNome = new DefaultListModel();
         cp = new ControllerProduto();
         placeholder =  jComboBoxSelecionarBusca.getSelectedItem();

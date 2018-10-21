@@ -23,13 +23,13 @@ import model.GestaoProduto;
  * @author Enoque
  */
 public class TelaFormProduto extends javax.swing.JFrame {
+
     ControllerFornecedor cf;
     ControllerProduto cp;
     DefaultComboBoxModel cbF;
     ArrayList<GestaoProduto> produtos;
     ArrayList<GestaoFornecedor> fornecedores;
-    
-    
+
     /**
      * Creates new form TelaFormProduto
      */
@@ -37,22 +37,21 @@ public class TelaFormProduto extends javax.swing.JFrame {
         cf = new ControllerFornecedor();
         cp = new ControllerProduto();
         initComponents();
-         fornecedores = cf.getAll();
-         produtos = cp.getAll();
+        fornecedores = cf.getAll();
+        produtos = cp.getAll();
         cbF = new DefaultComboBoxModel();
-        if(fornecedores.size()  > 0 ){
-          for (int i = 0 ; i < fornecedores.size(); i++){
-            cbF.addElement(fornecedores.get(i).getNome());
-        
-        }
-        }else{
+        if (fornecedores.size() > 0) {
+            for (int i = 0; i < fornecedores.size(); i++) {
+                cbF.addElement(fornecedores.get(i).getNome());
+
+            }
+        } else {
             jComboBoxFornecedor.setEnabled(false);
         }
-      
+
         jComboBoxFornecedor.setModel(cbF);
-      
+
     }
-   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -204,35 +203,29 @@ public class TelaFormProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-       GestaoFornecedor fornecedorSalvar = null;
-        for (int i = 0 ; i < fornecedores.size();i++){
-           if(fornecedores.get(i).getCnpj() == jComboBoxFornecedor.getSelectedItem()){
-              fornecedorSalvar = fornecedores.get(i);
-                    }
-        if(!jTextFieldNomeProduto.getText().equals("") &&  !jTextFieldApelidoProduto.getText().equals("") && !jFormattedTextFieldCodigoProduto.equals("")){
-            try{ 
-                float taxa =  Float.parseFloat(jTextFieldPrecoCusto.getText());
-                
-        cp.salvar(jTextFieldNomeProduto.getText(),
-                fornecedorSalvar ,
-                taxa,
-                jTextFieldApelidoProduto.getText()
+        GestaoFornecedor fornecedorSalvar = null;
+        for (int i = 0; i < fornecedores.size(); i++) {
+            if (fornecedores.get(i).getNome().equals(String.valueOf(jComboBoxFornecedor.getSelectedItem()))) {
+                fornecedorSalvar = fornecedores.get(i);
+            }            
+        }
         
-        );
+        if (!jTextFieldNomeProduto.getText().equals("") && !jTextFieldApelidoProduto.getText().equals("") && !jFormattedTextFieldCodigoProduto.equals("")) {
+            try {
+                float taxa = Float.parseFloat(jTextFieldPrecoCusto.getText());
 
-                
-            }catch(Exception e){
+                cp.salvar(jTextFieldNomeProduto.getText(),
+                        fornecedorSalvar,
+                        taxa,
+                        jTextFieldApelidoProduto.getText()
+                );
+
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Digite apenas Numeros");
-                System.out.println(e.getMessage());
+                System.out.println(e);
             }
-                
-            
-                
-        
-            
-        }}
-        
-       
+        }
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
