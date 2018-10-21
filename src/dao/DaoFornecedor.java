@@ -54,7 +54,7 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
      */
     @Override
     public Object getById(int id) throws SQLException {
-        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM fornecedor WHERE id_fornecedor = " + id);
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM fornecedor WHERE id_fornecedor = "+id);
         ResultSet rs = stmt.executeQuery();
         int idFornecedor = rs.getInt("id_fornecedor");
         String nome = rs.getString("nome"); //tá dando erro aqui :/

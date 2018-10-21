@@ -18,19 +18,20 @@ public class GestaoFornecedor extends PessoaJuridica {
     private int taxaDesconto;
     private int idFornecedor;
 
+    // com idFornecedor e taxaDesconto
     public GestaoFornecedor(int idFornecedor, String nome, String cnpj, String endereco, boolean recorrente, int taxaDesconto) {
         super(cnpj, nome, endereco);
         this.recorrente = recorrente;
         this.taxaDesconto = taxaDesconto;
         this.idFornecedor = idFornecedor;
     }
-
+    // sem idFornecedor e com taxaDesconto
     public GestaoFornecedor(String nome, String cnpj, String endereco, boolean recorrente, int taxaDesconto) {
         super(cnpj, nome, endereco);
         this.recorrente = recorrente;
         this.taxaDesconto = taxaDesconto;
     }
-
+    //sem idFornecedor e sem taxaDesconto
     public GestaoFornecedor(boolean recorrente, String cnpj, String nome, String endereco) {
         super(cnpj, nome, endereco);
         this.recorrente = recorrente;
