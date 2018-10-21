@@ -54,6 +54,7 @@ public class DaoVenda extends GenericDao implements CRUDBasico {
     //retorna um ArrayList do tipo Object
     //Array preenchido por objetos do tipo GestaoVenda
     //Aonde possui idVenda recebido como parametro igual ao id_venda do banco
+    //e id_venda no banco pode se repetir, por isso retorna yn Array
     @Override
     public ArrayList<Object> getById(int id) throws SQLException {
         ArrayList<Object> objetosVenda = new ArrayList<>();
@@ -61,7 +62,7 @@ public class DaoVenda extends GenericDao implements CRUDBasico {
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
             Vendedor vendedor = (Vendedor) new ControllerVendedor().selecionaObjeto(rs.getInt("id_vendedor"));
-            GestaoEstoque estoqueId = (GestaoEstoque) new DaoEstoque().getById(rs.getInt("id_estoque"));//nao pode retornar array
+            ArrayList<GestaoEstoque> estoqueId = (ArrayList<GestaoEstoque>) (ArrayList<?>) new  DaoEstoque().getById(rs.getInt("id_estoque"));
             GestaoCliente cliente = (GestaoCliente) new ControllerCliente().selecionaObjeto(rs.getInt("id_cliente"));
             GestaoVenda venda = new GestaoVenda(rs.getString("data_venda"), vendedor, cliente, estoqueId, rs.getInt("forma_pagamento"), id);
             objetosVenda.add(venda);
