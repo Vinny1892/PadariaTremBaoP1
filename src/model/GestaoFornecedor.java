@@ -70,4 +70,13 @@ public class GestaoFornecedor extends PessoaJuridica {
         this.idFornecedor = idfornecedor;
     }
 
+    @Override
+    public String toString() {
+        return this.getNome();
+    }
+    
+    
+   
+    
+
 }

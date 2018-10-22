@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="429.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.produto.FXMLFormProduto">
+   <children>
+      <Label layoutX="133.0" layoutY="60.0" prefHeight="34.0" prefWidth="70.0" text="Nome" />
+      <TextField fx:id="textFieldNome" layoutX="209.0" layoutY="65.0" />
+      <TextField fx:id="textFieldApelido" layoutX="209.0" layoutY="106.0" />
+      <TextField fx:id="textFieldCodigo" layoutX="210.0" layoutY="196.0" />
+      <Label layoutX="129.0" layoutY="200.0" text="Codigo" />
+      <Label layoutX="128.0" layoutY="110.0" text="Apelido" />
+      <CheckBox fx:id="checkBoxPerecivel" layoutX="250.0" layoutY="247.0" mnemonicParsing="false" text="Perecivel" />
+      <ButtonBar layoutX="169.0" layoutY="345.0" prefHeight="40.0" prefWidth="200.0">
+        <buttons>
+          <Button fx:id="btnSalvar" mnemonicParsing="false" onAction="#btnSalvarAction" prefHeight="33.0" prefWidth="113.0" text="Salvar" />
+            <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#btnVoltarAction" prefHeight="34.0" prefWidth="85.0" text="Voltar" />
+        </buttons>
+      </ButtonBar>
+      <ComboBox fx:id="comboBoxFornecedor" layoutX="209.0" layoutY="282.0" prefWidth="150.0" />
+      <Label layoutX="113.0" layoutY="294.0" text="Fornecedores" />
+      <Label layoutX="117.0" layoutY="156.0" text="Preco Custo" />
+      <TextField layoutX="210.0" layoutY="152.0" />
+   </children>
+</AnchorPane>

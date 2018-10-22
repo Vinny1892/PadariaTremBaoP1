@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.main.Main">
+   <children>
+      <GridPane layoutX="154.0" layoutY="135.0" prefHeight="148.0" prefWidth="271.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="btnFornecedor" mnemonicParsing="false" onAction="#btFornecedorAction" prefHeight="25.0" prefWidth="127.0" text="Fornecedores" />
+            <Button fx:id="btnProduto" mnemonicParsing="false" onAction="#btnProdutoAction" prefHeight="25.0" prefWidth="131.0" text="Produtos" GridPane.columnIndex="1" />
+            <Button fx:id="btnFuncionario" mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" text="Button" GridPane.rowIndex="1" />
+            <Button fx:id="btnCliente" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="btnVenda" mnemonicParsing="false" prefHeight="25.0" prefWidth="133.0" text="Button" GridPane.rowIndex="2" />
+            <Button fx:id="btnEstoque" mnemonicParsing="false" prefHeight="25.0" prefWidth="148.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+      <Button fx:id="btnRelatorio" layoutX="152.0" layoutY="317.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="271.0" text="Button" />
+      <Label fx:id="labelMain" layoutX="178.0" layoutY="46.0" prefHeight="65.0" prefWidth="223.0" text="Sistema Padaria Trem BAO" />
+   </children>
+</AnchorPane>
