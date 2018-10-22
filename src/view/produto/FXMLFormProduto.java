@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,7 +31,10 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
+import javafx.util.converter.FloatStringConverter;
+import javafx.util.converter.IntegerStringConverter;
 import model.GestaoFornecedor;
 import view.main.Main;
 
@@ -69,9 +74,12 @@ public class FXMLFormProduto implements Initializable {
 
     @FXML
     void btnSalvarAction(ActionEvent event) throws SQLException {
-        GestaoFornecedor fornecedor = null;
-        if(validaCodigo() && !textFieldNome.getText().equals("") && !textFieldApelido.getText().equals("") && fornecedor!= null){
-            fornecedor = comboBoxFornecedor.getSelectionModel().getSelectedItem();
+        
+         
+       
+        GestaoFornecedor fornecedor = comboBoxFornecedor.getSelectionModel().getSelectedItem();
+        if( validaCodigo() && !textFieldNome.getText().isEmpty() && !textFieldApelido.getText().equals("") && fornecedor!= null){
+            System.out.println(Float.parseFloat("12,22"));
             new ControllerProduto().salvar(textFieldNome.getText(), fornecedor, Float.parseFloat(textFieldValorCusto.getText()) , textFieldApelido.getText());
         }else{
           
@@ -80,12 +88,32 @@ public class FXMLFormProduto implements Initializable {
              alert.show();
             
         }
+         
         
 
     }
     public boolean validaCodigo(){
-        return true;
+             Pattern p = Pattern.compile("\\d\\d\\d\\d\\d\\d");
+        Matcher m = p.matcher(textFieldCodigo.getText());
+        if(m.find() && m.group().equals(textFieldCodigo.getText())){
+           return true;
+        }else{
+            
+            return false;
+        }
     }
+    public boolean validaPreco(){
+             Pattern p = Pattern.compile("\\d.*,*\\d\\d");
+        Matcher m = p.matcher(textFieldValorCusto.getText());
+        if(m.find() && m.group().equals(textFieldValorCusto.getText())){
+           return true;
+        }else{
+            
+            return false;
+        }
+    }
+   
+    
     
 
     @FXML

@@ -20,7 +20,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -69,9 +71,14 @@ public class FXMLFormFornecedor implements Initializable {
         Pattern p = Pattern.compile("\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d");
         Matcher m = p.matcher(textFieldCNPJ.getText());
         if(m.find() && m.group().equals(textFieldCNPJ.getText())){
+            System.out.println(m.group());
+            
         return true;
         }else{
-            System.out.println("caiu aqui");
+            System.out.println(m.group());
+             Alert alert = new Alert(Alert.AlertType.NONE,"Não Deixe Campos Vazios", ButtonType.OK);
+             alert.setTitle("Erro Campos Formulario"); 
+             alert.show();
             
         }
         return false;
