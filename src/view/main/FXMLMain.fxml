@@ -28,7 +28,7 @@
             <Button fx:id="btnEstoque" mnemonicParsing="false" prefHeight="25.0" prefWidth="148.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Button fx:id="btnRelatorio" layoutX="152.0" layoutY="317.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="271.0" text="Button" />
+      <Button fx:id="btnRelatorio" layoutX="152.0" layoutY="317.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="271.0" text="Relatórios" />
       <Label fx:id="labelMain" layoutX="178.0" layoutY="46.0" prefHeight="65.0" prefWidth="223.0" text="Sistema Padaria Trem BAO" />
    </children>
 </AnchorPane>
