@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import model.GestaoEstoque;
 import model.GestaoFornecedor;
 
 
@@ -55,5 +56,6 @@ public class ControllerFornecedor {
 //        //cf.editar("São Gabriel", "Rua Gabriel", "22222233333344", 5, true);
 //        cf.deletar("22222233333344");
 //    }
+
 }
 

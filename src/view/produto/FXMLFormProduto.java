@@ -79,8 +79,8 @@ public class FXMLFormProduto implements Initializable {
        
         GestaoFornecedor fornecedor = comboBoxFornecedor.getSelectionModel().getSelectedItem();
         if( validaCodigo() && !textFieldNome.getText().isEmpty() && !textFieldApelido.getText().equals("") && fornecedor!= null){
-            System.out.println(Float.parseFloat("12,22"));
-            new ControllerProduto().salvar(textFieldNome.getText(), fornecedor, Float.parseFloat(textFieldValorCusto.getText()) , textFieldApelido.getText());
+            System.out.println(Float.parseFloat("12.22"));
+            new ControllerProduto().salvar(textFieldNome.getText(), fornecedor, Float.parseFloat("12.22") , textFieldApelido.getText());
         }else{
           
              Alert alert = new Alert(Alert.AlertType.NONE,"Não Deixe Campos Vazios", ButtonType.OK);

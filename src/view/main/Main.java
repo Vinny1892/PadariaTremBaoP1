@@ -51,7 +51,20 @@ public class Main extends Application {
     
      
    
-
+    @FXML
+    void btnEstoqueAction(ActionEvent event) {
+         Stage stage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("../estoquee/FXMLEstoque.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Scene scene= new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        btnProduto.getScene().getWindow().hide();
+    }
    
     
      @FXML
@@ -63,7 +76,6 @@ public class Main extends Application {
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         Scene scene= new Scene(root);
         stage.setScene(scene);
         stage.show();

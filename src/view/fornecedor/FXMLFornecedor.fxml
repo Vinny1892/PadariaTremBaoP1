@@ -22,7 +22,7 @@
       <TextField fx:id="textFieldFornecedor" layoutX="355.0" layoutY="46.0" />
       <Label layoutX="286.0" layoutY="49.0" prefHeight="19.0" prefWidth="69.0" text="Fornecedor" />
       <ComboBox fx:id="comboBoxFornecedor" layoutX="518.0" layoutY="46.0" prefWidth="150.0" />
-      <Button fx:id="btnRemover" layoutX="301.0" layoutY="222.0" mnemonicParsing="false" onAction="#btnRemoverAction" prefHeight="49.0" prefWidth="109.0" text="Remover" />
+      <Button fx:id="btnRemover" disable="true" layoutX="301.0" layoutY="222.0" mnemonicParsing="false" onAction="#btnRemoverAction" prefHeight="49.0" prefWidth="109.0" text="Remover" />
       <Button fx:id="btnAdicionar" layoutX="301.0" layoutY="164.0" mnemonicParsing="false" onAction="#btnAdicionarAction" prefHeight="44.0" prefWidth="109.0" text="Adicionar" />
       <Button fx:id="btnBuscar" layoutX="301.0" layoutY="106.0" mnemonicParsing="false" onAction="#btnBuscarAction" prefHeight="43.0" prefWidth="108.0" text="Buscar" />
       <Button fx:id="btnVoltar" layoutX="593.0" layoutY="321.0" mnemonicParsing="false" onAction="#btnVoltarAction" prefHeight="49.0" prefWidth="122.0" text="Voltar" />

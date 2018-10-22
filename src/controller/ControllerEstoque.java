@@ -44,19 +44,27 @@ public class ControllerEstoque {
     
  
     
-/*
 
 //    public static void main(String[] args) throws SQLException {
 //        ControllerFornecedor cf = new ControllerFornecedor();
 //        cf.salvar("São Gabriel", "10", "Fazendo Sao Gabriel", true, "88888877777");
-//        GestaoFornecedor fornecedor = new GestaoFornecedor("São Gabriel", 10, "Fazendo Sao Gabriel", true, "88888877777");
-//        
+//        GestaoFornecedor fornecedor = new GestaoFornecedor("São Gabriel", 10, "Fazendo Sao Gabriel", true, "88888877777")        
 //        ControllerProduto cp = new ControllerProduto();
-//        cp.salvar("leite caixa", fornecedor, 0, "leite de caixinha");
+//       cp.salvar("leite caixa", fornecedor, 0, "leite de caixinha");
 //        GestaoProduto produto = new GestaoProduto("leite caixa", fornecedor, 0, "leite de caixinha");
 //        
 //        ControllerEstoque ce = new ControllerEstoque();
 //        ce.salvar(20, "01/11/2018" , produto);
 //    }
-*/
-}
+    
+    
+    public static void main(String[] args) throws SQLException {
+        ControllerEstoque cee = new ControllerEstoque();
+        ArrayList<GestaoEstoque> estoques = cee.getAll();
+        System.out.println(estoques.size());
+        for (int i = 0; i < estoques.size(); i++) {
+             System.out.println(estoques.get(i).getProduto().getNome());
+        }
+    }
+
+} 

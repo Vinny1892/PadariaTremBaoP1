@@ -41,7 +41,7 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
 
     public void deletar(String codigoS) throws SQLException {
         int codigo = Integer.parseInt(codigoS);
-        delete("DELETE FROM produto WHERE id_produto = ? ", codigo);
+        delete("DELETE FROM produto WHERE id_produto = ? ", codigoS);
     }
     
     public /*List<Object>*/ GestaoProduto getById(int id) throws SQLException {

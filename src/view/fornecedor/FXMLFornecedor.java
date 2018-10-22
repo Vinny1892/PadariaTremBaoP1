@@ -137,6 +137,7 @@ public class FXMLFornecedor implements Initializable {
             for(int i = 0 ;i<fornecedores.size();i++){
                 if(fornecedores.get(i).getNome().equals(textFieldFornecedor.getText())){
                    tableFornecedor.getSelectionModel().select(fornecedores.get(i));
+                   btnRemover.setDisable(false);
                             }
             }
         
@@ -144,6 +145,7 @@ public class FXMLFornecedor implements Initializable {
             for(int i = 0 ;i<fornecedores.size();i++){
                 if(fornecedores.get(i).getCnpj().equals(textFieldFornecedor.getText())){
                    tableFornecedor.getSelectionModel().select(fornecedores.get(i));
+                   btnRemover.setDisable(false);
                             }
             }
         

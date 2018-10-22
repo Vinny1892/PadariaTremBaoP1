@@ -61,7 +61,7 @@ public class FXMLProduto implements Initializable {
     private TextField textFieldProduto;
 
     @FXML
-    private ComboBox<CategoriasComboBox> comboBoxProdtuo;
+    private ComboBox<CategoriasComboBox> comboBoxProduto;
 
     @FXML
     private Button btnAdicionar;
@@ -90,11 +90,30 @@ public class FXMLProduto implements Initializable {
 
     @FXML
     void btnBuscarAction(ActionEvent event) {
-
+        if(comboBoxProduto.getSelectionModel().getSelectedItem().getNome().equals("Nome")){
+            for (int i = 0 ;i <produtos.size();i++){
+                if(textFieldProduto.getText().equals(produtos.get(i).getNome())){
+                    tableProduto.getSelectionModel().select(produtos.get(i));
+                    btnRemover.setDisable(false);
+                }
+            }
+        }
+        if(comboBoxProduto.getSelectionModel().getSelectedItem().getNome().equals("Codigo")){
+             for (int i = 0 ;i <produtos.size();i++){
+                 
+                if(textFieldProduto.getText().equals(String.valueOf(produtos.get(i).getCodigo()))){
+                    tableProduto.getSelectionModel().select(produtos.get(i));
+                    btnRemover.setDisable(false);
+                }
+            }
+        }
     }
 
     @FXML
-    void btnRemoverAction(ActionEvent event) {
+    void btnRemoverAction(ActionEvent event) throws SQLException {
+        GestaoProduto produtoDeletar = tableProduto.getSelectionModel().getSelectedItem();
+        cp.deletar(String.valueOf(produtoDeletar.getCodigo()));
+        tableProduto.getItems().remove(produtoDeletar);
 
     }
 
@@ -137,8 +156,8 @@ public void inicializarComboBox(){
      categorias.add(comboBoxNomeProduto);
      categorias.add(comboBoxCodigoProduto);
      obsCategorias= FXCollections.observableArrayList(categorias);
-     comboBoxProdtuo.setItems(obsCategorias);
-     comboBoxProdtuo.getSelectionModel().select(comboBoxNomeProduto);
+     comboBoxProduto.setItems(obsCategorias);
+     comboBoxProduto.getSelectionModel().select(comboBoxNomeProduto);
     
 }   
 

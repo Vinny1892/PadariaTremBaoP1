@@ -58,7 +58,8 @@ public class DaoEstoque extends GenericDao implements CRUDBasico {
     @Override
     public List<Object> getAll() throws SQLException {
         ArrayList<Object> todoEstoque = new ArrayList<>();
-        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM estoque");
+        String select = "SELECT e.id_estoque,e.data_validade,e.id_produto,e.quantidade, p.perecivel from estoque e join produto p on e.id_produto = p.id_produto";
+        PreparedStatement stmt = getConnection().prepareStatement(select);
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
             GestaoProduto produto = (GestaoProduto) new ControllerProduto().selecionaObjeto(rs.getInt("id_produto"));
