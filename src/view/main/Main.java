@@ -83,7 +83,7 @@ public class Main extends Application {
 
     }
     @FXML
-    void btFornecedorAction(ActionEvent event) {
+    void btnFornecedorAction(ActionEvent event) {
         Stage stage = new Stage();
         Parent root = null;
         try {
@@ -98,7 +98,18 @@ public class Main extends Application {
         btnFornecedor.getScene().getWindow().hide();
     }
      void btnFuncionarioAction(ActionEvent event){
-         
+            Stage stage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("../fornecedor/FXMLFornecedor.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Scene scene= new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        btnFuncionario.getScene().getWindow().hide();
      }
     
     

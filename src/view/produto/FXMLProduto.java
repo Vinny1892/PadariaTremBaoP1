@@ -101,7 +101,7 @@ public class FXMLProduto implements Initializable {
         if(comboBoxProduto.getSelectionModel().getSelectedItem().getNome().equals("Codigo")){
              for (int i = 0 ;i <produtos.size();i++){
                  
-                if(textFieldProduto.getText().equals(String.valueOf(produtos.get(i).getCodigo()))){
+                if(textFieldProduto.getText().equals(String.valueOf(produtos.get(i).getIdproduto()))){
                     tableProduto.getSelectionModel().select(produtos.get(i));
                     btnRemover.setDisable(false);
                 }
@@ -112,7 +112,7 @@ public class FXMLProduto implements Initializable {
     @FXML
     void btnRemoverAction(ActionEvent event) throws SQLException {
         GestaoProduto produtoDeletar = tableProduto.getSelectionModel().getSelectedItem();
-        cp.deletar(String.valueOf(produtoDeletar.getCodigo()));
+        cp.deletar(String.valueOf(produtoDeletar.getIdproduto()));
         tableProduto.getItems().remove(produtoDeletar);
 
     }

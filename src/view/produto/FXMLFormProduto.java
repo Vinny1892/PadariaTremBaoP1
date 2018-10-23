@@ -78,7 +78,7 @@ public class FXMLFormProduto implements Initializable {
         GestaoFornecedor fornecedor = comboBoxFornecedor.getSelectionModel().getSelectedItem();
         if( !textFieldNome.getText().isEmpty() && !textFieldApelido.getText().equals("") && fornecedor!= null){
             System.out.println(Float.parseFloat("12.22"));
-            new ControllerProduto().salvar(textFieldNome.getText(), fornecedor, Float.parseFloat(textFieldValorCusto.getText().trim()) , textFieldApelido.getText());
+       new ControllerProduto().salvar(textFieldNome.getText(), fornecedor, Float.parseFloat(textFieldValorCusto.getText().trim()) , textFieldApelido.getText(), checkBoxPerecivel.isSelected());
              Stage stage = new Stage();
         Parent root = null;
         try {
