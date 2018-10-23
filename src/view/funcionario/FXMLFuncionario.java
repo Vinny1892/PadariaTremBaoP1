@@ -5,8 +5,16 @@
  */
 package view.funcionario;
 
+import controller.ControllerGerente;
+import controller.ControllerPadeiro;
+import controller.ControllerVendedor;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,6 +24,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import model.GestaoFuncionario;
+import model.GestaoGerente;
+import model.Padeiro;
+import model.Vendedor;
 import view.CategoriasComboBox;
 
 /**
@@ -24,6 +35,17 @@ import view.CategoriasComboBox;
  * @author VinnyWindows
  */
 public class FXMLFuncionario implements Initializable {
+    ControllerPadeiro cpP;
+    ControllerVendedor cv;
+    ControllerGerente cg;
+    private ArrayList<GestaoGerente> gerentes;
+     private ArrayList<Padeiro> padeiros;
+    private ArrayList<Vendedor> vendedores;
+    private ArrayList<GestaoFuncionario> funcionarios;
+    private ObservableList<GestaoFuncionario> obsTableList;
+    private ObservableList<CategoriasComboBox> obsComboBox;
+    private ArrayList<CategoriasComboBox> categorias;
+    
     @FXML
     private TableView<GestaoFuncionario> tableFuncionario;
 
@@ -79,7 +101,18 @@ public class FXMLFuncionario implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+      //  try {
+            //padeiros = cpP.getAll();
+            //gerentes = cg.getAll();
+        //vendedores = cv.getAll();
+        
+       // } catch (SQLException ex) {
+        //}
+        //funcionarios.addAll(gerentes);
+        //funcionarios.addAll(padeiros);
+        //funcionarios.addAll(vendedores);
+        
+       
     }
     public void inicializarComboBox(){
         
