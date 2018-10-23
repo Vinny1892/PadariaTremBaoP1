@@ -22,7 +22,7 @@
          <children>
             <Button fx:id="btnFornecedor" mnemonicParsing="false" onAction="#btFornecedorAction" prefHeight="25.0" prefWidth="127.0" text="Fornecedores" />
             <Button fx:id="btnProduto" mnemonicParsing="false" onAction="#btnProdutoAction" prefHeight="25.0" prefWidth="131.0" text="Produtos" GridPane.columnIndex="1" />
-            <Button fx:id="btnFuncionario" mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" text="Button" GridPane.rowIndex="1" />
+            <Button fx:id="btnFuncionario" mnemonicParsing="false" onAction="#btnFuncionarioAction" prefHeight="25.0" prefWidth="124.0" text="Funcionarios" GridPane.rowIndex="1" />
             <Button fx:id="btnCliente" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Button fx:id="btnVenda" mnemonicParsing="false" prefHeight="25.0" prefWidth="133.0" text="Button" GridPane.rowIndex="2" />
             <Button fx:id="btnEstoque" mnemonicParsing="false" onAction="#btnEstoqueAction" prefHeight="25.0" prefWidth="148.0" text="Estoque" GridPane.columnIndex="1" GridPane.rowIndex="2" />
