@@ -10,10 +10,11 @@ import model.GestaoEstoque;
 import model.GestaoProduto;
 
 public class DaoEstoque extends GenericDao implements CRUDBasico {
-/*
+
+    /*
     Metodo utilizado para salvar estoque na tabela/entidade estoque,
     de acordo com objeto GestaoEstoque recebido.
-    */
+     */
     @Override
     public void salvar(Object object) throws SQLException {
         GestaoEstoque estoque = (GestaoEstoque) object;
@@ -21,11 +22,12 @@ public class DaoEstoque extends GenericDao implements CRUDBasico {
         save(insert, estoque.getProduto().getIdproduto(), estoque.getDataValidade(), estoque.getQtdProduto());
         System.out.println("Metodo salvar DaoEstoque realizado");
     }
-/*
+
+    /*
     Metodo utilizado para editar a tabela/entidade estoque do banco de dados
     recebe objeto GestaoEstoque a ser editado como parametro
     de acordo com idEstoque e id_estoque
-    */
+     */
     @Override
     public void atualizar(Object object) throws SQLException {
         GestaoEstoque estoque = (GestaoEstoque) object;
@@ -37,7 +39,7 @@ public class DaoEstoque extends GenericDao implements CRUDBasico {
     /*
     Metodo utilizado para deletar um estoque da tabela/entidade estoque,
     de acordo com id recebido como parametro.
-    */
+     */
     @Override
     public void deletar(String idestoqueSt) throws SQLException {
         long idestoque = Long.parseLong(idestoqueSt);
@@ -49,7 +51,7 @@ public class DaoEstoque extends GenericDao implements CRUDBasico {
     //pode repetir o id_estoque no banco, por isso um array
     // Objeto possui produto, data_validade e quantidade atual
     @Override
-    public ArrayList<Object>/* Object */getById(int id) throws SQLException {
+    public ArrayList<Object>/* Object */ getById(int id) throws SQLException {
         ArrayList<Object> todoEstoque = new ArrayList<>();
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM estoque WHERE id_estoque = " + id);
         ResultSet rs = stmt.executeQuery();
@@ -61,9 +63,8 @@ public class DaoEstoque extends GenericDao implements CRUDBasico {
         rs.close();
         stmt.close();
         System.out.println("Metodo getById() DaoEstoque realizado");
-        return /*estoque*/todoEstoque;
+        return /*estoque*/ todoEstoque;
     }
-
 
     //retorna tudo da tabela/entidade estoque por meio de ArrayList de Objetos
     @Override
@@ -83,14 +84,5 @@ public class DaoEstoque extends GenericDao implements CRUDBasico {
         System.out.println("Metodo getAll() GestaoEstoque realizado");
         return todoEstoque;
     }
-    
 
-    public static void main(String[] args) throws SQLException {
-        DaoEstoque estoque = new DaoEstoque();
-        ArrayList<Object> todoEstoque = new ArrayList<>();
-        todoEstoque = (ArrayList<Object>) estoque.getAll();
-        for (int i = 0; i < todoEstoque.size(); i++) {
-            System.out.println(todoEstoque.get(i));
-        }
-    }
 }
