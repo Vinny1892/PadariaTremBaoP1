@@ -127,7 +127,7 @@ public class FXMLEstoquee implements Initializable {
             }
         }if(comboBoxProduto.getSelectionModel().getSelectedItem().getNome().equals("Codigo")){
             for(int i = 0 ; i < produtosEstoque.size();i++){
-            if(textFieldProduto.getText().equals(produtosEstoque.get(i).getProduto().getCodigo())){
+            if(textFieldProduto.getText().equals(produtosEstoque.get(i).getProduto().getIdproduto())){
                     tableEstoque.getSelectionModel().select(produtosEstoque.get(i));
                     btnRemover.setDisable(false);
             }
