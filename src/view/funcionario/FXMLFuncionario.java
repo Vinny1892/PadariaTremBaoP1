@@ -101,16 +101,17 @@ public class FXMLFuncionario implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      //  try {
-            //padeiros = cpP.getAll();
-            //gerentes = cg.getAll();
-        //vendedores = cv.getAll();
+        try {
+            padeiros = cpP.getAll();
+          gerentes = cg.getAll();
+        vendedores = cv.getAll();
         
-       // } catch (SQLException ex) {
-        //}
+       }catch (SQLException ex) {
+            //System.out.println("erro");
+       }
         //funcionarios.addAll(gerentes);
         //funcionarios.addAll(padeiros);
-        //funcionarios.addAll(vendedores);
+       // funcionarios.addAll(vendedores);
         
    tableFuncionario.getSelectionModel().selectedItemProperty().addListener((obs,oldValue,newValue) -> { btnRemover.setDisable(false);});
     }
