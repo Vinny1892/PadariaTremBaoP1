@@ -77,7 +77,7 @@ public class FXMLFormProduto implements Initializable {
     void btnSalvarAction(ActionEvent event) throws SQLException {
        
         GestaoFornecedor fornecedor = comboBoxFornecedor.getSelectionModel().getSelectedItem();
-        /*
+        
         if( !textFieldNome.getText().isEmpty() && !textFieldApelido.getText().equals("") && fornecedor!= null){
        new ControllerProduto().salvar(textFieldNome.getText(), fornecedor, Float.parseFloat(textFieldValorCusto.getText().trim()) , textFieldApelido.getText(), checkBoxPerecivel.isSelected());
              Stage stage = new Stage();
@@ -99,7 +99,7 @@ public class FXMLFormProduto implements Initializable {
              alert.show();
             
         }
-        */
+        
         
     }  
         
