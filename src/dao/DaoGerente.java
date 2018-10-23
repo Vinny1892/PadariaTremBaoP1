@@ -20,7 +20,7 @@ public class DaoGerente extends GenericDao implements CRUDBasico {
     public void salvar(Object object) throws SQLException {
         try {
             GestaoGerente gerenteSalvar = (GestaoGerente) object;
-            String insert = "INSERT INTO gerente (nome,cpf,endereco,telefone,salario_base_mensal,porcentagem_gratificacao) VALUES(?,?,?,?,?,?) ";
+            String insert = "INSERT INTO gerente (nome,cpf,endereco,telefone,salario_base,porcentagem_gratificacao) VALUES(?,?,?,?,?,?) ";
             save(insert, gerenteSalvar.getNome(), gerenteSalvar.getCpf(), gerenteSalvar.getEndereco(), gerenteSalvar.getTelefone(), gerenteSalvar.getSalarioBaseMensal(), gerenteSalvar.getPorcentagemGratificacao());
         } catch (MySQLIntegrityConstraintViolationException e) {
             System.out.println("CPF Ja existe");
@@ -38,7 +38,7 @@ public class DaoGerente extends GenericDao implements CRUDBasico {
     @Override
     public void atualizar(Object object) throws SQLException {
         GestaoGerente gerenteUpdate = (GestaoGerente) object;
-        String update = "UPDATE gerente SET nome = ? , endereco = ? , telefone = ? ,  salario_base_mensal = ? , porcentagem_gratificacao = ? WHERE cpf =  ? ";
+        String update = "UPDATE gerente SET nome = ? , endereco = ? , telefone = ? ,  salario_base = ? , porcentagem_gratificacao = ? WHERE cpf =  ? ";
         update(update, gerenteUpdate.getCpf(), gerenteUpdate.getNome(), gerenteUpdate.getEndereco(), gerenteUpdate.getTelefone(), gerenteUpdate.getSalarioBaseMensal(), gerenteUpdate.getPorcentagemGratificacao());
     }
 
@@ -59,11 +59,11 @@ public class DaoGerente extends GenericDao implements CRUDBasico {
     @Override
     public Object getById(int id) throws SQLException {
         GestaoGerente gerente = null;
-        PreparedStatement stmt = getConnection().prepareStatement("SELECT  * FROM gerente WHERE idgerente = ?");
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT  * FROM gerente WHERE id_gerente = ?");
         stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            gerente = new GestaoGerente(rs.getInt("idgerente"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"), rs.getString("telefone"), rs.getFloat("salario_base_mensal"), rs.getInt("porcentagem_gratificacao"));
+            gerente = new GestaoGerente(rs.getInt("id_gerente"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"), rs.getString("telefone"), rs.getFloat("salario_base"), rs.getInt("porcentagem_gratificacao"));
         }
         rs.close();
         stmt.close();
@@ -80,8 +80,7 @@ public class DaoGerente extends GenericDao implements CRUDBasico {
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM gerente");
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            GestaoGerente gerente = new GestaoGerente(rs.getInt("idgerente"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"),
-                    rs.getString("telefone"), rs.getFloat("salario_base_mensal"), rs.getInt("porcentagem_gratificacao"));
+            GestaoGerente gerente = new GestaoGerente(rs.getInt("id_gerente"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"), rs.getString("telefone"), rs.getFloat("salario_base"), rs.getInt("porcentagem_gratificacao"));
             gerentes.add(gerente);
         }
         rs.close();

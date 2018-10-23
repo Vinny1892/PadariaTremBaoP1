@@ -23,8 +23,8 @@ public class DaoPadeiro extends GenericDao implements CRUDBasico {
             String insert = "INSERT INTO padeiro (horario_alternativo,salario_base,cpf,telefone,nome, endereco) VALUES(?,?,?,?,?,?) ";
             save(insert, padeiro.getHorasTrabalhadaNoturno(), padeiro.getSalarioBaseMensal(), padeiro.getCpf(), padeiro.getTelefone(), padeiro.getNome(), padeiro.getEndereco());
         } catch (MySQLIntegrityConstraintViolationException e) {
-            System.out.println("codigo do produto ja existe");
-            JOptionPane.showMessageDialog(null, "Código do produto já existe no Banco de Dados");
+            System.out.println("CPF padeiro ja existe");
+            JOptionPane.showMessageDialog(null, "CPF padeiro já existe no Banco de Dados");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao inserir padeiro");
         }
@@ -63,7 +63,7 @@ public class DaoPadeiro extends GenericDao implements CRUDBasico {
         stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            padeiro = new Padeiro(rs.getString("nome"), rs.getString("endereco"), rs.getString("cpf"), rs.getString("telefone"), rs.getFloat("salario_base_mensal"), rs.getFloat("horarioalternativo"));
+            padeiro = new Padeiro(rs.getString("nome"), rs.getString("endereco"), rs.getString("cpf"), rs.getString("telefone"), rs.getFloat("salario_base"), rs.getFloat("horario_alternativo"));
         }
         rs.close();
         stmt.close();
@@ -80,7 +80,7 @@ public class DaoPadeiro extends GenericDao implements CRUDBasico {
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM padeiro");
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            Padeiro padeiro = new Padeiro(rs.getString("nome"), rs.getString("endereco"), rs.getString("cpf"), rs.getString("telefone"), rs.getFloat("salario_base_mensal"), rs.getFloat("horarioalternativo"));
+            Padeiro padeiro = new Padeiro(rs.getString("nome"), rs.getString("endereco"), rs.getString("cpf"), rs.getString("telefone"), rs.getFloat("salario_base"), rs.getFloat("horario_alternativo"));
             padeiros.add(padeiro);
         }
         rs.close();

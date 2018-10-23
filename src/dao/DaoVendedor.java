@@ -18,9 +18,9 @@ public class DaoVendedor extends GenericDao implements CRUDBasico {
     */
     @Override
     public void salvar(Object object) throws SQLException {
+        Vendedor vendedor = (Vendedor) object;
         try {
-            Vendedor vendedor = (Vendedor) object;
-            String insert = "INSERT INTO vendedor (montante_venda,salario_base,cpf,telefone,nome, endereco) VALUES(?,?,?,?,?,?) ";
+            String insert = "INSERT INTO vendedor (montante_vendas,salario_base,cpf,telefone,nome, endereco) VALUES(?,?,?,?,?,?) ";
             save(insert, vendedor.getMontanteVenda(), vendedor.getSalarioBaseMensal(), vendedor.getCpf(), vendedor.getTelefone(), vendedor.getNome(), vendedor.getEndereco());
             System.out.println("Metodo salvar DaoVendedor realizado");
         } catch (MySQLIntegrityConstraintViolationException e) {
@@ -92,5 +92,5 @@ public class DaoVendedor extends GenericDao implements CRUDBasico {
         System.out.println("Metodo getAll() GestaoVendedor realizado");
         return vendedores;
     }
-
+    
 }
