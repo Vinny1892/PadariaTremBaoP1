@@ -116,16 +116,46 @@ public class FXMLEstoquee implements Initializable {
 
     @FXML
     void btnBuscarAction(ActionEvent event) {
+        if(comboBoxProduto.getSelectionModel().getSelectedItem().getNome().equals("Nome")){
+            for ( int i = 0 ; i < produtosEstoque.size(); i++){
+                if(textFieldProduto.getText().equals(produtosEstoque.get(i).getProduto().getNome())){
+                        tableEstoque.getSelectionModel().select(produtosEstoque.get(i));
+                        btnRemover.setDisable(false);
+                }
+                
+                
+            }
+        }if(comboBoxProduto.getSelectionModel().getSelectedItem().getNome().equals("Codigo")){
+            for(int i = 0 ; i < produtosEstoque.size();i++){
+            if(textFieldProduto.getText().equals(produtosEstoque.get(i).getProduto().getCodigo())){
+                    tableEstoque.getSelectionModel().select(produtosEstoque.get(i));
+                    btnRemover.setDisable(false);
+            }
+                }
+        }
+        btnRemover.setDisable(false);
+        
 
     }
 
     @FXML
-    void btnRemoverAction(ActionEvent event) {
-
+    void btnRemoverAction(ActionEvent event) throws SQLException {
+        GestaoEstoque estoqueRemover = tableEstoque.getSelectionModel().getSelectedItem();
+        ce.deletar(String.valueOf(estoqueRemover.getIdEstoque()));
+        tableEstoque.getItems().remove(estoqueRemover);
     }
 
     @FXML
     void btnSalvarAction(ActionEvent event) {
+        if(produtos.isEmpty() && textFieldFormDataValidade.getText().isEmpty() && textFieldQuantidade.getText().isEmpty() ){
+            try{
+                GestaoProduto produtoSalvar = comboBoxProdutoForm.getSelectionModel().getSelectedItem();
+                ce.salvar(Integer.parseInt(textFieldQuantidade.getText()), textFieldFormDataValidade.getText(), produtoSalvar);
+
+            }catch(Exception e){
+                System.out.println("Erro ao Salvar");
+            }
+        }
 
     }
 

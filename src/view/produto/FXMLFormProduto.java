@@ -74,13 +74,11 @@ public class FXMLFormProduto implements Initializable {
 
     @FXML
     void btnSalvarAction(ActionEvent event) throws SQLException {
-        
-         
        
         GestaoFornecedor fornecedor = comboBoxFornecedor.getSelectionModel().getSelectedItem();
-        if( validaCodigo() && !textFieldNome.getText().isEmpty() && !textFieldApelido.getText().equals("") && fornecedor!= null){
+        if( !textFieldNome.getText().isEmpty() && !textFieldApelido.getText().equals("") && fornecedor!= null){
             System.out.println(Float.parseFloat("12.22"));
-            new ControllerProduto().salvar(textFieldNome.getText(), fornecedor, Float.parseFloat("12.22") , textFieldApelido.getText());
+            new ControllerProduto().salvar(textFieldNome.getText(), fornecedor, Float.parseFloat(textFieldValorCusto.getText().trim()) , textFieldApelido.getText());
         }else{
           
              Alert alert = new Alert(Alert.AlertType.NONE,"Não Deixe Campos Vazios", ButtonType.OK);
@@ -88,30 +86,10 @@ public class FXMLFormProduto implements Initializable {
              alert.show();
             
         }
-         
+    }  
         
 
-    }
-    public boolean validaCodigo(){
-             Pattern p = Pattern.compile("\\d\\d\\d\\d\\d\\d");
-        Matcher m = p.matcher(textFieldCodigo.getText());
-        if(m.find() && m.group().equals(textFieldCodigo.getText())){
-           return true;
-        }else{
-            
-            return false;
-        }
-    }
-    public boolean validaPreco(){
-             Pattern p = Pattern.compile("\\d.*,*\\d\\d");
-        Matcher m = p.matcher(textFieldValorCusto.getText());
-        if(m.find() && m.group().equals(textFieldValorCusto.getText())){
-           return true;
-        }else{
-            
-            return false;
-        }
-    }
+    
    
     
     
