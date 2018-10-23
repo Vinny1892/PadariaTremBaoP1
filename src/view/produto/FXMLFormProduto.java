@@ -126,11 +126,11 @@ public class FXMLFormProduto implements Initializable {
     }   
     
     public void inicializarComboBox(){
-        obsCategoriasFornecedor = FXCollections.observableArrayList();
+        obsCategoriasFornecedor = FXCollections.observableArrayList(fornecedores);
        
         comboBoxFornecedor.setItems(obsCategoriasFornecedor);
         if(fornecedores.size() > 0){
-            comboBoxFornecedor.getSelectionModel().select(fornecedores.get(0));
+            comboBoxFornecedor.getSelectionModel().selectFirst();
         }else{
             comboBoxFornecedor.setEditable(false);
         }
