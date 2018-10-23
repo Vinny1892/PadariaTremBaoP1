@@ -196,9 +196,9 @@ public class FXMLEstoquee implements Initializable {
     }
 
     public void inicializarTabela(){
-        tableColumnNome.setCellValueFactory(new PropertyValueFactory<> ("produto"));
-        tableColumnCodigo.setCellValueFactory(new PropertyValueFactory<>("idProduto"));
-        tableColumnQuantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
+        tableColumnNome.setCellValueFactory(new PropertyValueFactory<> ("produtoNome"));
+        tableColumnCodigo.setCellValueFactory(new PropertyValueFactory<>("produtoCodigo"));
+        tableColumnQuantidade.setCellValueFactory(new PropertyValueFactory<>("qtdProduto"));
         tableColumnDataValidade.setCellValueFactory(new PropertyValueFactory<>("dataValidade"));
         obsTableEstoque =  FXCollections.observableArrayList(produtosEstoque);
         tableEstoque.setItems(obsTableEstoque);
