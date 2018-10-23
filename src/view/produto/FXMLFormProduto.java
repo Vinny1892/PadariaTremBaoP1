@@ -35,6 +35,7 @@ import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
 import javafx.util.converter.FloatStringConverter;
 import javafx.util.converter.IntegerStringConverter;
+import javax.swing.JOptionPane;
 import model.GestaoFornecedor;
 import view.main.Main;
 
@@ -76,8 +77,8 @@ public class FXMLFormProduto implements Initializable {
     void btnSalvarAction(ActionEvent event) throws SQLException {
        
         GestaoFornecedor fornecedor = comboBoxFornecedor.getSelectionModel().getSelectedItem();
+        /*
         if( !textFieldNome.getText().isEmpty() && !textFieldApelido.getText().equals("") && fornecedor!= null){
-            System.out.println(Float.parseFloat("12.22"));
        new ControllerProduto().salvar(textFieldNome.getText(), fornecedor, Float.parseFloat(textFieldValorCusto.getText().trim()) , textFieldApelido.getText(), checkBoxPerecivel.isSelected());
              Stage stage = new Stage();
         Parent root = null;
@@ -98,6 +99,8 @@ public class FXMLFormProduto implements Initializable {
              alert.show();
             
         }
+        */
+        
     }  
         
 

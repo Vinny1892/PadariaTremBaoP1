@@ -30,6 +30,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 import model.GestaoEstoque;
 import model.GestaoFornecedor;
 import model.GestaoProduto;
@@ -150,8 +151,9 @@ public class FXMLEstoquee implements Initializable {
         inicializarComboBoxProduto();
         if(!textFieldFormDataValidade.getText().isEmpty() && !textFieldQuantidade.getText().isEmpty()){
             try{
-                GestaoProduto produtoSalvar = comboBoxProdutoForm.getSelectionModel().getSelectedItem();
-                ce.salvar(Integer.parseInt(textFieldQuantidade.getText()), textFieldFormDataValidade.getText(), produtoSalvar);
+                GestaoProduto produtoSalvar = comboBoxProdutoForm.getValue();
+                JOptionPane.showMessageDialog(null, produtoSalvar.getNome());
+                //ce.salvar(Integer.parseInt(textFieldQuantidade.getText()), textFieldFormDataValidade.getText(), produtoSalvar);
                 produtosEstoque = ce.getAll();
                 inicializarTabela();
                 formEstoque.setVisible(false);
