@@ -28,16 +28,11 @@ public class DaoVenda extends GenericDao implements CRUDBasico {
      */
     @Override
     public void salvar(Object object) throws SQLException {//cada id_venda só pode repetir 20vezes
-        //try {
         GestaoVenda venda = (GestaoVenda) object;
-        String insert = "INSERT INTO venda (data_venda, forma_pagamento, id_cliente, id_vendedor) VALUES(?,?,?,?) ";
-        save(insert, venda.getDataVenda(), venda.getFormaPagamento(), venda.getCliente().getIdCliente(), venda.getVendedor().getIdVendedor());
-        /*} catch (MySQLIntegrityConstraintViolationException e) {
-            System.out.println("codigo do produto ja existe");
-            JOptionPane.showMessageDialog(null, "Código do produto já existe no Banco de Dados");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao inserir fornecedor");
-        }*/
+        for (int i = 0; i < venda.getEstoques().size(); i++) {
+            String insert = "INSERT INTO venda (data_venda, forma_pagamento, id_cliente, id_vendedor, id_estoque) VALUES(?,?,?,?,?) ";
+            save(insert, venda.getDataVenda(), venda.getFormaPagamento(), venda.getCliente().getIdCliente(), venda.getVendedor().getIdVendedor(), venda.getEstoques().get(i).getIdEstoque());
+        }
         JOptionPane.showMessageDialog(null, "Compra realizada");
     }
 
@@ -48,8 +43,10 @@ public class DaoVenda extends GenericDao implements CRUDBasico {
     @Override
     public void atualizar(Object object) throws SQLException {
         GestaoVenda venda = (GestaoVenda) object;
-        String update = "UPDATE produto SET data_venda = ?,forma_pagamento = ?, id_cliente = ?,id_vendedor = ? WHERE id_venda =  ? ";
-        update(update, venda.getDataVenda(), venda.getVendedor().getIdVendedor(), venda.getCliente().getIdCliente(), venda.getCliente().getIdCliente(), venda.getFormaPagamento(), venda.getIdVenda());
+        for (int i = 0; i < venda.getEstoques().size(); i++) {
+            String update = "UPDATE produto SET data_venda = ?,forma_pagamento = ?, id_cliente = ?,id_vendedor = ?, id_estoque = ? WHERE id_venda =  ? ";
+            update(update, venda.getDataVenda(), venda.getVendedor().getIdVendedor(), venda.getCliente().getIdCliente(), venda.getCliente().getIdCliente(), venda.getFormaPagamento(), venda.getIdVenda(), venda.getEstoques().get(i).getIdEstoque());
+        }
         System.out.println("Metodo atualizar DaoVenda realizado");
     }
 
@@ -70,12 +67,13 @@ public class DaoVenda extends GenericDao implements CRUDBasico {
     @Override
     public ArrayList<Object> getById(int id) throws SQLException {
         ArrayList<Object> objetosVenda = new ArrayList<>();
-        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM venda WHERE id_venda = " + id);
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM venda WHERE id_venda = ?");
+        stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
             Vendedor vendedor = (Vendedor) new ControllerVendedor().selecionaObjeto(rs.getInt("id_vendedor"));
-            ArrayList<GestaoEstoque> estoqueId = (ArrayList<GestaoEstoque>) (ArrayList<?>) new DaoEstoque().getById(rs.getInt("id_estoque"));
             GestaoCliente cliente = (GestaoCliente) new ControllerCliente().selecionaObjeto(rs.getInt("id_cliente"));
+            ArrayList<GestaoEstoque> estoqueId = (ArrayList<GestaoEstoque>) (ArrayList<?>) new DaoEstoque().getById(rs.getInt("id_estoque"));
             GestaoVenda venda = new GestaoVenda(rs.getString("data_venda"), vendedor, cliente, estoqueId, rs.getInt("forma_pagamento"), id);
             objetosVenda.add(venda);
         }

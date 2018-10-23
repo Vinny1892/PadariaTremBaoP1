@@ -51,6 +51,7 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
     Metodo utilizado para deletar um produto na tabela/entidade produto,
     de acordo com codigo ou id recebido.
      */
+    @Override
     public void deletar(String codigoS) throws SQLException {
         int codigo = Integer.parseInt(codigoS);
         delete("DELETE FROM produto WHERE id_produto = ? ", codigoS);
@@ -61,6 +62,7 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
     de acordo com id
     retornando um objeto do tipo produto.
      */
+    @Override
     public GestaoProduto getById(int id) throws SQLException {
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM produto WHERE id_produto = ?");
         stmt.setInt(1, id);
