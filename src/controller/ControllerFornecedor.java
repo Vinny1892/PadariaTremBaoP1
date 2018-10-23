@@ -50,13 +50,20 @@ public class ControllerFornecedor {
         System.out.println("Metodo editar ControllerFornecedor realizado");
     }
 
-
+    /*
+    Metodo utilizado para chamar o metodo getAll() da classe DaoFornecedor,
+    retornando um ArrayList de objeto GestaoFornecedor.
+    */
     public ArrayList<GestaoFornecedor> getAll() throws SQLException {
         ArrayList<GestaoFornecedor> fornecedores = (ArrayList<GestaoFornecedor>) (ArrayList<?>) new DaoFornecedor().getAll();
         return fornecedores;
     }
     
-    
+    /*
+    Metodo utilizado para chamar o metodo getById() da classe DaoFornecedor,
+    de acordo com id recebido,
+    retornando objeto encotrado.
+    */
     public Object selecionaObjeto(int id) throws SQLException{
         GestaoFornecedor fornecedor = (GestaoFornecedor) new DaoFornecedor().getById(id);
         System.out.println("Metodo selecionaObjeto ControllerFornecedor realizado");

@@ -41,7 +41,7 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
     public void atualizar(Object object) throws SQLException {
         GestaoProduto produto = (GestaoProduto) object;
         String update = "UPDATE produto SET nome = ?,preco_custo = ?, apelido = ?,id_fornecedo = ?, perecivel = ? WHERE id_produto =  ? ";
-        update(update, produto.getIdproduto(), produto.getNome(), produto.getPrecoCusto(), produto.getApelido(), produto.getFornecedor(), produto.isPerecivel());
+        update(update, produto.getIdproduto(), produto.getNome(), produto.getPrecoCusto(), produto.getApelido(), produto.getFornecedor().getIdfornecedor(), produto.isPerecivel());
         System.out.println("Metodo atualizar DaoProduto realizado");
     }
 
