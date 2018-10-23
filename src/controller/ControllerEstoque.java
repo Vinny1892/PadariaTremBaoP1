@@ -3,13 +3,8 @@ package controller;
 import model.GestaoEstoque;
 import dao.DaoEstoque;
 import java.sql.SQLException;
-import java.util.Date;
-
 import model.GestaoProduto;
-import model.GestaoFornecedor;
-import controller.ControllerFornecedor;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ControllerEstoque {
     /*
@@ -35,8 +30,8 @@ public class ControllerEstoque {
     Metodo utilizado para chamar o metodo atuzalizar() da classe DaoEstoque,
     passando como parametro o objeto a ser editado e seus novos parametros.
     */
-    public void editar(int qtdProduto, String dataValidade, GestaoProduto produto) throws SQLException {
-        GestaoEstoque estoque = new GestaoEstoque(qtdProduto, dataValidade, produto);
+    public void editar(int idEstoque, int qtdProduto, String dataValidade, GestaoProduto produto) throws SQLException {
+        GestaoEstoque estoque = new GestaoEstoque(idEstoque,qtdProduto, dataValidade, produto);
         new DaoEstoque().atualizar(estoque);
         System.out.println("Metodo editar ControllerEstoque realizado");
     }
