@@ -11,6 +11,11 @@ import model.Padeiro;
 
 public class DaoPadeiro extends GenericDao implements CRUDBasico {
 
+    /*
+    Metodo utiliado para salvar padeiro na tabela/entidade padeiro,
+    o objeto GestaoPadeiro recebido como parametro,
+    se cpf nao for repetido.
+     */
     @Override
     public void salvar(Object object) throws SQLException {
         try {
@@ -25,6 +30,11 @@ public class DaoPadeiro extends GenericDao implements CRUDBasico {
         }
     }
 
+    /*
+    Metodo utilizado para editar objeto da tabela/entidade padeiro,
+    com objeto recebido
+    de acordo com id este objeto recebido
+     */
     @Override
     public void atualizar(Object object) throws SQLException {
         Padeiro padeiro = (Padeiro) object;
@@ -32,11 +42,20 @@ public class DaoPadeiro extends GenericDao implements CRUDBasico {
         update(update, padeiro.getCpf(), padeiro.getNome(), padeiro.getEndereco(), padeiro.getTelefone(), padeiro.getSalarioBaseMensal(), padeiro.getHorasTrabalhadaNoturno());
     }
 
+    /*
+    Metodo utilizado para deletar padeiro da tabela/entidade padeiro,
+    o objeto GestaoPadeiro de acordo com cpf ou id recebido
+     */
     @Override
     public void deletar(String cpf) throws SQLException {
         delete("DELETE FROM padeiro WHERE cpf = ? ", cpf);
     }
 
+    /*
+    Metodo utilizado para pega um padeiro da tabela/entidade padeiro,
+    de acordo com id,
+    e retorna o objeto do tipo padeiro encontrado.
+     */
     @Override
     public Object getById(int id) throws SQLException {
         Padeiro padeiro = null;
@@ -51,6 +70,10 @@ public class DaoPadeiro extends GenericDao implements CRUDBasico {
         return padeiro;
     }
 
+    /*
+    Metodo utilizado para pegar todos os padeiros da tabela/entidade padeiro,
+    retornando um ArrayList de objeto do tipo padeiro.
+     */
     @Override
     public List<Object> getAll() throws SQLException {
         ArrayList<Object> padeiros = new ArrayList<Object>();

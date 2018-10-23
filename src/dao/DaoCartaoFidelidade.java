@@ -1,24 +1,25 @@
 package dao;
 
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 import model.CartaoFidelidade;
-import model.GestaoCliente;
 
 public class DaoCartaoFidelidade extends GenericDao implements CRUDBasico {
 
+    /*
+        Metodo utilizado para salvar novo cartao na tabela/entidade cartao_fidelidade,
+    com o objeto passado como parametro.
+     */
     @Override
     public void salvar(Object object) throws SQLException {
         //try {
-            CartaoFidelidade cartaoFidelidade = (CartaoFidelidade) object;
-            String insert = "INSERT INTO cartao_fidelidade (gold, platinum) VALUES(?,?,?,?) ";
-            save(insert, cartaoFidelidade.isGold(), cartaoFidelidade.isPlatinum());
-            System.out.println("Metodo salvar DaoCartaoFidelidade realizado");
+        CartaoFidelidade cartaoFidelidade = (CartaoFidelidade) object;
+        String insert = "INSERT INTO cartao_fidelidade (gold, platinum) VALUES(?,?,?,?) ";
+        save(insert, cartaoFidelidade.isGold(), cartaoFidelidade.isPlatinum());
+        System.out.println("Metodo salvar DaoCartaoFidelidade realizado");
         /*} catch (MySQLIntegrityConstraintViolationException e) {
             System.out.println("CPF Ja existe");
             JOptionPane.showMessageDialog(null, "CPF ja existe no Banco de Dados");
@@ -27,6 +28,11 @@ public class DaoCartaoFidelidade extends GenericDao implements CRUDBasico {
         }*/
     }
 
+    /*
+        Metedo utilizado para modificar cartao fidelidade no banco de dados
+        Recebe como parametro o objeto do tipo CartaoFidelidade
+        e modifica no banco de acordo com id deste objeto
+     */
     @Override
     public void atualizar(Object object) throws SQLException {
         CartaoFidelidade cartao = (CartaoFidelidade) object;
@@ -35,6 +41,9 @@ public class DaoCartaoFidelidade extends GenericDao implements CRUDBasico {
         System.out.println("Metodo atualizar DaoCartaoFidelidade realizado");
     }
 
+    /*
+        Metodo utilizado para deletar um cartao de acordo com id
+     */
     @Override
     public void deletar(String idString) throws SQLException {
         int id = Integer.parseInt(idString);
@@ -42,8 +51,10 @@ public class DaoCartaoFidelidade extends GenericDao implements CRUDBasico {
         System.out.println("Metodo deletar DaoCartaoFidelidade realizado");
     }
 
-    
- // TALVEZ N PRECISE DE WHILE
+    /*
+        Metodo utilizado para encontrar um cartao no banco apatir do id
+        retornando este objeto, do tipo CartaoFidelidade
+     */
     @Override
     public Object getById(int id) throws SQLException {
         CartaoFidelidade cartao = null;
@@ -58,6 +69,10 @@ public class DaoCartaoFidelidade extends GenericDao implements CRUDBasico {
         return cartao;
     }
 
+    /*
+        Metodo utilizado para preencher um ArrayList do tipo objeto CartaoCliente, e retorna o mesmo
+        retorna todos os cartoes encontrado na entidade/tabela cartao_cliente 
+     */
     @Override
     public List<Object> getAll() throws SQLException {
         ArrayList<Object> Cartoes = new ArrayList<>();

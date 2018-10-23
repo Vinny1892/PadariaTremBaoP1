@@ -13,6 +13,10 @@ import model.CartaoFidelidade;
 
 public class DaoCliente extends GenericDao implements CRUDBasico {
 
+    /*
+        Metodo utilizado para salvar um novo cliente na tabela/entidade cliente,
+        de acordo com objeto GestaiCliente recebido.
+    */
     @Override
     public void salvar(Object object) throws SQLException {
         try {
@@ -28,7 +32,11 @@ public class DaoCliente extends GenericDao implements CRUDBasico {
             JOptionPane.showMessageDialog(null, "Erro ao inserir fornecedor");
         }
     }
-
+    /*
+        Metodo utilizado para editar modificar um cliente no banco de dados
+        recebe o objeto do tipo Cliente que será modificado
+        de acordo com id
+    */
     @Override
     public void atualizar(Object object) throws SQLException {
         GestaoCliente cliente = (GestaoCliente) object;
@@ -36,13 +44,20 @@ public class DaoCliente extends GenericDao implements CRUDBasico {
         update(update, cliente.getCpf(), cliente.getNome(), cliente.getEndereco(), cliente.getTelefone());
         System.out.println("Metodo atualizar DaoCliente realizado");
     }
-
+    /*
+        Metodo utilizado para deletar um cliente 
+        recebe o objeto do tipo Cliente que sera deletado
+        de acordo com id
+    */
     @Override
     public void deletar(String cpf) throws SQLException {
         delete("DELETE FROM cliente WHERE cpf = ? ", cpf);
         System.out.println("Metodo deletar() DaoCliente realizado");
     }
-
+    /*
+        Metodo utilizado para buscar cliente apartir do seu id
+        retorna como 
+    */
     @Override
     public Object getById(int id) throws SQLException {
         PreparedStatement stmt = getConnection().prepareStatement("SELECT  * FROM cliente WHERE id_cliente = ?");
@@ -57,6 +72,10 @@ public class DaoCliente extends GenericDao implements CRUDBasico {
         return cliente;
     }
 
+    /*
+        Metodo utilizado para seleciona todos os clientes da tabela/entidade Cliente
+        retorna um ArrayList do tipo objeto de Cliente
+    */
     @Override
     public List<Object> getAll() throws SQLException {
         ArrayList<Object> clientes = new ArrayList<>();

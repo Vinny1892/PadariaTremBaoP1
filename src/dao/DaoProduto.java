@@ -16,7 +16,10 @@ import model.GestaoFornecedor;
  * a quantidade, a entidade produto funciona mais como um catalogo produtos
  */
 public class DaoProduto extends GenericDao implements CRUDBasico {
-
+    /*
+    Metodo utilizado para salvar produto na tabela/entidade produto,
+    o objeto GestaoProduto recebido como parametro.
+    */
     @Override
     public void salvar(Object object) throws SQLException {
         try {
@@ -30,7 +33,10 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
             JOptionPane.showMessageDialog(null, "Erro ao inserir fornecedor");
         }
     }
-
+    /*
+    Metodo utilizado para editar um produto na tabela/entidade produto,
+    com o objeto recebido, de acordo com id deste objeto.
+    */
     @Override
     public void atualizar(Object object) throws SQLException {
         GestaoProduto produto = (GestaoProduto) object;
@@ -39,11 +45,20 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
         System.out.println("Metodo atualizar DaoProduto realizado");
     }
 
+    /*
+    Metodo utilizado para deletar um produto na tabela/entidade produto,
+    de acordo com codigo ou id recebido.
+    */    
     public void deletar(String codigoS) throws SQLException {
         int codigo = Integer.parseInt(codigoS);
         delete("DELETE FROM produto WHERE id_produto = ? ", codigoS);
     }
     
+    /*
+    Metodo utilizado para pegar um produto na tabela/entidade produto,
+    de acordo com id
+    retornando um objeto do tipo produto.
+    */
     public /*List<Object>*/ GestaoProduto getById(int id) throws SQLException {
         //ArrayList<Object> produtos = new ArrayList<>();
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM produto WHERE id_produto = " + id);
@@ -57,7 +72,11 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
         stmt.close();
         return produto;
     }
-
+    
+    /*
+    Metodo utilizado para pegar todos os produtos na tabela/entidade produto,
+    retornando um ArrayList de objetos do tipo produto.
+    */
     @Override
     public List<Object> getAll() throws SQLException {
         ArrayList<Object> produtos = new ArrayList<>();

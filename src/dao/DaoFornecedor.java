@@ -10,6 +10,10 @@ import model.GestaoFornecedor;
 
 public class DaoFornecedor extends GenericDao implements CRUDBasico {
 
+    /*
+    Metodo utilizado para salvar GestaoFornecedor na tabela/entidade estoque,
+    de acordo com objeto GestaoFornecedor recebido.
+    */
     @Override
     public void salvar(Object object) {
         try {
@@ -25,6 +29,11 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
         }
     }
 
+    /*
+        Metedo utilizado para modificar tabela/entidade fornecedor,
+        Recebe como parametro o objeto do tipo GestaoFornecedor,
+        e modifica no banco de acordo com id deste objeto.
+     */
     @Override
     public void atualizar(Object object) throws SQLException {
         GestaoFornecedor fornecedorUpdate = (GestaoFornecedor) object;
@@ -33,24 +42,19 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
         System.out.println("Metodo atualizar DaoFornecedor realizado");
     }
 
+    /*
+    Metodo utilizado para deletar um estoque da tabela/entidade estoque,
+    de acordo com cnpj ou idFornecedor.
+     */
     @Override
     public void deletar(String cnpj) throws SQLException {
         delete("DELETE FROM fornecedor WHERE cnpj = ? ", cnpj);
     }
 
     /*
-    @Override
-    public Object getById(int id) throws SQLException {
-        ArrayList< Object> vetorObjetos = (ArrayList< Object>) getAll();
-        GestaoFornecedor fornecedor;
-        for (int i = 0; i < vetorObjetos.size(); i++) {
-            fornecedor = (GestaoFornecedor) vetorObjetos.get(i);
-            if (id == fornecedor.getIdfornecedor()) {
-                return fornecedor;
-            }
-        }
-        return null;
-    }
+        Metodo utiliado para pegar um fornecdor da tabela/entidade fornecedor
+        de acordo com id recebido,
+        e retorna este objeto Gestao fornecedor encontrado.
      */
     @Override
     public Object getById(int id) throws SQLException {
@@ -67,6 +71,10 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
         return fornecedor;
     }
 
+    /*
+        Metodo utilizado para pegar todos os fornecedores na tabela/entidade fornecedor,
+        e retorna um ArrayList deste objeto GestaoFornecedor.
+     */
     @Override
     public ArrayList<Object> getAll() throws SQLException {
         ArrayList<Object> fornecedores = new ArrayList<>();

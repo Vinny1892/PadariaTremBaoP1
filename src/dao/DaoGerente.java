@@ -11,6 +11,11 @@ import model.GestaoGerente;
 
 public class DaoGerente extends GenericDao implements CRUDBasico {
 
+    /*
+        Metodo utilizado para salvar gerente na tabela/entidade gerente,
+        de acordo com objeto GestaoGerente recebido,
+        se cpf nao for repetido.
+     */
     @Override
     public void salvar(Object object) throws SQLException {
         try {
@@ -25,6 +30,11 @@ public class DaoGerente extends GenericDao implements CRUDBasico {
         }
     }
 
+    /*
+    Metodo utilizado para editar um gerente na tabela/entidade gerente, 
+    com o objeto recebido,
+    de acordo com id deste objeto,
+     */
     @Override
     public void atualizar(Object object) throws SQLException {
         GestaoGerente gerenteUpdate = (GestaoGerente) object;
@@ -32,11 +42,20 @@ public class DaoGerente extends GenericDao implements CRUDBasico {
         update(update, gerenteUpdate.getCpf(), gerenteUpdate.getNome(), gerenteUpdate.getEndereco(), gerenteUpdate.getTelefone(), gerenteUpdate.getSalarioBaseMensal(), gerenteUpdate.getPorcentagemGratificacao());
     }
 
+    /*
+    Metodo utilizado para deletar um gerente na tabela/entidade gerente,
+    de acordo com cpf ou id.
+     */
     @Override
     public void deletar(String cpf) throws SQLException {
         delete("DELETE FROM gerente WHERE cpf = ? ", cpf);
     }
 
+    /*
+    Metodo utilizado para pegar um gerente da tabela/entidade gerente
+    de cordo com id
+    retornando este objeto GesgtaoGerente encontrado.
+     */
     @Override
     public Object getById(int id) throws SQLException {
         GestaoGerente gerente = null;
@@ -51,6 +70,10 @@ public class DaoGerente extends GenericDao implements CRUDBasico {
         return gerente;
     }
 
+    /*
+    Metodo utilizado para pegar todos os gerentes da tabela/entidade gerente,
+    retornando um ArrayList de objeto do tipo GestaoGerentes.
+     */
     @Override
     public List<Object> getAll() throws SQLException {
         ArrayList<Object> gerentes = new ArrayList<Object>();
