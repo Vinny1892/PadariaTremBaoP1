@@ -13,6 +13,7 @@ public class ControllerEstoque {
     */
     public void salvar(int qtdProduto, String dataValidade, GestaoProduto produto) throws SQLException {
         GestaoEstoque estoque = new GestaoEstoque(qtdProduto, dataValidade, produto);
+        System.out.println(produto.getIdproduto());
         new DaoEstoque().salvar(estoque);
         System.out.println("Metodo salvar ControllerEstoque realizado");
     }
@@ -55,7 +56,7 @@ public class ControllerEstoque {
         System.out.println("Metodo selecionaObjetosById ControllerEstoque realizado");
         return estoquesById;
     }
-    
+}
  
     
 
@@ -71,14 +72,14 @@ public class ControllerEstoque {
 //        ce.salvar(20, "01/11/2018" , produto);
 //    }
     
-    /*
-    public static void main(String[] args) throws SQLException {
-        ControllerEstoque cee = new ControllerEstoque();
-        ArrayList<GestaoEstoque> estoques = cee.getAll();
-        System.out.println(estoques.size());
-        for (int i = 0; i < estoques.size(); i++) {
-             System.out.println(estoques.get(i).getProduto().getNome());
-        }
-    }*/
-
-} 
+    
+//    public static void main(String[] args) throws SQLException {
+//        ControllerEstoque cee = new ControllerEstoque();
+//        ArrayList<GestaoEstoque> estoques = cee.getAll();
+//       System.out.println(estoques.size());
+//       for (int i = 0; i < estoques.size(); i++) {
+//             System.out.println(estoques.get(i).getProduto().getNome());
+//       }
+//   }
+//
+//} 

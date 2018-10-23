@@ -1,6 +1,9 @@
 package model;
 
 import java.util.Date;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import model.GestaoProduto;
 
 /*
@@ -88,4 +91,37 @@ public class GestaoEstoque {
     public void setDataValidade(String dataValidade) {
         this.dataValidade = dataValidade;
     }
+
+
+    public SimpleStringProperty  produtoNomeProperty(){
+        SimpleStringProperty nome =  new SimpleStringProperty(produto.getNome());
+        return  nome;
+    }
+    
+    public SimpleStringProperty produtoCodigoProperty(){
+        String codigoMostrar =  String.valueOf(produto.getIdproduto());
+        switch(codigoMostrar.length()){
+            case 1:
+               codigoMostrar = "00000"+codigoMostrar;
+                break;
+            case 2:
+                codigoMostrar = "0000" +codigoMostrar;
+            break;
+            case 3:
+                codigoMostrar = "000"+codigoMostrar;
+                break;
+            case 4:
+                codigoMostrar = "00"+codigoMostrar;
+                break;
+            case 5:
+                codigoMostrar = "0"+codigoMostrar;
+                break;
+            default:
+                System.out.println("Implementar Erro codigo Maior que 6 digitos");
+                break;
+        }
+         SimpleStringProperty codigo = new SimpleStringProperty(codigoMostrar);
+         return codigo;
+    }
+    
 }

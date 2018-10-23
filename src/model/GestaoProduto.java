@@ -93,5 +93,11 @@ public class GestaoProduto {
         this.perecivel = perecivel;
     }
 
+    @Override
+    public String toString() {
+        return nome;
+    }
+    
+
 
 }

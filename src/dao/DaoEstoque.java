@@ -17,7 +17,9 @@ public class DaoEstoque extends GenericDao implements CRUDBasico {
      */
     @Override
     public void salvar(Object object) throws SQLException {
+        
         GestaoEstoque estoque = (GestaoEstoque) object;
+        System.out.println(estoque.getProduto().getIdproduto());
         String insert = "INSERT INTO estoque (id_produto,data_validade,quantidade) VALUES(?,?,?) ";
         save(insert, estoque.getProduto().getIdproduto(), estoque.getDataValidade(), estoque.getQtdProduto());
         System.out.println("Metodo salvar DaoEstoque realizado");
