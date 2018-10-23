@@ -147,10 +147,14 @@ public class FXMLEstoquee implements Initializable {
 
     @FXML
     void btnSalvarAction(ActionEvent event) {
-        if(produtos.isEmpty() && textFieldFormDataValidade.getText().isEmpty() && textFieldQuantidade.getText().isEmpty() ){
+        inicializarComboBoxProduto();
+        if(!textFieldFormDataValidade.getText().isEmpty() && !textFieldQuantidade.getText().isEmpty()){
             try{
                 GestaoProduto produtoSalvar = comboBoxProdutoForm.getSelectionModel().getSelectedItem();
                 ce.salvar(Integer.parseInt(textFieldQuantidade.getText()), textFieldFormDataValidade.getText(), produtoSalvar);
+                produtosEstoque = ce.getAll();
+                inicializarTabela();
+                formEstoque.setVisible(false);
 
             }catch(Exception e){
                 System.out.println("Erro ao Salvar");
@@ -196,9 +200,9 @@ public class FXMLEstoquee implements Initializable {
     }
 
     public void inicializarTabela(){
-        tableColumnNome.setCellValueFactory(new PropertyValueFactory<> ("produto"));
-        tableColumnCodigo.setCellValueFactory(new PropertyValueFactory<>("idProduto"));
-        tableColumnQuantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
+        tableColumnNome.setCellValueFactory(new PropertyValueFactory<> ("produtoNome"));
+        tableColumnCodigo.setCellValueFactory(new PropertyValueFactory<>("produtoCodigo"));
+        tableColumnQuantidade.setCellValueFactory(new PropertyValueFactory<>("qtdProduto"));
         tableColumnDataValidade.setCellValueFactory(new PropertyValueFactory<>("dataValidade"));
         obsTableEstoque =  FXCollections.observableArrayList(produtosEstoque);
         tableEstoque.setItems(obsTableEstoque);
@@ -215,6 +219,12 @@ public class FXMLEstoquee implements Initializable {
          comboBoxProduto.setItems(obscategoriasProdutoEstoqueBusca);
          comboBoxProduto.getSelectionModel().select(categoriaNome);
     
+    }
+    
+    public void inicializarComboBoxProduto(){
+        obscategoriasProdutoEstoqueAdicionar = FXCollections.observableArrayList(produtos);
+        comboBoxProdutoForm.setItems(obscategoriasProdutoEstoqueAdicionar);  
+        comboBoxProdutoForm.getSelectionModel().selectFirst();
     }
     
 }
