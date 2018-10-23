@@ -1,35 +1,60 @@
 package controller;
 
 import model.CartaoFidelidade;
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import model.GestaoCliente;
 import dao.DaoCliente;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 public class ControllerCliente {
 
+    /*
+    Metodo utilizado chamar o metodo salvar() da classe DaoCliente,
+    passando como parametro objeto GestaoCliente a ser salva.
+    */
     public void salvar(String nome, String endereco, String cpf, String telefone, CartaoFidelidade cartaoFidelidade) throws SQLException {
         GestaoCliente cliente = new GestaoCliente(nome, endereco, cpf, telefone, cartaoFidelidade);
         new DaoCliente().salvar(cliente);
         System.out.println("Metodo salvar ControllerCliente realizado");
     }
 
+    /*
+    Metodo utilizado para chamar o metodo atualizar() da classe DaoCliente
+    passando como parametro o objeto GestaoCliente a ser editado e como ser editado.
+    */
     public void editar(String nome, String endereco, String cpf, String telefone, CartaoFidelidade cartaoFidelidade) throws SQLException {
         GestaoCliente cliente = new GestaoCliente(nome, endereco, cpf, telefone, cartaoFidelidade);
         new DaoCliente().atualizar(cliente);
         System.out.println("Metodo editar ControllerCliente realizado");
     }
 
+    /*
+    Metodo utilizado para chamar o metodo deletar() da classeDaoCliente
+    passando como o parametro o cpf. 
+    */
     public void deletar(String cpf) throws SQLException {
         new DaoCliente().deletar(cpf);
         System.out.println("Metodo deletar ControllerCliente realizado");
     }
+    
+    /*
+    Metodo utilizado para chamar o metodo getById()  da classe DaoCliente,
+    passando como parametro o id do cliente a ser pego,
+    e retornando o objeto cliente.
+    */
     public Object selecionaObjeto(int id) throws SQLException{
         GestaoCliente cliente = (GestaoCliente) new DaoCliente().getById(id);
         System.out.println("Metodo selecionaObjeto ControllerCliente realizado");
         return cliente;
+    }
+    /*
+    Metodo utilizado para chamar o metodo getAll() da classe DaoCliente,
+    retornando um ArrayList de objetos do tipo GestaoCliente.
+    */
+    public ArrayList<GestaoCliente> getAll() throws SQLException {
+        ArrayList<GestaoCliente> produtos = (ArrayList<GestaoCliente>) (ArrayList<?>) new DaoCliente().getAll();
+        System.out.println("Metodo getAll ControllerCliente realizado");
+        return produtos;
     }
 /*
     public static void main(String[] args) throws SQLException {

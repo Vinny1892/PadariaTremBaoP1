@@ -11,6 +11,10 @@ import model.GestaoFornecedor;
 
 public class ControllerFornecedor {
 
+    /*
+    Metodo utilizado para chamar o metodo salvar() da classe DaoFornecedor,
+    passando como parametro o objeto GestaoFornecedor.
+    */
     public void salvar(String cnpj, boolean recorrente, String nome, String endereco, String taxa) throws SQLException {
         if(recorrente){
             GestaoFornecedor fornecedor = new GestaoFornecedor(nome, cnpj, endereco, recorrente, Integer.parseInt(taxa));
@@ -22,16 +26,29 @@ public class ControllerFornecedor {
 //        System.out.println("Metodo salvar ControllerFonecedor realizado");
     }
 
+    /*
+    Metodo utilizado para chamar o metodo deletar() da classe DaoFornecedor,
+    passando o cnpj ou id do fornecedor a ser deletado.
+    */
     public void deletar(String cnpj) throws SQLException {
         new DaoFornecedor().deletar(cnpj);
         System.out.println("Metodo deletar ControllerFonecedor realizado");
     }
-//
-//    public void editar(int idFornecedor, String nome, int taxaDesconto, String endereco, boolean recorrente, String cnpj) throws SQLException {
-//        GestaoFornecedor fornecedor = new GestaoFornecedor(idFornecedor, nome, taxaDesconto, endereco, recorrente, cnpj);
-//        new DaoFornecedor().atualizar(fornecedor);
-//        System.out.println("Metodo editar ControllerFornecedor realizado");
-//    }
+    
+    /*
+    Metodo utilizado para chamar o metodo atualizar() da classe DaoFornecedor,
+    de acordo com id, passando como parametro o objeto GestaoFornecedor.
+    */
+    public void editar(int idFornecedor, String nome, String cnpj, String endereco, boolean recorrente, String taxaDesconto) throws SQLException{
+        if(recorrente){
+            GestaoFornecedor fornecedor = new GestaoFornecedor(idFornecedor, nome, cnpj, endereco, recorrente, Integer.parseInt(taxaDesconto));
+            new DaoFornecedor().atualizar(fornecedor);
+        }else{
+         GestaoFornecedor fornecedor = new GestaoFornecedor(idFornecedor, nome, cnpj, endereco);
+         new DaoFornecedor().atualizar(fornecedor);
+        }
+        System.out.println("Metodo editar ControllerFornecedor realizado");
+    }
 
 
     public ArrayList<GestaoFornecedor> getAll() throws SQLException {
@@ -46,16 +63,5 @@ public class ControllerFornecedor {
         return fornecedor;
     }
     
-
-
-    
-//    
-//    public static void main(String[] args)  throws SQLException {
-//        ControllerFornecedor cf = new ControllerFornecedor();
-//        //cf.salvar("São Gabriel", "10", "Rua são", true, "22222233333344");
-//        //cf.editar("São Gabriel", "Rua Gabriel", "22222233333344", 5, true);
-//        cf.deletar("22222233333344");
-//    }
-
 }
 

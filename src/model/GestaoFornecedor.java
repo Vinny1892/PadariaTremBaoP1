@@ -37,6 +37,11 @@ public class GestaoFornecedor extends PessoaJuridica {
         this.recorrente = recorrente;
     }
 
+    public GestaoFornecedor(int idFornecedor, String cnpj, String nome, String endereco) {
+        super(cnpj, nome, endereco);
+        this.idFornecedor = idFornecedor;
+    }
+
   
 
     //aplicavel no preco de custo de todos os produtos por eles fornecidos.

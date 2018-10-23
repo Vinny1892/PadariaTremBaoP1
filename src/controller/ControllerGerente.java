@@ -6,7 +6,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ControllerGerente {
-
+    /*
+    
+    */
     public void salvar(String nome, String cpf, String endereco, String telefone, float salarioBaseMensal, int porcentagemGratificacao) throws SQLException {
         GestaoGerente gerente = new GestaoGerente(nome, cpf, endereco, telefone, salarioBaseMensal, porcentagemGratificacao);
         new DaoGerente().salvar(gerente);
