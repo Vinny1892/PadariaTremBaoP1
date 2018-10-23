@@ -38,7 +38,7 @@ public class DaoGerente extends GenericDao implements CRUDBasico {
     @Override
     public void atualizar(Object object) throws SQLException {
         GestaoGerente gerenteUpdate = (GestaoGerente) object;
-        String update = "UPDATE gerente SET nome = ? , endereco = ? , telefone = ? ,  salario_base = ? , porcentagem_gratificacao = ? WHERE cpf =  ? ";
+        String update = "UPDATE gerente SET nome = ? , endereco = ? , telefone = ? ,  salario_base = ? , porcetagem_gratificacao = ? WHERE cpf =  ? ";
         update(update, gerenteUpdate.getCpf(), gerenteUpdate.getNome(), gerenteUpdate.getEndereco(), gerenteUpdate.getTelefone(), gerenteUpdate.getSalarioBaseMensal(), gerenteUpdate.getPorcentagemGratificacao());
     }
 
@@ -63,7 +63,7 @@ public class DaoGerente extends GenericDao implements CRUDBasico {
         stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            gerente = new GestaoGerente(rs.getInt("id_gerente"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"), rs.getString("telefone"), rs.getFloat("salario_base"), rs.getInt("porcentagem_gratificacao"));
+            gerente = new GestaoGerente(rs.getInt("id_gerente"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"), rs.getString("telefone"), rs.getFloat("salario_base"), rs.getInt("porcetagem_gratificacao"));
         }
         rs.close();
         stmt.close();
@@ -80,7 +80,7 @@ public class DaoGerente extends GenericDao implements CRUDBasico {
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM gerente");
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            GestaoGerente gerente = new GestaoGerente(rs.getInt("id_gerente"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"), rs.getString("telefone"), rs.getFloat("salario_base"), rs.getInt("porcentagem_gratificacao"));
+            GestaoGerente gerente = new GestaoGerente(rs.getInt("id_gerente"), rs.getString("nome"), rs.getString("cpf"), rs.getString("endereco"), rs.getString("telefone"), rs.getFloat("salario_base"), rs.getInt("porcetagem_gratificacao"));
             gerentes.add(gerente);
         }
         rs.close();
