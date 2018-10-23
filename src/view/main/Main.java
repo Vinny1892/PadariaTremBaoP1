@@ -97,11 +97,12 @@ public class Main extends Application {
         stage.show();
         btnFornecedor.getScene().getWindow().hide();
     }
+    @FXML
      void btnFuncionarioAction(ActionEvent event){
             Stage stage = new Stage();
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("../fornecedor/FXMLFornecedor.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../funcionario/FXMLFuncionario.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
