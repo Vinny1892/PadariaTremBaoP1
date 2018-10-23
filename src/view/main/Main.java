@@ -97,6 +97,9 @@ public class Main extends Application {
         stage.show();
         btnFornecedor.getScene().getWindow().hide();
     }
+     void btnFuncionarioAction(ActionEvent event){
+         
+     }
     
     
      @Override

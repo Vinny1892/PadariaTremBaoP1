@@ -79,6 +79,18 @@ public class FXMLFormProduto implements Initializable {
         if( !textFieldNome.getText().isEmpty() && !textFieldApelido.getText().equals("") && fornecedor!= null){
             System.out.println(Float.parseFloat("12.22"));
             new ControllerProduto().salvar(textFieldNome.getText(), fornecedor, Float.parseFloat(textFieldValorCusto.getText().trim()) , textFieldApelido.getText());
+             Stage stage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("FXMLProduto.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Scene scene= new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        btnVoltar.getScene().getWindow().hide();
         }else{
           
              Alert alert = new Alert(Alert.AlertType.NONE,"Não Deixe Campos Vazios", ButtonType.OK);
