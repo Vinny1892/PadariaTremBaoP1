@@ -56,7 +56,7 @@ public class Main extends Application {
          Stage stage = new Stage();
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("../estoquee/FXMLEstoque.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../estoque/FXMLEstoquee.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }

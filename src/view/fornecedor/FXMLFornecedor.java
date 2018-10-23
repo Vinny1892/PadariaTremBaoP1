@@ -86,8 +86,6 @@ public class FXMLFornecedor implements Initializable {
         inicializarComboBox();
         inicializarTableView();
         
-
-       
     }
     public void inicializarTableView(){
         tableColumnCNPJ.setCellValueFactory(new PropertyValueFactory<>("cnpj"));
