@@ -22,6 +22,10 @@ public class DaoVenda extends GenericDao implements CRUDBasico {
     // a venda repete quando o produto muda
     //ou seja, para cada item comprado do carrinho, a venda deve repetir seu id
     //mundando o id_produto, e mantando o id_venda, até acabar o carrinho
+    /*
+    Metodo utilizado para salvar uma venda na tabela/entidade venda,
+    com o objeto recebido como parametro.
+     */
     @Override
     public void salvar(Object object) throws SQLException {//cada id_venda só pode repetir 20vezes
         //try {
@@ -37,6 +41,10 @@ public class DaoVenda extends GenericDao implements CRUDBasico {
         JOptionPane.showMessageDialog(null, "Compra realizada");
     }
 
+    /*
+    Metodo utilizado para editar uma venda na tabela/entidade venda,
+    de acordo com objeto recebido.
+     */
     @Override
     public void atualizar(Object object) throws SQLException {
         GestaoVenda venda = (GestaoVenda) object;
@@ -45,6 +53,10 @@ public class DaoVenda extends GenericDao implements CRUDBasico {
         System.out.println("Metodo atualizar DaoVenda realizado");
     }
 
+    /*
+    Metodo utilizado para deletar venda na tabela/entidade venda,
+    de acordo com idVenda.
+     */
     @Override
     public void deletar(String idVendaSt) throws SQLException {
         int idVenda = Integer.parseInt(idVendaSt);
@@ -54,7 +66,7 @@ public class DaoVenda extends GenericDao implements CRUDBasico {
     //retorna um ArrayList do tipo Object
     //Array preenchido por objetos do tipo GestaoVenda
     //Aonde possui idVenda recebido como parametro igual ao id_venda do banco
-    //e id_venda no banco pode se repetir, por isso retorna yn Array
+    //e id_venda no banco pode se repetir, por isso retorna um Array
     @Override
     public ArrayList<Object> getById(int id) throws SQLException {
         ArrayList<Object> objetosVenda = new ArrayList<>();
@@ -62,7 +74,7 @@ public class DaoVenda extends GenericDao implements CRUDBasico {
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
             Vendedor vendedor = (Vendedor) new ControllerVendedor().selecionaObjeto(rs.getInt("id_vendedor"));
-            ArrayList<GestaoEstoque> estoqueId = (ArrayList<GestaoEstoque>) (ArrayList<?>) new  DaoEstoque().getById(rs.getInt("id_estoque"));
+            ArrayList<GestaoEstoque> estoqueId = (ArrayList<GestaoEstoque>) (ArrayList<?>) new DaoEstoque().getById(rs.getInt("id_estoque"));
             GestaoCliente cliente = (GestaoCliente) new ControllerCliente().selecionaObjeto(rs.getInt("id_cliente"));
             GestaoVenda venda = new GestaoVenda(rs.getString("data_venda"), vendedor, cliente, estoqueId, rs.getInt("forma_pagamento"), id);
             objetosVenda.add(venda);
@@ -74,9 +86,9 @@ public class DaoVenda extends GenericDao implements CRUDBasico {
     }
 
     /*
-    criar metodos de consulta para GestaoInformação
+    Metodo utilizado para pegar todas as vendas da tabela/entidade venda,
+    retornando um ArrayList de objeto do tipo GestaoVenda
      */
-    //Seleciona tudo da tabela venda
     @Override
     public List<Object> getAll() throws SQLException {
         ArrayList<Object> vendas = new ArrayList<>();

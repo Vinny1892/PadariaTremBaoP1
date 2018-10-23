@@ -10,7 +10,10 @@ import model.GestaoEstoque;
 import model.GestaoProduto;
 
 public class DaoEstoque extends GenericDao implements CRUDBasico {
-
+/*
+    Metodo utilizado para salvar estoque na tabela/entidade estoque,
+    de acordo com objeto GestaoEstoque recebido.
+    */
     @Override
     public void salvar(Object object) throws SQLException {
         GestaoEstoque estoque = (GestaoEstoque) object;
@@ -18,7 +21,11 @@ public class DaoEstoque extends GenericDao implements CRUDBasico {
         save(insert, estoque.getProduto(), estoque.getQtdProduto(), estoque.getDataValidade());
         System.out.println("Metodo salvar DaoEstoque realizado");
     }
-
+/*
+    Metodo utilizado para editar a tabela/entidade estoque do banco de dados
+    recebe objeto GestaoEstoque a ser editado como parametro
+    de acordo com idEstoque e id_estoque
+    */
     @Override
     public void atualizar(Object object) throws SQLException {
         GestaoEstoque estoque = (GestaoEstoque) object;
@@ -27,6 +34,10 @@ public class DaoEstoque extends GenericDao implements CRUDBasico {
         System.out.println("Metodo atualizar DaoEstoque realizado");
     }
 
+    /*
+    Metodo utilizado para deletar um estoque da tabela/entidade estoque,
+    de acordo com id recebido como parametro.
+    */
     @Override
     public void deletar(String idestoqueSt) throws SQLException {
         long idestoque = Long.parseLong(idestoqueSt);
@@ -34,7 +45,7 @@ public class DaoEstoque extends GenericDao implements CRUDBasico {
         System.out.println("Metodo deletar DaoEstoque realizado");
     }
 
-    //retorna array de obejto do tipo estoque
+    //retorna array de obejto do tipo GestaoEstoque
     //pode repetir o id_estoque no banco, por isso um array
     // Objeto possui produto, data_validade e quantidade atual
     @Override
@@ -54,7 +65,7 @@ public class DaoEstoque extends GenericDao implements CRUDBasico {
     }
 
 
-    //retorna tudo da tabela estoque por meio de ArrayList de Objetos
+    //retorna tudo da tabela/entidade estoque por meio de ArrayList de Objetos
     @Override
     public List<Object> getAll() throws SQLException {
         ArrayList<Object> todoEstoque = new ArrayList<>();
