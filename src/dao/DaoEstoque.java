@@ -73,6 +73,7 @@ public class DaoEstoque extends GenericDao implements CRUDBasico {
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM estoque");
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
+            System.out.println(rs.getInt("id_produto"));
             GestaoProduto produto = (GestaoProduto) new ControllerProduto().selecionaObjeto(rs.getInt("id_produto"));
             GestaoEstoque estoque = new GestaoEstoque(rs.getInt("id_estoque"), rs.getInt("quantidade"), rs.getString("data_validade"), produto);
             todoEstoque.add(estoque);
@@ -84,5 +85,12 @@ public class DaoEstoque extends GenericDao implements CRUDBasico {
     }
     
 
-
+    public static void main(String[] args) throws SQLException {
+        DaoEstoque estoque = new DaoEstoque();
+        ArrayList<Object> todoEstoque = new ArrayList<>();
+        todoEstoque = (ArrayList<Object>) estoque.getAll();
+        for (int i = 0; i < todoEstoque.size(); i++) {
+            System.out.println(todoEstoque.get(i));
+        }
+    }
 }

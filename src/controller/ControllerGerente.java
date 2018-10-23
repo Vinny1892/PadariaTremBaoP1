@@ -20,10 +20,10 @@ public class ControllerGerente {
     
     /*
     Metodo utilizado para chamar o metodo deletar() da classe DaoGerente,
-    passando como parametro o nome, para saber qual cartao sera deletado.
+    passando como parametro o id, para saber qual gerente sera deletado.
     */
-    public void deletar(String nome) throws SQLException {
-        new DaoGerente().deletar(nome);
+    public void deletar(String id) throws SQLException {
+        new DaoGerente().deletar(id);
         System.out.println("Metodo deletar ControllerGerente realizado");
     }
 

@@ -1,6 +1,6 @@
 package controller;
 
-import dao.DaoFornecedor;
+
 import model.GestaoProduto;
 import dao.DaoProduto;
 import model.GestaoFornecedor;
@@ -32,11 +32,10 @@ public class ControllerProduto {
         return produtos;
     }
 
-    public Object selecionaObjeto(int id) throws SQLException {
-        DaoFornecedor daoFornecedor = null;
-        GestaoFornecedor fornecedor = (GestaoFornecedor) daoFornecedor.getById(id);
-        System.out.println("Metodo selecionaObejto() ControllerProduto realizado");
-        return fornecedor;
+    public Object selecionaObjeto(int id) throws SQLException{
+        GestaoProduto produto = (GestaoProduto) new DaoProduto().getById(id);
+        System.out.println("Metodo selecionaObjeto ControllerProduto realizado");
+        return produto;
     }
 
 }
