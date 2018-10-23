@@ -201,7 +201,7 @@ public class FXMLEstoquee implements Initializable {
         }
        inicializarComboBox();
        inicializarTabela();
-      // tableEstoque.getSelectionModel().selectedItemProperty().add)((obs,oldValue,newValue) -> { btnRemover.setDisable(false);});
+       tableEstoque.getSelectionModel().selectedItemProperty().addListener((obs,oldValue,newValue) -> { btnRemover.setDisable(false);});
     }
 
     public void inicializarTabela(){

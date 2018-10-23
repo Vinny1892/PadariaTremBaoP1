@@ -37,7 +37,7 @@
       <ComboBox fx:id="comboBoxFuncionarioProfissao" layoutX="605.0" layoutY="36.0" prefWidth="150.0" />
       <Button fx:id="btnBuscar" layoutX="312.0" layoutY="127.0" mnemonicParsing="false" onAction="#btnBuscarAction" prefHeight="46.0" prefWidth="84.0" text="Buscar" />
       <Button fx:id="btnAdicionar" layoutX="312.0" layoutY="189.0" mnemonicParsing="false" onAction="#btnAdicionarAction" prefHeight="46.0" prefWidth="84.0" text="Adicionar" />
-      <Button fx:id="btnRemoverAction" disable="true" layoutX="315.0" layoutY="257.0" mnemonicParsing="false" onAction="#btnRemoverAction" prefHeight="46.0" prefWidth="84.0" text="Remover" />
+      <Button fx:id="btnRemover" disable="true" layoutX="315.0" layoutY="257.0" mnemonicParsing="false" onAction="#btnRemoverAction" prefHeight="46.0" prefWidth="84.0" text="Remover" />
       <Button fx:id="btnVoltar" layoutX="709.0" layoutY="324.0" mnemonicParsing="false" onAction="#btnVoltarAction" prefHeight="46.0" prefWidth="92.0" text="Voltar" />
    </children>
 </AnchorPane>

@@ -71,7 +71,7 @@ public class FXMLFuncionario implements Initializable {
     private Button btnAdicionar;
 
     @FXML
-    private Button btnRemoverAction;
+    private Button btnRemover;
 
     @FXML
     private Button btnVoltar;
@@ -112,7 +112,7 @@ public class FXMLFuncionario implements Initializable {
         //funcionarios.addAll(padeiros);
         //funcionarios.addAll(vendedores);
         
-       
+   tableFuncionario.getSelectionModel().selectedItemProperty().addListener((obs,oldValue,newValue) -> { btnRemover.setDisable(false);});
     }
     public void inicializarComboBox(){
         

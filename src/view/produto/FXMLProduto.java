@@ -146,7 +146,8 @@ public class FXMLProduto implements Initializable {
         }
        inicializarComboBox();
         inicializarTabela();
-        
+       tableProduto.getSelectionModel().selectedItemProperty().addListener((obs,oldValue,newValue) -> { btnRemover.setDisable(false);});
+
     }
 
 public void inicializarComboBox(){
