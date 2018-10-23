@@ -64,11 +64,12 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM produto WHERE id_produto = ?");
         stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
-        //while (rs.next()) {
+        GestaoProduto produto = null;
+        while (rs.next()) {
         GestaoFornecedor fornecedor = (GestaoFornecedor) new ControllerFornecedor().selecionaObjeto(rs.getInt("id_fornecedor"));
-        GestaoProduto produto = new GestaoProduto(rs.getString("nome"), id, fornecedor, rs.getFloat("preco_custo"), rs.getString("apelido"), rs.getBoolean("perecivel"));
+        produto = new GestaoProduto(rs.getString("nome"), id, fornecedor, rs.getFloat("preco_custo"), rs.getString("apelido"), rs.getBoolean("perecivel"));
         //produtos.add(produto);
-        //}
+        }
         rs.close();
         stmt.close();
         return produto;
