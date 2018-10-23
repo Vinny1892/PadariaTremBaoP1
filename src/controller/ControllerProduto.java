@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class ControllerProduto {
 
-    public void salvar(String nome, GestaoFornecedor fornecedor, float precoCusto, String apelido) throws SQLException {
-        GestaoProduto produto = new GestaoProduto(nome, fornecedor, precoCusto, apelido);
+    public void salvar(String nome, GestaoFornecedor fornecedor, float precoCusto, String apelido, boolean perecivel) throws SQLException {
+        GestaoProduto produto = new GestaoProduto(nome, fornecedor, precoCusto, apelido, perecivel);
         new DaoProduto().salvar(produto);
         System.out.println("Metodo salvar ControllerProduto realizado");
     }
@@ -20,8 +20,8 @@ public class ControllerProduto {
         System.out.println("Metodo deletar ControllerProduto realizado");
     }
 
-    public void editar(String nome, int codigo, GestaoFornecedor fornecedor, float precoCusto, String apelido) throws SQLException {
-        GestaoProduto produto = new GestaoProduto(nome, codigo, fornecedor, precoCusto, apelido);
+    public void editar(String nome, int codigo, GestaoFornecedor fornecedor, float precoCusto, String apelido, boolean perecivel) throws SQLException {
+        GestaoProduto produto = new GestaoProduto(nome, codigo, fornecedor, precoCusto, apelido, perecivel);
         new DaoProduto().atualizar(produto);
         System.out.println("Metodo editar ControllerProduto realizado");
     }
@@ -31,19 +31,12 @@ public class ControllerProduto {
         System.out.println("Metodo getAll ControllerProduto realizado");
         return produtos;
     }
-    
-    public Object selecionaObjeto(int id) throws SQLException{
+
+    public Object selecionaObjeto(int id) throws SQLException {
         DaoFornecedor daoFornecedor = null;
         GestaoFornecedor fornecedor = (GestaoFornecedor) daoFornecedor.getById(id);
         System.out.println("Metodo selecionaObejto() ControllerProduto realizado");
         return fornecedor;
     }
-/*
-    public static void main(String[] args) throws SQLException {
-        ControllerProduto cp = new ControllerProduto();
-        GestaoFornecedor fornecedor = new GestaoFornecedor("São Gabriel", "333344445555", "Rua antonio", false, 0);
 
-        cp.salvar("Leite", fornecedor, 1.00f, "Leite de saquinho");
-
-    }*/
 }

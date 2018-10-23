@@ -24,8 +24,8 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
     public void salvar(Object object) throws SQLException {
         try {
             GestaoProduto produto = (GestaoProduto) object;
-            String insert = "INSERT INTO produto (nome, preco_custo, apelido, id_fornecedor) VALUES(?,?,?,?) ";
-            save(insert, produto.getNome(), produto.getPrecoCusto(), produto.getApelido(), produto.getFornecedor().getIdfornecedor());
+            String insert = "INSERT INTO produto (nome, preco_custo, apelido, id_fornecedor, perecivel) VALUES(?,?,?,?,?) ";
+            save(insert, produto.getNome(), produto.getPrecoCusto(), produto.getApelido(), produto.getFornecedor().getIdfornecedor(), produto.isPerecivel());
         } catch (MySQLIntegrityConstraintViolationException e) {
             System.out.println("codigo do produto ja existe");
             JOptionPane.showMessageDialog(null, "Código do produto já existe no Banco de Dados");
@@ -40,8 +40,8 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
     @Override
     public void atualizar(Object object) throws SQLException {
         GestaoProduto produto = (GestaoProduto) object;
-        String update = "UPDATE produto SET nome = ?,preco_custo = ?, apelido = ?,id_fornecedo = ? WHERE id_produto =  ? ";
-        update(update, produto.getCodigo(), produto.getNome(), produto.getPrecoCusto(), produto.getApelido(), produto.getFornecedor());
+        String update = "UPDATE produto SET nome = ?,preco_custo = ?, apelido = ?,id_fornecedo = ?, perecivel = ? WHERE id_produto =  ? ";
+        update(update, produto.getIdproduto(), produto.getNome(), produto.getPrecoCusto(), produto.getApelido(), produto.getFornecedor(), produto.isPerecivel());
         System.out.println("Metodo atualizar DaoProduto realizado");
     }
 
@@ -65,7 +65,7 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
         ResultSet rs = stmt.executeQuery();
         //while (rs.next()) {
         GestaoFornecedor fornecedor = (GestaoFornecedor) new ControllerFornecedor().selecionaObjeto(rs.getInt("id_fornecedor"));
-        GestaoProduto produto = new GestaoProduto(rs.getString("nome"), id, fornecedor, rs.getFloat("preco_custo"), rs.getString("apelido"));
+        GestaoProduto produto = new GestaoProduto(rs.getString("nome"), id, fornecedor, rs.getFloat("preco_custo"), rs.getString("apelido"), rs.getBoolean("perecivel"));
         //produtos.add(produto);
         //}
         rs.close();
@@ -86,7 +86,7 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
          //       System.out.println("idFornecedor: "+rs.getInt("id_fornecedor"));
           //      System.out.println("idProduto: "+rs.getInt("id_produto"));
                 GestaoFornecedor fornecedor = (GestaoFornecedor) new controller.ControllerFornecedor().selecionaObjeto(rs.getInt("id_fornecedor"));
-                GestaoProduto produto = new GestaoProduto(rs.getString("nome"), rs.getInt("id_produto"), fornecedor, rs.getFloat("preco_custo"), rs.getString("apelido"));
+                GestaoProduto produto = new GestaoProduto(rs.getString("nome"), rs.getInt("id_produto"), fornecedor, rs.getFloat("preco_custo"), rs.getString("apelido"), rs.getBoolean("perecivel"));
                 produtos.add(produto);
             }
             

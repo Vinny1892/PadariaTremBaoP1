@@ -23,24 +23,24 @@ public class GestaoProduto {
     private int idproduto;
     private GestaoFornecedor fornecedor;
     private float precoCusto;
-    //private float precoFinal;
-    //private boolean perecivel;
-    //private Format dataValidade;
+    private boolean perecivel;
     private String apelido;
 
-    public GestaoProduto(String nome, int idproduto, GestaoFornecedor fornecedor, float precoCusto, String apelido) {
+    public GestaoProduto(String nome, int idproduto, GestaoFornecedor fornecedor, float precoCusto, String apelido, boolean perecivel) {
         this.nome = nome;
         this.idproduto = idproduto;
         this.fornecedor = fornecedor;
         this.precoCusto = precoCusto;
         this.apelido = apelido;
+        this.perecivel = perecivel;
     }
 
-    public GestaoProduto(String nome, GestaoFornecedor fornecedor, float precoCusto, String apelido) {
+    public GestaoProduto(String nome, GestaoFornecedor fornecedor, float precoCusto, String apelido, boolean perecivel) {
         this.nome = nome;
         this.fornecedor = fornecedor;
         this.precoCusto = precoCusto;
         this.apelido = apelido;
+        this.perecivel = perecivel;
     }
     
 
@@ -51,14 +51,6 @@ public class GestaoProduto {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public int getCodigo() {
-        return idproduto;
-    }
-
-    public void setCodigo(int codigo) {
-        this.idproduto = codigo;
     }
 
     public GestaoFornecedor getFornecedor() {
@@ -83,6 +75,22 @@ public class GestaoProduto {
 
     public void setApelido(String apelido) {
         this.apelido = apelido;
+    }
+
+    public int getIdproduto() {
+        return idproduto;
+    }
+
+    public void setIdproduto(int idproduto) {
+        this.idproduto = idproduto;
+    }
+
+    public boolean isPerecivel() {
+        return perecivel;
+    }
+
+    public void setPerecivel(boolean perecivel) {
+        this.perecivel = perecivel;
     }
 
 
