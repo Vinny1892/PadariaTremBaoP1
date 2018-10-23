@@ -61,7 +61,8 @@ public class DaoProduto extends GenericDao implements CRUDBasico {
     */
     public /*List<Object>*/ GestaoProduto getById(int id) throws SQLException {
         //ArrayList<Object> produtos = new ArrayList<>();
-        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM produto WHERE id_produto = " + id);
+        PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM produto WHERE id_produto = ?");
+        stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
         //while (rs.next()) {
         GestaoFornecedor fornecedor = (GestaoFornecedor) new ControllerFornecedor().selecionaObjeto(rs.getInt("id_fornecedor"));
