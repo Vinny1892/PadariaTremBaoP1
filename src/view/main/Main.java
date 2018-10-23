@@ -113,6 +113,22 @@ public class Main extends Application {
         btnFuncionario.getScene().getWindow().hide();
      }
     
+     @FXML
+     void btnClienteAction(ActionEvent event){
+            Stage stage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("../cliente/FXMLCliente.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Scene scene= new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        btnCliente.getScene().getWindow().hide();
+     }
+     
     
      @Override
     public void start(Stage stage) throws Exception {

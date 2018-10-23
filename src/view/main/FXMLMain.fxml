@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -7,9 +12,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.main.Main">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="536.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.main.Main">
    <children>
-      <GridPane layoutX="154.0" layoutY="135.0" prefHeight="148.0" prefWidth="271.0">
+      <GridPane layoutX="160.0" layoutY="105.0" prefHeight="191.0" prefWidth="282.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -20,15 +25,36 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btnFornecedor" mnemonicParsing="false" onAction="#btnFornecedorAction" prefHeight="25.0" prefWidth="127.0" text="Fornecedores" />
-            <Button fx:id="btnProduto" mnemonicParsing="false" onAction="#btnProdutoAction" prefHeight="25.0" prefWidth="131.0" text="Produtos" GridPane.columnIndex="1" />
-            <Button fx:id="btnFuncionario" mnemonicParsing="false" onAction="#btnFuncionarioAction" prefHeight="25.0" prefWidth="124.0" text="Funcionarios" GridPane.rowIndex="1" />
-            <Button fx:id="btnCliente" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="btnVenda" mnemonicParsing="false" prefHeight="25.0" prefWidth="133.0" text="Button" GridPane.rowIndex="2" />
-            <Button fx:id="btnEstoque" mnemonicParsing="false" onAction="#btnEstoqueAction" prefHeight="25.0" prefWidth="148.0" text="Estoque" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="btnFornecedor" mnemonicParsing="false" onAction="#btnFornecedorAction" prefHeight="25.0" prefWidth="143.0" text="Fornecedores">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin></Button>
+            <Button fx:id="btnProduto" mnemonicParsing="false" onAction="#btnProdutoAction" prefHeight="25.0" prefWidth="171.0" text="Produtos" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin></Button>
+            <Button fx:id="btnFuncionario" mnemonicParsing="false" onAction="#btnFuncionarioAction" prefHeight="25.0" prefWidth="147.0" text="Funcionarios" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin></Button>
+            <Button fx:id="btnCliente" mnemonicParsing="false" onAction="#btnClienteAction" prefHeight="25.0" prefWidth="168.0" text="Clientes" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin></Button>
+            <Button fx:id="btnVenda" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" text="Vendas" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin></Button>
+            <Button fx:id="btnEstoque" mnemonicParsing="false" onAction="#btnEstoqueAction" prefHeight="25.0" prefWidth="184.0" text="Estoque" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin></Button>
          </children>
       </GridPane>
-      <Button fx:id="btnRelatorio" layoutX="152.0" layoutY="317.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="271.0" text="Relatórios" />
-      <Label fx:id="labelMain" layoutX="178.0" layoutY="46.0" prefHeight="65.0" prefWidth="223.0" text="Sistema Padaria Trem BAO" />
+      <Label fx:id="labelMain" alignment="CENTER" layoutY="46.0" prefHeight="32.0" prefWidth="602.0" text="Sistema Padaria Trem BAO">
+         <font>
+            <Font size="21.0" />
+         </font></Label>
+      <Button fx:id="btnRelatorio" layoutX="158.0" layoutY="314.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="282.0" text="Relatórios" />
    </children>
 </AnchorPane>

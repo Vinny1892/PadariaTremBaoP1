@@ -8,6 +8,7 @@ package view.cliente;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
@@ -17,7 +18,7 @@ import javafx.stage.Stage;
  *
  * @author kaio
  */
-public class NewFXCliente extends Application {
+public class FXMLFormCliente extends Application {
     
     @Override
     public void start(Stage primaryStage) {
@@ -36,14 +37,13 @@ public class NewFXCliente extends Application {
         
         Scene scene = new Scene(root, 300, 250);
         
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Cadastrar novo cliente");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    
-    
+    @FXML
+    public void salvarNovoCliente(ActionEvent event ) {
+        
+    }       
 }
