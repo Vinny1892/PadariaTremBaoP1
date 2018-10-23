@@ -15,6 +15,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import model.GestaoFuncionario;
+import view.CategoriasComboBox;
 
 /**
  * FXML Controller class
@@ -23,22 +25,22 @@ import javafx.scene.control.TextField;
  */
 public class FXMLFuncionario implements Initializable {
     @FXML
-    private TableView<?> tableFuncionario;
+    private TableView<GestaoFuncionario> tableFuncionario;
 
     @FXML
-    private TableColumn<?, ?> tableColumnNome;
+    private TableColumn<GestaoFuncionario, String> tableColumnNome;
 
     @FXML
-    private TableColumn<?, ?> tableColumnCPF;
+    private TableColumn<GestaoFuncionario, String> tableColumnCPF;
 
     @FXML
-    private TableColumn<?, ?> tableColumnProfissao;
+    private TableColumn<GestaoFuncionario, String> tableColumnProfissao;
 
     @FXML
     private TextField textFieldFuncionario;
 
     @FXML
-    private ComboBox<?> comboBoxFuncionarioProfissao;
+    private ComboBox<CategoriasComboBox> comboBoxFuncionarioProfissao;
 
     @FXML
     private Button btnBuscar;
@@ -78,6 +80,12 @@ public class FXMLFuncionario implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+    public void inicializarComboBox(){
+        
+    }   
+    public void inicializarTabela(){
+    
+    }
     
 }

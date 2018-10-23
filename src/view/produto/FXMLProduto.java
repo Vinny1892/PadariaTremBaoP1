@@ -163,7 +163,7 @@ public void inicializarComboBox(){
 
 public void inicializarTabela(){
     tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-    tableColumnCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+    tableColumnCodigo.setCellValueFactory(new PropertyValueFactory<>("idproduto"));
     obsGestaoProdutos = FXCollections.observableArrayList(produtos);
     tableProduto.setItems(obsGestaoProdutos);
     
