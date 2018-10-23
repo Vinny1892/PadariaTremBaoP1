@@ -25,12 +25,14 @@ public class GestaoFornecedor extends PessoaJuridica {
         this.taxaDesconto = taxaDesconto;
         this.idFornecedor = idFornecedor;
     }
+
     // sem idFornecedor e com taxaDesconto
     public GestaoFornecedor(String nome, String cnpj, String endereco, boolean recorrente, int taxaDesconto) {
         super(cnpj, nome, endereco);
         this.recorrente = recorrente;
         this.taxaDesconto = taxaDesconto;
     }
+
     //sem idFornecedor e sem taxaDesconto
     public GestaoFornecedor(boolean recorrente, String cnpj, String nome, String endereco) {
         super(cnpj, nome, endereco);
@@ -42,8 +44,6 @@ public class GestaoFornecedor extends PessoaJuridica {
         this.idFornecedor = idFornecedor;
     }
 
-  
-
     //aplicavel no preco de custo de todos os produtos por eles fornecidos.
     public float recorrenteNegociarDesconto(float precoCusto, float valorNegociado) {
         float valorDesconto = precoCusto * (valorNegociado / 100);
@@ -51,7 +51,7 @@ public class GestaoFornecedor extends PessoaJuridica {
     }
 
     //Getters e Setters
-     public boolean isRecorrente() {
+    public boolean isRecorrente() {
         return recorrente;
     }
 
@@ -79,9 +79,5 @@ public class GestaoFornecedor extends PessoaJuridica {
     public String toString() {
         return this.getNome();
     }
-    
-    
-   
-    
 
 }
