@@ -85,7 +85,6 @@ public class FXMLEstoque implements Initializable {
     void btnAdicionarAction(ActionEvent event) {
         formEstoque.setVisible(true);
         //to do Validacoes
-        //ceE.salvar(0, dataValidade, produto);
         
         
         

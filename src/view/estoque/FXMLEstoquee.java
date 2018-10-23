@@ -144,6 +144,7 @@ public class FXMLEstoquee implements Initializable {
         GestaoEstoque estoqueRemover = tableEstoque.getSelectionModel().getSelectedItem();
         ce.deletar(String.valueOf(estoqueRemover.getIdEstoque()));
         tableEstoque.getItems().remove(estoqueRemover);
+        tableEstoque.getSelectionModel().clearSelection();
     }
 
     @FXML
@@ -151,9 +152,8 @@ public class FXMLEstoquee implements Initializable {
         inicializarComboBoxProduto();
         if(!textFieldFormDataValidade.getText().isEmpty() && !textFieldQuantidade.getText().isEmpty()){
             try{
-                GestaoProduto produtoSalvar = comboBoxProdutoForm.getValue();
-                JOptionPane.showMessageDialog(null, produtoSalvar.getNome());
-                //ce.salvar(Integer.parseInt(textFieldQuantidade.getText()), textFieldFormDataValidade.getText(), produtoSalvar);
+                GestaoProduto produtoSalvar = comboBoxProdutoForm.valueProperty().get();
+                ce.salvar(Integer.parseInt(textFieldQuantidade.getText()), textFieldFormDataValidade.getText(), produtoSalvar);
                 produtosEstoque = ce.getAll();
                 inicializarTabela();
                 formEstoque.setVisible(false);
@@ -226,7 +226,6 @@ public class FXMLEstoquee implements Initializable {
     public void inicializarComboBoxProduto(){
         obscategoriasProdutoEstoqueAdicionar = FXCollections.observableArrayList(produtos);
         comboBoxProdutoForm.setItems(obscategoriasProdutoEstoqueAdicionar);  
-        comboBoxProdutoForm.getSelectionModel().selectFirst();
     }
     
 }
