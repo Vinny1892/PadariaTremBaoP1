@@ -24,9 +24,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.GestaoCliente;
@@ -78,10 +81,23 @@ public class FXMLVenda implements Initializable {
 
     @FXML
     private Button btnAdicionarCarrinho;
+    
+    @FXML
+      private TextField textFieldQuantidade;
 
     @FXML
     void btnAdicionarCarrinhoAction(ActionEvent event) {
-
+        tablePrecoCarrinho.setCellValueFactory(new PropertyValueFactory<>("precoCusto"));
+        tableCarrinhoNome.setCellValueFactory(new PropertyValueFactory<>("produtoNome"));
+        tableQuantidadeCarrinho.setCellValueFactory(new PropertyValueFactory<>("qtdProduto"));
+       GestaoEstoque estoqueCarrinho =   tableEstoque.getSelectionModel().getSelectedItem();
+      try{estoqueCarrinho.setQtdProduto(Integer.parseInt(textFieldQuantidade.getText()));} catch(Exception e){
+          Alert alert = new Alert(Alert.AlertType.NONE, "Somente Numeros ", ButtonType.FINISH);
+          alert.show();
+                  }
+       carrinho.add(estoqueCarrinho);
+       obsCarrinho = FXCollections.observableArrayList(carrinho);
+       tableCarrinho.setItems(obsCarrinho);
     }
 
     @FXML
@@ -123,6 +139,8 @@ public class FXMLVenda implements Initializable {
             Logger.getLogger(FXMLVenda.class.getName()).log(Level.SEVERE, null, ex);
         }
         inicializarTabelaEstoque();
+        tableEstoque.getSelectionModel().selectedItemProperty().addListener((obs,oldValue,newValue) -> { });
+
         
         
         //cvV.salvar(data, vendedor, cliente, estoques, formapagamento, valortotal);

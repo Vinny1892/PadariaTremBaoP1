@@ -5,6 +5,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="548.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.venda.FXMLVenda">
@@ -33,6 +34,8 @@
       <Label layoutX="595.0" layoutY="418.0" text="Carrinho" />
       <RadioButton layoutX="-203.0" layoutY="76.0" mnemonicParsing="false" text="RadioButton" />
       <Button fx:id="btnVoltar" layoutX="592.0" layoutY="474.0" mnemonicParsing="false" onAction="#btnVoltarAction" prefHeight="50.0" prefWidth="112.0" text="Voltar" />
-      <Button layoutX="342.0" layoutY="239.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="87.0" text="&gt;&gt;" />
+      <Button fx:id="btnAdicionarCarrinho" layoutX="342.0" layoutY="239.0" mnemonicParsing="false" onAction="#btnAdicionarCarrinhoAction" prefHeight="58.0" prefWidth="87.0" text="&gt;&gt;" />
+      <TextField fx:id="textFieldQuantidade" layoutX="311.0" layoutY="124.0" />
+      <Label layoutX="354.0" layoutY="93.0" text="Quantidade" />
    </children>
 </AnchorPane>

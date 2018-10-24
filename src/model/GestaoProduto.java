@@ -14,6 +14,8 @@ que pode variar de acordo com a regiao do paıs em que se encontra a unidade da 
  */
 package model;
 
+import javafx.beans.property.SimpleFloatProperty;
+
 public class GestaoProduto {
 
     private String nome;
@@ -88,6 +90,7 @@ public class GestaoProduto {
     public void setPerecivel(boolean perecivel) {
         this.perecivel = perecivel;
     }
+  
 
     @Override
     public String toString() {

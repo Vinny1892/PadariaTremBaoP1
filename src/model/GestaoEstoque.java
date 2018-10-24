@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Date;
+import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -122,6 +123,10 @@ public class GestaoEstoque {
         }
          SimpleStringProperty codigo = new SimpleStringProperty(codigoMostrar);
          return codigo;
+    }
+    
+      public SimpleFloatProperty precoCustoProperty(){
+        return new SimpleFloatProperty(produto.getPrecoCusto());
     }
     
 }
