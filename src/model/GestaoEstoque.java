@@ -39,16 +39,16 @@ public class GestaoEstoque {
         this.produto = produto;
         this.idEstoque = idEstoque;
     }
-
+//
     public void capacidadeMinima() {
 
     }
-
+//
     public boolean venderProduto(GestaoProduto produto) {
 
         return false;
     }
-
+//
     public GestaoProduto procurarProduto(GestaoProduto produto) {
 
         return produto;
@@ -77,7 +77,7 @@ public class GestaoEstoque {
         this.produto = produto;
     }
 
-    public long getIdEstoque() {
+    public int getIdEstoque() {
         return idEstoque;
     }
 

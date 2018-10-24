@@ -91,16 +91,55 @@ public class FXMLVenda implements Initializable {
         tablePrecoCarrinho.setCellValueFactory(new PropertyValueFactory<>("precoCusto"));
         tableCarrinhoNome.setCellValueFactory(new PropertyValueFactory<>("produtoNome"));
         tableQuantidadeCarrinho.setCellValueFactory(new PropertyValueFactory<>("qtdProduto"));
-        GestaoEstoque estoqueCarrinho = tableEstoque.getSelectionModel().getSelectedItem();
-        try {
-            estoqueCarrinho.setQtdProduto(Integer.parseInt(textFieldQuantidade.getText()));
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.NONE, "Somente Numeros ", ButtonType.FINISH);
+        GestaoEstoque qtdProdutoEstoque = tableEstoque.getSelectionModel().getSelectedItem();
+        try{
+        GestaoEstoque qtdProdutoCarrinho = new GestaoEstoque(qtdProdutoEstoque.getIdEstoque() ,Integer.parseInt(textFieldQuantidade.getText().trim()) , qtdProdutoEstoque.getDataValidade(), qtdProdutoEstoque.getProduto());
+        if (!textFieldQuantidade.getText().isEmpty()) {
+            
+                int qtdConvertida = Integer.parseInt(textFieldQuantidade.getText().trim());
+                qtdProdutoCarrinho.setQtdProduto(qtdConvertida);
+                Alert alert = null;
+                if (qtdProdutoCarrinho.getQtdProduto() > 0) {
+                    if (qtdProdutoCarrinho.getQtdProduto() <= tableEstoque.getSelectionModel().getSelectedItem().getQtdProduto()) {
+                        System.out.println(qtdProdutoCarrinho.getIdEstoque());
+                        System.out.println("");
+                        System.out.println(qtdProdutoEstoque.getIdEstoque());
+                        carrinho.add(qtdProdutoCarrinho);
+                        obsCarrinho = FXCollections.observableArrayList(carrinho);
+                        tableCarrinho.setItems(obsCarrinho);
+                        
+                    } else {
+                        alert = new Alert(Alert.AlertType.NONE, "Quantidade Invalida",ButtonType.YES);
+                        alert.show();
+                    }
+                }else{
+                    alert = new Alert(Alert.AlertType.NONE, "Quantidade Invalida, igual ou menor a zero.",ButtonType.YES);
+                    alert.show();
+                }
+             
+              
+              
+        }else{
+              Alert alert = new Alert(Alert.AlertType.NONE, "Erro ao adicionar no carrinho de compras ",ButtonType.YES);
             alert.show();
+          }
+        }catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.NONE, "Somente Numeros ", ButtonType.FINISH);
+             alert.show();
         }
-        carrinho.add(estoqueCarrinho);
-        obsCarrinho = FXCollections.observableArrayList(carrinho);
-        tableCarrinho.setItems(obsCarrinho);
+        
+          
+        
+        
+        
+
+    }//fim metodo
+    
+   //(qtdNoEstoque >= qtdProdutoClite)
+    
+    void validaCampo(){
+        
+        
     }
 
     @FXML
@@ -135,14 +174,26 @@ public class FXMLVenda implements Initializable {
         carrinho = new ArrayList<>();
         try {
             produtosEstoque = ce.getAll();
-            clientes = cc.getAll();
+            System.out.println(ce.getAll());
+            //clientes = cc.getAll();
 
         } catch (SQLException ex) {
             Logger.getLogger(FXMLVenda.class.getName()).log(Level.SEVERE, null, ex);
         }
         inicializarTabelaEstoque();
         tableEstoque.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
+            //System.out.println("Aqui1");
+            for(int i = 0 ; i < carrinho.size();i++ ){
+                if(tableEstoque.getSelectionModel().getSelectedItem().getIdEstoque() == carrinho.get(i).getIdEstoque()){
+                    btnAdicionarCarrinho.setDisable(true);
+                    tableEstoque.getSelectionModel().selectLast();
+                    
+                }else{
+                    btnAdicionarCarrinho.setDisable(false);
+                }
+            }
         });
+        tableEstoque.getSelectionModel().selectFirst();
 
         //cvV.salvar(data, vendedor, cliente, estoques, formapagamento, valortotal);
         // TODO
