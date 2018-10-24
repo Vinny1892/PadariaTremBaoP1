@@ -45,13 +45,13 @@ public class ControllerImpostos {
         float tributoTodosSalariosFuncionarios = 0;
 
         for (int i = 0; i < gerentes.size(); i++) {
-            tributoTodosSalariosFuncionarios += new ControllerGerente().salarioFinal(gerentes.get(i));
+            tributoTodosSalariosFuncionarios += (new ControllerGerente().salarioFinal(gerentes.get(i)) * 0.18f);
         }
         for (int i = 0; i < padeiros.size(); i++) {
-            tributoTodosSalariosFuncionarios += new ControllerPadeiro().salarioFinal(padeiros.get(i));
+            tributoTodosSalariosFuncionarios += (new ControllerPadeiro().salarioFinal(padeiros.get(i)) * 0.18f);
         }
         for (int i = 0; i < vendedores.size(); i++) {
-            tributoTodosSalariosFuncionarios += new ControllerVendedor().salarioFinal(vendedores.get(i), vendedores.get(i).getMontanteVenda());
+            tributoTodosSalariosFuncionarios += (new ControllerVendedor().salarioFinal(vendedores.get(i), vendedores.get(i).getMontanteVenda()) * 0.18f);
         }
 
         return tributoTodosSalariosFuncionarios;
