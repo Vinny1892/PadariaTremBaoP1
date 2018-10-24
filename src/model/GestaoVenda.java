@@ -29,9 +29,10 @@ public class GestaoVenda {
     private int formaPagamento;
     private int idVenda;
     private int numeroParcelas;
+    private float valorTotalVenda;
 
     //com id_venda e numero de parcelas
-    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, ArrayList<GestaoEstoque> estoques, int formaPagamento, int idVenda, int numeroParcelas) {
+    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, ArrayList<GestaoEstoque> estoques, int formaPagamento, int idVenda, int numeroParcelas,float valorTotalVenda) {
         this.dataVenda = dataVenda;
         this.vendedor = vendedor;
         this.cliente = cliente;
@@ -39,25 +40,28 @@ public class GestaoVenda {
         this.formaPagamento = formaPagamento;
         this.idVenda = idVenda;
         this.numeroParcelas = numeroParcelas;
+        this.valorTotalVenda = valorTotalVenda;
     }
 
     // com id_vendas sem numero de parcelas
-    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, ArrayList<GestaoEstoque> estoques, int formaPagamento, int idVenda) {
+    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, ArrayList<GestaoEstoque> estoques, int formaPagamento, int idVenda,float valorTotalVenda) {
         this.dataVenda = dataVenda;
         this.vendedor = vendedor;
         this.cliente = cliente;
         this.formaPagamento = formaPagamento;
         this.idVenda = idVenda;
         this.estoques = estoques;
+        this.valorTotalVenda = valorTotalVenda;
     }
 
     //sem id e sem n parcelas
-    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, ArrayList<GestaoEstoque> estoques, int formaPagamento) {
+    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, ArrayList<GestaoEstoque> estoques, int formaPagamento,float valorTotalVenda) {
         this.dataVenda = dataVenda;
         this.vendedor = vendedor;
         this.cliente = cliente;
         this.estoques = estoques;
         this.formaPagamento = formaPagamento;
+        this.valorTotalVenda = valorTotalVenda;
     }
 
     // colocar no controller esses metodos?
@@ -125,6 +129,14 @@ public class GestaoVenda {
 
     public void setEstoques(ArrayList<GestaoEstoque> estoques) {
         this.estoques = estoques;
+    }
+
+    public float getValorTotalVenda() {
+        return valorTotalVenda;
+    }
+
+    public void setValorTotalVenda(float valorTotalVenda) {
+        this.valorTotalVenda = valorTotalVenda;
     }
 
 }
