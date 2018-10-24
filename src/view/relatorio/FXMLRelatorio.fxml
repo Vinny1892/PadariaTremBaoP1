@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.relatorio.FXMLRelatorio">
+<AnchorPane id="AnchorPane" prefHeight="287.0" prefWidth="243.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.relatorio.FXMLRelatorio">
     <children>
-        <Button fx:id="search" text="Criar PDF" onAction="#btnCreatePDF"></Button>
+        <Button fx:id="search" layoutX="129.0" layoutY="241.0" onAction="#btnCreatePDF" prefHeight="25.0" prefWidth="94.0" text="Criar PDF" />
+      <ComboBox fx:id="optionsSelector" layoutX="59.0" layoutY="50.0" prefHeight="25.0" prefWidth="162.0" />
+      <Text layoutX="14.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo:" wrappingWidth="36.7294921875" />
+      <RadioButton fx:id="individual" layoutX="36.0" layoutY="127.0" maxHeight="1.7976931348623157E308" mnemonicParsing="false" text="Individual" />
+      <RadioButton fx:id="coletivo" layoutX="36.0" layoutY="103.0" mnemonicParsing="false" selected="true" text="Coletivo" />
+      <Text layoutX="14.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selecione:" />
+      <Text layoutX="16.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Saida:" />
+      <Text layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exportar Informaçoes" textAlignment="CENTER" wrappingWidth="243.4482421875">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="codigo" layoutX="118.0" layoutY="151.0" prefHeight="25.0" prefWidth="103.0" promptText="Ex: 001122" />
+      <Text layoutX="65.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Codigo:" />
+      <Button layoutX="14.0" layoutY="241.0" mnemonicParsing="false" onAction="#btnVoltar" prefHeight="25.0" prefWidth="94.0" text="Voltar" />
+      <TextField fx:id="output" layoutX="14.0" layoutY="206.0" prefHeight="25.0" prefWidth="209.0" promptText="Ex: /Users/Joao/Desktop/" />
     </children>
 </AnchorPane>
