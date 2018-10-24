@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="295.0" prefWidth="559.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.cliente.NewFXCliente">
+<AnchorPane id="AnchorPane" prefHeight="295.0" prefWidth="559.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.cliente.FXMLFormCliente">
    <children>
       <TextField layoutX="108.0" layoutY="81.0" prefHeight="25.0" prefWidth="174.0" promptText="Ex: João da Silva" />
       <Text layoutX="59.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:" />

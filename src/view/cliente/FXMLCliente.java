@@ -83,7 +83,7 @@ public class FXMLCliente implements Initializable {
          Stage stage = new Stage();
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("FXMLFormProduto.fxml"));
+            root = FXMLLoader.load(getClass().getResource("FXMLFormCliente.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
