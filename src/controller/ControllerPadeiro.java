@@ -9,12 +9,21 @@ import model.Padeiro;
 
 public class ControllerPadeiro {
 
+    /*
+    Metodo utilizado para calcular a gratificacao do padeiro,
+    recebendo como parametro o objeto Padeiro,
+    retornando o valor da gratificacai.
+     */
     public float gratificacao(Padeiro padeiro) {
         float gratificacao = 0;
         gratificacao = (padeiro.getSalarioBaseMensal() * 0.25f) * padeiro.getHorasTrabalhadaNoturno();
         return gratificacao;
     }
 
+    /*
+    Metodo usado para chamar o metodo salvar() da classe DaoPadeiro,
+    passando como parametro o objeto Padeiro a ser salvo.
+     */
     public void salvar(String nome, String endereco, String cpf, String telefone, float salarioBaseMensal, float horasEmHorarioAlternativo) throws SQLException {
         try {
             Padeiro padeiro = new Padeiro(nome, endereco, cpf, telefone, salarioBaseMensal, horasEmHorarioAlternativo);
@@ -28,33 +37,44 @@ public class ControllerPadeiro {
         }
     }
 
+    /*
+    Metodo utilizado para chamar o metodo atualizar() da classe DaoPadeiro,
+    passando como parametro o objeto Padeiro a ser editado,
+    de acordo com idPadeiro deste objeto.
+     */
     public void editar(String nome, String endereco, String cpf, String telefone, float salarioBaseMensal, float horasEmHorarioAlternativo) throws SQLException {
         Padeiro padeiro = new Padeiro(nome, endereco, cpf, telefone, salarioBaseMensal, horasEmHorarioAlternativo);
         new DaoPadeiro().atualizar(padeiro);
         System.out.println("Metodo editar ControllerPadeiro realizado");
     }
 
+    /*
+    Metodo utilizado para chamar o metodo deletar() da classe DaoPadeiro,
+    passando como parametro o idPadeiro, para saber qual padeiro sera deletado.
+     */
     public void deletar(String cpf) throws SQLException {
         new DaoPadeiro().deletar(cpf);
         System.out.println("Metodo deletar ControllerPadeiro realizado");
     }
 
+    /*
+    Metodo utilizado para chamar o metodo getById() da classe DaoPadeiro,
+    passando como parametro o idPadeiro a pegar,
+    retornando o objeto Padeiro encontrado.
+     */
     public Object selecionaObjeto(int id) throws SQLException {
         Padeiro padeiro = (Padeiro) new DaoPadeiro().getById(id);
         System.out.println("Metodo selecionaObjeto ControllerFornecedor realizado");
         return padeiro;
     }
 
+    /*
+    Metodo utilizado para chamar o metodo getAll() da classe DaoPadeiro,
+    retornando um ArrayList de objetos do tipo Padeiro.
+     */
     public ArrayList<Padeiro> getAll() throws SQLException {
         ArrayList<Padeiro> padeiros = (ArrayList<Padeiro>) (ArrayList<?>) new DaoPadeiro().getAll();
         return padeiros;
     }
 
-    /*
-    public static void main(String[] args) throws SQLException {
-        ControllerPadeiro cp = new ControllerPadeiro();
-        cp.salvar("luiz", "Rua luizinho", "12345678912", "345678", 4000.00f, 0f);
-        //cp.editar("luiz alberto", "rua do luiz alberto", "12345678912", "556755556666", 4500.00f, 10f);
-        //cp.deletar("12345678912");
-    }*/
 }

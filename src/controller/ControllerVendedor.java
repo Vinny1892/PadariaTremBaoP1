@@ -9,6 +9,11 @@ import javax.swing.JOptionPane;
 
 public class ControllerVendedor {
 
+    /*
+    Metodo utilizado para calcular a gratificacao do vendedor,
+    rebecendo como parametro o metaVenda e o objeto vendedor,
+    retornando o valor da gratificacao
+    */
     public float gratificacao(float metaVenda, Vendedor vendedor) {
         float gratificao = 0f;
         if (metaVenda <= vendedor.getMontanteVenda()) {
@@ -17,6 +22,10 @@ public class ControllerVendedor {
         return gratificao;
     }
 
+    /*
+    Metodo usado para chamar o metodo salvar() da classe DaoVendedor,
+    passando como parametro o objeto Vendedor a ser salvo.
+     */
     public void salvar(double montanteVenda, float salarioBaseMensal, String cpf, String telefone, String nome, String endereco) throws SQLException {
         try {
             Vendedor vendedor = new Vendedor(montanteVenda, salarioBaseMensal, cpf, telefone, nome, endereco);
@@ -30,36 +39,45 @@ public class ControllerVendedor {
         }
     }
 
+    /*
+    Metodo utilizado para chamar o metodo atualizar() da classe DaoVendedor,
+    passando como parametro o objeto Vendedor a ser editado,
+    de acordo com idVendedor deste objeto.
+     */
     public void editar(double montanteVenda, float salarioBaseMensal, String cpf, String telefone, String nome, String endereco) throws SQLException {
         Vendedor vendedor = new Vendedor(montanteVenda, salarioBaseMensal, cpf, telefone, nome, endereco);
         new DaoVendedor().atualizar(vendedor);
         System.out.println("Metodo editar ControllerVendedor realizado");
     }
 
+    /*
+    Metodo utilizado para chamar o metodo deletar() da classe DaoVendedor,
+    passando como parametro o idVendedor, para saber qual vendedor sera deletado.
+     */
     public void deletar(String cpf) throws SQLException {
         new DaoVendedor().deletar(cpf);
         System.out.println("Metodo deletar ControllerVendedor realizado");
     }
 
+    /*
+    Metodo utilizado para chamar o metodo getById() da classe DaoVendedor,
+    passando como parametro o idVendedor a pegar,
+    retornando o objeto Vendedor encontrado.
+     */
     public Object selecionaObjeto(int id) throws SQLException {
         Vendedor vendedor = (Vendedor) new DaoVendedor().getById(id);
         System.out.println("Metodo selecionaObjeto ControllerVendedor realizado");
         return vendedor;
     }
 
+    /*
+    Metodo utilizado para chamar o metodo getAll() da classe DaoVendedor,
+    retornando um ArrayList de objetos do tipo Vendedor.
+     */
     public ArrayList<Vendedor> getAll() throws SQLException {
         ArrayList<Vendedor> vendedores = (ArrayList<Vendedor>) (ArrayList<?>) new DaoVendedor().getAll();
         System.out.println("Metodo getAll ControllerVendedor realizado");
         return vendedores;
     }
 
-    /*
-    public static void main(String[] args) throws SQLException{
-        ControllerVendedor cv = new ControllerVendedor();
-        //cv.salvar(10000, 1000.00f, "33445566778", "12123434", "augusto vendedor", "rua do augusto");
-        
-        //cv.editar(9000, 1500.00f, "85555555555", "11112222", "josé feitosa", "Rua jose feitosa");
-        
-        //cv.deletar("55555555556");
-    }*/
 }

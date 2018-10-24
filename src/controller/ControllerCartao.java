@@ -28,20 +28,20 @@ public class ControllerCartao {
     }
 
     /*
-    Metodo utilizado para chamar o metodo atuzalizar() da classe DaoCartaoFidelidade,
+    Metodo utilizado para chamar o metodo atualizar() da classe DaoCartaoFidelidade,
     passando como parametro o objeto CartaoFidelidade a ser editado,
     de acordo com idCartao deste objeto.
-    */
+     */
     public void editar(int idcartaoFidelidade, boolean gold, boolean platinum, GestaoCliente cliente) throws SQLException {
         CartaoFidelidade cartao = new CartaoFidelidade(idcartaoFidelidade, gold, platinum/*, cliente*/);
         new DaoCartaoFidelidade().atualizar(cartao);
         System.out.println("Metodo editar ControllerCartao realizado");
     }
-    
+
     /*
     Metodo utilizado para chamar o metodo deletar() da classe DaoCartaoFidelidade,
     passando como parametro o idCartao, para saber qual cartao sera deletado.
-    */
+     */
     public void deletar(String idCartao) throws SQLException {
         new DaoCartaoFidelidade().deletar(idCartao);
         System.out.println("Metodo deletar ControllerCartao realizado");
@@ -51,7 +51,7 @@ public class ControllerCartao {
     Metodo utilizado para chamar o metodo getById() da classe DaoCartaoFidelidade,
     passando como parametro o idCartao a pegar,
     retornando o objeto CartaoFidelidade encontrado.
-    */
+     */
     public Object selecionaObjeto(int id) throws SQLException {
         CartaoFidelidade cartao = (CartaoFidelidade) new DaoCartaoFidelidade().getById(id);
         System.out.println("Metodo selecionaObjeto ControllerCartao realizado");
@@ -61,7 +61,7 @@ public class ControllerCartao {
     /*
     Metodo utilizado para chamar o metodo getAll() da classe DaoCartaoFidelidade,
     retornando um ArrayList de objetos do tipo CartaoFidelidade.
-    */
+     */
     public ArrayList<CartaoFidelidade> getAll() throws SQLException {
         ArrayList<CartaoFidelidade> cartoes = (ArrayList<CartaoFidelidade>) (ArrayList<?>) new DaoCartaoFidelidade().getAll();
         System.out.println("Metodo getAll ControllerCartao realizado");
