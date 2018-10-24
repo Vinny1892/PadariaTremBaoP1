@@ -83,7 +83,25 @@ public class FXMLFuncionario implements Initializable {
 
     @FXML
     private Button btnVoltar;
-
+    
+    @FXML
+    private Button btnSeila;
+    
+    @FXML
+     void btnSeilaAction(ActionEvent event){
+          Stage stage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("FXMLFuncionarioPeculiaridade.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Scene scene= new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        btnSeila.getScene().getWindow().hide();
+    }
+    
     @FXML
     void btnAdicionarAction(ActionEvent event) {
         Stage stage = new Stage();

@@ -39,5 +39,6 @@
       <Button fx:id="btnAdicionar" layoutX="312.0" layoutY="189.0" mnemonicParsing="false" onAction="#btnAdicionarAction" prefHeight="46.0" prefWidth="84.0" text="Adicionar" />
       <Button fx:id="btnRemover" disable="true" layoutX="315.0" layoutY="257.0" mnemonicParsing="false" onAction="#btnRemoverAction" prefHeight="46.0" prefWidth="84.0" text="Remover" />
       <Button fx:id="btnVoltar" layoutX="709.0" layoutY="324.0" mnemonicParsing="false" onAction="#btnVoltarAction" prefHeight="46.0" prefWidth="92.0" text="Voltar" />
+      <Button fx:id="btnSeila" layoutX="445.0" layoutY="123.0" mnemonicParsing="false" onAction="#btnSeilaAction" prefHeight="55.0" prefWidth="173.0" text="Configurações Funcioarios" />
    </children>
 </AnchorPane>

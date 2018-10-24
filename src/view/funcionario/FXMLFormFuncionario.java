@@ -67,8 +67,7 @@ public class FXMLFormFuncionario implements Initializable {
     @FXML
     private Button btnVoltar;
     
-    @FXML
-    private TextField textFieldGratificacaoGerente;
+    
 
     @FXML
     void btnSalvarAction(ActionEvent event) throws SQLException {
@@ -76,7 +75,7 @@ public class FXMLFormFuncionario implements Initializable {
           cg = new ControllerGerente();
           cg.salvar(textFieldNome.getText(), textFieldCPF.getText(), textFieldEndereco.getText(), textFieldTelefone.getText(),
                   Float.parseFloat(textFieldSalario.getText()),
-                  Integer.parseInt(textFieldGratificacaoGerente.getText()));
+                  0);
         }else if (comboBoxProfissao.getSelectionModel().getSelectedItem().getNome().equals("Vendedor")){
             cv = new ControllerVendedor();
             cv.salvar(0, Float.parseFloat(textFieldSalario.getText()), textFieldCPF.getText(), textFieldTelefone.getText(), textFieldNome.getText(),textFieldEndereco.getText());
@@ -98,14 +97,8 @@ public class FXMLFormFuncionario implements Initializable {
 
     }
     
-    @FXML
-     void comboBoxAction(ActionEvent event){
-         if(comboBoxProfissao.getSelectionModel().getSelectedItem().getNome().equals("Gerente")){
-             textFieldGratificacaoGerente.setDisable(false);
-         }else{
-             textFieldGratificacaoGerente.setDisable(true);
-         }
-     }
+    
+ 
 
     @FXML
     void btnVoltarAction(ActionEvent event) {

@@ -7,8 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="511.0" prefWidth="453.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="view.funcionario.FXMLFormFuncionario">
+<AnchorPane id="AnchorPane" prefHeight="519.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.funcionario.FXMLFormFuncionario">
    <children>
       <Label layoutX="67.0" layoutY="-52.0" text="Label" />
       <Label layoutX="137.0" layoutY="66.0" prefHeight="28.0" prefWidth="57.0" text="Nome" />
@@ -24,13 +23,11 @@
       <Label layoutX="131.0" layoutY="287.0" text="Salario" />
       <Label layoutX="131.0" layoutY="341.0" text="Profissão" />
       <ComboBox fx:id="comboBoxProfissao" layoutX="194.0" layoutY="337.0" onAction="#comboBoxAction" prefWidth="150.0" />
-      <ButtonBar layoutX="149.0" layoutY="436.0" prefHeight="40.0" prefWidth="200.0">
+      <ButtonBar layoutX="149.0" layoutY="396.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
             <Button fx:id="btnSalvar" mnemonicParsing="false" onAction="#btnSalvarAction" text="Salvar" />
           <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#btnVoltarAction" text="Voltar" />
         </buttons>
       </ButtonBar>
-      <Label layoutX="47.0" layoutY="388.0" text="Porcentagem Gratificação" />
-      <TextField fx:id="textFieldGratificacaoGerente" disable="true" layoutX="195.0" layoutY="384.0" />
    </children>
 </AnchorPane>
