@@ -21,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
@@ -70,18 +71,7 @@ public class FXMLFormFornecedor implements Initializable {
     public boolean ValidaCNPJ(){
         Pattern p = Pattern.compile("\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d");
         Matcher m = p.matcher(textFieldCNPJ.getText());
-        if(m.find() && m.group().equals(textFieldCNPJ.getText())){
-            System.out.println(m.group());
-            
-        return true;
-        }else{
-            System.out.println(m.group());
-             Alert alert = new Alert(Alert.AlertType.NONE,"Não Deixe Campos Vazios", ButtonType.OK);
-             alert.setTitle("Erro Campos Formulario"); 
-             alert.show();
-            
-        }
-        return false;
+         return m.matches();
     }
     
     @FXML
@@ -105,7 +95,10 @@ public class FXMLFormFornecedor implements Initializable {
         
         
         
-        }
+        }else{
+            Alert alert = new Alert(AlertType.NONE,"Campos com Valor invalido",ButtonType.FINISH);
+            alert.show();
+            }
 
     }
 

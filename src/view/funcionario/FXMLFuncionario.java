@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -101,25 +102,36 @@ public class FXMLFuncionario implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
+       cpP = new ControllerPadeiro();
+       cg = new ControllerGerente();
+       cv = new ControllerVendedor();
+       try {
             padeiros = cpP.getAll();
           gerentes = cg.getAll();
-        vendedores = cv.getAll();
+      vendedores = cv.getAll();
         
        }catch (SQLException ex) {
-            //System.out.println("erro");
+            System.out.println("erro");
        }
-        //funcionarios.addAll(gerentes);
-        //funcionarios.addAll(padeiros);
-       // funcionarios.addAll(vendedores);
+         funcionarios = new ArrayList<>();
+        funcionarios.addAll(gerentes);
+       funcionarios.addAll(padeiros);
+        funcionarios.addAll(vendedores);
         
    tableFuncionario.getSelectionModel().selectedItemProperty().addListener((obs,oldValue,newValue) -> { btnRemover.setDisable(false);});
     }
     public void inicializarComboBox(){
+        CategoriasComboBox categoriaNome = new CategoriasComboBox("Nome", 1);
+        CategoriasComboBox categoriaCPF = new CategoriasComboBox("CPF", 2);
+        categorias.add(categoriaNome);
+        categorias.add(categoriaCPF);
+        obsComboBox = FXCollections.observableArrayList(categorias);
+        comboBoxFuncionarioProfissao.setItems(obsComboBox);
+        comboBoxFuncionarioProfissao.getSelectionModel().selectFirst();
         
     }   
     public void inicializarTabela(){
-    
+        
     }
     
 }
