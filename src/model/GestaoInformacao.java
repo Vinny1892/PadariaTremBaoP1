@@ -14,54 +14,57 @@ se o usuario procurar pelo funcionario de codigo 1234,
 devese exibir todas as informa¸co˜es deste funcionario.
 Entretanto, se o usuario optar por nAo especiﬁcar o usuario, 
 deve-se exibir todas as informacoes de todos os funcionarios.
-*/
+ */
 package model;
+
 public class GestaoInformacao {
-    
+
     //Cliente especifico
-    public GestaoCliente relatorioClientes(int codigoCliente){
-        GestaoCliente cliente  = null;
+    public GestaoCliente relatorioClientes(int codigoCliente) {
+        GestaoCliente cliente = null;
         return cliente;
     }
+
     //todos os clientes
-    public GestaoCliente relatorioClientes(){
-        GestaoCliente clientes  = null;
+    public GestaoCliente relatorioClientes() {
+        GestaoCliente clientes = null;
         return clientes;
     }
+
     //funcionario especifico
-    public GestaoFuncionario relatorioFuncionarios(int codigoFuncionario){
-        GestaoFuncionario funcionario = null;    
+    public GestaoFuncionario relatorioFuncionarios(int codigoFuncionario) {
+        GestaoFuncionario funcionario = null;
         return funcionario;
     }
+
     //todos os funcionarios
-    public GestaoFuncionario relatorioFuncionarios(){
-        GestaoFuncionario funcionarios= null;    
+    public GestaoFuncionario relatorioFuncionarios() {
+        GestaoFuncionario funcionarios = null;
         return funcionarios;
     }
+
     //produtos especifico
-    public GestaoProduto relatorioProdutos(int codigoProduto){
-        GestaoProduto produto = null;    
+    public GestaoProduto relatorioProdutos(int codigoProduto) {
+        GestaoProduto produto = null;
         return produto;
     }
+
     //todos os produtos
-    public GestaoProduto relatorioProdutos(){
-        GestaoProduto produtos = null;    
+    public GestaoProduto relatorioProdutos() {
+        GestaoProduto produtos = null;
         return produtos;
     }
-    
+
     //fornecedor especifico
-    public GestaoFornecedor relatorioFornecedor(int codigoFornecedor){
-        GestaoFornecedor fornecedor = null;    
+    public GestaoFornecedor relatorioFornecedor(int codigoFornecedor) {
+        GestaoFornecedor fornecedor = null;
         return fornecedor;
     }
+
     //todos os fornecedores
-    public GestaoFornecedor relatorioFornecedor(){
-        GestaoFornecedor fornecedores = null;    
+    public GestaoFornecedor relatorioFornecedor() {
+        GestaoFornecedor fornecedores = null;
         return fornecedores;
     }
-    
-    
-    
-    
-    
+
 }

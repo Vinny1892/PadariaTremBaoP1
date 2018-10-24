@@ -36,14 +36,14 @@ import view.main.Main;
  * @author VinnyWindows
  */
 public class FXMLFormFuncionario implements Initializable {
+
     ControllerVendedor cv;
     ControllerGerente cg;
     ControllerPadeiro cpP;
     private ArrayList<CategoriasComboBox> categorias;
     private ObservableList<CategoriasComboBox> obsComboBoxFuncionario;
 
-    
-  @FXML
+    @FXML
     private TextField textFieldCPF;
 
     @FXML
@@ -66,40 +66,34 @@ public class FXMLFormFuncionario implements Initializable {
 
     @FXML
     private Button btnVoltar;
-    
-    
-    
 
     @FXML
     void btnSalvarAction(ActionEvent event) throws SQLException {
-        if(comboBoxProfissao.getSelectionModel().getSelectedItem().getNome().equals("Gerente")){
-          cg = new ControllerGerente();
-          cg.salvar(textFieldNome.getText(), textFieldCPF.getText(), textFieldEndereco.getText(), textFieldTelefone.getText(),
-                  Float.parseFloat(textFieldSalario.getText()),
-                  0);
-        }else if (comboBoxProfissao.getSelectionModel().getSelectedItem().getNome().equals("Vendedor")){
+        if (comboBoxProfissao.getSelectionModel().getSelectedItem().getNome().equals("Gerente")) {
+            cg = new ControllerGerente();
+            cg.salvar(textFieldNome.getText(), textFieldCPF.getText(), textFieldEndereco.getText(), textFieldTelefone.getText(),
+                    Float.parseFloat(textFieldSalario.getText()),
+                    0);
+        } else if (comboBoxProfissao.getSelectionModel().getSelectedItem().getNome().equals("Vendedor")) {
             cv = new ControllerVendedor();
-            cv.salvar(0, Float.parseFloat(textFieldSalario.getText()), textFieldCPF.getText(), textFieldTelefone.getText(), textFieldNome.getText(),textFieldEndereco.getText());
-            
-        }else if(comboBoxProfissao.getSelectionModel().getSelectedItem().getNome().equals("Padeiro")){
+            cv.salvar(0, Float.parseFloat(textFieldSalario.getText()), textFieldCPF.getText(), textFieldTelefone.getText(), textFieldNome.getText(), textFieldEndereco.getText());
+
+        } else if (comboBoxProfissao.getSelectionModel().getSelectedItem().getNome().equals("Padeiro")) {
             cpP = new ControllerPadeiro();
-            cpP.salvar(textFieldNome.getText(), textFieldEndereco.getText(), textFieldCPF.getText(), textFieldTelefone.getText(),Float.parseFloat(textFieldSalario.getText()),0);
+            cpP.salvar(textFieldNome.getText(), textFieldEndereco.getText(), textFieldCPF.getText(), textFieldTelefone.getText(), Float.parseFloat(textFieldSalario.getText()), 0);
         }
-         Stage stage = new Stage();
+        Stage stage = new Stage();
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("FXMLFuncionario.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Scene scene= new Scene(root);
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
 
     }
-    
-    
- 
 
     @FXML
     void btnVoltarAction(ActionEvent event) {
@@ -110,11 +104,12 @@ public class FXMLFormFuncionario implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Scene scene= new Scene(root);
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         btnVoltar.getScene().getWindow().hide();
     }
+
     /**
      * Initializes the controller class.
      */
@@ -122,9 +117,9 @@ public class FXMLFormFuncionario implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         inicializarCombobox();
         // TODO
-    } 
-    
-    public void inicializarCombobox(){
+    }
+
+    public void inicializarCombobox() {
         categorias = new ArrayList<CategoriasComboBox>();
         CategoriasComboBox padeiro = new CategoriasComboBox("Padeiro", 1);
         CategoriasComboBox gerente = new CategoriasComboBox("Gerente", 2);
@@ -136,5 +131,5 @@ public class FXMLFormFuncionario implements Initializable {
         comboBoxProfissao.setItems(obsComboBoxFuncionario);
         comboBoxProfissao.getSelectionModel().selectLast();
     }
-    
+
 }

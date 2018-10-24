@@ -11,6 +11,7 @@ public class Padeiro extends GestaoFuncionario {
 
     private float horasEmHorarioAlternativo;
     int idPadeiro;
+
     public Padeiro(String nome, String endereco, String cpf, String telefone, float salarioBaseMensal, float horasEmHorarioAlternativo) {
         super(salarioBaseMensal, cpf, telefone, nome, endereco);
         this.horasEmHorarioAlternativo = horasEmHorarioAlternativo;
@@ -22,7 +23,6 @@ public class Padeiro extends GestaoFuncionario {
         this.idPadeiro = idPadeiro;
     }
 
-
     public int getIdPadeiro() {
         return idPadeiro;
     }
@@ -30,7 +30,6 @@ public class Padeiro extends GestaoFuncionario {
     public void setIdPadeiro(int idPadeiro) {
         this.idPadeiro = idPadeiro;
     }
-
 
     @Override
     public int gratificacao() {
@@ -51,7 +50,5 @@ public class Padeiro extends GestaoFuncionario {
     public String toString() {
         return getNome();
     }
-
-    
 
 }

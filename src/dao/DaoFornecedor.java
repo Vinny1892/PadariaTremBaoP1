@@ -13,7 +13,7 @@ public class DaoFornecedor extends GenericDao implements CRUDBasico {
     /*
     Metodo utilizado para salvar GestaoFornecedor na tabela/entidade estoque,
     de acordo com objeto GestaoFornecedor recebido.
-    */
+     */
     @Override
     public void salvar(Object object) {
         try {

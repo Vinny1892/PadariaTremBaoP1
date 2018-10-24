@@ -45,11 +45,12 @@ import view.main.Main;
  * @author VinnyWindows
  */
 public class FXMLFormProduto implements Initializable {
-    ControllerFornecedor cf ;
-    ArrayList<GestaoFornecedor> fornecedores;
-        private ObservableList<GestaoFornecedor> obsCategoriasFornecedor;
 
-      @FXML
+    ControllerFornecedor cf;
+    ArrayList<GestaoFornecedor> fornecedores;
+    private ObservableList<GestaoFornecedor> obsCategoriasFornecedor;
+
+    @FXML
     private TextField textFieldNome;
 
     @FXML
@@ -57,8 +58,8 @@ public class FXMLFormProduto implements Initializable {
 
     @FXML
     private TextField textFieldCodigo;
-    
-       @FXML
+
+    @FXML
     private TextField textFieldValorCusto;
 
     @FXML
@@ -75,39 +76,32 @@ public class FXMLFormProduto implements Initializable {
 
     @FXML
     void btnSalvarAction(ActionEvent event) throws SQLException {
-       
-        GestaoFornecedor fornecedor = comboBoxFornecedor.getSelectionModel().getSelectedItem();
-        
-        if( !textFieldNome.getText().isEmpty() && !textFieldApelido.getText().equals("") && fornecedor!= null){
-       new ControllerProduto().salvar(textFieldNome.getText(), fornecedor, Float.parseFloat(textFieldValorCusto.getText().trim()) , textFieldApelido.getText(), checkBoxPerecivel.isSelected());
-             Stage stage = new Stage();
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("FXMLProduto.fxml"));
-        } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        Scene scene= new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        btnVoltar.getScene().getWindow().hide();
-        }else{
-          
-             Alert alert = new Alert(Alert.AlertType.NONE,"Não Deixe Campos Vazios", ButtonType.OK);
-             alert.setTitle("Erro Campos Formulario"); 
-             alert.show();
-            
-        }
-        
-        
-    }  
-        
 
-    
-   
-    
-    
+        GestaoFornecedor fornecedor = comboBoxFornecedor.getSelectionModel().getSelectedItem();
+
+        if (!textFieldNome.getText().isEmpty() && !textFieldApelido.getText().equals("") && fornecedor != null) {
+            new ControllerProduto().salvar(textFieldNome.getText(), fornecedor, Float.parseFloat(textFieldValorCusto.getText().trim()), textFieldApelido.getText(), checkBoxPerecivel.isSelected());
+            Stage stage = new Stage();
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("FXMLProduto.fxml"));
+            } catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            btnVoltar.getScene().getWindow().hide();
+        } else {
+
+            Alert alert = new Alert(Alert.AlertType.NONE, "Não Deixe Campos Vazios", ButtonType.OK);
+            alert.setTitle("Erro Campos Formulario");
+            alert.show();
+
+        }
+
+    }
 
     @FXML
     void btnVoltarAction(ActionEvent event) throws SQLException {
@@ -118,8 +112,8 @@ public class FXMLFormProduto implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        Scene scene= new Scene(root);
+
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         btnVoltar.getScene().getWindow().hide();
@@ -137,19 +131,19 @@ public class FXMLFormProduto implements Initializable {
             Logger.getLogger(FXMLFormProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
         inicializarComboBox();
-        
-    }   
-    
-    public void inicializarComboBox(){
+
+    }
+
+    public void inicializarComboBox() {
         obsCategoriasFornecedor = FXCollections.observableArrayList(fornecedores);
-       
+
         comboBoxFornecedor.setItems(obsCategoriasFornecedor);
-        if(fornecedores.size() > 0){
+        if (fornecedores.size() > 0) {
             comboBoxFornecedor.getSelectionModel().selectFirst();
-        }else{
+        } else {
             comboBoxFornecedor.setEditable(false);
         }
-        
+
     }
-    
+
 }

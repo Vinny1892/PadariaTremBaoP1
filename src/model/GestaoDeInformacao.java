@@ -11,5 +11,5 @@ import model.GestaoProduto;
 import model.Funcionario;
 
 public interface GestaoDeInformacao {
-    
+
 }

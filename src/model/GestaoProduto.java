@@ -90,7 +90,6 @@ public class GestaoProduto {
     public void setPerecivel(boolean perecivel) {
         this.perecivel = perecivel;
     }
-  
 
     @Override
     public String toString() {

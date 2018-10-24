@@ -1,6 +1,5 @@
 package controller;
 
-
 import model.GestaoProduto;
 import dao.DaoProduto;
 import model.GestaoFornecedor;
@@ -19,7 +18,6 @@ public class ControllerProduto {
         System.out.println("Metodo salvar ControllerProduto realizado");
     }
 
-    
     /*
     Metodo utilizado para chamar o metodo deletar() da classe DaoProduto,
     passando como parametro o idProduto, para saber qual produto sera deletado.
@@ -40,7 +38,7 @@ public class ControllerProduto {
         System.out.println("Metodo editar ControllerProduto realizado");
     }
 
-     /*
+    /*
     Metodo utilizado para chamar o metodo getAll() da classe DaoProduto,
     retornando um ArrayList de objetos do tipo GestaoProduto.
      */
@@ -55,7 +53,7 @@ public class ControllerProduto {
     passando como parametro o idProduto a pegar,
     retornando o objeto GestaoProduto encontrado.
      */
-    public Object selecionaObjeto(int id) throws SQLException{
+    public Object selecionaObjeto(int id) throws SQLException {
         GestaoProduto produto = (GestaoProduto) new DaoProduto().getById(id);
         System.out.println("Metodo selecionaObjeto ControllerProduto realizado");
         return produto;

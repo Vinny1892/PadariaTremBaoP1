@@ -42,16 +42,14 @@ import view.main.Main;
  * @author VinnyWindows
  */
 public class FXMLCliente implements Initializable {
-    
+
     private ControllerCliente cc;
     private ArrayList<GestaoCliente> clientes;
     private ArrayList<CategoriasComboBox> categorias;
     private ObservableList<CategoriasComboBox> obsCategorias;
     private ObservableList<GestaoCliente> obsGestaoCliente;
-    
-    
-    
-      @FXML
+
+    @FXML
     private Button btnBuscar;
 
     @FXML
@@ -80,15 +78,15 @@ public class FXMLCliente implements Initializable {
 
     @FXML
     void btnAdicionarAction(ActionEvent event) {
-         Stage stage = new Stage();
+        Stage stage = new Stage();
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("FXMLFormCliente.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        Scene scene= new Scene(root);
+
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         btnAdicionar.getScene().getWindow().hide();
@@ -96,19 +94,19 @@ public class FXMLCliente implements Initializable {
 
     @FXML
     void btnBuscarAction(ActionEvent event) {
-        if(comboBoxCliente.getSelectionModel().getSelectedItem().getNome().equals("Nome")){
-            for (int i = 0 ;i <clientes.size();i++){
-                if(textFieldCliente.getText().equals(clientes.get(i).getNome())){
-                   // tableCliente.getSelectionModel().select(clientes.get(i));
+        if (comboBoxCliente.getSelectionModel().getSelectedItem().getNome().equals("Nome")) {
+            for (int i = 0; i < clientes.size(); i++) {
+                if (textFieldCliente.getText().equals(clientes.get(i).getNome())) {
+                    // tableCliente.getSelectionModel().select(clientes.get(i));
                     btnRemover.setDisable(false);
                 }
             }
         }
-        if(comboBoxCliente.getSelectionModel().getSelectedItem().getNome().equals("Codigo")){
-             for (int i = 0 ;i <clientes.size();i++){
-                 
-                if(textFieldCliente.getText().equals(String.valueOf(clientes.get(i).getCpf()))){
-                   // tableCliente.getSelectionModel().select(clientes.get(i));
+        if (comboBoxCliente.getSelectionModel().getSelectedItem().getNome().equals("Codigo")) {
+            for (int i = 0; i < clientes.size(); i++) {
+
+                if (textFieldCliente.getText().equals(String.valueOf(clientes.get(i).getCpf()))) {
+                    // tableCliente.getSelectionModel().select(clientes.get(i));
                     btnRemover.setDisable(false);
                 }
             }
@@ -131,8 +129,8 @@ public class FXMLCliente implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        Scene scene= new Scene(root);
+
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         btnVoltar.getScene().getWindow().hide();
@@ -144,34 +142,34 @@ public class FXMLCliente implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cc = new ControllerCliente();
-     try {
-           clientes = cc.getAll();
-      } catch (SQLException ex) {
+        try {
+            clientes = cc.getAll();
+        } catch (SQLException ex) {
             System.out.println("Erro ao buscar Produtos do Banco");
         }
-       inicializarComboBox();
+        inicializarComboBox();
         inicializarTabela();
-        
+
     }
 
-public void inicializarComboBox(){
-    categorias = new ArrayList<CategoriasComboBox>();
-     CategoriasComboBox comboBoxNomeProduto = new CategoriasComboBox("Nome", 1);
-     CategoriasComboBox comboBoxCodigoProduto = new CategoriasComboBox("CPF", 2);
-     categorias.add(comboBoxNomeProduto);
-     categorias.add(comboBoxCodigoProduto);
-     obsCategorias= FXCollections.observableArrayList(categorias);
-     comboBoxCliente.setItems(obsCategorias);
-     comboBoxCliente.getSelectionModel().select(comboBoxNomeProduto);
-    
-}   
+    public void inicializarComboBox() {
+        categorias = new ArrayList<CategoriasComboBox>();
+        CategoriasComboBox comboBoxNomeProduto = new CategoriasComboBox("Nome", 1);
+        CategoriasComboBox comboBoxCodigoProduto = new CategoriasComboBox("CPF", 2);
+        categorias.add(comboBoxNomeProduto);
+        categorias.add(comboBoxCodigoProduto);
+        obsCategorias = FXCollections.observableArrayList(categorias);
+        comboBoxCliente.setItems(obsCategorias);
+        comboBoxCliente.getSelectionModel().select(comboBoxNomeProduto);
 
-public void inicializarTabela(){
-    tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-    tableColumnCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-    obsGestaoCliente = FXCollections.observableArrayList(clientes);
-    tableCliente.setItems(obsGestaoCliente);
-    
-}
-    
+    }
+
+    public void inicializarTabela() {
+        tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        tableColumnCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        obsGestaoCliente = FXCollections.observableArrayList(clientes);
+        tableCliente.setItems(obsGestaoCliente);
+
+    }
+
 }

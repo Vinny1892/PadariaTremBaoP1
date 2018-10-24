@@ -39,17 +39,16 @@ import view.main.Main;
  * @author VinnyWindows
  */
 public class FXMLFornecedor implements Initializable {
-    
-     private ControllerFornecedor cf ;
-     private ArrayList<GestaoFornecedor> fornecedores;
+
+    private ControllerFornecedor cf;
+    private ArrayList<GestaoFornecedor> fornecedores;
     private ArrayList<CategoriasComboBox> categorias;
     private ObservableList<CategoriasComboBox> obsCategoriasComboBox;
-     private ObservableList<GestaoFornecedor> obsTableList;
-     
-     
-     @FXML
+    private ObservableList<GestaoFornecedor> obsTableList;
+
+    @FXML
     private Button btnVoltar;
-        @FXML
+    @FXML
     private Button btnBuscar;
 
     @FXML
@@ -57,15 +56,14 @@ public class FXMLFornecedor implements Initializable {
 
     @FXML
     private Button btnRemover;
-    
-       @FXML
+
+    @FXML
     private TableColumn<GestaoFornecedor, String> tableColumnNome;
 
     @FXML
     private TableColumn<GestaoFornecedor, String> tableColumnCNPJ;
 
-    
-     @FXML
+    @FXML
     private TableView<GestaoFornecedor> tableFornecedor;
 
     @FXML
@@ -73,7 +71,6 @@ public class FXMLFornecedor implements Initializable {
 
     @FXML
     private ComboBox<CategoriasComboBox> comboBoxFornecedor;
-    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -85,36 +82,34 @@ public class FXMLFornecedor implements Initializable {
         }
         inicializarComboBox();
         inicializarTableView();
-           tableFornecedor.getSelectionModel().selectedItemProperty().addListener((obs,oldValue,newValue) -> { btnRemover.setDisable(false);});
+        tableFornecedor.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
+            btnRemover.setDisable(false);
+        });
 
-        
     }
-    public void inicializarTableView(){
+
+    public void inicializarTableView() {
         tableColumnCNPJ.setCellValueFactory(new PropertyValueFactory<>("cnpj"));
         tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         obsTableList = FXCollections.observableArrayList(fornecedores);
         tableFornecedor.setItems(obsTableList);
-        
-        
+
     }
 
-        public void inicializarComboBox(){
-            categorias = new ArrayList<CategoriasComboBox>();
-            CategoriasComboBox categoriaCNPJ  = new CategoriasComboBox("CNPJ" , 1);
-            CategoriasComboBox categoriaNome = new CategoriasComboBox("Nome", 2);
-              categorias.add(categoriaNome);
-            categorias.add(categoriaCNPJ);
-          
-            obsCategoriasComboBox = FXCollections.observableArrayList(categorias);
-            comboBoxFornecedor.setItems(obsCategoriasComboBox);
-            comboBoxFornecedor.getSelectionModel().select(categoriaNome);
-           
-            
-            
-            
-        }  
-        
-     @FXML
+    public void inicializarComboBox() {
+        categorias = new ArrayList<CategoriasComboBox>();
+        CategoriasComboBox categoriaCNPJ = new CategoriasComboBox("CNPJ", 1);
+        CategoriasComboBox categoriaNome = new CategoriasComboBox("Nome", 2);
+        categorias.add(categoriaNome);
+        categorias.add(categoriaCNPJ);
+
+        obsCategoriasComboBox = FXCollections.observableArrayList(categorias);
+        comboBoxFornecedor.setItems(obsCategoriasComboBox);
+        comboBoxFornecedor.getSelectionModel().select(categoriaNome);
+
+    }
+
+    @FXML
     void btnAdicionarAction(ActionEvent event) {
         Stage stage = new Stage();
         Parent root = null;
@@ -123,8 +118,8 @@ public class FXMLFornecedor implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        Scene scene= new Scene(root);
+
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         btnAdicionar.getScene().getWindow().hide();
@@ -133,25 +128,26 @@ public class FXMLFornecedor implements Initializable {
 
     @FXML
     void btnBuscarAction(ActionEvent event) {
-        if(comboBoxFornecedor.getSelectionModel().getSelectedItem().getNome().equals("Nome")){
-            for(int i = 0 ;i<fornecedores.size();i++){
-                if(fornecedores.get(i).getNome().equals(textFieldFornecedor.getText())){
-                   tableFornecedor.getSelectionModel().select(fornecedores.get(i));
-                   btnRemover.setDisable(false);
-                            }
+        if (comboBoxFornecedor.getSelectionModel().getSelectedItem().getNome().equals("Nome")) {
+            for (int i = 0; i < fornecedores.size(); i++) {
+                if (fornecedores.get(i).getNome().equals(textFieldFornecedor.getText())) {
+                    tableFornecedor.getSelectionModel().select(fornecedores.get(i));
+                    btnRemover.setDisable(false);
+                }
             }
-        
-        } if(comboBoxFornecedor.getSelectionModel().getSelectedItem().getNome().equals("CNPJ")){
-            for(int i = 0 ;i<fornecedores.size();i++){
-                if(fornecedores.get(i).getCnpj().equals(textFieldFornecedor.getText())){
-                   tableFornecedor.getSelectionModel().select(fornecedores.get(i));
-                   btnRemover.setDisable(false);
-                            }
+
+        }
+        if (comboBoxFornecedor.getSelectionModel().getSelectedItem().getNome().equals("CNPJ")) {
+            for (int i = 0; i < fornecedores.size(); i++) {
+                if (fornecedores.get(i).getCnpj().equals(textFieldFornecedor.getText())) {
+                    tableFornecedor.getSelectionModel().select(fornecedores.get(i));
+                    btnRemover.setDisable(false);
+                }
             }
-        
+
         }
         //todo IMplementar Alert de erro;
-        
+
     }
 
     @FXML
@@ -161,20 +157,21 @@ public class FXMLFornecedor implements Initializable {
         tableFornecedor.getItems().remove(fornecedor);
 
     }
+
     @FXML
-    void btnVoltarAction(ActionEvent event){
-         Stage stage = new Stage();
+    void btnVoltarAction(ActionEvent event) {
+        Stage stage = new Stage();
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("../main/FXMLMain.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        Scene scene= new Scene(root);
+
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         btnVoltar.getScene().getWindow().hide();
-    }    
-    
+    }
+
 }

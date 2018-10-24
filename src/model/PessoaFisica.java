@@ -1,5 +1,7 @@
 package model;
-public abstract class PessoaFisica extends Pessoa{
+
+public abstract class PessoaFisica extends Pessoa {
+
     private String cpf;
     private String telefone;
 
@@ -14,9 +16,9 @@ public abstract class PessoaFisica extends Pessoa{
     }
 
     public void setCpf(String cpf) {
-        if(cpf.length() == 11){
+        if (cpf.length() == 11) {
             this.cpf = cpf;
-        }else{
+        } else {
             System.out.println("CPF deve possuir 11 digitos");
         }
     }
@@ -26,11 +28,9 @@ public abstract class PessoaFisica extends Pessoa{
     }
 
     public void setTelefone(String telefone) {
-        if(telefone.length() == 9){
-        this.telefone = telefone;
-            }
+        if (telefone.length() == 9) {
+            this.telefone = telefone;
+        }
     }
-    
-    
-    
+
 }

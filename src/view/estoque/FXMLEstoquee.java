@@ -43,17 +43,18 @@ import view.main.Main;
  * @author VinnyWindows
  */
 public class FXMLEstoquee implements Initializable {
+
     ControllerEstoque ce;
     ControllerProduto cp;
-    ArrayList<GestaoEstoque> produtosEstoque;;
+    ArrayList<GestaoEstoque> produtosEstoque;
+    ;
     ArrayList<GestaoProduto> produtos;
     ArrayList<CategoriasComboBox> categorias;
-    
-   private ObservableList<CategoriasComboBox> obscategoriasProdutoEstoqueBusca;
-   private ObservableList<GestaoEstoque> obsTableEstoque;
-  private ObservableList<GestaoProduto> obscategoriasProdutoEstoqueAdicionar;
-  
-    
+
+    private ObservableList<CategoriasComboBox> obscategoriasProdutoEstoqueBusca;
+    private ObservableList<GestaoEstoque> obsTableEstoque;
+    private ObservableList<GestaoProduto> obscategoriasProdutoEstoqueAdicionar;
+
     @FXML
     private TextField textFieldProduto;
 
@@ -100,14 +101,14 @@ public class FXMLEstoquee implements Initializable {
     private TableColumn<GestaoEstoque, String> tableColumnDataValidade;
 
     @FXML
-    private TableColumn<GestaoEstoque,String> tableColumnQuantidade;
+    private TableColumn<GestaoEstoque, String> tableColumnQuantidade;
 
     @FXML
     void btnAdicionarAction(ActionEvent event) {
         formEstoque.setVisible(true);
-        if(produtos.isEmpty())
+        if (produtos.isEmpty()) {
             comboBoxProduto.setEditable(false);
-        else{
+        } else {
             obscategoriasProdutoEstoqueAdicionar = FXCollections.observableArrayList(produtos);
             comboBoxProdutoForm.setItems(obscategoriasProdutoEstoqueAdicionar);
             comboBoxProdutoForm.getSelectionModel().selectFirst();
@@ -117,29 +118,26 @@ public class FXMLEstoquee implements Initializable {
 
     @FXML
     void btnBuscarAction(ActionEvent event) {
-        if(comboBoxProduto.getSelectionModel().getSelectedItem().getNome().equals("Nome")){
-            for ( int i = 0 ; i < produtosEstoque.size(); i++){
-                if(textFieldProduto.getText().equals(produtosEstoque.get(i).getProduto().getNome())){
-                        tableEstoque.getSelectionModel().select(produtosEstoque.get(i));
-                        btnRemover.setDisable(false);
-                }
-                
-                
-            }
-        }if(comboBoxProduto.getSelectionModel().getSelectedItem().getNome().equals("Codigo")){
-            for(int i = 0 ; i < produtosEstoque.size();i++){
-            if(textFieldProduto.getText().equals(produtosEstoque.get(i).getProduto().getIdproduto())){
+        if (comboBoxProduto.getSelectionModel().getSelectedItem().getNome().equals("Nome")) {
+            for (int i = 0; i < produtosEstoque.size(); i++) {
+                if (textFieldProduto.getText().equals(produtosEstoque.get(i).getProduto().getNome())) {
                     tableEstoque.getSelectionModel().select(produtosEstoque.get(i));
                     btnRemover.setDisable(false);
-            }
                 }
+
+            }
+        }
+        if (comboBoxProduto.getSelectionModel().getSelectedItem().getNome().equals("Codigo")) {
+            for (int i = 0; i < produtosEstoque.size(); i++) {
+                if (textFieldProduto.getText().equals(produtosEstoque.get(i).getProduto().getIdproduto())) {
+                    tableEstoque.getSelectionModel().select(produtosEstoque.get(i));
+                    btnRemover.setDisable(false);
+                }
+            }
         }
         btnRemover.setDisable(false);
-        
 
     }
-    
-    
 
     @FXML
     void btnRemoverAction(ActionEvent event) throws SQLException {
@@ -152,15 +150,15 @@ public class FXMLEstoquee implements Initializable {
     @FXML
     void btnSalvarAction(ActionEvent event) {
         inicializarComboBoxProduto();
-        if(!textFieldFormDataValidade.getText().isEmpty() && !textFieldQuantidade.getText().isEmpty()){
-            try{
+        if (!textFieldFormDataValidade.getText().isEmpty() && !textFieldQuantidade.getText().isEmpty()) {
+            try {
                 GestaoProduto produtoSalvar = comboBoxProdutoForm.valueProperty().get();
                 ce.salvar(Integer.parseInt(textFieldQuantidade.getText()), textFieldFormDataValidade.getText(), produtoSalvar);
                 produtosEstoque = ce.getAll();
                 inicializarTabela();
                 formEstoque.setVisible(false);
 
-            }catch(Exception e){
+            } catch (Exception e) {
                 System.out.println("Erro ao Salvar");
             }
         }
@@ -169,15 +167,15 @@ public class FXMLEstoquee implements Initializable {
 
     @FXML
     void btnVoltarAction(ActionEvent event) {
-           Stage stage = new Stage();
+        Stage stage = new Stage();
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("../main/FXMLMain.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        Scene scene= new Scene(root);
+
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         btnVoltar.getScene().getWindow().hide();
@@ -197,38 +195,40 @@ public class FXMLEstoquee implements Initializable {
 
         } catch (SQLException ex) {
             System.out.println("Erro ao trazer produtos  ou  produtos do estoque");
-            
+
         }
-       inicializarComboBox();
-       inicializarTabela();
-       tableEstoque.getSelectionModel().selectedItemProperty().addListener((obs,oldValue,newValue) -> { btnRemover.setDisable(false);});
+        inicializarComboBox();
+        inicializarTabela();
+        tableEstoque.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
+            btnRemover.setDisable(false);
+        });
     }
 
-    public void inicializarTabela(){
-        tableColumnNome.setCellValueFactory(new PropertyValueFactory<> ("produtoNome"));
+    public void inicializarTabela() {
+        tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("produtoNome"));
         tableColumnCodigo.setCellValueFactory(new PropertyValueFactory<>("produtoCodigo"));
         tableColumnQuantidade.setCellValueFactory(new PropertyValueFactory<>("qtdProduto"));
         tableColumnDataValidade.setCellValueFactory(new PropertyValueFactory<>("dataValidade"));
-        obsTableEstoque =  FXCollections.observableArrayList(produtosEstoque);
+        obsTableEstoque = FXCollections.observableArrayList(produtosEstoque);
         tableEstoque.setItems(obsTableEstoque);
-        
-    
+
     }
-    public void inicializarComboBox(){
+
+    public void inicializarComboBox() {
         categorias = new ArrayList<>();
-         CategoriasComboBox categoriaNome = new CategoriasComboBox("Nome", 1);
-         CategoriasComboBox categoriasCodigo = new CategoriasComboBox("Codigo", 2);
-         categorias.add(categoriaNome);
-         categorias.add(categoriasCodigo);
-         obscategoriasProdutoEstoqueBusca = FXCollections.observableArrayList(categorias);
-         comboBoxProduto.setItems(obscategoriasProdutoEstoqueBusca);
-         comboBoxProduto.getSelectionModel().select(categoriaNome);
-    
+        CategoriasComboBox categoriaNome = new CategoriasComboBox("Nome", 1);
+        CategoriasComboBox categoriasCodigo = new CategoriasComboBox("Codigo", 2);
+        categorias.add(categoriaNome);
+        categorias.add(categoriasCodigo);
+        obscategoriasProdutoEstoqueBusca = FXCollections.observableArrayList(categorias);
+        comboBoxProduto.setItems(obscategoriasProdutoEstoqueBusca);
+        comboBoxProduto.getSelectionModel().select(categoriaNome);
+
     }
-    
-    public void inicializarComboBoxProduto(){
+
+    public void inicializarComboBoxProduto() {
         obscategoriasProdutoEstoqueAdicionar = FXCollections.observableArrayList(produtos);
-        comboBoxProdutoForm.setItems(obscategoriasProdutoEstoqueAdicionar);  
+        comboBoxProdutoForm.setItems(obscategoriasProdutoEstoqueAdicionar);
     }
-    
+
 }

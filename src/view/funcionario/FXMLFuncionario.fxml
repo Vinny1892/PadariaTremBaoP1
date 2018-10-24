@@ -11,34 +11,34 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="823.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.funcionario.FXMLFuncionario">
-   <children>
-      <TabPane layoutX="234.0" layoutY="-60.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="Untitled Tab 1" />
-          <Tab text="Untitled Tab 2">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </Tab>
-        </tabs>
-      </TabPane>
-      <TableView fx:id="tableFuncionario" prefHeight="400.0" prefWidth="280.0">
-        <columns>
-          <TableColumn fx:id="tableColumnNome" prefWidth="75.0" text="Nome" />
-          <TableColumn fx:id="tableColumnCPF" prefWidth="75.0" text="CPF" />
-            <TableColumn fx:id="tableColumnProfissao" prefWidth="75.0" text="Profissão" />
-        </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </TableView>
-      <Label layoutX="341.0" layoutY="40.0" text="Functionario" />
-      <TextField fx:id="textFieldFuncionario" layoutX="418.0" layoutY="36.0" />
-      <ComboBox fx:id="comboBoxFuncionarioProfissao" layoutX="605.0" layoutY="36.0" prefWidth="150.0" />
-      <Button fx:id="btnBuscar" layoutX="312.0" layoutY="127.0" mnemonicParsing="false" onAction="#btnBuscarAction" prefHeight="46.0" prefWidth="84.0" text="Buscar" />
-      <Button fx:id="btnAdicionar" layoutX="312.0" layoutY="189.0" mnemonicParsing="false" onAction="#btnAdicionarAction" prefHeight="46.0" prefWidth="84.0" text="Adicionar" />
-      <Button fx:id="btnRemover" disable="true" layoutX="315.0" layoutY="257.0" mnemonicParsing="false" onAction="#btnRemoverAction" prefHeight="46.0" prefWidth="84.0" text="Remover" />
-      <Button fx:id="btnVoltar" layoutX="709.0" layoutY="324.0" mnemonicParsing="false" onAction="#btnVoltarAction" prefHeight="46.0" prefWidth="92.0" text="Voltar" />
-      <Button fx:id="btnSeila" layoutX="445.0" layoutY="123.0" mnemonicParsing="false" onAction="#btnSeilaAction" prefHeight="55.0" prefWidth="173.0" text="Configurações Funcioarios" />
-   </children>
+    <children>
+        <TabPane layoutX="234.0" layoutY="-60.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Untitled Tab 1" />
+                <Tab text="Untitled Tab 2">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+        <TableView fx:id="tableFuncionario" prefHeight="400.0" prefWidth="280.0">
+            <columns>
+                <TableColumn fx:id="tableColumnNome" prefWidth="75.0" text="Nome" />
+                <TableColumn fx:id="tableColumnCPF" prefWidth="75.0" text="CPF" />
+                <TableColumn fx:id="tableColumnProfissao" prefWidth="75.0" text="Profissão" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+        <Label layoutX="341.0" layoutY="40.0" text="Functionario" />
+        <TextField fx:id="textFieldFuncionario" layoutX="418.0" layoutY="36.0" />
+        <ComboBox fx:id="comboBoxFuncionarioProfissao" layoutX="605.0" layoutY="36.0" prefWidth="150.0" />
+        <Button fx:id="btnBuscar" layoutX="312.0" layoutY="127.0" mnemonicParsing="false" onAction="#btnBuscarAction" prefHeight="46.0" prefWidth="84.0" text="Buscar" />
+        <Button fx:id="btnAdicionar" layoutX="312.0" layoutY="189.0" mnemonicParsing="false" onAction="#btnAdicionarAction" prefHeight="46.0" prefWidth="84.0" text="Adicionar" />
+        <Button fx:id="btnRemover" disable="true" layoutX="315.0" layoutY="257.0" mnemonicParsing="false" onAction="#btnRemoverAction" prefHeight="46.0" prefWidth="84.0" text="Remover" />
+        <Button fx:id="btnVoltar" layoutX="709.0" layoutY="324.0" mnemonicParsing="false" onAction="#btnVoltarAction" prefHeight="46.0" prefWidth="92.0" text="Voltar" />
+        <Button fx:id="btnSeila" layoutX="445.0" layoutY="123.0" mnemonicParsing="false" onAction="#btnSeilaAction" prefHeight="55.0" prefWidth="173.0" text="Configurações Funcioarios" />
+    </children>
 </AnchorPane>

@@ -32,7 +32,7 @@ public class GestaoVenda {
     private float valorTotalVenda;
 
     //com id_venda e numero de parcelas
-    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, ArrayList<GestaoEstoque> estoques, int formaPagamento, int idVenda, int numeroParcelas,float valorTotalVenda) {
+    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, ArrayList<GestaoEstoque> estoques, int formaPagamento, int idVenda, int numeroParcelas, float valorTotalVenda) {
         this.dataVenda = dataVenda;
         this.vendedor = vendedor;
         this.cliente = cliente;
@@ -44,7 +44,7 @@ public class GestaoVenda {
     }
 
     // com id_vendas sem numero de parcelas
-    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, ArrayList<GestaoEstoque> estoques, int formaPagamento, int idVenda,float valorTotalVenda) {
+    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, ArrayList<GestaoEstoque> estoques, int formaPagamento, int idVenda, float valorTotalVenda) {
         this.dataVenda = dataVenda;
         this.vendedor = vendedor;
         this.cliente = cliente;
@@ -55,7 +55,7 @@ public class GestaoVenda {
     }
 
     //sem id e sem n parcelas
-    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, ArrayList<GestaoEstoque> estoques, int formaPagamento,float valorTotalVenda) {
+    public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, ArrayList<GestaoEstoque> estoques, int formaPagamento, float valorTotalVenda) {
         this.dataVenda = dataVenda;
         this.vendedor = vendedor;
         this.cliente = cliente;

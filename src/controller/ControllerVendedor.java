@@ -13,7 +13,7 @@ public class ControllerVendedor {
     Metodo utilizado para calcular a gratificacao do vendedor,
     rebecendo como parametro o metaVenda e o objeto vendedor,
     retornando o valor da gratificacao
-    */
+     */
     public float gratificacao(float metaVenda, Vendedor vendedor) {
         float gratificao = 0f;
         if (metaVenda <= vendedor.getMontanteVenda()) {

@@ -10,8 +10,9 @@ package model;
  * @author Enoque
  */
 public class CartaoFidelidade {
+
     private int idcartaoFidelidade;
-    private  boolean gold;
+    private boolean gold;
     private boolean platinum;
     private GestaoCliente cliente;
 
@@ -57,8 +58,5 @@ public class CartaoFidelidade {
     public void setCliente(GestaoCliente cliente) {
         this.cliente = cliente;
     }
-    
-    
-    
-    
+
 }

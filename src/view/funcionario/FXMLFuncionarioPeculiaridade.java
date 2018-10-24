@@ -42,6 +42,7 @@ import view.main.Main;
  * @author VinnyWindows
  */
 public class FXMLFuncionarioPeculiaridade implements Initializable {
+
     private ControllerGerente cg;
     private ControllerPadeiro cpP;
     private ControllerEstoque ce;
@@ -51,7 +52,7 @@ public class FXMLFuncionarioPeculiaridade implements Initializable {
     private ObservableList<GestaoGerente> obsComboBoxGerente;
     private ObservableList<Padeiro> obsComboBoxPadeiro;
     private ObservableList<GestaoEstoque> obsTableEstoque;
-     @FXML
+    @FXML
     private TableView<GestaoEstoque> tableEstoque;
 
     @FXML
@@ -62,7 +63,7 @@ public class FXMLFuncionarioPeculiaridade implements Initializable {
 
     @FXML
     private AnchorPane formGerenteConf;
-    
+
     @FXML
     private AnchorPane formPadeiro;
 
@@ -101,21 +102,20 @@ public class FXMLFuncionarioPeculiaridade implements Initializable {
 
     @FXML
     void btnGerenteConfAction(ActionEvent event) throws SQLException {
-         
-        if(!formGerenteConf.isVisible()){
+
+        if (!formGerenteConf.isVisible()) {
             formGerenteConf.setVisible(true);
-        }else{
+        } else {
             formGerenteConf.setVisible(false);
         }
-       
-        
+
     }
 
     @FXML
     void btnPadeiroConfAction(ActionEvent event) throws SQLException {
-        if(!formPadeiro.isVisible()){
+        if (!formPadeiro.isVisible()) {
             formPadeiro.setVisible(true);
-        }else{
+        } else {
             formPadeiro.setVisible(false);
         }
     }
@@ -123,7 +123,7 @@ public class FXMLFuncionarioPeculiaridade implements Initializable {
     @FXML
     void btnSalvarGerenteAction(ActionEvent event) {
         //
-        Padeiro padeiro  = comboBoxPadeiro.getSelectionModel().getSelectedItem();
+        Padeiro padeiro = comboBoxPadeiro.getSelectionModel().getSelectedItem();
         padeiro.sethorarioAlternativo(Float.parseFloat(textFieldHorasTrabalhadasPadeiro.getText()));
         cpP.gratificacao(padeiro);
         formGerenteConf.setVisible(false);
@@ -140,14 +140,14 @@ public class FXMLFuncionarioPeculiaridade implements Initializable {
 
     @FXML
     void btnVoltarAction(ActionEvent event) {
-           Stage stage = new Stage();
+        Stage stage = new Stage();
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("FXMLFuncionario.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Scene scene= new Scene(root);
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         btnVoltar.getScene().getWindow().hide();
@@ -155,75 +155,76 @@ public class FXMLFuncionarioPeculiaridade implements Initializable {
 
     @FXML
     void btnVoltarFormGerente(ActionEvent event) {
-        if(!formGerenteConf.isVisible()){
+        if (!formGerenteConf.isVisible()) {
             formGerenteConf.setVisible(true);
-        }else{
+        } else {
             formGerenteConf.setVisible(false);
         }
     }
-   
+
     @FXML
-        void btnVoltarPadeiroAction(ActionEvent event){
-             if(!formPadeiro.isVisible()){
-                    formPadeiro.setVisible(true);
-                }else{
-                    formPadeiro.setVisible(false);
+    void btnVoltarPadeiroAction(ActionEvent event) {
+        if (!formPadeiro.isVisible()) {
+            formPadeiro.setVisible(true);
+        } else {
+            formPadeiro.setVisible(false);
         }
-        }
+    }
 
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize (URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) {
         ce = new ControllerEstoque();
         try {
             produtosEstoque = ce.getAll();
-            for(int i = 0 ; i < produtosEstoque.size();i++){
-            if(produtosEstoque.get(i).getQtdProduto() > 1){
-                produtosEstoque.remove(produtosEstoque.get(i));
+            for (int i = 0; i < produtosEstoque.size(); i++) {
+                if (produtosEstoque.get(i).getQtdProduto() > 1) {
+                    produtosEstoque.remove(produtosEstoque.get(i));
+                }
             }
-        }
         } catch (SQLException ex) {
             System.out.println("erro");
         }
-        try{
-        inicializarTabela();
-        inicializarComboBoxPadeiro();
-        inicializarComboBoxGerente();
-        }catch(SQLException e){
+        try {
+            inicializarTabela();
+            inicializarComboBoxPadeiro();
+            inicializarComboBoxGerente();
+        } catch (SQLException e) {
             System.out.println("Erro ao carregar dados dos funcionarios");
         }
-        if(padeiros.size()>0){
+        if (padeiros.size() > 0) {
             comboBoxPadeiro.setDisable(false);
         }
-        if(gerentes.size()>0){
-            comboBoxGerente.setDisable(false);        
+        if (gerentes.size() > 0) {
+            comboBoxGerente.setDisable(false);
+        }
     }
-    }
-    
-    public void inicializarTabela(){
-        
+
+    public void inicializarTabela() {
+
         tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("produtoNome"));
         tableColumnQuantidade.setCellValueFactory(new PropertyValueFactory<>("qtdProduto"));
         obsTableEstoque = FXCollections.observableArrayList(produtosEstoque);
         tableEstoque.setItems(obsTableEstoque);
-        
+
     }
-    
-    public void inicializarComboBoxGerente() throws SQLException{
+
+    public void inicializarComboBoxGerente() throws SQLException {
         cg = new ControllerGerente();
         gerentes = cg.getAll();
         obsComboBoxGerente = FXCollections.observableArrayList(gerentes);
         comboBoxGerente.setItems(obsComboBoxGerente);
         comboBoxGerente.getSelectionModel().selectFirst();
     }
-    public void inicializarComboBoxPadeiro()throws SQLException{
-        cpP =  new ControllerPadeiro();
+
+    public void inicializarComboBoxPadeiro() throws SQLException {
+        cpP = new ControllerPadeiro();
         padeiros = cpP.getAll();
         obsComboBoxPadeiro = FXCollections.observableArrayList(padeiros);
         comboBoxPadeiro.setItems(obsComboBoxPadeiro);
         comboBoxPadeiro.getSelectionModel().selectFirst();
     }
-    
+
 }

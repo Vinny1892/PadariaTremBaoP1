@@ -42,17 +42,18 @@ import view.main.Main;
  * @author VinnyWindows
  */
 public class FXMLVenda implements Initializable {
+
     ControllerVenda cvV;
     ControllerEstoque ce;
     ControllerVendedor cv;
     ControllerCliente cc;
-    ArrayList<GestaoEstoque>carrinho;
+    ArrayList<GestaoEstoque> carrinho;
     ArrayList<GestaoEstoque> produtosEstoque;
     ArrayList<GestaoCliente> clientes;
     ObservableList<GestaoEstoque> obsCarrinho;
     ObservableList<GestaoEstoque> obsTableEstoque;
-    
-      @FXML
+
+    @FXML
     private TableView<GestaoEstoque> tableEstoque;
 
     @FXML
@@ -81,23 +82,25 @@ public class FXMLVenda implements Initializable {
 
     @FXML
     private Button btnAdicionarCarrinho;
-    
+
     @FXML
-      private TextField textFieldQuantidade;
+    private TextField textFieldQuantidade;
 
     @FXML
     void btnAdicionarCarrinhoAction(ActionEvent event) {
         tablePrecoCarrinho.setCellValueFactory(new PropertyValueFactory<>("precoCusto"));
         tableCarrinhoNome.setCellValueFactory(new PropertyValueFactory<>("produtoNome"));
         tableQuantidadeCarrinho.setCellValueFactory(new PropertyValueFactory<>("qtdProduto"));
-       GestaoEstoque estoqueCarrinho =   tableEstoque.getSelectionModel().getSelectedItem();
-      try{estoqueCarrinho.setQtdProduto(Integer.parseInt(textFieldQuantidade.getText()));} catch(Exception e){
-          Alert alert = new Alert(Alert.AlertType.NONE, "Somente Numeros ", ButtonType.FINISH);
-          alert.show();
-                  }
-       carrinho.add(estoqueCarrinho);
-       obsCarrinho = FXCollections.observableArrayList(carrinho);
-       tableCarrinho.setItems(obsCarrinho);
+        GestaoEstoque estoqueCarrinho = tableEstoque.getSelectionModel().getSelectedItem();
+        try {
+            estoqueCarrinho.setQtdProduto(Integer.parseInt(textFieldQuantidade.getText()));
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.NONE, "Somente Numeros ", ButtonType.FINISH);
+            alert.show();
+        }
+        carrinho.add(estoqueCarrinho);
+        obsCarrinho = FXCollections.observableArrayList(carrinho);
+        tableCarrinho.setItems(obsCarrinho);
     }
 
     @FXML
@@ -107,20 +110,19 @@ public class FXMLVenda implements Initializable {
 
     @FXML
     void btnVoltarAction(ActionEvent event) {
-           Stage stage = new Stage();
+        Stage stage = new Stage();
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("../main/FXMLMain.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Scene scene= new Scene(root);
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         btnVoltar.getScene().getWindow().hide();
     }
 
-    
     /**
      * Initializes the controller class.
      */
@@ -139,23 +141,20 @@ public class FXMLVenda implements Initializable {
             Logger.getLogger(FXMLVenda.class.getName()).log(Level.SEVERE, null, ex);
         }
         inicializarTabelaEstoque();
-        tableEstoque.getSelectionModel().selectedItemProperty().addListener((obs,oldValue,newValue) -> { });
+        tableEstoque.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
+        });
 
-        
-        
         //cvV.salvar(data, vendedor, cliente, estoques, formapagamento, valortotal);
         // TODO
-    
     }
-    
-    void inicializarTabelaEstoque(){
+
+    void inicializarTabelaEstoque() {
         System.out.println(produtosEstoque.size());
         tableEstoqueNome.setCellValueFactory(new PropertyValueFactory<>("produtoNome"));
         tableEstoqueQuantidade.setCellValueFactory(new PropertyValueFactory<>("qtdProduto"));
         obsTableEstoque = FXCollections.observableArrayList(produtosEstoque);
         tableEstoque.setItems(obsTableEstoque);
-        
-        
+
     }
-    
+
 }

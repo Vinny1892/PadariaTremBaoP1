@@ -10,5 +10,5 @@ package model;
  * @author kaio
  */
 public abstract class Funcionario {
-    
+
 }

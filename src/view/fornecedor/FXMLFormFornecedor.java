@@ -35,7 +35,6 @@ import view.main.Main;
  * @author VinnyWindows
  */
 public class FXMLFormFornecedor implements Initializable {
-    
 
     @FXML
     private TextField textFieldNome;
@@ -57,62 +56,59 @@ public class FXMLFormFornecedor implements Initializable {
 
     @FXML
     private Button btnVoltar;
-    
-     
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         // TODO
-    } 
-    public boolean ValidaCNPJ(){
+    }
+
+    public boolean ValidaCNPJ() {
         Pattern p = Pattern.compile("\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d");
         Matcher m = p.matcher(textFieldCNPJ.getText());
-         return m.matches();
+        return m.matches();
     }
-    
+
     @FXML
     void btnSalvarAction(ActionEvent event) throws SQLException {
-        if(!textFieldNome.getText().equals("") && !textFieldEndereco.getText().equals("") && ValidaCNPJ()){
-            
-              new ControllerFornecedor().salvar(textFieldCNPJ.getText(), checkBoxRecorrente.isSelected(), textFieldNome.getText(),
-                      textFieldEndereco.getText(), textFieldTaxa.getText());
-               Stage stage = new Stage();
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("FXMLFornecedor.fxml"));
-        } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        Scene scene= new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        btnSalvar.getScene().getWindow().hide();
-        
-        
-        
-        }else{
-            Alert alert = new Alert(AlertType.NONE,"Campos com Valor invalido",ButtonType.FINISH);
-            alert.show();
+        if (!textFieldNome.getText().equals("") && !textFieldEndereco.getText().equals("") && ValidaCNPJ()) {
+
+            new ControllerFornecedor().salvar(textFieldCNPJ.getText(), checkBoxRecorrente.isSelected(), textFieldNome.getText(),
+                    textFieldEndereco.getText(), textFieldTaxa.getText());
+            Stage stage = new Stage();
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("FXMLFornecedor.fxml"));
+            } catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            btnSalvar.getScene().getWindow().hide();
+
+        } else {
+            Alert alert = new Alert(AlertType.NONE, "Campos com Valor invalido", ButtonType.FINISH);
+            alert.show();
+        }
 
     }
 
     @FXML
     void btnVoltarAction(ActionEvent event) {
-                   Stage stage = new Stage();
+        Stage stage = new Stage();
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("FXMLFornecedor.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        Scene scene= new Scene(root);
+
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         btnSalvar.getScene().getWindow().hide();
@@ -120,13 +116,13 @@ public class FXMLFormFornecedor implements Initializable {
 
     @FXML
     void checkBoxRecorrenteAction(ActionEvent event) {
-        if(checkBoxRecorrente.isSelected()){
+        if (checkBoxRecorrente.isSelected()) {
             textFieldTaxa.setEditable(true);
         }
-        if(!checkBoxRecorrente.isSelected()){
+        if (!checkBoxRecorrente.isSelected()) {
             textFieldTaxa.setText("");
             textFieldTaxa.setEditable(false);
         }
     }
-    
+
 }

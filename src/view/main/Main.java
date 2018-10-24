@@ -5,7 +5,6 @@
  */
 package view.main;
 
-
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +23,7 @@ import javafx.stage.Stage;
  * @author VinnyWindows
  */
 public class Main extends Application {
-    
+
     @FXML
     private Button btnFornecedor;
 
@@ -48,39 +47,38 @@ public class Main extends Application {
 
     @FXML
     private Label labelMain;
-    
-     @FXML
-     void btnVendaAction(ActionEvent event){
-            Stage stage = new Stage();
+
+    @FXML
+    void btnVendaAction(ActionEvent event) {
+        Stage stage = new Stage();
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("../venda/FXMLVenda.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Scene scene= new Scene(root);
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         btnProduto.getScene().getWindow().hide();
-     }
-   
+    }
+
     @FXML
     void btnEstoqueAction(ActionEvent event) {
-         Stage stage = new Stage();
+        Stage stage = new Stage();
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("../estoque/FXMLEstoquee.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Scene scene= new Scene(root);
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         btnProduto.getScene().getWindow().hide();
     }
-   
-    
-     @FXML
+
+    @FXML
     void btnProdutoAction(ActionEvent event) {
         Stage stage = new Stage();
         Parent root = null;
@@ -89,13 +87,13 @@ public class Main extends Application {
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Scene scene= new Scene(root);
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         btnProduto.getScene().getWindow().hide();
 
     }
-    
+
     @FXML
     void btnRelatorioAction(ActionEvent event) {
         Stage stage = new Stage();
@@ -105,13 +103,13 @@ public class Main extends Application {
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Scene scene= new Scene(root);
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         btnProduto.getScene().getWindow().hide();
 
     }
-    
+
     @FXML
     void btnFornecedorAction(ActionEvent event) {
         Stage stage = new Stage();
@@ -121,59 +119,56 @@ public class Main extends Application {
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        Scene scene= new Scene(root);
+
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         btnFornecedor.getScene().getWindow().hide();
     }
+
     @FXML
-     void btnFuncionarioAction(ActionEvent event){
-            Stage stage = new Stage();
+    void btnFuncionarioAction(ActionEvent event) {
+        Stage stage = new Stage();
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("../funcionario/FXMLFuncionario.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        Scene scene= new Scene(root);
+
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         btnFuncionario.getScene().getWindow().hide();
-     }
-    
-     @FXML
-     void btnClienteAction(ActionEvent event){
-            Stage stage = new Stage();
+    }
+
+    @FXML
+    void btnClienteAction(ActionEvent event) {
+        Stage stage = new Stage();
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("../cliente/FXMLCliente.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        Scene scene= new Scene(root);
+
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         btnCliente.getScene().getWindow().hide();
-     }
-     
-    
-     @Override
+    }
+
+    @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLMain.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        
+
     }
 
-    
-    
     public static void main(String[] args) {
         launch(args);
     }
-    
-    
+
 }

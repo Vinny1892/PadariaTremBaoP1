@@ -10,6 +10,7 @@ package view;
  * @author VinnyWindows
  */
 public class CategoriasComboBox {
+
     private String nome;
     private int id;
 
@@ -38,8 +39,5 @@ public class CategoriasComboBox {
     public String toString() {
         return nome; //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-    
-    
+
 }

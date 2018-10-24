@@ -21,19 +21,16 @@ import javafx.stage.Stage;
  *
  * @author kaio
  */
-public class FXMLFormCliente implements Initializable{
-    
- 
+public class FXMLFormCliente implements Initializable {
 
     @FXML
-    public void salvarNovoCliente(ActionEvent event ) {
-        
-    }       
+    public void salvarNovoCliente(ActionEvent event) {
+
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
-        
+
     }
-    
+
 }

@@ -9,33 +9,33 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="548.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.venda.FXMLVenda">
-   <children>
-      <TableView fx:id="tableEstoque" layoutX="4.0" layoutY="7.0" prefHeight="400.0" prefWidth="295.0">
-        <columns>
-          <TableColumn fx:id="tableEstoqueNome" prefWidth="75.0" text="Nome" />
-          <TableColumn fx:id="tableEstoqueQuantidade" prefWidth="75.0" text="Quantidade" />
-        </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </TableView>
-      <TableView fx:id="tableCarrinho" layoutX="471.0" layoutY="7.0" prefHeight="407.0" prefWidth="260.0">
-        <columns>
-          <TableColumn fx:id="tableCarrinhoNome" prefWidth="75.0" text="Nome" />
-          <TableColumn fx:id="tablePrecoCarrinho" prefWidth="75.0" text="Preco" />
-            <TableColumn fx:id="tableQuantidadeCarrinho" prefWidth="75.0" text="Quantidade " />
-        </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </TableView>
-      <Button fx:id="btnComprar" layoutX="340.0" layoutY="171.0" mnemonicParsing="false" onAction="#btnComprarAction" prefHeight="50.0" prefWidth="91.0" text="Comprar" />
-      <Label layoutX="84.0" layoutY="414.0" prefHeight="25.0" prefWidth="67.0" text="Estoque" />
-      <Label layoutX="595.0" layoutY="418.0" text="Carrinho" />
-      <RadioButton layoutX="-203.0" layoutY="76.0" mnemonicParsing="false" text="RadioButton" />
-      <Button fx:id="btnVoltar" layoutX="592.0" layoutY="474.0" mnemonicParsing="false" onAction="#btnVoltarAction" prefHeight="50.0" prefWidth="112.0" text="Voltar" />
-      <Button fx:id="btnAdicionarCarrinho" layoutX="342.0" layoutY="239.0" mnemonicParsing="false" onAction="#btnAdicionarCarrinhoAction" prefHeight="58.0" prefWidth="87.0" text="&gt;&gt;" />
-      <TextField fx:id="textFieldQuantidade" layoutX="311.0" layoutY="124.0" />
-      <Label layoutX="354.0" layoutY="93.0" text="Quantidade" />
-   </children>
+    <children>
+        <TableView fx:id="tableEstoque" layoutX="4.0" layoutY="7.0" prefHeight="400.0" prefWidth="295.0">
+            <columns>
+                <TableColumn fx:id="tableEstoqueNome" prefWidth="75.0" text="Nome" />
+                <TableColumn fx:id="tableEstoqueQuantidade" prefWidth="75.0" text="Quantidade" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+        <TableView fx:id="tableCarrinho" layoutX="471.0" layoutY="7.0" prefHeight="407.0" prefWidth="260.0">
+            <columns>
+                <TableColumn fx:id="tableCarrinhoNome" prefWidth="75.0" text="Nome" />
+                <TableColumn fx:id="tablePrecoCarrinho" prefWidth="75.0" text="Preco" />
+                <TableColumn fx:id="tableQuantidadeCarrinho" prefWidth="75.0" text="Quantidade " />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+        <Button fx:id="btnComprar" layoutX="340.0" layoutY="171.0" mnemonicParsing="false" onAction="#btnComprarAction" prefHeight="50.0" prefWidth="91.0" text="Comprar" />
+        <Label layoutX="84.0" layoutY="414.0" prefHeight="25.0" prefWidth="67.0" text="Estoque" />
+        <Label layoutX="595.0" layoutY="418.0" text="Carrinho" />
+        <RadioButton layoutX="-203.0" layoutY="76.0" mnemonicParsing="false" text="RadioButton" />
+        <Button fx:id="btnVoltar" layoutX="592.0" layoutY="474.0" mnemonicParsing="false" onAction="#btnVoltarAction" prefHeight="50.0" prefWidth="112.0" text="Voltar" />
+        <Button fx:id="btnAdicionarCarrinho" layoutX="342.0" layoutY="239.0" mnemonicParsing="false" onAction="#btnAdicionarCarrinhoAction" prefHeight="58.0" prefWidth="87.0" text="&gt;&gt;" />
+        <TextField fx:id="textFieldQuantidade" layoutX="311.0" layoutY="124.0" />
+        <Label layoutX="354.0" layoutY="93.0" text="Quantidade" />
+    </children>
 </AnchorPane>

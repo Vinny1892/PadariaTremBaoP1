@@ -1,19 +1,21 @@
 package model;
+
 /*
 Gerentes, por sua vez, tem um aumento no salario base em 20%,
 como gratiﬁcaco por funcao de conﬁanca.
-*/
-public class GestaoGerente extends GestaoFuncionario{
+ */
+public class GestaoGerente extends GestaoFuncionario {
+
     private int idGerente;
     private int porcentagemGratificacao;
-    
-    public GestaoGerente(int idGerente, String nome, String cpf, String endereco,  String telefone, float salarioBaseMensal,int PorcentagemGratificacao) {
+
+    public GestaoGerente(int idGerente, String nome, String cpf, String endereco, String telefone, float salarioBaseMensal, int PorcentagemGratificacao) {
         super(salarioBaseMensal, cpf, telefone, nome, endereco);
         this.idGerente = idGerente;
         this.porcentagemGratificacao = PorcentagemGratificacao;
     }
-    
-    public GestaoGerente(String nome, String cpf, String endereco,  String telefone, float salarioBaseMensal,int PorcentagemGratificacao) {
+
+    public GestaoGerente(String nome, String cpf, String endereco, String telefone, float salarioBaseMensal, int PorcentagemGratificacao) {
         super(salarioBaseMensal, cpf, telefone, nome, endereco);
         this.porcentagemGratificacao = PorcentagemGratificacao;
     }
@@ -44,6 +46,4 @@ public class GestaoGerente extends GestaoFuncionario{
         return getNome();
     }
 
-    
-    
 }

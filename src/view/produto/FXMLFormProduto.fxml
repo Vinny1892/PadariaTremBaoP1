@@ -10,26 +10,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="429.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.produto.FXMLFormProduto">
-   <children>
-      <Label layoutX="185.0" layoutY="88.0" prefHeight="34.0" prefWidth="70.0" text="Nome" />
-      <TextField fx:id="textFieldNome" layoutX="261.0" layoutY="93.0" />
-      <TextField fx:id="textFieldApelido" layoutX="261.0" layoutY="134.0" />
-      <Label layoutX="180.0" layoutY="138.0" text="Apelido" />
-      <CheckBox fx:id="checkBoxPerecivel" layoutX="302.0" layoutY="226.0" mnemonicParsing="false" text="Perecivel" />
-      <ButtonBar layoutX="236.0" layoutY="301.0" prefHeight="40.0" prefWidth="200.0">
-        <buttons>
-          <Button fx:id="btnSalvar" mnemonicParsing="false" onAction="#btnSalvarAction" prefHeight="33.0" prefWidth="113.0" text="Salvar" />
-            <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#btnVoltarAction" prefHeight="34.0" prefWidth="85.0" text="Voltar" />
-        </buttons>
-      </ButtonBar>
-      <ComboBox fx:id="comboBoxFornecedor" layoutX="262.0" layoutY="256.0" prefWidth="150.0" />
-      <Label layoutX="165.0" layoutY="260.0" text="Fornecedores" />
-      <Label layoutX="169.0" layoutY="184.0" text="Preco Custo" />
-      <TextField fx:id="textFieldValorCusto" layoutX="262.0" layoutY="180.0">
-         <effect>
-            <Reflection />
-         </effect>
-      </TextField>
-      <Label layoutX="185.0" layoutY="376.0" text="Codigo será gerado automaticamente pelo sistema" />
-   </children>
+    <children>
+        <Label layoutX="185.0" layoutY="88.0" prefHeight="34.0" prefWidth="70.0" text="Nome" />
+        <TextField fx:id="textFieldNome" layoutX="261.0" layoutY="93.0" />
+        <TextField fx:id="textFieldApelido" layoutX="261.0" layoutY="134.0" />
+        <Label layoutX="180.0" layoutY="138.0" text="Apelido" />
+        <CheckBox fx:id="checkBoxPerecivel" layoutX="302.0" layoutY="226.0" mnemonicParsing="false" text="Perecivel" />
+        <ButtonBar layoutX="236.0" layoutY="301.0" prefHeight="40.0" prefWidth="200.0">
+            <buttons>
+                <Button fx:id="btnSalvar" mnemonicParsing="false" onAction="#btnSalvarAction" prefHeight="33.0" prefWidth="113.0" text="Salvar" />
+                <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#btnVoltarAction" prefHeight="34.0" prefWidth="85.0" text="Voltar" />
+            </buttons>
+        </ButtonBar>
+        <ComboBox fx:id="comboBoxFornecedor" layoutX="262.0" layoutY="256.0" prefWidth="150.0" />
+        <Label layoutX="165.0" layoutY="260.0" text="Fornecedores" />
+        <Label layoutX="169.0" layoutY="184.0" text="Preco Custo" />
+        <TextField fx:id="textFieldValorCusto" layoutX="262.0" layoutY="180.0">
+            <effect>
+                <Reflection />
+            </effect>
+        </TextField>
+        <Label layoutX="185.0" layoutY="376.0" text="Codigo será gerado automaticamente pelo sistema" />
+    </children>
 </AnchorPane>

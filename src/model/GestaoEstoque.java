@@ -93,40 +93,39 @@ public class GestaoEstoque {
         this.dataValidade = dataValidade;
     }
 
-
-    public SimpleStringProperty  produtoNomeProperty(){
-        SimpleStringProperty nome =  new SimpleStringProperty(produto.getNome());
-        return  nome;
+    public SimpleStringProperty produtoNomeProperty() {
+        SimpleStringProperty nome = new SimpleStringProperty(produto.getNome());
+        return nome;
     }
-    
-    public SimpleStringProperty produtoCodigoProperty(){
-        String codigoMostrar =  String.valueOf(produto.getIdproduto());
-        switch(codigoMostrar.length()){
+
+    public SimpleStringProperty produtoCodigoProperty() {
+        String codigoMostrar = String.valueOf(produto.getIdproduto());
+        switch (codigoMostrar.length()) {
             case 1:
-               codigoMostrar = "00000"+codigoMostrar;
+                codigoMostrar = "00000" + codigoMostrar;
                 break;
             case 2:
-                codigoMostrar = "0000" +codigoMostrar;
-            break;
+                codigoMostrar = "0000" + codigoMostrar;
+                break;
             case 3:
-                codigoMostrar = "000"+codigoMostrar;
+                codigoMostrar = "000" + codigoMostrar;
                 break;
             case 4:
-                codigoMostrar = "00"+codigoMostrar;
+                codigoMostrar = "00" + codigoMostrar;
                 break;
             case 5:
-                codigoMostrar = "0"+codigoMostrar;
+                codigoMostrar = "0" + codigoMostrar;
                 break;
             default:
                 System.out.println("Implementar Erro codigo Maior que 6 digitos");
                 break;
         }
-         SimpleStringProperty codigo = new SimpleStringProperty(codigoMostrar);
-         return codigo;
+        SimpleStringProperty codigo = new SimpleStringProperty(codigoMostrar);
+        return codigo;
     }
-    
-      public SimpleFloatProperty precoCustoProperty(){
+
+    public SimpleFloatProperty precoCustoProperty() {
         return new SimpleFloatProperty(produto.getPrecoCusto());
     }
-    
+
 }

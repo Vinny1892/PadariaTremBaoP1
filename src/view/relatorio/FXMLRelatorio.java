@@ -39,8 +39,8 @@ import view.main.Main;
 public class FXMLRelatorio implements Initializable {
 
     private ToggleGroup group;
-    private ControllerInformacao cf;   
-    
+    private ControllerInformacao cf;
+
     @FXML
     private ComboBox<CategoriasComboBox> optionsSelector;
 

@@ -6,12 +6,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ControllerGerente {
-    
+
     /*
     Metodo utilizado para calcular a gratificacao do gerente,
     recebendo como parametro o objeto GestaoGerente,
     retornando a gratificacao.
-    */
+     */
     public float gratificacao(GestaoGerente gerente) {
         float gratificacao = 0f;
         return gratificacao = gerente.getSalarioBaseMensal() * 0.2f;
@@ -47,10 +47,10 @@ public class ControllerGerente {
         System.out.println("Metodo editar ControllerGerente realizado");
     }
 
-     /*
+    /*
     Metodo utilizado para chamar o metodo getAll() da classe DaoGerente,
     retornando um ArrayList de objetos do tipo GestaoGerente.
-    */
+     */
     public ArrayList<GestaoGerente> getAll() throws SQLException {
         ArrayList<GestaoGerente> gerentes = (ArrayList<GestaoGerente>) (ArrayList<?>) new DaoGerente().getAll();
         System.out.println("Metodo getAll() ControllerGerente realizado");
@@ -61,7 +61,7 @@ public class ControllerGerente {
     Metodo utilizado para chamar o metodo getById() da classe DaoGerente,
     passando como parametro o idGerente a pegar,
     retornando o objeto GestaoGerente encontrado.
-    */
+     */
     public Object selecionaObjeto(int id) throws SQLException {
         GestaoGerente gerente = (GestaoGerente) new DaoGerente().getById(id);
         System.out.println("Metodo selecionaObjeto ControllerGerente realizado");

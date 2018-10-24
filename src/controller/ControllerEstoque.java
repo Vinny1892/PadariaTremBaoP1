@@ -9,8 +9,6 @@ import javax.swing.JOptionPane;
 
 public class ControllerEstoque {
 
- 
-
     /*
     Metodo utilizado para chamar o metodo salvar() da classe DaoEstoque,
     passando como parametro o objeto GestaoEstoque.
