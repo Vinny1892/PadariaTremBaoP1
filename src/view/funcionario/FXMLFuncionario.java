@@ -8,6 +8,7 @@ package view.funcionario;
 import controller.ControllerGerente;
 import controller.ControllerPadeiro;
 import controller.ControllerVendedor;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,17 +19,23 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import model.GestaoFuncionario;
 import model.GestaoGerente;
 import model.Padeiro;
 import model.Vendedor;
 import view.CategoriasComboBox;
+import view.main.Main;
 
 /**
  * FXML Controller class
@@ -79,22 +86,47 @@ public class FXMLFuncionario implements Initializable {
 
     @FXML
     void btnAdicionarAction(ActionEvent event) {
-
+        
     }
 
     @FXML
     void btnBuscarAction(ActionEvent event) {
+        if(comboBoxFuncionarioProfissao.getSelectionModel().getSelectedItem().getNome().equals("Nome")){
+            for(int i = 0 ; i < funcionarios.size();i++){
+                if(textFieldFuncionario.getText().trim().equals(funcionarios.get(i).getNome())){
+                    tableFuncionario.getSelectionModel().select(funcionarios.get(i));
+                }
+            }
+        }if(comboBoxFuncionarioProfissao.getSelectionModel().getSelectedItem().getNome().equals("CPF")){
+            for(int i = 0 ; i < funcionarios.size();i++){
+                if(textFieldFuncionario.getText().trim().equals(funcionarios.get(i).getCpf())){
+                    tableFuncionario.getSelectionModel().select(funcionarios.get(i));
+                    }
+               }
+        }
 
     }
 
     @FXML
-    void btnRemoverAction(ActionEvent event) {
-
+    void btnRemoverAction(ActionEvent event) throws SQLException {
+        GestaoFuncionario funcionarioDeletar = tableFuncionario.getSelectionModel().getSelectedItem();
+        cg.deletar(funcionarioDeletar.getCpf());
+        tableFuncionario.getItems().remove(funcionarioDeletar);
     }
 
     @FXML
     void btnVoltarAction(ActionEvent event) {
-
+          Stage stage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("../main/FXMLMain.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Scene scene= new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        btnVoltar.getScene().getWindow().hide();
     }
 
     /**
@@ -117,10 +149,13 @@ public class FXMLFuncionario implements Initializable {
         funcionarios.addAll(gerentes);
        funcionarios.addAll(padeiros);
         funcionarios.addAll(vendedores);
+        inicializarComboBox();
+        inicializarTabela();
         
    tableFuncionario.getSelectionModel().selectedItemProperty().addListener((obs,oldValue,newValue) -> { btnRemover.setDisable(false);});
     }
     public void inicializarComboBox(){
+        categorias = new ArrayList<>();
         CategoriasComboBox categoriaNome = new CategoriasComboBox("Nome", 1);
         CategoriasComboBox categoriaCPF = new CategoriasComboBox("CPF", 2);
         categorias.add(categoriaNome);
@@ -131,6 +166,12 @@ public class FXMLFuncionario implements Initializable {
         
     }   
     public void inicializarTabela(){
+        tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        tableColumnCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        tableColumnProfissao.setCellValueFactory(new PropertyValueFactory<>("profissao"));
+        obsTableList = FXCollections.observableArrayList(funcionarios);
+        tableFuncionario.setItems(obsTableList);
+        
         
     }
     
