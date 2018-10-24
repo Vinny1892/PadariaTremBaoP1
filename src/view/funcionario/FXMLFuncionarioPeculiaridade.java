@@ -179,6 +179,11 @@ public class FXMLFuncionarioPeculiaridade implements Initializable {
         ce = new ControllerEstoque();
         try {
             produtosEstoque = ce.getAll();
+            for(int i = 0 ; i < produtosEstoque.size();i++){
+            if(produtosEstoque.get(i).getQtdProduto() > 1){
+                produtosEstoque.remove(produtosEstoque.get(i));
+            }
+        }
         } catch (SQLException ex) {
             System.out.println("erro");
         }
@@ -189,20 +194,16 @@ public class FXMLFuncionarioPeculiaridade implements Initializable {
         }catch(SQLException e){
             System.out.println("Erro ao carregar dados dos funcionarios");
         }
-        if(padeiros.isEmpty()){
-            comboBoxPadeiro.setDisable(true);
+        if(padeiros.size()>0){
+            comboBoxPadeiro.setDisable(false);
         }
-        if(gerentes.isEmpty()){
-            comboBoxGerente.setDisable(true);        
+        if(gerentes.size()>0){
+            comboBoxGerente.setDisable(false);        
     }
     }
     
     public void inicializarTabela(){
-        for(int i = 0 ; i < produtosEstoque.size();i++){
-            if(produtosEstoque.get(i).getQtdProduto() > 1){
-                produtosEstoque.remove(produtosEstoque.get(i));
-            }
-        }
+        
         tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("produtoNome"));
         tableColumnQuantidade.setCellValueFactory(new PropertyValueFactory<>("qtdProduto"));
         obsTableEstoque = FXCollections.observableArrayList(produtosEstoque);
