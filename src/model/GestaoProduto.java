@@ -14,9 +14,6 @@ que pode variar de acordo com a regiao do paıs em que se encontra a unidade da 
  */
 package model;
 
-import java.text.Format;
-import java.util.Date;
-
 public class GestaoProduto {
 
     private String nome;
@@ -42,7 +39,6 @@ public class GestaoProduto {
         this.apelido = apelido;
         this.perecivel = perecivel;
     }
-    
 
     //Getters e Setters
     public String getNome() {
@@ -97,7 +93,5 @@ public class GestaoProduto {
     public String toString() {
         return nome;
     }
-    
-
 
 }
