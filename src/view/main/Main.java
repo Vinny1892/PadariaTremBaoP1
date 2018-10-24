@@ -82,6 +82,23 @@ public class Main extends Application {
         btnProduto.getScene().getWindow().hide();
 
     }
+    
+    @FXML
+    void btnRelatorioAction(ActionEvent event) {
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("../relatorio/FXMLRelatorio.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Scene scene= new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        btnProduto.getScene().getWindow().hide();
+
+    }
+    
     @FXML
     void btnFornecedorAction(ActionEvent event) {
         Stage stage = new Stage();
