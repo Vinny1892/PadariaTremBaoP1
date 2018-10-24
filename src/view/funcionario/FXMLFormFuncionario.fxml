@@ -22,7 +22,7 @@
       <TextField fx:id="textFieldSalario" layoutX="194.0" layoutY="283.0" />
       <Label layoutX="131.0" layoutY="287.0" text="Salario" />
       <Label layoutX="131.0" layoutY="341.0" text="Profissão" />
-      <ComboBox fx:id="comboBoxProfissao" layoutX="194.0" layoutY="337.0" onAction="#comboBoxAction" prefWidth="150.0" />
+      <ComboBox fx:id="comboBoxProfissao" layoutX="194.0" layoutY="337.0" prefWidth="150.0" />
       <ButtonBar layoutX="149.0" layoutY="396.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
             <Button fx:id="btnSalvar" mnemonicParsing="false" onAction="#btnSalvarAction" text="Salvar" />

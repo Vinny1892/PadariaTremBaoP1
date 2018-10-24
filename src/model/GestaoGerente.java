@@ -39,6 +39,11 @@ public class GestaoGerente extends GestaoFuncionario{
         this.porcentagemGratificacao = porcentagemGratificacao;
     }
 
+    @Override
+    public String toString() {
+        return getNome();
+    }
+
     
     
 }

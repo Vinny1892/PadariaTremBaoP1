@@ -47,6 +47,11 @@ public class Padeiro extends GestaoFuncionario {
         this.horasEmHorarioAlternativo = horasEmHorarioAlternativo;
     }
 
- 
+    @Override
+    public String toString() {
+        return getNome();
+    }
+
+    
 
 }
