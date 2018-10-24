@@ -138,6 +138,8 @@ public class FXMLEstoquee implements Initializable {
         
 
     }
+    
+    
 
     @FXML
     void btnRemoverAction(ActionEvent event) throws SQLException {
@@ -199,6 +201,7 @@ public class FXMLEstoquee implements Initializable {
         }
        inicializarComboBox();
        inicializarTabela();
+       tableEstoque.getSelectionModel().selectedItemProperty().addListener((obs,oldValue,newValue) -> { btnRemover.setDisable(false);});
     }
 
     public void inicializarTabela(){

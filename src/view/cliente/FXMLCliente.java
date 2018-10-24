@@ -144,8 +144,8 @@ public class FXMLCliente implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cc = new ControllerCliente();
-      try {
-            clientes = cc.getAll();
+     try {
+           clientes = cc.getAll();
       } catch (SQLException ex) {
             System.out.println("Erro ao buscar Produtos do Banco");
         }

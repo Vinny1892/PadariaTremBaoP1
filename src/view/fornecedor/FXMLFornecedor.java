@@ -85,6 +85,8 @@ public class FXMLFornecedor implements Initializable {
         }
         inicializarComboBox();
         inicializarTableView();
+           tableFornecedor.getSelectionModel().selectedItemProperty().addListener((obs,oldValue,newValue) -> { btnRemover.setDisable(false);});
+
         
     }
     public void inicializarTableView(){
