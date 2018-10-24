@@ -10,13 +10,23 @@ import model.Padeiro;
 public class ControllerPadeiro {
 
     /*
-    Metodo utilizado para calcular a gratificacao do padeiro,
+    Metodo utilizado para calcular o salario final do padeiro,
     recebendo como parametro o objeto Padeiro,
+    retornando o salarioFinal
+     */
+    public float salarioFinal(Padeiro padeiro) {
+        float salarioFinal = padeiro.getSalarioBaseMensal();
+        return salarioFinal += gratificacao(padeiro.getSalarioBaseMensal(), padeiro.getHorasTrabalhadaNoturno());
+    }
+
+    /*
+    Metodo utilizado para calcular a gratificacao do padeiro,
+    recebendo como parametro salarioBase e horasTrabalhadaNoturno ,
     retornando o valor da gratificacai.
      */
-    public float gratificacao(Padeiro padeiro) {
+    public float gratificacao(float salarioBase, float horasTrabalhadaNoturno) {
         float gratificacao = 0;
-        gratificacao = (padeiro.getSalarioBaseMensal() * 0.25f) * padeiro.getHorasTrabalhadaNoturno();
+        gratificacao = (salarioBase * 0.25f) * horasTrabalhadaNoturno;
         return gratificacao;
     }
 

@@ -7,7 +7,6 @@ bonificações), num total de 18%.
  */
 package controller;
 
-import dao.DaoPadeiro;
 import dao.DaoVendedor;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -35,8 +34,8 @@ public class ControllerImpostos {
 
     /*
     Metodo chama metodos getAll() do ControllerGerente, ControllerPadeiro e ControllerVendedor,
-    acumulando o tribudo do salario,
-    com salario + gratificacao,
+    acumulando o tributo dos salarios,
+    chamando o metodo que calcula salarioFinal() Controller* Gerente, Padeiro e Vendedor, 
     retornando todo o tributo.
      */
     public float tributoTodosSalariosFuncionarios() throws SQLException {
@@ -46,13 +45,13 @@ public class ControllerImpostos {
         float tributoTodosSalariosFuncionarios = 0;
 
         for (int i = 0; i < gerentes.size(); i++) {
-            tributoTodosSalariosFuncionarios += gerentes.get(i).getSalarioBaseMensal() + gerentes.get(i).gratificacao();
+            tributoTodosSalariosFuncionarios += new ControllerGerente().salarioFinal(gerentes.get(i));
         }
         for (int i = 0; i < padeiros.size(); i++) {
-            tributoTodosSalariosFuncionarios += padeiros.get(i).getSalarioBaseMensal() + padeiros.get(i).gratificacao();
+            tributoTodosSalariosFuncionarios += new ControllerPadeiro().salarioFinal(padeiros.get(i));
         }
         for (int i = 0; i < vendedores.size(); i++) {
-            tributoTodosSalariosFuncionarios += vendedores.get(i).getSalarioBaseMensal() + vendedores.get(i).gratificacao();
+            tributoTodosSalariosFuncionarios += new ControllerVendedor().salarioFinal(vendedores.get(i), vendedores.get(i).getMontanteVenda());
         }
 
         return tributoTodosSalariosFuncionarios;

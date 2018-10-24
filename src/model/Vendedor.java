@@ -8,32 +8,30 @@ recebem uma boniﬁcacao de 10% sobre o salario base
  */
 public class Vendedor extends GestaoFuncionario {
 
-    private double montanteVenda;
+    private float montanteVenda;
     private int idVendedor;
+    private float metaVenda;
 
-    public Vendedor(double montanteVenda, float salarioBaseMensal, String cpf, String telefone, String nome, String endereco) {
+    public Vendedor(float montanteVenda, float salarioBaseMensal, String cpf, String telefone, String nome, String endereco, float metaVenda) {
         super(salarioBaseMensal, cpf, telefone, nome, endereco);
         this.montanteVenda = montanteVenda;
+        this.metaVenda = metaVenda;
     }
 
-    public Vendedor(double montanteVenda, int idVendedor, float salarioBaseMensal, String cpf, String telefone, String nome, String endereco) {
+    public Vendedor(float montanteVenda, int idVendedor, float salarioBaseMensal, String cpf, String telefone, String nome, String endereco, float metaVenda) {
         super(salarioBaseMensal, cpf, telefone, nome, endereco);
         this.montanteVenda = montanteVenda;
         this.idVendedor = idVendedor;
+        this.metaVenda = metaVenda;
     }
 
     //Get Set
-    public double getMontanteVenda() {
+    public float getMontanteVenda() {
         return montanteVenda;
     }
 
-    public void setMontanteVenda(double montanteVenda) {
+    public void setMontanteVenda(float montanteVenda) {
         this.montanteVenda = montanteVenda;
-    }
-
-    @Override
-    public int gratificacao() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getIdVendedor() {
@@ -42,6 +40,14 @@ public class Vendedor extends GestaoFuncionario {
 
     public void setIdVendedor(int idVendedor) {
         this.idVendedor = idVendedor;
+    }
+
+    public float getMetaVenda() {
+        return metaVenda;
+    }
+
+    public void setMetaVenda(float metaVenda) {
+        this.metaVenda = metaVenda;
     }
 
 }

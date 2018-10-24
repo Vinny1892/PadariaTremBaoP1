@@ -19,8 +19,8 @@ public class DaoVendedor extends GenericDao implements CRUDBasico {
     public void salvar(Object object) throws SQLException {
         Vendedor vendedor = (Vendedor) object;
         try {
-            String insert = "INSERT INTO vendedor (montante_vendas,salario_base,cpf,telefone,nome, endereco) VALUES(?,?,?,?,?,?) ";
-            save(insert, vendedor.getMontanteVenda(), vendedor.getSalarioBaseMensal(), vendedor.getCpf(), vendedor.getTelefone(), vendedor.getNome(), vendedor.getEndereco());
+            String insert = "INSERT INTO vendedor (montante_vendas,salario_base,cpf,telefone,nome, endereco,meta_venda) VALUES(?,?,?,?,?,?,?) ";
+            save(insert, vendedor.getMontanteVenda(), vendedor.getSalarioBaseMensal(), vendedor.getCpf(), vendedor.getTelefone(), vendedor.getNome(), vendedor.getEndereco(), vendedor.getMetaVenda());
             System.out.println("Metodo salvar DaoVendedor realizado");
         } catch (MySQLIntegrityConstraintViolationException e) {
             System.out.println("CPF vendedor ja existe");
@@ -38,8 +38,8 @@ public class DaoVendedor extends GenericDao implements CRUDBasico {
     @Override
     public void atualizar(Object object) throws SQLException {
         Vendedor vendedor = (Vendedor) object;
-        String update = "UPDATE vendedor SET montante_venda = ?,salario_base = ?,telefone = ?,nome = ?, endereco = ? WHERE cpf =  ? ";
-        update(update, vendedor.getCpf(), vendedor.getMontanteVenda(), vendedor.getSalarioBaseMensal(), vendedor.getTelefone(), vendedor.getNome(), vendedor.getEndereco());
+        String update = "UPDATE vendedor SET montante_venda = ?,salario_base = ?,telefone = ?,nome = ?, endereco = ?, meta_venda = ? WHERE cpf =  ? ";
+        update(update, vendedor.getCpf(), vendedor.getMontanteVenda(), vendedor.getSalarioBaseMensal(), vendedor.getTelefone(), vendedor.getNome(), vendedor.getEndereco(), vendedor.getMetaVenda());
         System.out.println("Metodo atualizar DaoVendedor realizado");
     }
 
@@ -65,7 +65,7 @@ public class DaoVendedor extends GenericDao implements CRUDBasico {
         stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            vendedor = new Vendedor(rs.getDouble("montante_vendas"), id, rs.getFloat("salario_base"), rs.getString("cpf"), rs.getString("telefone"), rs.getString("nome"), rs.getString("endereco"));
+            vendedor = new Vendedor(rs.getFloat("montante_vendas"), id, rs.getFloat("salario_base"), rs.getString("cpf"), rs.getString("telefone"), rs.getString("nome"), rs.getString("endereco"), rs.getFloat("meta_venda"));
         }
         rs.close();
         stmt.close();
@@ -83,7 +83,7 @@ public class DaoVendedor extends GenericDao implements CRUDBasico {
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM vendedor");
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            Vendedor vendedor = new Vendedor(rs.getDouble("montante_vendas"), rs.getInt("id_vendedor"), rs.getFloat("salario_base"), rs.getString("cpf"), rs.getString("telefone"), rs.getString("nome"), rs.getString("endereco"));
+            Vendedor vendedor = new Vendedor(rs.getFloat("montante_vendas"), rs.getInt("id_vendedor"), rs.getFloat("salario_base"), rs.getString("cpf"), rs.getString("telefone"), rs.getString("nome"), rs.getString("endereco"), rs.getFloat("meta_venda"));
             vendedores.add(vendedor);
         }
         rs.close();

@@ -31,11 +31,6 @@ public class Padeiro extends GestaoFuncionario {
         this.idPadeiro = idPadeiro;
     }
 
-    @Override
-    public int gratificacao() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     //metodos getters e setters 
     public float getHorasTrabalhadaNoturno() {
         return horasEmHorarioAlternativo;
@@ -44,11 +39,6 @@ public class Padeiro extends GestaoFuncionario {
     //deve acumular horas trabalhadas durante o mes
     public void sethorarioAlternativo(float horasEmHorarioAlternativo) {
         this.horasEmHorarioAlternativo = horasEmHorarioAlternativo;
-    }
-
-    @Override
-    public String toString() {
-        return getNome();
     }
 
 }

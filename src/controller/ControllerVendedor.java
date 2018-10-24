@@ -10,14 +10,24 @@ import javax.swing.JOptionPane;
 public class ControllerVendedor {
 
     /*
+    Metodo utilizado para calcular o salario final,
+    recebendo como parametro objeto do tipo Vendedor,
+    retornando float salarioFinal;
+     */
+    public float salarioFinal(Vendedor vendedor, float metaVenda) {
+        float salarioFinal = vendedor.getSalarioBaseMensal();
+        return salarioFinal += gratificacao(metaVenda, vendedor.getSalarioBaseMensal(), vendedor.getMontanteVenda());
+    }
+
+    /*
     Metodo utilizado para calcular a gratificacao do vendedor,
     rebecendo como parametro o metaVenda e o objeto vendedor,
     retornando o valor da gratificacao
      */
-    public float gratificacao(float metaVenda, Vendedor vendedor) {
+    public float gratificacao(float metaVenda, float salarioBase, float montateVendaAcumulada) {
         float gratificao = 0f;
-        if (metaVenda <= vendedor.getMontanteVenda()) {
-            gratificao = vendedor.getSalarioBaseMensal() * 0.10f;
+        if (metaVenda <= montateVendaAcumulada) {
+            gratificao = salarioBase * 0.10f;
         }
         return gratificao;
     }
@@ -26,9 +36,9 @@ public class ControllerVendedor {
     Metodo usado para chamar o metodo salvar() da classe DaoVendedor,
     passando como parametro o objeto Vendedor a ser salvo.
      */
-    public void salvar(double montanteVenda, float salarioBaseMensal, String cpf, String telefone, String nome, String endereco) throws SQLException {
+    public void salvar(float montanteVenda, float salarioBaseMensal, String cpf, String telefone, String nome, String endereco, float metaVenda) throws SQLException {
         try {
-            Vendedor vendedor = new Vendedor(montanteVenda, salarioBaseMensal, cpf, telefone, nome, endereco);
+            Vendedor vendedor = new Vendedor(montanteVenda, salarioBaseMensal, cpf, telefone, nome, endereco, metaVenda);
             new DaoVendedor().salvar(vendedor);
             System.out.println("Metodo salvar ControllerVendedor realizado");
         } catch (MySQLIntegrityConstraintViolationException e) {
@@ -44,8 +54,8 @@ public class ControllerVendedor {
     passando como parametro o objeto Vendedor a ser editado,
     de acordo com idVendedor deste objeto.
      */
-    public void editar(double montanteVenda, float salarioBaseMensal, String cpf, String telefone, String nome, String endereco) throws SQLException {
-        Vendedor vendedor = new Vendedor(montanteVenda, salarioBaseMensal, cpf, telefone, nome, endereco);
+    public void editar(float montanteVenda, float salarioBaseMensal, String cpf, String telefone, String nome, String endereco, float metaVenda) throws SQLException {
+        Vendedor vendedor = new Vendedor(montanteVenda, salarioBaseMensal, cpf, telefone, nome, endereco, metaVenda);
         new DaoVendedor().atualizar(vendedor);
         System.out.println("Metodo editar ControllerVendedor realizado");
     }

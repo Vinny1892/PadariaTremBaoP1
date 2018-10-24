@@ -8,21 +8,31 @@ import java.util.ArrayList;
 public class ControllerGerente {
 
     /*
-    Metodo utilizado para calcular a gratificacao do gerente,
+    Metodo utilizado para calcular o salario final do gerente,
     recebendo como parametro o objeto GestaoGerente,
+    e retornando o salario final float.
+     */
+    public float salarioFinal(GestaoGerente gerente) {
+        float salarioFinal = gerente.getSalarioBaseMensal();
+        return salarioFinal += gratificacao(gerente.getSalarioBaseMensal());
+    }
+
+    /*
+    Metodo utilizado para calcular a gratificacao do gerente,
+    recebendo como parametro salarioBase,
     retornando a gratificacao.
      */
-    public float gratificacao(GestaoGerente gerente) {
+    public float gratificacao(float salarioBase) {
         float gratificacao = 0f;
-        return gratificacao = gerente.getSalarioBaseMensal() * 0.2f;
+        return gratificacao = salarioBase * 0.2f;
     }
 
     /*
     Metodo usado para chamar o metodo salvar() da classe DaoGerente,
     passando como parametro o objeto GestaoGerente a ser salvo.
      */
-    public void salvar(String nome, String cpf, String endereco, String telefone, float salarioBaseMensal, int porcentagemGratificacao) throws SQLException {
-        GestaoGerente gerente = new GestaoGerente(nome, cpf, endereco, telefone, salarioBaseMensal, porcentagemGratificacao);
+    public void salvar(String nome, String cpf, String endereco, String telefone, float salarioBaseMensal/*, int porcentagemGratificacao*/) throws SQLException {
+        GestaoGerente gerente = new GestaoGerente(nome, cpf, endereco, telefone, salarioBaseMensal/*, porcentagemGratificacao*/);
         new DaoGerente().salvar(gerente);
         System.out.println("Metodo salvar ControllerGerente realizado");
     }
@@ -41,8 +51,8 @@ public class ControllerGerente {
     passando como parametro o objeto GestaoGerente a ser editado,
     de acordo com idGerente deste objeto.
      */
-    public void editar(String nome, String cpf, String endereco, String telefone, float salarioBaseMensal, int porcentagemGratificacao) throws SQLException {
-        GestaoGerente gerente = new GestaoGerente(nome, cpf, endereco, telefone, salarioBaseMensal, porcentagemGratificacao);
+    public void editar(String nome, String cpf, String endereco, String telefone, float salarioBaseMensal/*, int porcentagemGratificacao*/) throws SQLException {
+        GestaoGerente gerente = new GestaoGerente(nome, cpf, endereco, telefone, salarioBaseMensal/*, porcentagemGratificacao*/);
         new DaoGerente().atualizar(gerente);
         System.out.println("Metodo editar ControllerGerente realizado");
     }

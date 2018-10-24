@@ -5,7 +5,7 @@
  */
 package view.relatorio;
 
-import controller.ControllerInformacao;
+//import controller.ControllerInformacao;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -39,7 +39,7 @@ import view.main.Main;
 public class FXMLRelatorio implements Initializable {
 
     private ToggleGroup group;
-    private ControllerInformacao cf;
+    //private ControllerInformacao cf;
 
     @FXML
     private ComboBox<CategoriasComboBox> optionsSelector;
@@ -68,7 +68,7 @@ public class FXMLRelatorio implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         group = new ToggleGroup();
-        cf = new ControllerInformacao();
+        //cf = new ControllerInformacao();
         individual.setToggleGroup(group);
         coletivo.setToggleGroup(group);
         codigo.setVisible(false);

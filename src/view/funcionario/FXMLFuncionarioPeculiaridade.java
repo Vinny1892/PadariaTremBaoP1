@@ -125,7 +125,8 @@ public class FXMLFuncionarioPeculiaridade implements Initializable {
         //
         Padeiro padeiro = comboBoxPadeiro.getSelectionModel().getSelectedItem();
         padeiro.sethorarioAlternativo(Float.parseFloat(textFieldHorasTrabalhadasPadeiro.getText()));
-        cpP.gratificacao(padeiro);
+        //cpP.gratificacao(padeiro);
+        cpP.gratificacao(padeiro.getSalarioBaseMensal(), padeiro.getHorasTrabalhadaNoturno());
         formGerenteConf.setVisible(false);
     }
 
@@ -133,8 +134,8 @@ public class FXMLFuncionarioPeculiaridade implements Initializable {
     void btnSalvarPadeiroAction(ActionEvent event) {
         //TODO
         GestaoGerente gerente = comboBoxGerente.getSelectionModel().getSelectedItem();
-        gerente.setPorcentagemGratificacao(Integer.parseInt(textFieldGratificacao.getText()));
-        cg.gratificacao(gerente);
+        //gerente.setPorcentagemGratificacao(Integer.parseInt(textFieldGratificacao.getText()));
+        cg.gratificacao(gerente.getSalarioBaseMensal());
         formPadeiro.setVisible(false);
     }
 
