@@ -34,7 +34,7 @@ public abstract class GestaoFuncionario extends PessoaFisica {
           profissao = new SimpleStringProperty("Padeiro");
 
         }else if(this instanceof  Vendedor){
-          profissao = new SimpleStringProperty("Padeiro");
+          profissao = new SimpleStringProperty("Vendedor");
 
         }
       return profissao;

@@ -86,7 +86,17 @@ public class FXMLFuncionario implements Initializable {
 
     @FXML
     void btnAdicionarAction(ActionEvent event) {
-        
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("FXMLFormFuncionario.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Scene scene= new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        btnAdicionar.getScene().getWindow().hide();
     }
 
     @FXML
