@@ -31,7 +31,9 @@ public class GestaoVenda {
     private int numeroParcelas;
     private float valorTotalVenda;
 
-    //com id_venda e numero de parcelas
+    /*Construtor da classe GestaoVenda // Recebe por parametro data da venda, vendedor, cliente, estoque, forma de pagamento, id da venda, qntde de parcelas e valor total da venda //
+    Utilzado para realizar o gerenciamento de vendas parceladas*/
+
     public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, ArrayList<GestaoEstoque> estoques, int formaPagamento, int idVenda, int numeroParcelas, float valorTotalVenda) {
         this.dataVenda = dataVenda;
         this.vendedor = vendedor;
@@ -43,6 +45,8 @@ public class GestaoVenda {
         this.valorTotalVenda = valorTotalVenda;
     }
 
+    /*Construtor da classe GestaoVenda // Recebe por parametro data da venda, vendedor, cliente, estoque, forma de pagamento, id da venda e valor total da venda //
+    Utilzado para realizar o gerenciamento de vendas a vista*/
     // com id_vendas sem numero de parcelas
     public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, ArrayList<GestaoEstoque> estoques, int formaPagamento, int idVenda, float valorTotalVenda) {
         this.dataVenda = dataVenda;
@@ -74,6 +78,8 @@ public class GestaoVenda {
     public void cadastrarBDConjuntoProdutosVendido(GestaoProduto carrinho[], Vendedor vendedor, Date dataVenda, int formaPagamento, int nParcelas) {
 
     }
+
+    //Getters and Setters
 
     public String getDataVenda() {
         return dataVenda;

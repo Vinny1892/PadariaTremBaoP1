@@ -19,49 +19,49 @@ package model;
 
 public class GestaoInformacao {
 
-    //Cliente especifico
+    //Retorna um relatorio de um cliente especifico
     public GestaoCliente relatorioClientes(int codigoCliente) {
         GestaoCliente cliente = null;
         return cliente;
     }
 
-    //todos os clientes
+    //Retorna um relatorio de todos os clientes
     public GestaoCliente relatorioClientes() {
         GestaoCliente clientes = null;
         return clientes;
     }
 
-    //funcionario especifico
+    //Retorna um relatorio de um funcionario especifico
     public GestaoFuncionario relatorioFuncionarios(int codigoFuncionario) {
         GestaoFuncionario funcionario = null;
         return funcionario;
     }
 
-    //todos os funcionarios
+    //Retorna um relatorio de todos os funcionarios
     public GestaoFuncionario relatorioFuncionarios() {
         GestaoFuncionario funcionarios = null;
         return funcionarios;
     }
 
-    //produtos especifico
+    //Retorna um relatorio de um produto especifico
     public GestaoProduto relatorioProdutos(int codigoProduto) {
         GestaoProduto produto = null;
         return produto;
     }
 
-    //todos os produtos
+    //Retorna um relatorio de todos os produtos
     public GestaoProduto relatorioProdutos() {
         GestaoProduto produtos = null;
         return produtos;
     }
 
-    //fornecedor especifico
+    //Retorna um relatorio de um fornecedor especifico
     public GestaoFornecedor relatorioFornecedor(int codigoFornecedor) {
         GestaoFornecedor fornecedor = null;
         return fornecedor;
     }
 
-    //todos os fornecedores
+    //Retorna um relatorio de todos os fornecedores
     public GestaoFornecedor relatorioFornecedor() {
         GestaoFornecedor fornecedores = null;
         return fornecedores;
