@@ -88,9 +88,5 @@ public class DaoGerente extends GenericDao implements CRUDBasico {
 
         return gerentes;
     }
-    public static void main(String[] args) throws SQLException {
-        DaoGerente gerente = new DaoGerente();
-        GestaoGerente gerente1 = new GestaoGerente("Guilherme", "33333222221", "Ruagenti", "99009900", 2000, 5);
-        gerente.salvar(gerente1);
-    }
+
 }

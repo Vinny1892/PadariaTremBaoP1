@@ -9,6 +9,12 @@ import model.Padeiro;
 
 public class ControllerPadeiro {
 
+    public float gratificacao(Padeiro padeiro) {
+        float gratificacao = 0;
+        gratificacao = (padeiro.getSalarioBaseMensal() * 0.25f) * padeiro.getHorasTrabalhadaNoturno();
+        return gratificacao;
+    }
+
     public void salvar(String nome, String endereco, String cpf, String telefone, float salarioBaseMensal, float horasEmHorarioAlternativo) throws SQLException {
         try {
             Padeiro padeiro = new Padeiro(nome, endereco, cpf, telefone, salarioBaseMensal, horasEmHorarioAlternativo);
@@ -32,28 +38,23 @@ public class ControllerPadeiro {
         new DaoPadeiro().deletar(cpf);
         System.out.println("Metodo deletar ControllerPadeiro realizado");
     }
-    
-    public Object selecionaObjeto(int id) throws SQLException{
+
+    public Object selecionaObjeto(int id) throws SQLException {
         Padeiro padeiro = (Padeiro) new DaoPadeiro().getById(id);
         System.out.println("Metodo selecionaObjeto ControllerFornecedor realizado");
         return padeiro;
     }
-    
+
     public ArrayList<Padeiro> getAll() throws SQLException {
         ArrayList<Padeiro> padeiros = (ArrayList<Padeiro>) (ArrayList<?>) new DaoPadeiro().getAll();
         return padeiros;
     }
-  
-    
-    
-    
-    
-/*
+
+    /*
     public static void main(String[] args) throws SQLException {
         ControllerPadeiro cp = new ControllerPadeiro();
         cp.salvar("luiz", "Rua luizinho", "12345678912", "345678", 4000.00f, 0f);
         //cp.editar("luiz alberto", "rua do luiz alberto", "12345678912", "556755556666", 4500.00f, 10f);
         //cp.deletar("12345678912");
     }*/
-
 }

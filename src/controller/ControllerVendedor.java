@@ -8,44 +8,51 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class ControllerVendedor {
-    
-    
-    public void salvar(double montanteVenda, float salarioBaseMensal, String cpf, String telefone, String nome, String endereco) throws SQLException{
-        try{
+
+    public float gratificacao(float metaVenda, Vendedor vendedor) {
+        float gratificao = 0f;
+        if (metaVenda <= vendedor.getMontanteVenda()) {
+            gratificao = vendedor.getSalarioBaseMensal() * 0.10f;
+        }
+        return gratificao;
+    }
+
+    public void salvar(double montanteVenda, float salarioBaseMensal, String cpf, String telefone, String nome, String endereco) throws SQLException {
+        try {
             Vendedor vendedor = new Vendedor(montanteVenda, salarioBaseMensal, cpf, telefone, nome, endereco);
             new DaoVendedor().salvar(vendedor);
             System.out.println("Metodo salvar ControllerVendedor realizado");
-        }catch(MySQLIntegrityConstraintViolationException e){
+        } catch (MySQLIntegrityConstraintViolationException e) {
             System.out.println("cpf Ja existe");
             JOptionPane.showMessageDialog(null, "CPF ja existe no Banco de Dados");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao inserir vendedor");
-        } 
+        }
     }
-    
-    public void editar(double montanteVenda, float salarioBaseMensal, String cpf, String telefone, String nome, String endereco) throws SQLException{
+
+    public void editar(double montanteVenda, float salarioBaseMensal, String cpf, String telefone, String nome, String endereco) throws SQLException {
         Vendedor vendedor = new Vendedor(montanteVenda, salarioBaseMensal, cpf, telefone, nome, endereco);
         new DaoVendedor().atualizar(vendedor);
         System.out.println("Metodo editar ControllerVendedor realizado");
     }
-    
-    public void deletar(String cpf) throws SQLException{
+
+    public void deletar(String cpf) throws SQLException {
         new DaoVendedor().deletar(cpf);
         System.out.println("Metodo deletar ControllerVendedor realizado");
     }
-    
-    public Object selecionaObjeto(int id) throws SQLException{
+
+    public Object selecionaObjeto(int id) throws SQLException {
         Vendedor vendedor = (Vendedor) new DaoVendedor().getById(id);
         System.out.println("Metodo selecionaObjeto ControllerVendedor realizado");
         return vendedor;
     }
-    
-    public ArrayList <Vendedor> getAll() throws SQLException {
-        ArrayList <Vendedor> vendedores = (ArrayList<Vendedor>) (ArrayList<?>) new DaoVendedor().getAll();
+
+    public ArrayList<Vendedor> getAll() throws SQLException {
+        ArrayList<Vendedor> vendedores = (ArrayList<Vendedor>) (ArrayList<?>) new DaoVendedor().getAll();
         System.out.println("Metodo getAll ControllerVendedor realizado");
         return vendedores;
     }
-    
+
     /*
     public static void main(String[] args) throws SQLException{
         ControllerVendedor cv = new ControllerVendedor();

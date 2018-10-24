@@ -30,8 +30,8 @@ public class DaoVenda extends GenericDao implements CRUDBasico {
     public void salvar(Object object) throws SQLException {//cada id_venda só pode repetir 20vezes
         GestaoVenda venda = (GestaoVenda) object;
         for (int i = 0; i < venda.getEstoques().size(); i++) {
-            String insert = "INSERT INTO venda (data_venda, forma_pagamento, id_cliente, id_vendedor, id_estoque) VALUES(?,?,?,?,?) ";
-            save(insert, venda.getDataVenda(), venda.getFormaPagamento(), venda.getCliente().getIdCliente(), venda.getVendedor().getIdVendedor(), venda.getEstoques().get(i).getIdEstoque());
+            String insert = "INSERT INTO venda (data_venda, forma_pagamento, id_cliente, id_vendedor, id_estoque, valor_total_venda) VALUES(?,?,?,?,?,?) ";
+            save(insert, venda.getDataVenda(), venda.getFormaPagamento(), venda.getCliente().getIdCliente(), venda.getVendedor().getIdVendedor(), venda.getEstoques().get(i).getIdEstoque(), venda.getValorTotalVenda());
         }
         JOptionPane.showMessageDialog(null, "Compra realizada");
     }
@@ -44,8 +44,8 @@ public class DaoVenda extends GenericDao implements CRUDBasico {
     public void atualizar(Object object) throws SQLException {
         GestaoVenda venda = (GestaoVenda) object;
         for (int i = 0; i < venda.getEstoques().size(); i++) {
-            String update = "UPDATE produto SET data_venda = ?,forma_pagamento = ?, id_cliente = ?,id_vendedor = ?, id_estoque = ? WHERE id_venda =  ? ";
-            update(update, venda.getDataVenda(), venda.getVendedor().getIdVendedor(), venda.getCliente().getIdCliente(), venda.getCliente().getIdCliente(), venda.getFormaPagamento(), venda.getIdVenda(), venda.getEstoques().get(i).getIdEstoque());
+            String update = "UPDATE produto SET data_venda = ?,forma_pagamento = ?, id_cliente = ?,id_vendedor = ?, id_estoque = ?, valor_total_venda = ? WHERE id_venda =  ? ";
+            update(update, venda.getDataVenda(), venda.getVendedor().getIdVendedor(), venda.getCliente().getIdCliente(), venda.getCliente().getIdCliente(), venda.getFormaPagamento(), venda.getIdVenda(), venda.getEstoques().get(i).getIdEstoque(), venda.getValorTotalVenda());
         }
         System.out.println("Metodo atualizar DaoVenda realizado");
     }
@@ -74,7 +74,7 @@ public class DaoVenda extends GenericDao implements CRUDBasico {
             Vendedor vendedor = (Vendedor) new ControllerVendedor().selecionaObjeto(rs.getInt("id_vendedor"));
             GestaoCliente cliente = (GestaoCliente) new ControllerCliente().selecionaObjeto(rs.getInt("id_cliente"));
             ArrayList<GestaoEstoque> estoqueId = (ArrayList<GestaoEstoque>) (ArrayList<?>) new DaoEstoque().getById(rs.getInt("id_estoque"));
-            GestaoVenda venda = new GestaoVenda(rs.getString("data_venda"), vendedor, cliente, estoqueId, rs.getInt("forma_pagamento"), id);
+            GestaoVenda venda = new GestaoVenda(rs.getString("data_venda"), vendedor, cliente, estoqueId, rs.getInt("forma_pagamento"), id, rs.getFloat("valor_total_venda"));
             objetosVenda.add(venda);
         }
         rs.close();
@@ -96,7 +96,7 @@ public class DaoVenda extends GenericDao implements CRUDBasico {
             Vendedor vendedor = (Vendedor) new ControllerVendedor().selecionaObjeto(rs.getInt("id_vendedor"));
             GestaoCliente cliente = (GestaoCliente) new ControllerCliente().selecionaObjeto(rs.getInt("id_cliente"));
             ArrayList<GestaoEstoque> idEstoqueVendidos = (ArrayList<GestaoEstoque>) (ArrayList<?>) new DaoVenda().getById(rs.getInt("id_venda"));
-            GestaoVenda venda = new GestaoVenda(rs.getString("data_venda"), vendedor, cliente, idEstoqueVendidos, rs.getInt("forma_pagamento"), rs.getInt("id_venda"));
+            GestaoVenda venda = new GestaoVenda(rs.getString("data_venda"), vendedor, cliente, idEstoqueVendidos, rs.getInt("forma_pagamento"), rs.getInt("id_venda"), rs.getFloat("valor_total_venda"));
             vendas.add(venda);
         }
         rs.close();

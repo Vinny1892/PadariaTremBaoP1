@@ -7,6 +7,11 @@ import java.util.ArrayList;
 
 public class ControllerGerente {
 
+    public float gratificacao(GestaoGerente gerente) {
+        float gratificacao = 0f;
+        return gratificacao = gerente.getSalarioBaseMensal() * 0.2f;
+    }
+
     /*
     Metodo usado para chamar o metodo salvar() da classe DaoGerente,
     passando como parametro o objeto GestaoGerente a ser salvo.
@@ -16,12 +21,11 @@ public class ControllerGerente {
         new DaoGerente().salvar(gerente);
         System.out.println("Metodo salvar ControllerGerente realizado");
     }
-    
-    
+
     /*
     Metodo utilizado para chamar o metodo deletar() da classe DaoGerente,
     passando como parametro o id, para saber qual gerente sera deletado.
-    */
+     */
     public void deletar(String cpf) throws SQLException {
         new DaoGerente().deletar(cpf);
         System.out.println("Metodo deletar ControllerGerente realizado");
@@ -50,15 +54,13 @@ public class ControllerGerente {
         return gerente;
     }
 
-
-    
-    public static void main(String[] args)throws SQLException {
+    public static void main(String[] args) throws SQLException {
         ControllerGerente cg = new ControllerGerente();
         //cg.salvar("nomeGerente", "22222233333", "rua gerente", "556732323232", 3000.00f, 10);
         //cg.editar("eduardogomes", "22222233333", "rua gerente1", "556700323232", 3000.00f, 5);
-       // cg.deletar("11111111111");
+        // cg.deletar("11111111111");
         ArrayList<GestaoGerente> gerentes = cg.getAll();
-        for (int i = 0 ; i <gerentes.size();i++){
+        for (int i = 0; i < gerentes.size(); i++) {
             System.out.println(gerentes.get(i).getNome());
         }
     }
