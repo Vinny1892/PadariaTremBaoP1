@@ -6,15 +6,12 @@
 package view.relatorio;
 
 //import controller.ControllerInformacao;
+import controller.ControllerInformacao;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,7 +36,7 @@ import view.main.Main;
 public class FXMLRelatorio implements Initializable {
 
     private ToggleGroup group;
-    //private ControllerInformacao cf;
+    private ControllerInformacao cf;
 
     @FXML
     private ComboBox<CategoriasComboBox> optionsSelector;
@@ -68,7 +65,6 @@ public class FXMLRelatorio implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         group = new ToggleGroup();
-        //cf = new ControllerInformacao();
         individual.setToggleGroup(group);
         coletivo.setToggleGroup(group);
         codigo.setVisible(false);
@@ -86,7 +82,16 @@ public class FXMLRelatorio implements Initializable {
 
     @FXML
     void btnCreatePDF(ActionEvent event) {
-        //  String to = group.getSelectedToggle();
+        String tipo = group.getSelectedToggle().getUserData().toString();
+        tipo = "Fornecedor";
+        String local = output.getText();
+        cf = new ControllerInformacao(tipo, local);
+        if (individual.isSelected()) {
+            int cod = Integer.parseInt(codigo.getText());
+            cf.createPDF(cod);
+        } else {
+            cf.createPDF();
+        }        
     }
 
     @FXML
