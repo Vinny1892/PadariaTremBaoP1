@@ -9,9 +9,12 @@ package view.relatorio;
 import controller.ControllerInformacao;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +28,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.GestaoCliente;
 import view.CategoriasComboBox;
 import view.main.Main;
 
@@ -37,6 +41,8 @@ public class FXMLRelatorio implements Initializable {
 
     private ToggleGroup group;
     private ControllerInformacao cf;
+    private ArrayList<CategoriasComboBox> categorias;
+    private ObservableList<CategoriasComboBox> obsGestaoCategorias;
 
     @FXML
     private ComboBox<CategoriasComboBox> optionsSelector;
@@ -78,6 +84,7 @@ public class FXMLRelatorio implements Initializable {
                 infoCodigo.setVisible(true);
             }
         });
+        inicializarComboBox();
     }
 
     @FXML
@@ -107,5 +114,29 @@ public class FXMLRelatorio implements Initializable {
         stage.setScene(scene);
         stage.show();
         voltar.getScene().getWindow().hide();
+    }
+    
+    void inicializarComboBox(){
+        categorias = new ArrayList<>();
+        CategoriasComboBox categoriaCliente = new CategoriasComboBox("Cliente", 1);
+         CategoriasComboBox categoriaVendedor = new CategoriasComboBox("Vendedor", 2);
+          CategoriasComboBox categoriaPadeiro = new CategoriasComboBox("Padeiro", 3);
+           CategoriasComboBox categoriaProduto = new CategoriasComboBox("Produto", 4);
+            CategoriasComboBox categoriaGerente = new CategoriasComboBox("Gerente", 5);
+             CategoriasComboBox categoriaImposto = new CategoriasComboBox("Impostos", 6);
+              CategoriasComboBox categoriaFornecedor = new CategoriasComboBox("Fornecedor", 7);
+              categorias.add(categoriaCliente);
+              categorias.add(categoriaVendedor);
+              categorias.add(categoriaPadeiro);
+              categorias.add(categoriaProduto);
+              categorias.add(categoriaGerente);
+              categorias.add(categoriaImposto);
+              categorias.add(categoriaFornecedor);
+              obsGestaoCategorias = FXCollections.observableArrayList(categorias);
+              optionsSelector.setItems(obsGestaoCategorias);
+              optionsSelector.getSelectionModel().selectFirst();
+              
+              
+          
     }
 }
