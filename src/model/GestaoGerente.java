@@ -27,7 +27,7 @@ public class GestaoGerente extends GestaoFuncionario {
     public void setId(int idGerente) {
         this.idGerente = idGerente;
     }
-/*
+    /*
     public int getPorcentagemGratificacao() {
         return porcentagemGratificacao;
     }
@@ -35,5 +35,5 @@ public class GestaoGerente extends GestaoFuncionario {
     public void setPorcentagemGratificacao(int porcentagemGratificacao) {
         this.porcentagemGratificacao = porcentagemGratificacao;
     }
-*/
+     */
 }

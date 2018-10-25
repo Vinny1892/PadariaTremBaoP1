@@ -27,7 +27,6 @@ public class GestaoProduto {
 
     /*Construtor da classe GestaoProduto // Recebe por parametro o nome, id do produto, o fornecedor, o preco de custo, apelido e se e perecivel ou não //
     Utilizado em conjunto com metodos que necessitam receber o ID como parametro // Ex: atualizar(ID)*/
-
     public GestaoProduto(String nome, int idproduto, GestaoFornecedor fornecedor, float precoCusto, String apelido, boolean perecivel) {
         this.nome = nome;
         this.idproduto = idproduto;
@@ -39,7 +38,6 @@ public class GestaoProduto {
 
     /* Construtor da classe GestaoProduto // Recebe por parametro o nome, fornecedor, preco de custo, apelido e se e perecivel ou nao //
     Utilizado em conjunto com metodos que nao necessitam receber o ID como parametro // Ex: salvar()*/
-
     public GestaoProduto(String nome, GestaoFornecedor fornecedor, float precoCusto, String apelido, boolean perecivel) {
         this.nome = nome;
         this.fornecedor = fornecedor;

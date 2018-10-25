@@ -19,7 +19,6 @@ public class GestaoCliente {
 
     /*Construtor da classe GestaoCliente // Recebe por parametro nome, endereco, cpf, telefone, cartao fidelidade e id do cliente //
     Utilizado em conjunto com metodos que necessitam receber o ID por parametro // Exemplo: getById(ID), getAll(), atualizar(Object)*/
-
     public GestaoCliente(String nome, String endereco, String cpf, String telefone, CartaoFidelidade cartaoFidelidade, int idCliente) {
         this.nome = nome;
         this.endereco = endereco;
@@ -31,7 +30,6 @@ public class GestaoCliente {
 
     /*Construtor da classe GestaoCliente // Recebe por parametro nome, endereco, cpf, telefone e cartaoFidelidade //
     Utilizado em conjunto com metodos que nao necessitam receber o ID por parametro // Exemplo: salvar(Object)*/
-
     public GestaoCliente(String nome, String endereco, String cpf, String telefone, CartaoFidelidade cartaoFidelidade) {
         this.nome = nome;
         this.endereco = endereco;
@@ -41,7 +39,6 @@ public class GestaoCliente {
     }
 
     // Getters e Setters
-
     public String getNome() {
         return nome;
     }

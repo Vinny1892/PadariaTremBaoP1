@@ -33,7 +33,6 @@ public class GestaoVenda {
 
     /*Construtor da classe GestaoVenda // Recebe por parametro data da venda, vendedor, cliente, estoque, forma de pagamento, id da venda, qntde de parcelas e valor total da venda //
     Utilzado para realizar o gerenciamento de vendas parceladas*/
-
     public GestaoVenda(String dataVenda, Vendedor vendedor, GestaoCliente cliente, ArrayList<GestaoEstoque> estoques, int formaPagamento, int idVenda, int numeroParcelas, float valorTotalVenda) {
         this.dataVenda = dataVenda;
         this.vendedor = vendedor;
@@ -80,7 +79,6 @@ public class GestaoVenda {
     }
 
     //Getters and Setters
-
     public String getDataVenda() {
         return dataVenda;
     }

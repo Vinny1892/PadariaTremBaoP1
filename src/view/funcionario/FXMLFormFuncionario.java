@@ -75,7 +75,7 @@ public class FXMLFormFuncionario implements Initializable {
                     Float.parseFloat(textFieldSalario.getText())/*,0*/);
         } else if (comboBoxProfissao.getSelectionModel().getSelectedItem().getNome().equals("Vendedor")) {
             cv = new ControllerVendedor();
-            cv.salvar(0, Float.parseFloat(textFieldSalario.getText()), textFieldCPF.getText(), textFieldTelefone.getText(), textFieldNome.getText(), textFieldEndereco.getText(), textFieldMetaVenda.getText());
+            cv.salvar(0, Float.parseFloat(textFieldSalario.getText()), textFieldCPF.getText(), textFieldTelefone.getText(), textFieldNome.getText(), textFieldEndereco.getText(), 2000);
 
         } else if (comboBoxProfissao.getSelectionModel().getSelectedItem().getNome().equals("Padeiro")) {
             cpP = new ControllerPadeiro();

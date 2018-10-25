@@ -33,22 +33,20 @@ import view.CategoriasComboBox;
  * @author VinnyWindows
  */
 public class FXMLEstoque implements Initializable {
+
     ControllerEstoque ceE;
-    ControllerProduto cp ;
+    ControllerProduto cp;
     ArrayList<GestaoProduto> produtos;
     ArrayList<GestaoEstoque> produtosEstoque;
-     private ArrayList<CategoriasComboBox> categorias;
+    private ArrayList<CategoriasComboBox> categorias;
     private ObservableList<CategoriasComboBox> obsCategoriasComboBox;
     private ObservableList<GestaoEstoque> obsTableEstoque;
-     private ObservableList<GestaoProduto> obsCategoriasProdutoFormEstoque;
+    private ObservableList<GestaoProduto> obsCategoriasProdutoFormEstoque;
 
-
-    
-    
     @FXML
     private AnchorPane formEstoque;
-    
-     @FXML
+
+    @FXML
     private TableView<GestaoEstoque> tableProdutoEstoque;
 
     @FXML
@@ -85,14 +83,12 @@ public class FXMLEstoque implements Initializable {
     void btnAdicionarAction(ActionEvent event) {
         formEstoque.setVisible(true);
         //to do Validacoes
-        
-        
-        
+
     }
 
     @FXML
     void btnBuscarAction(ActionEvent event) {
-         
+
     }
 
     @FXML
@@ -111,27 +107,27 @@ public class FXMLEstoque implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            produtosEstoque =   ceE.getAll();
-       } catch (SQLException ex) {            System.out.println("Erro ao puxar estoque do banco , culpa do kaio");
-           }
-       inicializarTabela();
+            produtosEstoque = ceE.getAll();
+        } catch (SQLException ex) {
+            System.out.println("Erro ao puxar estoque do banco , culpa do kaio");
+        }
+        inicializarTabela();
         inicializarComboBox();
-        
-         
-    
-    }    
-    public void inicializarTabela(){
+
+    }
+
+    public void inicializarTabela() {
         tableColumnCodigo.setCellValueFactory(new PropertyValueFactory<>("idEstoque"));
         tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("produto"));
         tableColumnQuantidade.setCellValueFactory(new PropertyValueFactory<>("qtdProduto"));
         tableColumnDataValidade.setCellValueFactory(new PropertyValueFactory<>("dataValidade"));
-        
-        
+
         obsTableEstoque = FXCollections.observableArrayList(produtosEstoque);
         tableProdutoEstoque.setItems(obsTableEstoque);
     }
-    public void inicializarComboBox(){
-        categorias = new  ArrayList<CategoriasComboBox>();
+
+    public void inicializarComboBox() {
+        categorias = new ArrayList<CategoriasComboBox>();
         CategoriasComboBox categoriaNome = new CategoriasComboBox("Nome", 1);
         CategoriasComboBox categoriaCodigo = new CategoriasComboBox("Codigo", 2);
         categorias.add(categoriaNome);
@@ -139,6 +135,6 @@ public class FXMLEstoque implements Initializable {
         obsCategoriasComboBox = FXCollections.observableArrayList(categorias);
         comboBoxEstoque.setItems(obsCategoriasComboBox);
         comboBoxEstoque.getSelectionModel().select(categoriaNome);
-        
+
     }
 }

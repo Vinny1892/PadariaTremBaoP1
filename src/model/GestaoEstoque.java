@@ -40,15 +40,18 @@ public class GestaoEstoque {
         this.idEstoque = idEstoque;
     }
 //
+
     public void capacidadeMinima() {
 
     }
 //
+
     public boolean venderProduto(GestaoProduto produto) {
 
         return false;
     }
 //
+
     public GestaoProduto procurarProduto(GestaoProduto produto) {
 
         return produto;

@@ -89,16 +89,14 @@ public class FXMLRelatorio implements Initializable {
 
     @FXML
     void btnCreatePDF(ActionEvent event) {
-        String tipo = group.getSelectedToggle().getUserData().toString();
-        tipo = "Fornecedor";
-        String local = output.getText();
-        cf = new ControllerInformacao(tipo, local);
+        String tipo = optionsSelector.getSelectionModel().getSelectedItem().toString();;
+        cf = new ControllerInformacao(tipo);
         if (individual.isSelected()) {
             int cod = Integer.parseInt(codigo.getText());
             cf.createPDF(cod);
         } else {
             cf.createPDF();
-        }        
+        }
     }
 
     @FXML
@@ -115,28 +113,26 @@ public class FXMLRelatorio implements Initializable {
         stage.show();
         voltar.getScene().getWindow().hide();
     }
-    
-    void inicializarComboBox(){
+
+    void inicializarComboBox() {
         categorias = new ArrayList<>();
         CategoriasComboBox categoriaCliente = new CategoriasComboBox("Cliente", 1);
-         CategoriasComboBox categoriaVendedor = new CategoriasComboBox("Vendedor", 2);
-          CategoriasComboBox categoriaPadeiro = new CategoriasComboBox("Padeiro", 3);
-           CategoriasComboBox categoriaProduto = new CategoriasComboBox("Produto", 4);
-            CategoriasComboBox categoriaGerente = new CategoriasComboBox("Gerente", 5);
-             CategoriasComboBox categoriaImposto = new CategoriasComboBox("Impostos", 6);
-              CategoriasComboBox categoriaFornecedor = new CategoriasComboBox("Fornecedor", 7);
-              categorias.add(categoriaCliente);
-              categorias.add(categoriaVendedor);
-              categorias.add(categoriaPadeiro);
-              categorias.add(categoriaProduto);
-              categorias.add(categoriaGerente);
-              categorias.add(categoriaImposto);
-              categorias.add(categoriaFornecedor);
-              obsGestaoCategorias = FXCollections.observableArrayList(categorias);
-              optionsSelector.setItems(obsGestaoCategorias);
-              optionsSelector.getSelectionModel().selectFirst();
-              
-              
-          
+        CategoriasComboBox categoriaVendedor = new CategoriasComboBox("Vendedor", 2);
+        CategoriasComboBox categoriaPadeiro = new CategoriasComboBox("Padeiro", 3);
+        CategoriasComboBox categoriaProduto = new CategoriasComboBox("Produto", 4);
+        CategoriasComboBox categoriaGerente = new CategoriasComboBox("Gerente", 5);
+        CategoriasComboBox categoriaImposto = new CategoriasComboBox("Impostos", 6);
+        CategoriasComboBox categoriaFornecedor = new CategoriasComboBox("Fornecedor", 7);
+        categorias.add(categoriaCliente);
+        categorias.add(categoriaVendedor);
+        categorias.add(categoriaPadeiro);
+        categorias.add(categoriaProduto);
+        categorias.add(categoriaGerente);
+        categorias.add(categoriaImposto);
+        categorias.add(categoriaFornecedor);
+        obsGestaoCategorias = FXCollections.observableArrayList(categorias);
+        optionsSelector.setItems(obsGestaoCategorias);
+        optionsSelector.getSelectionModel().selectFirst();
+
     }
 }

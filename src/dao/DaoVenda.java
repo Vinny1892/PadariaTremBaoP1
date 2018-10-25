@@ -17,6 +17,8 @@ import model.GestaoCliente;
 import model.GestaoProduto;
 
 public class DaoVenda extends GenericDao implements CRUDBasico {
+    
+    private static int ID_VENDA = 0;
 
     //id_venda devera se reptir para cada id_produto, ou seja, 5 produtos diferentes, id_venda repete 5 vezes.
     // a venda repete quando o produto muda
@@ -30,10 +32,11 @@ public class DaoVenda extends GenericDao implements CRUDBasico {
     public void salvar(Object object) throws SQLException {//cada id_venda só pode repetir 20vezes
         GestaoVenda venda = (GestaoVenda) object;
         for (int i = 0; i < venda.getEstoques().size(); i++) {
-            String insert = "INSERT INTO venda (data_venda, forma_pagamento, id_cliente, id_vendedor, id_estoque, valor_total_venda) VALUES(?,?,?,?,?,?) ";
-            save(insert, venda.getDataVenda(), venda.getFormaPagamento(), venda.getCliente().getIdCliente(), venda.getVendedor().getIdVendedor(), venda.getEstoques().get(i).getIdEstoque(), venda.getValorTotalVenda());
+            String insert = "INSERT INTO vendas (id_venda, data_venda, forma_pagamento, id_cliente, id_vendedor, id_estoque, valor_total_venda) VALUES(?,?,?,?,?,?,?) ";
+            save(insert, ID_VENDA, venda.getDataVenda(), venda.getFormaPagamento(), venda.getCliente().getIdCliente(), venda.getVendedor().getIdVendedor(), venda.getEstoques().get(i).getIdEstoque(), venda.getValorTotalVenda());
         }
         JOptionPane.showMessageDialog(null, "Compra realizada");
+        ID_VENDA++;
     }
 
     /*

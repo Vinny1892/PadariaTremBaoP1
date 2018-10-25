@@ -14,7 +14,6 @@ public class Vendedor extends GestaoFuncionario {
 
     /*Construtor da classe GestaoFuncionario // Recebe por parametro montante da venda, salario base mensal, cpf, telefone, nome, endereco e meta de venda //
     Utilizado em conjunto com metodos que nao necessitam receber o ID como parametro // Ex: salvar()*/
-
     public Vendedor(float montanteVenda, float salarioBaseMensal, String cpf, String telefone, String nome, String endereco, float metaVenda) {
         super(salarioBaseMensal, cpf, telefone, nome, endereco);
         this.montanteVenda = montanteVenda;
@@ -23,7 +22,6 @@ public class Vendedor extends GestaoFuncionario {
 
     /*Construtor da classe GestaoFuncionario // Recebe por parametro montante da venda, id do vendedor, salario base mensal, cpf, telefone, nome, endereco e meta de venda //
     Utilizado em conjunto com metodos que necessitam receber o ID como parametro // Ex atulizar(ID), getByID(ID)*/
-
     public Vendedor(float montanteVenda, int idVendedor, float salarioBaseMensal, String cpf, String telefone, String nome, String endereco, float metaVenda) {
         super(salarioBaseMensal, cpf, telefone, nome, endereco);
         this.montanteVenda = montanteVenda;
@@ -32,7 +30,6 @@ public class Vendedor extends GestaoFuncionario {
     }
 
     //Getters and Setters
-    
     public float getMontanteVenda() {
         return montanteVenda;
     }

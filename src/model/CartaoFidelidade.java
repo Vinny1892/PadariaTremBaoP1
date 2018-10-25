@@ -18,7 +18,6 @@ public class CartaoFidelidade {
 
     /*Contrutor da classe CartaoFidelidade // Recebe por parametro 2 booleans identificando se o cartao e gold ou platinum //
      Utilizado em conjunto com metodos que nao necessitam reber o ID como paramentro // Ex: salvar() */
-
     public CartaoFidelidade(boolean gold, boolean platinum/*, GestaoCliente cliente*/) {
         this.gold = gold;
         this.platinum = platinum;
@@ -26,16 +25,13 @@ public class CartaoFidelidade {
 
     /*Contrutor da classe CartaoFidelidade // Recebe por parametro o ID e 2 booleans identificando se o cartao e gold ou platinum //
     Utilizado em conjunto com metodos que necessitam receber o ID como parametro // Ex: atualizar(), getByID(ID)*/
-
     public CartaoFidelidade(int idcartaoFidelidade, boolean gold, boolean platinum/*, GestaoCliente cliente*/) {
         this.idcartaoFidelidade = idcartaoFidelidade;
         this.gold = gold;
         this.platinum = platinum;
     }
 
-
     //Getters and setters
-
     public boolean isGold() {
         return gold;
     }

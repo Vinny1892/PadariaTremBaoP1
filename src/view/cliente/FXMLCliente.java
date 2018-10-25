@@ -85,7 +85,6 @@ public class FXMLCliente implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -145,7 +144,8 @@ public class FXMLCliente implements Initializable {
         try {
             clientes = cc.getAll();
         } catch (SQLException ex) {
-            System.out.println("Erro ao buscar Produtos do Banco");
+            System.out.println("Erro ao buscar Clientes do Banco");
+            System.out.println(ex);
         }
         inicializarComboBox();
         inicializarTabela();
@@ -169,6 +169,9 @@ public class FXMLCliente implements Initializable {
         tableColumnCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         obsGestaoCliente = FXCollections.observableArrayList(clientes);
         tableCliente.setItems(obsGestaoCliente);
+        tableCliente.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
+            btnRemover.setDisable(false);
+        });
 
     }
 

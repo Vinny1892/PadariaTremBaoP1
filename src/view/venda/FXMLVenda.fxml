@@ -11,9 +11,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="584.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.venda.FXMLVenda">
+<AnchorPane id="AnchorPane" prefHeight="649.0" prefWidth="718.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.venda.FXMLVenda">
     <children>
-        <TableView fx:id="tableEstoque" layoutX="4.0" layoutY="7.0" prefHeight="400.0" prefWidth="295.0">
+        <TableView fx:id="tableEstoque" layoutX="27.0" layoutY="95.0" prefHeight="400.0" prefWidth="250.0">
             <columns>
                 <TableColumn fx:id="tableEstoqueNome" prefWidth="75.0" text="Nome" />
                 <TableColumn fx:id="tableEstoqueQuantidade" prefWidth="75.0" text="Quantidade" />
@@ -22,7 +22,7 @@
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
         </TableView>
-        <TableView fx:id="tableCarrinho" layoutX="471.0" layoutY="7.0" prefHeight="407.0" prefWidth="260.0">
+        <TableView fx:id="tableCarrinho" layoutX="427.0" layoutY="92.0" prefHeight="407.0" prefWidth="260.0">
             <columns>
                 <TableColumn fx:id="tableCarrinhoNome" prefWidth="75.0" text="Nome" />
                 <TableColumn fx:id="tablePrecoCarrinho" prefWidth="75.0" text="Preco" />
@@ -32,26 +32,27 @@
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
         </TableView>
-        <Button fx:id="btnComprar" layoutX="340.0" layoutY="171.0" mnemonicParsing="false" onAction="#btnComprarAction" prefHeight="50.0" prefWidth="91.0" text="Comprar" />
-        <Label layoutX="84.0" layoutY="414.0" prefHeight="25.0" prefWidth="67.0" text="Estoque" />
-        <Label layoutX="595.0" layoutY="418.0" text="Carrinho" />
-        <Button fx:id="btnVoltar" layoutX="567.0" layoutY="475.0" mnemonicParsing="false" onAction="#btnVoltarAction" prefHeight="50.0" prefWidth="112.0" text="Voltar" />
-        <Button fx:id="btnAdicionarCarrinho" layoutX="342.0" layoutY="239.0" mnemonicParsing="false" onAction="#btnAdicionarCarrinhoAction" prefHeight="58.0" prefWidth="87.0" text="&gt;&gt;" />
-        <TextField fx:id="textFieldQuantidade" layoutX="300.0" layoutY="126.0" />
-        <Label layoutX="354.0" layoutY="93.0" text="Quantidade" />
-      <Label layoutX="246.0" layoutY="557.0" text="Nao Adicionar o mesmo item do estoque duas vezes ao carrinho e colocar datas certas" />
-      <Label layoutX="348.0" layoutY="320.0" prefHeight="42.0" prefWidth="76.0" text="Valor Total " />
-      <Label fx:id="lblMontanteVenda" layoutX="368.0" layoutY="370.0" />
-      <ComboBox fx:id="comboBoxCliente" layoutX="61.0" layoutY="463.0" prefWidth="150.0" />
-      <Label layoutX="4.0" layoutY="468.0" text="Cliente" />
-      <RadioButton layoutX="357.0" layoutY="430.0" mnemonicParsing="false" selected="true" text="A Vista">
-         <toggleGroup>
-            <ToggleGroup fx:id="group" />
-         </toggleGroup></RadioButton>
-      <RadioButton layoutX="349.0" layoutY="405.0" mnemonicParsing="false" text="A Prazo" toggleGroup="$group" />
-      <Label layoutX="9.0" layoutY="510.0" text="Vendedor" />
-      <Label layoutX="9.0" layoutY="549.0" text="Data" />
-      <ComboBox fx:id="comboBoxVendedor" layoutX="84.0" layoutY="505.0" prefWidth="150.0" />
-      <TextField fx:id="textFieldData" layoutX="61.0" layoutY="544.0" />
+        <Button fx:id="btnComprar" layoutX="588.0" layoutY="548.0" mnemonicParsing="false" onAction="#btnComprarAction" prefHeight="50.0" prefWidth="99.0" text="Comprar" />
+        <Label layoutX="124.0" layoutY="414.0" prefHeight="25.0" prefWidth="56.0" text="Estoque" />
+        <Label layoutX="529.0" layoutY="420.0" text="Carrinho" />
+        <Button fx:id="btnVoltar" layoutX="459.0" layoutY="548.0" mnemonicParsing="false" onAction="#btnVoltarAction" prefHeight="50.0" prefWidth="112.0" text="Voltar" />
+        <Button fx:id="btnAdicionarCarrinho" layoutX="290.0" layoutY="266.0" mnemonicParsing="false" onAction="#btnAdicionarCarrinhoAction" prefHeight="58.0" prefWidth="122.0" text="&gt;&gt;" />
+        <TextField fx:id="textFieldQuantidade" layoutX="367.0" layoutY="217.0" prefHeight="25.0" prefWidth="46.0" />
+        <Label layoutX="287.0" layoutY="222.0" text="Quantidade" />
+        <Label layoutX="61.0" layoutY="617.0" prefHeight="25.0" prefWidth="569.0" text="Nao Adicionar o mesmo item do estoque duas vezes ao carrinho e colocar datas certas" />
+        <Label layoutX="569.0" layoutY="46.0" prefHeight="42.0" prefWidth="76.0" text="Valor Total " />
+        <Label fx:id="lblMontanteVenda" layoutX="655.0" layoutY="60.0" prefHeight="15.0" prefWidth="32.0" />
+        <ComboBox fx:id="comboBoxCliente" layoutX="105.0" layoutY="21.0" prefHeight="25.0" prefWidth="150.0" />
+        <Label layoutX="47.0" layoutY="26.0" text="Cliente" />
+        <RadioButton layoutX="604.0" layoutY="520.0" mnemonicParsing="false" selected="true" text="A Vista">
+            <toggleGroup>
+                <ToggleGroup fx:id="group" />
+            </toggleGroup>
+        </RadioButton>
+        <RadioButton layoutX="521.0" layoutY="520.0" mnemonicParsing="false" text="A Prazo" toggleGroup="$group" />
+        <Label layoutX="30.0" layoutY="65.0" text="Vendedor" />
+        <Label layoutX="470.0" layoutY="26.0" text="Data" />
+        <ComboBox fx:id="comboBoxVendedor" layoutX="105.0" layoutY="60.0" prefWidth="150.0" />
+        <TextField fx:id="textFieldData" layoutX="516.0" layoutY="21.0" />
     </children>
 </AnchorPane>

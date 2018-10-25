@@ -21,7 +21,7 @@ public class DaoCliente extends GenericDao implements CRUDBasico {
     public void salvar(Object object) throws SQLException {
         try {
             GestaoCliente cliente = (GestaoCliente) object;
-            String insert = "INSERT INTO cliente (nome,endereco,cpf,telefone,idcartao_fidelidade) VALUES(?,?,?,?) ";
+            String insert = "INSERT INTO cliente (nome,endereco,cpf,telefone,id_cartao_fidelidade) VALUES(?,?,?,?,?) ";
             //CartaoFidelidade cartao = (CartaoFidelidade) new ControllerCartao().selecionaObjeto(rs.getInt("id_cartao"));
             save(insert, cliente.getNome(), cliente.getEndereco(), cliente.getCpf(), cliente.getTelefone(), cliente.getCartaoFidelidade().getIdcartaoFidelidade());
             System.out.println("Metodo salvar DaoCliente realizado");
@@ -29,7 +29,8 @@ public class DaoCliente extends GenericDao implements CRUDBasico {
             System.out.println("CPF Ja existe");
             JOptionPane.showMessageDialog(null, "CPF ja existe no Banco de Dados");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao inserir fornecedor");
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Erro ao inserir cliente");
         }
     }
 
@@ -85,8 +86,8 @@ public class DaoCliente extends GenericDao implements CRUDBasico {
         PreparedStatement stmt = getConnection().prepareStatement("SELECT * FROM cliente");
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            CartaoFidelidade cartao = (CartaoFidelidade) new ControllerCartao().selecionaObjeto(rs.getInt("id_cartao"));
-            GestaoCliente cliente = new GestaoCliente(rs.getString("nome"), rs.getString("endereco"), rs.getString("cpf"), rs.getString("telefone"), cartao, rs.getInt("id_cartao"));
+            CartaoFidelidade cartao = (CartaoFidelidade) new ControllerCartao().selecionaObjeto(rs.getInt("id_cartao_fidelidade"));
+            GestaoCliente cliente = new GestaoCliente(rs.getString("nome"), rs.getString("endereco"), rs.getString("cpf"), rs.getString("telefone"), cartao, rs.getInt("id_cartao_fidelidade"));
             clientes.add(cliente);
         }
         rs.close();

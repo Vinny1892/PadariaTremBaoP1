@@ -14,7 +14,6 @@
         <RadioButton fx:id="individual" layoutX="36.0" layoutY="127.0" maxHeight="1.7976931348623157E308" mnemonicParsing="false" text="Individual" />
         <RadioButton fx:id="coletivo" layoutX="36.0" layoutY="103.0" mnemonicParsing="false" selected="true" text="Coletivo" />
         <Text layoutX="14.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selecione:" />
-        <Text layoutX="16.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Saida:" />
         <Text layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exportar Informaçoes" textAlignment="CENTER" wrappingWidth="243.4482421875">
             <font>
                 <Font size="16.0" />
@@ -23,7 +22,6 @@
         <TextField fx:id="codigo" layoutX="118.0" layoutY="151.0" prefHeight="25.0" prefWidth="103.0" promptText="Ex: 001122" />
         <Text fx:id="infoCodigo" layoutX="65.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Codigo:" />
         <Button layoutX="14.0" layoutY="241.0" mnemonicParsing="false" onAction="#btnVoltar" prefHeight="25.0" prefWidth="94.0" text="Voltar" />
-        <TextField fx:id="output" layoutX="14.0" layoutY="206.0" prefHeight="25.0" prefWidth="209.0" promptText="Ex: /Users/Joao/Desktop/" />
         <ComboBox fx:id="optionsSelector" layoutX="54.0" layoutY="50.0" prefHeight="25.0" prefWidth="168.0" />
     </children>
 </AnchorPane>
