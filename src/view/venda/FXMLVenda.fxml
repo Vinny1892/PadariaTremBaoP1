@@ -11,7 +11,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="548.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.venda.FXMLVenda">
+<AnchorPane id="AnchorPane" prefHeight="584.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.venda.FXMLVenda">
     <children>
         <TableView fx:id="tableEstoque" layoutX="4.0" layoutY="7.0" prefHeight="400.0" prefWidth="295.0">
             <columns>
@@ -39,5 +39,19 @@
         <Button fx:id="btnAdicionarCarrinho" layoutX="342.0" layoutY="239.0" mnemonicParsing="false" onAction="#btnAdicionarCarrinhoAction" prefHeight="58.0" prefWidth="87.0" text="&gt;&gt;" />
         <TextField fx:id="textFieldQuantidade" layoutX="300.0" layoutY="126.0" />
         <Label layoutX="354.0" layoutY="93.0" text="Quantidade" />
+      <Label layoutX="246.0" layoutY="557.0" text="Nao Adicionar o mesmo item do estoque duas vezes ao carrinho e colocar datas certas" />
+      <Label layoutX="348.0" layoutY="320.0" prefHeight="42.0" prefWidth="76.0" text="Valor Total " />
+      <Label fx:id="lblMontanteVenda" layoutX="368.0" layoutY="370.0" />
+      <ComboBox fx:id="comboBoxCliente" layoutX="61.0" layoutY="463.0" prefWidth="150.0" />
+      <Label layoutX="4.0" layoutY="468.0" text="Cliente" />
+      <RadioButton layoutX="357.0" layoutY="430.0" mnemonicParsing="false" selected="true" text="A Vista">
+         <toggleGroup>
+            <ToggleGroup fx:id="group" />
+         </toggleGroup></RadioButton>
+      <RadioButton layoutX="349.0" layoutY="405.0" mnemonicParsing="false" text="A Prazo" toggleGroup="$group" />
+      <Label layoutX="9.0" layoutY="510.0" text="Vendedor" />
+      <Label layoutX="9.0" layoutY="549.0" text="Data" />
+      <ComboBox fx:id="comboBoxVendedor" layoutX="84.0" layoutY="505.0" prefWidth="150.0" />
+      <TextField fx:id="textFieldData" layoutX="61.0" layoutY="544.0" />
     </children>
 </AnchorPane>

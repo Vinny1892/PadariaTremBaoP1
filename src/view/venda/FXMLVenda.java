@@ -27,13 +27,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.GestaoCliente;
 import model.GestaoEstoque;
+import model.Vendedor;
 import view.main.Main;
 
 /**
@@ -50,8 +55,25 @@ public class FXMLVenda implements Initializable {
     ArrayList<GestaoEstoque> carrinho;
     ArrayList<GestaoEstoque> produtosEstoque;
     ArrayList<GestaoCliente> clientes;
+    ArrayList<Vendedor> vendedores;
+    ObservableList<GestaoCliente> obsClienteComboBox;
     ObservableList<GestaoEstoque> obsCarrinho;
     ObservableList<GestaoEstoque> obsTableEstoque;
+    ObservableList<Vendedor> obsVendedorComboBox;
+
+    @FXML
+    private ComboBox<GestaoCliente> comboBoxCliente;
+    
+    @FXML
+    private ToggleGroup group;
+    @FXML
+    private  Label lblMontanteVenda;
+    @FXML
+    private TextField textFieldData;
+    
+    @FXML
+    private ComboBox<Vendedor> comboBoxVendedor; 
+   
 
     @FXML
     private TableView<GestaoEstoque> tableEstoque;
@@ -101,12 +123,18 @@ public class FXMLVenda implements Initializable {
                 Alert alert = null;
                 if (qtdProdutoCarrinho.getQtdProduto() > 0) {
                     if (qtdProdutoCarrinho.getQtdProduto() <= tableEstoque.getSelectionModel().getSelectedItem().getQtdProduto()) {
-                        System.out.println(qtdProdutoCarrinho.getIdEstoque());
-                        System.out.println("");
-                        System.out.println(qtdProdutoEstoque.getIdEstoque());
-                        carrinho.add(qtdProdutoCarrinho);
-                        obsCarrinho = FXCollections.observableArrayList(carrinho);
-                        tableCarrinho.setItems(obsCarrinho);
+                        
+                             
+                            carrinho.add(qtdProdutoCarrinho);
+                            obsCarrinho = FXCollections.observableArrayList(carrinho);
+                            tableCarrinho.setItems(obsCarrinho);
+                            String valor = String.valueOf(calculaValorVenda());
+                            lblMontanteVenda.setText(valor);
+                            
+                        
+                        
+                       
+                        
                         
                     } else {
                         alert = new Alert(Alert.AlertType.NONE, "Quantidade Invalida",ButtonType.YES);
@@ -137,13 +165,35 @@ public class FXMLVenda implements Initializable {
     
    //(qtdNoEstoque >= qtdProdutoClite)
     
-    void validaCampo(){
-        
+     public float calculaValorVenda(){
+         float valorTotalVenda= 0;
+         //Calcula Montante
+         for ( int i = 0 ; i<carrinho.size();i++){
+             valorTotalVenda += carrinho.get(i).getProduto().getPrecoCusto() * carrinho.get(i).getQtdProduto();
+         }
+          // Calcula se venda e prazo a vista
+        boolean prazo = false ;
+        RadioButton vistaPrazo = (RadioButton) group.getSelectedToggle();
+        if(vistaPrazo.getText().equals("A Vista")){
+             prazo = false;
+        }if(vistaPrazo.getText().equals("A Prazo")){
+            prazo = true;
+             valorTotalVenda = cvV.precoFinalVenda(prazo, valorTotalVenda);
+        }
+        return valorTotalVenda;
+       
         
     }
+  
 
     @FXML
-    void btnComprarAction(ActionEvent event) {
+    void btnComprarAction(ActionEvent event) throws SQLException {
+        GestaoCliente cliente = comboBoxCliente.getSelectionModel().getSelectedItem();
+        Vendedor vendedor = comboBoxVendedor.getSelectionModel().getSelectedItem();
+        if(carrinho.size() > 0 ){
+            cvV.salvar(textFieldData.getText(), vendedor, cliente, carrinho, 1, calculaValorVenda());
+        }
+        
 
     }
 
@@ -174,7 +224,9 @@ public class FXMLVenda implements Initializable {
         carrinho = new ArrayList<>();
         try {
             produtosEstoque = ce.getAll();
-            System.out.println(ce.getAll());
+            clientes = cc.getAll();
+            vendedores = cv.getAll();
+          
             //clientes = cc.getAll();
 
         } catch (SQLException ex) {
@@ -194,18 +246,33 @@ public class FXMLVenda implements Initializable {
             }
         });
         tableEstoque.getSelectionModel().selectFirst();
+        inicializarComboBoxCliente();
+        inicializarComboBoxVendedor();
 
         //cvV.salvar(data, vendedor, cliente, estoques, formapagamento, valortotal);
         // TODO
     }
 
     void inicializarTabelaEstoque() {
-        System.out.println(produtosEstoque.size());
         tableEstoqueNome.setCellValueFactory(new PropertyValueFactory<>("produtoNome"));
         tableEstoqueQuantidade.setCellValueFactory(new PropertyValueFactory<>("qtdProduto"));
         obsTableEstoque = FXCollections.observableArrayList(produtosEstoque);
         tableEstoque.setItems(obsTableEstoque);
 
+    }
+    void inicializarComboBoxCliente(){
+        obsClienteComboBox = FXCollections.observableArrayList(clientes);
+        comboBoxCliente.setItems(obsClienteComboBox);
+        comboBoxCliente.getSelectionModel().selectFirst();
+        
+        
+        
+    }
+    
+    void inicializarComboBoxVendedor(){
+        obsVendedorComboBox = FXCollections.observableArrayList(vendedores);
+        comboBoxVendedor.setItems(obsVendedorComboBox);
+        comboBoxVendedor.getSelectionModel().selectFirst();
     }
 
 }
