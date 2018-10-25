@@ -12,8 +12,8 @@
         <TextField layoutX="108.0" layoutY="81.0" prefHeight="25.0" prefWidth="174.0" promptText="Ex: João da Silva" />
         <Text layoutX="59.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:" />
         <Text layoutX="36.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Endereço:" />
-        <TextField layoutX="108.0" layoutY="119.0" prefHeight="25.0" prefWidth="174.0" promptText="Ex: Rua dos bobos, nº 0" />
-        <TextField layoutX="107.0" layoutY="157.0" prefHeight="25.0" prefWidth="174.0" promptText="Ex: 269.265.265-99" />
+        <TextField fx:id="textFieldEndereco" layoutX="108.0" layoutY="119.0" prefHeight="25.0" prefWidth="174.0" promptText="Ex: Rua dos bobos, nº 0" />
+        <TextField fx:id="textFieldCPF" layoutX="107.0" layoutY="157.0" prefHeight="25.0" prefWidth="174.0" promptText="Ex: 269.265.265-99" />
         <Text layoutX="68.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CPF:" />
         <Text layoutX="3.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Novo Cliente" textAlignment="CENTER" wrappingWidth="593.7294921875">
             <font>
@@ -21,11 +21,16 @@
             </font>
         </Text>
         <Text layoutX="38.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefone:" />
-        <TextField layoutX="108.0" layoutY="196.0" prefHeight="25.0" prefWidth="174.0" promptText="Ex: 269.265.265-99" />
+        <TextField fx:id="textFieldTelefone" layoutX="108.0" layoutY="196.0" prefHeight="25.0" prefWidth="174.0" promptText="Ex: 269.265.265-99" />
         <Text layoutX="332.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de cliente:" />
-        <RadioButton layoutX="341.0" layoutY="139.0" mnemonicParsing="false" text="Gold" />
-        <RadioButton layoutX="341.0" layoutY="168.0" mnemonicParsing="false" text="Platinum" />
-        <RadioButton layoutX="341.0" layoutY="110.0" mnemonicParsing="false" text="Novo" />
+        
+        <RadioButton layoutX="341.0" layoutY="139.0" mnemonicParsing="false" text="Gold"  toggleGroup="$group"  >
+        <toggleGroup>
+            <ToggleGroup fx:id="group" />
+         </toggleGroup>
+        </RadioButton>   
+        <RadioButton layoutX="341.0" layoutY="168.0" mnemonicParsing="false" text="Platinum"  toggleGroup="$group"  />
+        <RadioButton layoutX="341.0" layoutY="110.0" mnemonicParsing="false" text="Novo"  selected="true"  toggleGroup="$group" />
         <Button layoutX="177.0" layoutY="247.0" mnemonicParsing="false" onAction="#salvarNovoCliente" prefHeight="25.0" prefWidth="243.0" text="Salvar" />
     </children>
 </AnchorPane>
