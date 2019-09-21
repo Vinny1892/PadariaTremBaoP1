@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class ConexaoBDMySql {
 
-    private static final String URL_MYSQL = "jdbc:mysql://localhost/padaria";
+    private static final String URL_MYSQL = "jdbc:mysql://172.20.0.2/padaria";
 
     private static final String DRIVER_CLASS = "com.mysql.jdbc.Driver";
     private static final String USER = "root";
